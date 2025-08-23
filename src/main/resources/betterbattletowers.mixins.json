@@ -7,7 +7,7 @@
     "ChunkProviderStaticMixin"
   ],
   "client": [
-    "MobPageMixin"
+    "GuidebookPageMobMixin"
   ],
   "server": [
     "ChunkProviderServerMixin"

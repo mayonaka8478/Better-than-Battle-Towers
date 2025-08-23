@@ -1,0 +1,35 @@
+{
+  "mob.golem": {
+    "subtitle": "betterbattletowers.subtitles.mob.golem",
+    "sounds": [
+      "golem1.ogg",
+      "golem3.ogg"
+    ]
+  },
+  "mob.golem.awaken": {
+    "subtitle": "betterbattletowers.subtitles.mob.golem.awaken",
+    "sounds": [
+      "golemawaken.ogg"
+    ]
+  },
+  "mob.golem.death": {
+    "subtitle": "betterbattletowers.subtitles.mob.golem.death",
+    "sounds": [
+      "golemdeath.ogg"
+    ]
+  },
+  "mob.golem.hurt": {
+    "subtitle": "betterbattletowers.subtitles.mob.golem.hurt",
+    "sounds": [
+      "golemhurt2.ogg",
+      "golemhurt3.ogg"
+    ]
+  },
+  "mob.golem.special": {
+    "subtitle": "betterbattletowers.subtitles.mob.golem.special",
+    "sounds": [
+      "golemspecial1.ogg",
+      "golemspecial2.ogg"
+    ]
+  }
+}
