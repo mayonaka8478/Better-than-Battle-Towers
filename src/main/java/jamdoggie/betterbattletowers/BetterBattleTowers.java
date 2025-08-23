@@ -7,121 +7,125 @@ import jamdoggie.betterbattletowers.worldgen.WorldGenTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.item.Item;
+import net.minecraft.client.render.EntityRenderDispatcher;
+import net.minecraft.client.render.TileEntityRenderDispatcher;
+import net.minecraft.client.render.block.color.BlockColorDispatcher;
+import net.minecraft.client.render.block.model.BlockModelChest;
+import net.minecraft.client.render.block.model.BlockModelDispatcher;
+import net.minecraft.client.render.item.model.ItemModelDispatcher;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.client.sound.SoundRepository;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.Items;
+import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
+import org.lwjgl.Sys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.EntityHelper;
-import turniplabs.halplibe.helper.SoundHelper;
-import turniplabs.halplibe.util.ClientStartEntrypoint;
-import turniplabs.halplibe.util.ConfigHandler;
-import turniplabs.halplibe.util.GameStartEntrypoint;
-import turniplabs.halplibe.util.RecipeEntrypoint;
+import turniplabs.halplibe.helper.ModelHelper;
+import turniplabs.halplibe.helper.TextureHelper;
+import turniplabs.halplibe.util.*;
 
 import java.util.Properties;
 import java.util.Random;
 
 
-public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint
-{
-    public static final String MOD_ID = "betterbattletowers";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint, ModelEntrypoint {
+	public static final String MOD_ID = "betterbattletowers";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ConfigHandler config;
 
 	static {
 		Properties prop = new Properties();
 		prop.setProperty("starting_block_id", "6340");
 		prop.setProperty("starting_item_id", "26340");
-		prop.setProperty("starting_entity_id", "634");
 		prop.setProperty("towercount", "200");
 		prop.setProperty("rarity", "10");
 		//Tower Loot
 		//floor1
 		prop.setProperty("lootitem1_0", "Item.stick");
-		prop.setProperty("lootitem1_1", "Item.seedsWheat");
-		prop.setProperty("lootitem1_2", "Item.ammoPebble");
+		prop.setProperty("lootitem1_1", "Item.seeds.wheat");
+		prop.setProperty("lootitem1_2", "Item.ammo.pebble");
 		prop.setProperty("lootitem1_3", "Block.sand");
 		//floor2
 		prop.setProperty("lootitem2_0", "Item.coal");
 		prop.setProperty("lootitem2_1", "Item.stick");
-		prop.setProperty("lootitem2_2", "Block.planksOak");
+		prop.setProperty("lootitem2_2", "Block.planks.oak");
 		prop.setProperty("lootitem2_3", "Block.wool");
 		//floor3
-		prop.setProperty("lootitem3_0", "Item.featherChicken");
-		prop.setProperty("lootitem3_1", "Item.foodBread");
+		prop.setProperty("lootitem3_0", "Item.feather.chicken");
+		prop.setProperty("lootitem3_1", "Item.food.bread");
 		prop.setProperty("lootitem3_2", "Block.glass");
-		prop.setProperty("lootitem3_3", "Block.mushroomBrown");
+		prop.setProperty("lootitem3_3", "Block.mushroom.brown");
 		//floor4
-		prop.setProperty("lootitem4_0", "Item.featherChicken");
-		prop.setProperty("lootitem4_1", "Item.foodBread");
+		prop.setProperty("lootitem4_0", "Item.feather.chicken");
+		prop.setProperty("lootitem4_1", "Item.food.bread");
 		prop.setProperty("lootitem4_2", "Block.glass");
-		prop.setProperty("lootitem4_3", "Block.mushroomBrown");
+		prop.setProperty("lootitem4_3", "Block.mushroom.brown");
 		//floor5
-		prop.setProperty("lootitem5_0", "Block.stairsPlanksOak");
-		prop.setProperty("lootitem5_1", "Block.brickClay");
-		prop.setProperty("lootitem5_2", "Item.ingotIron");
+		prop.setProperty("lootitem5_0", "Block.stairs.planks.oak");
+		prop.setProperty("lootitem5_1", "Block.brick.clay");
+		prop.setProperty("lootitem5_2", "Item.ingot.iron");
 		prop.setProperty("lootitem5_3", "Item.rope");
 		//floor6
-		prop.setProperty("lootitem6_0", "Block.ladderOak");
+		prop.setProperty("lootitem6_0", "Block.ladder.oak");
 		prop.setProperty("lootitem6_1", "Item.flint");
-		prop.setProperty("lootitem6_2", "Item.dustRedstone");
-		prop.setProperty("lootitem6_3", "Item.ingotGold");
+		prop.setProperty("lootitem6_2", "Item.dust.redstone");
+		prop.setProperty("lootitem6_3", "Item.ingot.gold");
 		//floor7
-		prop.setProperty("lootitem7_0", "Block.pumpkinCarvedActive");
+		prop.setProperty("lootitem7_0", "Block.pumpkin.carved.active");
 		prop.setProperty("lootitem7_1", "Block.rail");
-		prop.setProperty("lootitem7_2", "Item.oreRawIron");
-		prop.setProperty("lootitem7_3", "Item.bucketLava");
+		prop.setProperty("lootitem7_2", "Item.ore.raw.iron");
+		prop.setProperty("lootitem7_3", "Item.bucket.lava");
 		//floor8
 		prop.setProperty("lootitem8_0", "Block.tnt");
 		prop.setProperty("lootitem8_1", "Block.slate");
-		prop.setProperty("lootitem8_2", "Item.oreRawGold");
+		prop.setProperty("lootitem8_2", "Item.ore.raw.gold");
 		prop.setProperty("lootitem8_3", "Item.chainlink");
 		//floor9
 		prop.setProperty("lootitem9_0", "Item.quartz");
 		prop.setProperty("lootitem9_1", "Item.olivine");
-		prop.setProperty("lootitem9_2", "Item.dustRedstone");
+		prop.setProperty("lootitem9_2", "Item.dust.redstone");
 		prop.setProperty("lootitem9_3", "Block.mesh");
 		//floortop
-		prop.setProperty("lootitemtop_0", "Block.meshGold");
-		prop.setProperty("lootitemtop_1", "Item.ingotGold");
-		prop.setProperty("lootitemtop_2", "Item.ingotIron");
-		prop.setProperty("lootitemtop_3", "Item.Item.diamond");
+		prop.setProperty("lootitemtop_0", "Block.mesh.gold");
+		prop.setProperty("lootitemtop_1", "Item.ingot.gold");
+		prop.setProperty("lootitemtop_2", "Item.ingot.iron");
+		prop.setProperty("lootitemtop_3", "Item.diamond");
 
 
 		config = new ConfigHandler(BetterBattleTowers.MOD_ID, prop);
-		entityID = config.getInt("starting_entity_id");
 		towercount = config.getInt("towercount");
 		rarity = config.getInt("rarity");
 		config.updateConfig();
 	}
+
 	public static BetterBattleTowers instance;
 
 	public static int towercount;
 	public static int rarity;
 	private final int DEFAULT_RARITY = 3;
 
-	public BetterBattleTowers()
-	{
+	public BetterBattleTowers() {
 		instance = this;
 	}
 
-	public static int entityID;
-
 	@Override
-    public void onInitialize() {
-        LOGGER.info("Better than Battle Towers initialized.");
+	public void onInitialize() {
+		LOGGER.info("Better than Battle Towers initialized.");
 
 
-    }
+	}
 
 	@Override
 	public void beforeGameStart() {
 		ModBlocks.createBlocks();
 
-		EntityHelper.createEntity(EntityGolem.class, entityID, "TowerGolem", () -> new RenderGolem());
+		EntityHelper.createEntity(EntityGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
 
+		SoundRepository.registerNamespace(MOD_ID);
 	}
 
 	@Override
@@ -137,8 +141,8 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 	public void afterGameStart() {
 		MobInfoRegistry.register(EntityGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", 300, 10000,
 			new MobInfoRegistry.MobDrop[]{
-				new MobInfoRegistry.MobDrop(new ItemStack(Block.slabStonePolished), 1.0f, 9 ,12),
-				new MobInfoRegistry.MobDrop(new ItemStack(Item.diamond), 1.0f, 1 ,6)
+				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
+				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
 			});
 	}
 
@@ -152,38 +156,49 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 	}
 
 	@Override
-	public void onInitializeClient()
-	{
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golem1.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golem3.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemawaken.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemdeath.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemhurt2.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemhurt3.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemspecial1.ogg");
-		SoundHelper.addSound(BetterBattleTowers.MOD_ID, "golemspecial2.ogg");
+	public void onInitializeClient() {
+
 	}
 
-	public void GenerateSurface(World world, Random random, int chunkX, int chunkZ)
-	{
-		if(towercount >= rarity * 100)
-		{
-			if(random.nextInt(2) == 0)
-			{
+	public void GenerateSurface(World world, Random random, int chunkX, int chunkZ) {
+		if (towercount >= rarity * 100) {
+			if (random.nextInt(2) == 0) {
 				int k = chunkX + random.nextInt(16) + 8;
 				int i1 = chunkZ + random.nextInt(16) + 8;
 				int l = world.getHeightValue(k, i1);
 
 
-				if((new WorldGenTower()).generate(world, random, k, l, i1))
-				{
+				if ((new WorldGenTower()).place(world, random, k, l, i1)) {
 					towercount = 0;
 				}
 			}
-		}
-		else
-		{
+		} else {
 			towercount++;
 		}
+	}
+
+	@Override
+	public void initBlockModels(BlockModelDispatcher dispatcher) {
+		dispatcher.addDispatch(new BlockModelChest<>(ModBlocks.ChestTower, "betterbattletowers:block/chest_tower_"));
+	}
+
+	@Override
+	public void initItemModels(ItemModelDispatcher dispatcher) {
+
+	}
+
+	@Override
+	public void initEntityModels(EntityRenderDispatcher dispatcher) {
+		ModelHelper.setEntityModel(EntityGolem.class, RenderGolem::new);
+	}
+
+	@Override
+	public void initTileEntityModels(TileEntityRenderDispatcher dispatcher) {
+
+	}
+
+	@Override
+	public void initBlockColors(BlockColorDispatcher dispatcher) {
+
 	}
 }

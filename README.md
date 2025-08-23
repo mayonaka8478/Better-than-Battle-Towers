@@ -12,3 +12,5 @@ UselessBullets
 ## 7.2 version developer
 mayonaka8478
 baguchan
+## 7.3 version developer
+MonkeySaint

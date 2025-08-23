@@ -40,6 +40,9 @@
 		],
 		"client": [
 			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"initModels": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
 		]
 	},
   "mixins": [
@@ -47,7 +50,7 @@
   ],
 
   "depends": {
-		"minecraft": "~7.2",
+		"minecraft": "~7.3",
     "fabricloader": ">=0.15.6-babric.6-bta"
   },
   "suggests": {
