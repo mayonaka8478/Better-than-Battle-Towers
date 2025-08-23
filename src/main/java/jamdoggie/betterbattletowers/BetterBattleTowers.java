@@ -4,7 +4,9 @@ import jamdoggie.betterbattletowers.block.ModBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
 import jamdoggie.betterbattletowers.worldgen.WorldGenTower;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.block.Blocks;
@@ -118,20 +120,24 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 	@Override
 	public void beforeClientStart() {
 		SoundRepository.registerNamespace(MOD_ID);
-
-		MobInfoRegistry.register(EntityGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", 300, 10000,
-			new MobInfoRegistry.MobDrop[]{
-				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
-				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
-			});
 	}
 
 	@Override
 	public void afterClientStart() {
+
 	}
 
 	@Override
 	public void afterGameStart() {
+		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+			// This doesn't work in afterClientStart for some reason
+			MobInfoRegistry.register(EntityGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", 300, 10000,
+				new MobInfoRegistry.MobDrop[]{
+					new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
+					new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
+			});
+		}
+
 	}
 
 	@Override
