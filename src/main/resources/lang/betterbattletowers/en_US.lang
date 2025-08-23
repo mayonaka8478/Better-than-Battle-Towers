@@ -1,7 +1,7 @@
 betterbattletowers.golem.name=Golem
 betterbattletowers.golem.desc=A powerful foe that lays dormant on top of ancient towers.
-tile.betterbattletowers.chest.tower.name=Tower Chest
-tile.betterbattletowers.chest.tower.desc=Old sturdy chest placed in ancient towers.
+tile.betterbattletowers.tower.chest.name=Tower Chest
+tile.betterbattletowers.tower.chest.desc=Old sturdy chest placed in ancient towers.
 betterbattletowers.subtitles.mob.golem=Golem growls
 betterbattletowers.subtitles.mob.golem.awaken=Golem awakens
 betterbattletowers.subtitles.mob.golem.death=Golem death

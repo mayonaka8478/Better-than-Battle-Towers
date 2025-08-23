@@ -3,11 +3,9 @@
   "minVersion": "0.8",
   "package": "jamdoggie.betterbattletowers.mixins",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "ChunkProviderStaticMixin"
-  ],
   "client": [
-    "GuidebookPageMobMixin"
+    "GuidebookPageMobMixin",
+    "ChunkProviderStaticMixin"
   ],
   "server": [
     "ChunkProviderServerMixin"

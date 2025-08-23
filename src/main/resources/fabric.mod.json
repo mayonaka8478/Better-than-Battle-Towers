@@ -42,7 +42,10 @@
 			"jamdoggie.betterbattletowers.BetterBattleTowers"
 		],
 		"initModels": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.InitializeModels"
+		],
+		"server": [
+			"jamdoggie.betterbattletowers.InitializeServer"
 		]
 	},
   "mixins": [

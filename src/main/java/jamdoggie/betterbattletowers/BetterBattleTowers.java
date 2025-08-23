@@ -2,37 +2,26 @@ package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.ModBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
-import jamdoggie.betterbattletowers.entity.render.RenderGolem;
 import jamdoggie.betterbattletowers.worldgen.WorldGenTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
-import net.minecraft.client.render.EntityRenderDispatcher;
-import net.minecraft.client.render.TileEntityRenderDispatcher;
-import net.minecraft.client.render.block.color.BlockColorDispatcher;
-import net.minecraft.client.render.block.model.BlockModelChest;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
-import net.minecraft.client.render.item.model.ItemModelDispatcher;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
-import org.lwjgl.Sys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.EntityHelper;
-import turniplabs.halplibe.helper.ModelHelper;
-import turniplabs.halplibe.helper.TextureHelper;
 import turniplabs.halplibe.util.*;
 
 import java.util.Properties;
 import java.util.Random;
 
 
-public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint, ModelEntrypoint {
+public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
 	public static final String MOD_ID = "betterbattletowers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ConfigHandler config;
@@ -124,13 +113,17 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 		ModBlocks.createBlocks();
 
 		EntityHelper.createEntity(EntityGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
-
-		SoundRepository.registerNamespace(MOD_ID);
 	}
 
 	@Override
 	public void beforeClientStart() {
+		SoundRepository.registerNamespace(MOD_ID);
 
+		MobInfoRegistry.register(EntityGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", 300, 10000,
+			new MobInfoRegistry.MobDrop[]{
+				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
+				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
+			});
 	}
 
 	@Override
@@ -139,11 +132,6 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 
 	@Override
 	public void afterGameStart() {
-		MobInfoRegistry.register(EntityGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", 300, 10000,
-			new MobInfoRegistry.MobDrop[]{
-				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
-				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
-			});
 	}
 
 	@Override
@@ -175,30 +163,5 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 		} else {
 			towercount++;
 		}
-	}
-
-	@Override
-	public void initBlockModels(BlockModelDispatcher dispatcher) {
-		dispatcher.addDispatch(new BlockModelChest<>(ModBlocks.ChestTower, "betterbattletowers:block/chest_tower_"));
-	}
-
-	@Override
-	public void initItemModels(ItemModelDispatcher dispatcher) {
-
-	}
-
-	@Override
-	public void initEntityModels(EntityRenderDispatcher dispatcher) {
-		ModelHelper.setEntityModel(EntityGolem.class, RenderGolem::new);
-	}
-
-	@Override
-	public void initTileEntityModels(TileEntityRenderDispatcher dispatcher) {
-
-	}
-
-	@Override
-	public void initBlockColors(BlockColorDispatcher dispatcher) {
-
 	}
 }
