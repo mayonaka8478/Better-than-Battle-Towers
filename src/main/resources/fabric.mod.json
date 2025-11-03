@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "betterbattletowers",
+  "version": "${version}",
+
+  "name": "Better than Battle Towers",
+  "description": "A version of the original Battle Towers mod for Better than Adventure.",
+  "authors": [
+    "JamDoggie",
+		"LukeisStuff",
+		"UselessBullets",
+		"bigsir24",
+		"mayonaka8478",
+		"baguchan"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+	"icon": "icon.png",
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+    ],
+		"beforeGameStart": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"beforeClientStart": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"afterGameStart": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"recipesReady": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"client": [
+			"jamdoggie.betterbattletowers.BetterBattleTowers"
+		],
+		"initModels": [
+			"jamdoggie.betterbattletowers.InitializeModels"
+		],
+		"server": [
+			"jamdoggie.betterbattletowers.InitializeServer"
+		]
+	},
+  "mixins": [
+		"betterbattletowers.mixins.json"
+  ],
+
+  "depends": {
+		"minecraft": "~7.3",
+    "fabricloader": ">=0.15.6-babric.6-bta"
+  },
+  "suggests": {
+  }
+}
