@@ -17,7 +17,7 @@ import static net.minecraft.client.render.block.model.BlockModelStandard.BLOCK_T
 public class InitializeModels implements ModelEntrypoint {
 	@Override
 	public void initBlockModels(BlockModelDispatcher dispatcher) {
-		dispatcher.addDispatch(new BlockModelChest<>(ModBlocks.ChestTower, "betterbattletowers:block/chest_tower")
+		dispatcher.addDispatch(new BlockModelChest<>(ModBlocks.ChestTower, "betterbattletowers:block/chest_tower_")
 			.setAllTextures(BLOCK_TEXTURES, "betterbattletowers:block/chest_tower_top"));
 	}
 

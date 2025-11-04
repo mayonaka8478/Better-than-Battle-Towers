@@ -1,7 +1,7 @@
 betterbattletowers.golem.name=ゴーレム
 betterbattletowers.golem.desc=タワーの頂上に眠る強敵
 tile.betterbattletowers.chest.tower.name=タワーチェスト
-tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱
+tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱、重くて持ち上げられない
 betterbattletowers.subtitles.mob.golem=ゴーレムが唸る
 betterbattletowers.subtitles.mob.golem.awaken=ゴーレムが目覚める
 betterbattletowers.subtitles.mob.golem.death=ゴーレムが死ぬ
