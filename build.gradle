@@ -78,6 +78,7 @@ repositories {
 		}
 		metadataSources { artifact() }
 	}
+
 }
 
 dependencies {
@@ -90,8 +91,9 @@ dependencies {
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
 	modImplementation("turniplabs:halplibe:${project.halplibe_version}")
-
 	modImplementation("turniplabs:modmenu-bta:${project.mod_menu_version}")
+	modImplementation("useless:btwaila:1.2.1-7.3_01")
+
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
