@@ -1,37 +1,43 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.LootCofigUtils;
 import jamdoggie.betterbattletowers.block.ModBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
 import net.minecraft.core.WeightedRandomBag;
-import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.entity.TileEntityChest;
 import net.minecraft.core.block.entity.TileEntityMobSpawner;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
 
+import static jamdoggie.betterbattletowers.BetterBattleTowers.LOGGER;
+
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.BlockPaletts.getRandomCobbledBlockBag;
+import static jamdoggie.betterbattletowers.worldgen.BlockPallets.getRandomCobbledBlockBag;
+import static jamdoggie.betterbattletowers.worldgen.LootTable.generateRandomChestLoot;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
 public class WorldGenTower extends WorldFeature {
 
-	private int currentFloor;
-	private int field_22237_field_20341_topFloor;
+	public static final int LOOT_AMOUNT = 12;
+	private int currentFloor = 1;
+	private boolean isTopFloor = false;
+
 	private WeightedRandomBag<Integer> cobbleBag;
 	private World world;
 	private Random random;
 	private int towerDecoBlockID;
 	private int offset = 0;
+
+	public static final int FLOOR_HEIGHT = 7;
+	public static final int FLOOR_LENGTH = 7;
+	public static final int FLOOR_WIDTH = 7;
 
 	public WorldGenTower() {
 	}
@@ -47,168 +53,159 @@ public class WorldGenTower extends WorldFeature {
 		this.towerDecoBlockID = random.nextInt(11);
 		this.cobbleBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
 		if (world.worldType instanceof WorldTypeOverworld) this.offset = 64;
-
-
-		int k2 = y - 6;
-
-
-
-
-		currentFloor = 1;
-		field_22237_field_20341_topFloor = 0;
-
-		for (; k2 < 120 + offset; k2 += 7) {
-			if (k2 + 7 >= 120 + offset) {
-				field_22237_field_20341_topFloor = 1;
+		int currentHight = y - 6;
+		for (; currentHight < 120 + this.offset; currentHight += FLOOR_HEIGHT) {
+			if (currentHight + FLOOR_HEIGHT >= 120 + this.offset) {
+				this.isTopFloor = true;
 			}
-			for (int j3 = 0; j3 < 7; j3++) {
-				if (k2 == y - 6 && j3 < 4) {
-					j3 = 4;
+			for (int height = 0; height < FLOOR_HEIGHT; height++) {
+				if (currentHight == y - 6 && height < 4) {
+					height = 4;
 				}
 
-				for (int j4 = -7; j4 < 7; j4++) {
-					for (int i5 = -7; i5 < 7; i5++) {
-						int i6 = j4 + x;
-						int k6 = j3 + k2;
-						int l6 = i5 + z;
+				for (int width = -FLOOR_WIDTH; width < FLOOR_WIDTH; width++) {
+					for (int length = -FLOOR_LENGTH; length < FLOOR_LENGTH; length++) {
+						int ix = width + x;
+						int iy = height + currentHight;
+						int iz = length + z;
 
-						if (i5 == -7) {
-							if (j4 > -5 && j4 < 4) {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length == -7) {
+							if (width > -5 && width < 4) {
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 							}
 							continue;
 						}
 
-						if (i5 == -6 || i5 == -5) {
-							if (j4 == -5 || j4 == 4) {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length == -6 || length == -5) {
+							if (width == -5 || width == 4) {
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								continue;
 							}
 
-							if (i5 == -6) {
-								if (j4 == (j3 + 1) % 7 - 3) {
-									world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (length == -6) {
+								if (width == (height + 1) % 7 - 3) {
+									world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 
-									if (j3 == 5) {
-										world.setBlock(i6 - 7, k6, l6, Blocks.STONE_POLISHED.id());
+									if (height == 5) {
+										world.setBlock(ix - 7, iy, iz, Blocks.STONE_POLISHED.id());
 									}
 
-									if (j3 == 6 && field_22237_field_20341_topFloor == 1) {
-										world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+									if (height == 6 && this.isTopFloor) {
+										world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 									}
 
 									continue;
 								}
 
-								if (j4 < 4 && j4 > -5) {
-									world.setBlock(i6, k6, l6, 0);
+								if (width < 4 && width > -5) {
+									world.setBlock(ix, iy, iz, 0);
 								}
 
 								continue;
 							}
 
-							if (i5 != -5 || j4 <= -5 || j4 >= 5) {
+							if (length != -5 || width <= -5 || width >= 5) {
 								continue;
 							}
 
-							if (j3 != 0 && j3 != 6 || j4 != -4 && j4 != 3) {
-								if (j3 == 5 && (j4 == 3 || j4 == -4)) {
-									world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (height != 0 && height != 6 || width != -4 && width != 3) {
+								if (height == 5 && (width == 3 || width == -4)) {
+									world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 								} else {
-									world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+									world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								}
 							} else {
-								world.setBlock(i6, k6, l6, 0);
+								world.setBlock(ix, iy, iz, 0);
 							}
 
 							continue;
 						}
-						if (i5 == -4 || i5 == -3 || i5 == 2 || i5 == 3) {
-							if (j4 == -6 || j4 == 5) {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length == -4 || length == -3 || length == 2 || length == 3) {
+							if (width == -6 || width == 5) {
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								continue;
 							}
 
-							if (j4 <= -6 || j4 >= 5) {
+							if (width <= -6 || width >= 5) {
 								continue;
 							}
 
-							if (j3 == 5) {
-								world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (height == 5) {
+								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 								continue;
 							}
 
-							if (world.getBlockId(i6, k6, l6) != 54) {
-								//world.setBlock(i6, k6, l6, 0);
+							if (world.getBlockId(ix, iy, iz) != 54) {
+								//world.setBlock(ix, k6, iz, 0);
 							}
 
 							continue;
 						}
 
-						if (i5 > -3 && i5 < 2) {
-							if (j4 == -7 || j4 == 6) {
-								if (j3 < 0 || j3 > 3 || j4 != -7 && j4 != 6 || i5 != -1 && i5 != 0) {
-									world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length > -3 && length < 2) {
+							if (width == -7 || width == 6) {
+								if (height < 0 || height > 3 || width != -7 && width != 6 || length != -1 && length != 0) {
+									world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								} else {
-									world.setBlock(i6, k6, l6, 0);
+									world.setBlock(ix, iy, iz, 0);
 								}
 
 								continue;
 							}
 
-							if (j4 <= -7 || j4 >= 6) {
+							if (width <= -7 || width >= 6) {
 								continue;
 							}
 
-							if (j3 == 5) {
-								world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (height == 5) {
+								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 							} else {
-								world.setBlock(i6, k6, l6, 0);
+								world.setBlock(ix, iy, iz, 0);
 							}
 
 							continue;
 						}
 
-						if (i5 == 4) {
-							if (j4 == -5 || j4 == 4) {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length == 4) {
+							if (width == -5 || width == 4) {
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								continue;
 							}
-							if (j4 <= -5 || j4 >= 4) {
+							if (width <= -5 || width >= 4) {
 								continue;
 							}
-							if (j3 == 5) {
-								world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (height == 5) {
+								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 							} else {
-								world.setBlock(i6, k6, l6, 0);
+								world.setBlock(ix, iy, iz, 0);
 							}
 							continue;
 						}
 
-						if (i5 == 5) {
-							if (j4 == -4 || j4 == -3 || j4 == 2 || j4 == 3) {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (length == 5) {
+							if (width == -4 || width == -3 || width == 2 || width == 3) {
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								continue;
 							}
-							if (j4 <= -3 || j4 >= 2) {
+							if (width <= -3 || width >= 2) {
 								continue;
 							}
-							if (j3 == 5) {
-								world.setBlock(i6, k6, l6, Blocks.STONE_POLISHED.id());
+							if (height == 5) {
+								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 							} else {
-								world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 							}
 							continue;
 						}
 
-						if (i5 != 6 || j4 <= -3 || j4 >= 2) {
+						if (length != 6 || width <= -3 || width >= 2) {
 							continue;
 						}
 
-						if (j3 < 0 || j3 > 3 || j4 != -1 && j4 != 0) {
-							world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+						if (height < 0 || height > 3 || width != -1 && width != 0) {
+							world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 						} else {
-							world.setBlock(i6, k6, l6, this.cobbleBag.getRandom(random));
+							world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 						}
 					}
 
@@ -217,56 +214,28 @@ public class WorldGenTower extends WorldFeature {
 			}
 
 			if (currentFloor == 2) {
-				world.setBlock(x + 3, k2, z - 5, this.cobbleBag.getRandom(random));
-				world.setBlock(x + 3, k2 - 1, z - 5, this.cobbleBag.getRandom(random));
+				world.setBlock(x + 3, currentHight, z - 5, this.cobbleBag.getRandom(random));
+				world.setBlock(x + 3, currentHight - 1, z - 5, this.cobbleBag.getRandom(random));
 			}
 
-			if (field_22237_field_20341_topFloor == 1) {
-				double d = x;
-				double d1 = k2 + 6;
-				double d2 = (double) z + 0.5D;
-				EntityGolem entitygolem = new EntityGolem(world, towerDecoBlockID);
-				entitygolem.spawnInit();
-				entitygolem.moveTo(d, d1, d2, world.rand.nextFloat() * 360F, 0.0F);
-				world.entityJoinedWorld(entitygolem);
-				System.out.println("Spawned golem at " + d + ", " + d1 + ", " + d2);
+			if (this.isTopFloor) {
+				spawnGolem(x, currentHight + 6, z + 0.5D);
 			} else {
-				world.setBlockWithNotify(x + 2, k2 + 6, z + 2, Blocks.MOBSPAWNER.id());
-				TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x + 2, k2 + 6, z + 2);
-				tileentitymobspawner.setMobId(getRandomSpawnerMob(random));
-				world.setBlockWithNotify(x - 3, k2 + 6, z + 2, Blocks.MOBSPAWNER.id());
-				TileEntityMobSpawner tileentitymobspawner1 = (TileEntityMobSpawner) world.getTileEntity(x - 3, k2 + 6, z + 2);
-				tileentitymobspawner1.setMobId(getRandomSpawnerMob(random));
+				setSpawners(x, currentHight, z);
 			}
 
-			world.setBlock(x, k2 + 6, z - 3, Blocks.STONE_POLISHED.id());
-			world.setBlock(x - 1, k2 + 6, z - 3, Blocks.STONE_POLISHED.id());
+			world.setBlock(x, currentHight + 6, z - 3, Blocks.STONE_POLISHED.id());
+			world.setBlock(x - 1, currentHight + 6, z - 3, Blocks.STONE_POLISHED.id());
 
-			if (k2 + 56 >= 120 && currentFloor == 1) {
+			if (currentHight + 56 >= 120 && currentFloor == 1) {
 				currentFloor = 2;
 			}
 
-			for (int k3 = 0; k3 < 2; k3++) {
-				world.setBlockWithNotify(x - k3, k2 + 7, z - 3, ModBlocks.ChestTower.id());
-				int adjX = x - k3;
-				int adjY = k2 + 7;
-				int adjZ = z - 3;
-				world.setBlockMetadataWithNotify(adjX, adjY, adjZ, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(adjX, adjY, adjZ), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
-				TileEntityChest tileEntityChest = (TileEntityChest) world.getTileEntity(x - k3, k2 + 7, z - 3);
-				for (int j5 = 0; j5 < 1 + k3 + towerDecoBlockID; j5++) {
-					ItemStack itemstack = generateRandomChestLoot(currentFloor, random);
-					if (itemstack != null) {
-						tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
-					}
-				}
+			placeChests(x, currentHight, z);
 
-			}
-			BlockLogicChest.setType(world, x, k2 + 7, z - 3, BlockLogicChest.Type.RIGHT);
-			BlockLogicChest.setType(world, x - 1, k2 + 7, z - 3, BlockLogicChest.Type.LEFT);
-
-			for (int l3 = 0; l3 < (currentFloor * 4 + towerDecoBlockID) - 8 && field_22237_field_20341_topFloor != 1; l3++) {
-				int k4 = 5 - random.nextInt(12);
-				int k5 = k2 + 5;
+			for (int l3 = 0; l3 < (currentFloor * 4 + towerDecoBlockID) - 8 && !this.isTopFloor; l3++) {
+				int k4 = 5 - random.nextInt(LOOT_AMOUNT);
+				int k5 = currentHight + 5;
 				int j6 = 5 - random.nextInt(10);
 				if (j6 < -2 && k4 < 4 && k4 > -5 && k4 != 1 && k4 != -2) {
 					continue;
@@ -284,261 +253,30 @@ public class WorldGenTower extends WorldFeature {
 		return true;
 	}
 
-	private ItemStack generateRandomChestLoot(int towerLevel, Random random) {
-		int j = random.nextInt(4);
-		if (field_22237_field_20341_topFloor == 1) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitemtop_0);
-				item.stackSize = random.nextInt(2) + 1;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitemtop_1);
-				item.stackSize = random.nextInt(2) + 1;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitemtop_2);
-				item.stackSize = random.nextInt(2) + 2;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitemtop_3);
-				item.stackSize = random.nextInt(1) + 1;
-				return item;
-			} else {
-				return null;
-			}
-		}
+	private void placeChests(int x, int y, int z) {
+		placeChest(x, y + 7, z - 3);
+		placeChest(x - 1, y + 7, z - 3);
+		BlockLogicChest.setType(world, x, y + 7, z - 3, BlockLogicChest.Type.RIGHT);
+		BlockLogicChest.setType(world, x - 1, y + 7, z - 3, BlockLogicChest.Type.LEFT);
+	}
 
-		if (towerLevel == 1) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem1_0);
-				item.stackSize = random.nextInt(3) + 2;
-				return item;
+	private void placeChest(int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, ModBlocks.ChestTower.id());
+		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if(!(tile instanceof TileEntityChest)) return;
+		TileEntityChest tileEntityChest = (TileEntityChest) tile;
+		for (int i = 0; i < LOOT_AMOUNT; i++) {
+			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
+			if (itemstack != null) {
+				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
 			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem1_1);
-				item.stackSize = random.nextInt(2) + 2;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem1_2);
-				item.stackSize = random.nextInt(3) + 3;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem1_3);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 2) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem2_0);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem2_1);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem2_2);
-				item.stackSize = random.nextInt(3) + 4;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem2_3);
-				item.stackSize = random.nextInt(3) + 4;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 3) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem3_0);
-				item.stackSize = random.nextInt(2) + 6;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem3_1);
-				item.stackSize = random.nextInt(1) + 2;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem3_2);
-				item.stackSize = random.nextInt(2) + 5;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem3_3);
-				item.stackSize = random.nextInt(3) + 3;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 4) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem4_0);
-				item.stackSize = random.nextInt(3) + 2;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem4_1);
-				item.stackSize = random.nextInt(3) + 2;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem4_2);
-				item.stackSize = random.nextInt(3) + 5;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem4_3);
-				item.stackSize = random.nextInt(3) + 3;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 5) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem5_0);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem5_1);
-				item.stackSize = random.nextInt(3) + 5;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem5_2);
-				item.stackSize = random.nextInt(2) + 1;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem5_3);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 6) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem6_0);
-				item.stackSize = random.nextInt(3) + 5;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem6_1);
-				item.stackSize = random.nextInt(3) + 2;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem6_2);
-				item.stackSize = random.nextInt(1) + 2;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem6_3);
-				item.stackSize = random.nextInt(1) + 1;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 7) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem7_0);
-				item.stackSize = random.nextInt(3) + 4;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem7_1);
-				item.stackSize = random.nextInt(5) + 6;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem7_2);
-				item.stackSize = random.nextInt(2) + 2;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem7_3);
-				item.stackSize = 1;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (towerLevel == 8) {
-			if (j == 0) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem8_0);
-				item.stackSize = random.nextInt(2) + 3;
-				return item;
-			}
-			if (j == 1) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem8_1);
-				item.stackSize = random.nextInt(3) + 5;
-				return item;
-			}
-			if (j == 2) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem8_2);
-				item.stackSize = random.nextInt(1) + 2;
-				return item;
-			}
-			if (j == 3) {
-				ItemStack item = getBlockByName(LootCofigUtils.lootitem8_3);
-				item.stackSize = random.nextInt(3) + 5;
-				return item;
-			} else {
-				return null;
-			}
-		}
-
-		if (random.nextInt(4) == 0) {
-			ItemStack item = getBlockByName(LootCofigUtils.lootitem9_0);
-			item.stackSize = random.nextInt(2) + 3;
-			return item;
-		}
-
-		if (random.nextInt(4) == 1) {
-			ItemStack item = getBlockByName(LootCofigUtils.lootitem9_1);
-			item.stackSize = random.nextInt(3) + 3;
-			return item;
-		}
-
-		if (random.nextInt(4) == 2) {
-			ItemStack item = getBlockByName(LootCofigUtils.lootitem9_2);
-			item.stackSize = random.nextInt(2) + 2;
-			return item;
-		}
-
-		if (random.nextInt(4) == 3) {
-			ItemStack item = getBlockByName(LootCofigUtils.lootitem9_3);
-			item.stackSize = random.nextInt(1) + 2;
-			return item;
-		} else {
-			return null;
 		}
 	}
 
-	private String getRandomSpawnerMob(Random random) {
+	/// ############################## no touchy zone ##################################################################
+
+	private String getRandomSpawnerMob() {
 		int i = random.nextInt(5);
 		switch (i) {
 			case 0:
@@ -554,28 +292,22 @@ public class WorldGenTower extends WorldFeature {
 		}
 	}
 
+	private void spawnGolem(double x, double y, double z) {
+		EntityGolem entitygolem = new EntityGolem(world, towerDecoBlockID);
+		entitygolem.spawnInit();
+		entitygolem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+		world.entityJoinedWorld(entitygolem);
+		LOGGER.info("Spawned golem at {} {} {}", x, y, z);
+	}
 
-	public static ItemStack getBlockByName(String name) {
-		if (name.startsWith("Block.")) {
-			for (Block<?> block : Blocks.blocksList) {
-				if (block != null) {
-					String otherName = block.getKey().substring(5);
-					if (name.substring(6).equalsIgnoreCase(otherName)) {
-						return new ItemStack(block);
-					}
-				}
-			}
-		} else if (name.startsWith("Item.")) {
-			for (Item item : Item.itemsList) {
-				if (item != null) {
-					String otherName = item.getKey().substring(5);
-					if (name.substring(5).equalsIgnoreCase(otherName)) {
-						return new ItemStack(item);
-					}
-				}
-			}
-		}
+	private void setSpawners(int x, int y, int z) {
+		this.setSpawner(x + 2, y + 6, z + 2);
+		this.setSpawner(x - 3, y + 6, z + 2);
+	}
 
-		return null;
+	private void setSpawner( int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, Blocks.MOBSPAWNER.id());
+		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
+		tileentitymobspawner.setMobId(getRandomSpawnerMob());
 	}
 }
