@@ -11,7 +11,7 @@ import java.util.List;
 import static jamdoggie.betterbattletowers.worldgen.BlockPallet.ipair;
 
 
-public class BlockPaletts {
+public class BlockPallets {
 
 	/// bag based on biome
 	static WeightedRandomBag<Integer> iceBiom = new WeightedRandomBag<>();
@@ -39,7 +39,7 @@ public class BlockPaletts {
 		forestBiom.addEntry(Blocks.COBBLE_STONE.id(), 67.0f);
 		forestBiom.addEntry(Blocks.COBBLE_STONE_MOSSY.id(), 33.0f);
 
-		/// all other tower are going to pick a random blockpallet.
+		/// all other tower are going to pick a random block pallet.
 		addBiomes(randomBiom, ipair(Blocks.COBBLE_STONE.id(), 67.0f), ipair(Blocks.COBBLE_STONE_MOSSY.id(), 33.0f));
 		addBiomes(randomBiom, ipair(Blocks.COBBLE_BASALT.id(), 100.0f));
 		addBiomes(randomBiom, ipair(Blocks.COBBLE_LIMESTONE.id(), 100.0f));
@@ -67,7 +67,7 @@ public class BlockPaletts {
 	 * */
 	private static WeightedRandomBag<Integer> getBiomesBag(int index) {
 		if(index >= randomBiom.size() || index < 0){
-			return randomBiom.getFirst();
+			return randomBiom.get(0);
 		}
 		return randomBiom.get(index);
 	}
