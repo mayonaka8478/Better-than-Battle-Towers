@@ -2,6 +2,7 @@ package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.ModBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
+import jamdoggie.betterbattletowers.entity.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldGenTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -21,6 +22,8 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Properties;
 import java.util.Random;
+
+import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
 public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
@@ -94,7 +97,6 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 	}
 
 	public static BetterBattleTowers instance;
-
 	public static int towercount;
 	public static int rarity;
 	private final int DEFAULT_RARITY = 3;
@@ -106,15 +108,14 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Better than Battle Towers initialized.");
-
-
+		registerWorldFeatureClass(WorldGenTower.class, "BattleTower");
 	}
 
 	@Override
 	public void beforeGameStart() {
 		ModBlocks.createBlocks();
-
 		EntityHelper.createEntity(EntityGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
+		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "TileTowerChest");
 	}
 
 	@Override
