@@ -24,24 +24,23 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
 public class WorldGenTower extends WorldFeature {
-
-	public static final int LOOT_AMOUNT = 12;
-	public static final int MAX_HEIGHT = 120;
-	private int currentFloor = 1;
-	private boolean isTopFloor = false;
-
-	private WeightedRandomBag<Integer> cobbleBag;
 	private World world;
 	private Random random;
+	private int currentFloor = 1;
+	private boolean isTopFloor = false;
+	private WeightedRandomBag<Integer> buildingBlockBag;
 	private int towerDecoBlockID;
 	private int offset = 0;
 
+	///  Constants to avoid having magic numbers
 	public static final int FLOOR_HEIGHT = 7;
 	public static final int FLOOR_LENGTH = 7;
 	public static final int FLOOR_WIDTH = 7;
+	public static final int LOOT_AMOUNT = 12;
+	public static final int MAX_HEIGHT = 120;
 
-	public WorldGenTower() {
-	}
+	/// Important for the placement via commands
+	public WorldGenTower() {}
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
@@ -52,189 +51,190 @@ public class WorldGenTower extends WorldFeature {
 		this.world = world;
 		this.random = random;
 		this.towerDecoBlockID = random.nextInt(11);
-		this.cobbleBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
+		this.buildingBlockBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
 		if (world.worldType instanceof WorldTypeOverworld) this.offset = 64;
-		int currentHight = y - 6;
-		for (; currentHight < MAX_HEIGHT + this.offset; currentHight += FLOOR_HEIGHT) {
-			if (currentHight + FLOOR_HEIGHT >= MAX_HEIGHT + this.offset) {
+		for (int currentHeight = y - 6; currentHeight < MAX_HEIGHT + this.offset; currentHeight += FLOOR_HEIGHT) {
+			if (currentHeight + FLOOR_HEIGHT >= MAX_HEIGHT + this.offset) {
 				this.isTopFloor = true;
 			}
-			for (int height = 0; height < FLOOR_HEIGHT; height++) {
-				if (currentHight == y - 6 && height < 4) {
-					height = 4;
-				}
-
-				for (int width = -FLOOR_WIDTH; width < FLOOR_WIDTH; width++) {
-					for (int length = -FLOOR_LENGTH; length < FLOOR_LENGTH; length++) {
-						int ix = width + x;
-						int iy = height + currentHight;
-						int iz = length + z;
-
-						if (length == -7) {
-							if (width > -5 && width < 4) {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-							}
-							continue;
-						}
-
-						if (length == -6 || length == -5) {
-							if (width == -5 || width == 4) {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								continue;
-							}
-
-							if (length == -6) {
-								if (width == (height + 1) % 7 - 3) {
-									world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-
-									if (height == 5) {
-										world.setBlock(ix - 7, iy, iz, Blocks.STONE_POLISHED.id());
-									}
-
-									if (height == 6 && this.isTopFloor) {
-										world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-									}
-
-									continue;
-								}
-
-								if (width < 4 && width > -5) {
-									world.setBlock(ix, iy, iz, 0);
-								}
-
-								continue;
-							}
-
-							if (width <= -5 || width >= 5) {
-								continue;
-							}
-
-							if (height != 0 && height != 6 || width != -4 && width != 3) {
-								if (height == 5 && (width == 3 || width == -4)) {
-									world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-								} else {
-									world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								}
-							} else {
-								world.setBlock(ix, iy, iz, 0);
-							}
-
-							continue;
-						}
-						if (length == -4 || length == -3 || length == 2 || length == 3) {
-							if (width == -6 || width == 5) {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								continue;
-							}
-							if (width <= -6 || width >= 5) {
-								continue;
-							}
-							if (height == 5) {
-								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-								continue;
-							}
-							continue;
-						}
-						if (length < 2) {
-							if (width == -7 || width == 6) {
-								if (height < 0 || height > 3 || length != -1 && length != 0) {
-									world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								} else {
-									world.setBlock(ix, iy, iz, 0);
-								}
-
-								continue;
-							}
-
-							if (height == 5) {
-								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-							} else {
-								world.setBlock(ix, iy, iz, 0);
-							}
-
-							continue;
-						}
-
-						if (length == 4) {
-							if (width == -5 || width == 4) {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								continue;
-							}
-							if (width <= -5 || width >= 4) {
-								continue;
-							}
-							if (height == 5) {
-								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-							} else {
-								world.setBlock(ix, iy, iz, 0);
-							}
-							continue;
-						}
-
-						if (length == 5) {
-							if (width == -4 || width == -3 || width == 2 || width == 3) {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-								continue;
-							}
-							if (width <= -3 || width >= 2) {
-								continue;
-							}
-							if (height == 5) {
-								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-							} else {
-								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-							}
-							continue;
-						}
-
-						if (width <= -3 || width >= 2) {
-							continue;
-						}
-
-						if (height < 0 || height > 3 || width != -1 && width != 0) {
-							world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-						} else {
-							world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
-						}
-					}
-
-				}
-
-			}
-
-			if (this.currentFloor == 2) {
-//				world.setBlock(x + 3, currentHight, z - 5, this.cobbleBag.getRandom(random));
-//				world.setBlock(x + 3, currentHight - 1, z - 5, this.cobbleBag.getRandom(random));
-				world.setBlock(x + 3, currentHight, z - 5, Blocks.BLOCK_LAPIS.id());
-				world.setBlock(x + 3, currentHight - 1, z - 5, Blocks.BLOCK_LAPIS.id());
-			}
-			placeWholesInFloor(x, currentHight, z);
-			placeHostileDecorations(x, currentHight, z);
-			skipAFloor(currentHight);
-			placeChests(x, currentHight, z);
+			placeCurrentFloor(x, currentHeight, z, y - 6);
+			placeHolesInFloor(x, currentHeight + 5, z);
+			placeHostileDecorations(x, currentHeight + 6, z);
+			skipAFloor(currentHeight);
+			placeChests(x, currentHeight + 7, z - 3);
+//			mysteryFunction( x + 3, currentHeight, z - 5); // commented this out cause it didnt do anything
 			this.currentFloor++;
+
 		}
 		return true;
 	}
 
+	/// Not sure what this does, as it seem to do nothing
+	private void mysteryFunction(int x, int y, int z) {
+		if (this.currentFloor == 2) {
+			world.setBlock(x, y, z, this.buildingBlockBag.getRandom(random));
+			world.setBlock(x, y - 1, z, this.buildingBlockBag.getRandom(random));
+		}
+	}
 
+	///  Places the current floor, that includes wall and the actual floor
+	private void placeCurrentFloor(int x, int y, int z, int floorDiv) {
+		for (int height = 0; height < FLOOR_HEIGHT; height++) {
+			if ((y == floorDiv) && (height < 4)) {
+				height = 4;
+			}
+			for (int width = -FLOOR_WIDTH; width < FLOOR_WIDTH; width++) {
+				for (int length = -FLOOR_LENGTH; length < FLOOR_LENGTH; length++) {
+					placeCurrentFloor(x, y, z, width, height, length);
+				}
+			}
+		}
+	}
 
-	/// ############################## no touchy zone ##################################################################
+	///  This function places the individual blocks of a given floor.
+	private void placeCurrentFloor(int x, int y, int z, int width, int height, int length) {
+		int ix = width + x;
+		int iy = height + y;
+		int iz = length + z;
 
+		if (length == -7) {
+			if (width > -5 && width < 4) {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+			}
+			return;
+		}
+
+		if (length == -6 || length == -5) {
+			if (width == -5 || width == 4) {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				return;
+			}
+
+			if (length == -6) {
+				if (width == (height + 1) % 7 - 3) {
+					this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+
+					if (height == 5) {
+						this.world.setBlock(ix - 7, iy, iz, Blocks.STONE_POLISHED.id());
+					}
+
+					if (height == 6 && this.isTopFloor) {
+						this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+					}
+
+					return;
+				}
+
+				if (width < 4 && width > -5) {
+					this.world.setBlock(ix, iy, iz, 0);
+				}
+
+				return;
+			}
+
+			if (width <= -5 || width >= 5) {
+				return;
+			}
+
+			if (height != 0 && height != 6 || width != -4 && width != 3) {
+				if (height == 5 && (width == 3 || width == -4)) {
+					this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+				} else {
+					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				}
+			} else {
+				world.setBlock(ix, iy, iz, 0);
+			}
+
+			return;
+		}
+		if (length == -4 || length == -3 || length == 2 || length == 3) {
+			if (width == -6 || width == 5) {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				return;
+			}
+			if (width <= -6 || width >= 5) {
+				return;
+			}
+			if (height == 5) {
+				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+				return;
+			}
+			return;
+		}
+		if (length < 2) {
+			if (width == -7 || width == 6) {
+				if (height < 0 || height > 3 || length != -1 && length != 0) {
+					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				} else {
+					this.world.setBlock(ix, iy, iz, 0);
+				}
+
+				return;
+			}
+
+			if (height == 5) {
+				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+			} else {
+				this.world.setBlock(ix, iy, iz, 0);
+			}
+
+			return;
+		}
+
+		if (length == 4) {
+			if (width == -5 || width == 4) {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				return;
+			}
+			if (width <= -5 || width >= 4) {
+				return;
+			}
+			if (height == 5) {
+				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+			} else {
+				this.world.setBlock(ix, iy, iz, 0);
+			}
+			return;
+		}
+
+		if (length == 5) {
+			if (width == -4 || width == -3 || width == 2 || width == 3) {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+				return;
+			}
+			if (width <= -3 || width >= 2) {
+				return;
+			}
+			if (height == 5) {
+				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
+			} else {
+				this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+			}
+			return;
+		}
+
+		if (width <= -3 || width >= 2) {
+			return;
+		}
+		this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
+	}
+
+	/// In case the tower spawn quite height to prevent the top to be cut off we skip the second floor.
 	private void skipAFloor(int currentHight) {
 		if (currentHight + 56 >= MAX_HEIGHT && this.currentFloor == 1) {
 			this.currentFloor++;
 		}
 	}
 
-	private void placeWholesInFloor(int x, int y, int z) {
+	///  Create holes for mob to fall through to lower level
+	private void placeHolesInFloor(int x, int y, int z) {
 		if(this.isTopFloor){
 			return;
 		}
-		for (int count = 0; count < (currentFloor * 4 + 3); count++) {
-			int ix = 5 - random.nextInt(12);
-			int iy = y + 5;
-			int iz = 5 - random.nextInt(10);
+		for (int count = 0; count < (this.currentFloor * 4 + 3); count++) {
+			int ix = 5 - this.random.nextInt(12);
+			int iz = 5 - this.random.nextInt(10);
 
 			/// lies outside the towers perimeter
 			if (iz < -2 && ix < 4 && ix > -5 && ix != 1 && ix != -2) {
@@ -242,45 +242,40 @@ public class WorldGenTower extends WorldFeature {
 			}
 			ix += x;
 			iz += z;
-			if (world.getBlockId(ix, iy, iz) == Blocks.STONE_POLISHED.id()) {
-				world.setBlock(ix, iy, iz, 0);
+			if (this.world.getBlockId(ix, y, iz) == Blocks.STONE_POLISHED.id()) {
+				this.world.setBlock(ix, y, iz, 0);
 			}
 		}
 	}
 
+	/// PLaces the spawner or golem if on the top floor
 	private void placeHostileDecorations(int x, int y, int z) {
 		if (this.isTopFloor) {
-			spawnGolem(x, y + 6, z + 0.5D);
+			this.spawnGolem(x, y, z + 0.5D);
 		} else {
-			setSpawners(x, y, z);
-		}
-
-		///  plugin the whole below the spawner
-		world.setBlock(x, y + 6, z - 3, Blocks.STONE_POLISHED.id());
-		world.setBlock(x - 1, y + 6, z - 3, Blocks.STONE_POLISHED.id());
-	}
-
-	private void placeChests(int x, int y, int z) {
-		placeChest(x, y + 7, z - 3);
-		placeChest(x - 1, y + 7, z - 3);
-		BlockLogicChest.setType(world, x, y + 7, z - 3, BlockLogicChest.Type.RIGHT);
-		BlockLogicChest.setType(world, x - 1, y + 7, z - 3, BlockLogicChest.Type.LEFT);
-	}
-
-	private void placeChest(int x, int y, int z) {
-		world.setBlockWithNotify(x, y, z, ModBlocks.ChestTower.id());
-		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
-		TileEntity tile = world.getTileEntity(x, y, z);
-		if(!(tile instanceof TileEntityChest)) return;
-		TileEntityChest tileEntityChest = (TileEntityChest) tile;
-		for (int i = 0; i < LOOT_AMOUNT; i++) {
-			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
-			if (itemstack != null) {
-				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
-			}
+			this.setSpawner(x + 2, y, z + 2);
+			this.setSpawner(x - 3, y, z + 2);
 		}
 	}
 
+	///  Spawns and moves the golem to the top floor
+	private void spawnGolem(double x, double y, double z) {
+		EntityGolem entitygolem = new EntityGolem(world, towerDecoBlockID);
+		entitygolem.spawnInit();
+		entitygolem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+		world.entityJoinedWorld(entitygolem);
+		LOGGER.info("Spawned golem at {} {} {}", x, y, z);
+	}
+
+
+	/// Places the individual spawners and sets them up
+	private void setSpawner( int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, Blocks.MOBSPAWNER.id());
+		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
+		tileentitymobspawner.setMobId(this.getRandomSpawnerMob());
+	}
+
+	///  Picks a mob to spawn using the spawners in placeHostileDecorations
 	private String getRandomSpawnerMob() {
 		int i = random.nextInt(5);
 		switch (i) {
@@ -297,22 +292,28 @@ public class WorldGenTower extends WorldFeature {
 		}
 	}
 
-	private void spawnGolem(double x, double y, double z) {
-		EntityGolem entitygolem = new EntityGolem(world, towerDecoBlockID);
-		entitygolem.spawnInit();
-		entitygolem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
-		world.entityJoinedWorld(entitygolem);
-		LOGGER.info("Spawned golem at {} {} {}", x, y, z);
+	/// Places the rewards chests and the plinth open the chest sits
+	private void placeChests(int x, int y, int z) {
+		placeChest(x, y, z);
+		placeChest(x - 1, y, z);
+		BlockLogicChest.setType(world, x, y, z, BlockLogicChest.Type.RIGHT);
+		BlockLogicChest.setType(world, x - 1, y, z, BlockLogicChest.Type.LEFT);
+		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
+		world.setBlock(x - 1, y - 1, z, Blocks.STONE_POLISHED.id());
 	}
 
-	private void setSpawners(int x, int y, int z) {
-		this.setSpawner(x + 2, y + 6, z + 2);
-		this.setSpawner(x - 3, y + 6, z + 2);
-	}
-
-	private void setSpawner( int x, int y, int z) {
-		world.setBlockWithNotify(x, y, z, Blocks.MOBSPAWNER.id());
-		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
-		tileentitymobspawner.setMobId(getRandomSpawnerMob());
+	/// Places the chest, sets up its tile entity and populated the chest with loot.
+	private void placeChest(int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, ModBlocks.ChestTower.id());
+		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if(!(tile instanceof TileEntityChest)) return;
+		TileEntityChest tileEntityChest = (TileEntityChest) tile;
+		for (int i = 0; i < LOOT_AMOUNT; i++) {
+			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
+			if (itemstack != null) {
+				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
+			}
+		}
 	}
 }
