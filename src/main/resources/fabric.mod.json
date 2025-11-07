@@ -26,22 +26,22 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
     ],
 		"beforeGameStart": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
 		],
 		"beforeClientStart": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
 		],
 		"afterGameStart": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
 		],
 		"recipesReady": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
 		],
 		"client": [
-			"jamdoggie.betterbattletowers.BetterBattleTowers"
+			"jamdoggie.betterbattletowers.BattleTower"
 		],
 		"initModels": [
 			"jamdoggie.betterbattletowers.BattleTowerModel"

@@ -2,7 +2,7 @@ package jamdoggie.betterbattletowers;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
 
-import static jamdoggie.betterbattletowers.BetterBattleTowers.MOD_ID;
+import static jamdoggie.betterbattletowers.BattleTower.MOD_ID;
 import static net.minecraft.core.sound.SoundTypes.register;
 
 public class BattleTowerServer implements DedicatedServerModInitializer {
