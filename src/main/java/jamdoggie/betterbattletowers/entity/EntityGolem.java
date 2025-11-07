@@ -17,39 +17,43 @@ import java.util.List;
 
 public class EntityGolem extends MobMonster {
 	private String texture;
+	private int dormant;
+	private int pathToEntity;
+	private int growl;
+	private int drops;
 
 	public EntityGolem(World world, int i) {
 		super(world);
 		this.scoreValue = 10000;
-		texture = "/entity/golem/golemdormant.png";
-		moveSpeed = 0.35F;
-		attackStrength = 8;
+		this.texture = "/entity/golem/golemdormant.png";
+		this.moveSpeed = 0.35F;
+		this.attackStrength = 8;
 		this.setHealthRaw(150 + 15 * i);
-		setSize(1.6F, 3.4F);
-		xRot = 0.0F;
-		dormant = 1;
-		pathToEntity = 0;
-		growl = 0;
-		fireImmune = true;
-		drops = 2 + 2 * i;
-		moveTo(x, y, z, 0.0F, 0.0F);
+		this.setSize(1.6F, 3.4F);
+		this.xRot = 0.0F;
+		this.dormant = 1;
+		this.pathToEntity = 0;
+		this.growl = 0;
+		this.fireImmune = true;
+		this.drops = 2 + 2 * i;
+		this.moveTo(x, y, z, 0.0F, 0.0F);
 	}
 
 	public EntityGolem(World world) {
 		super(world);
 		this.scoreValue = 10000;
-		texture = "/entity/golem/golem.png";
-		moveSpeed = 0.35F;
-		attackStrength = 8;
+		this.texture = "/entity/golem/golem.png";
+		this.moveSpeed = 0.35F;
+		this.attackStrength = 8;
 		this.setHealthRaw(300);
-		setSize(1.6F, 3.4F);
-		xRot = 0.0F;
-		dormant = 0;
-		pathToEntity = 0;
-		growl = 0;
-		fireImmune = true;
-		drops = 1;
-		moveTo(x, y, z, 0.0F, 0.0F);
+		this.setSize(1.6F, 3.4F);
+		this.xRot = 0.0F;
+		this.dormant = 0;
+		this.pathToEntity = 0;
+		this.growl = 0;
+		this.fireImmune = true;
+		this.drops = 1;
+		this.moveTo(x, y, z, 0.0F, 0.0F);
 	}
 
 	@Override
@@ -264,9 +268,4 @@ public class EntityGolem extends MobMonster {
 	protected void dropDeathItems() {
 		this.dropItem(new ItemStack(Items.BRICK_CLAY, 1, 0), 0.0f);
 	}
-
-	private int dormant;
-	private int pathToEntity;
-	private int growl;
-	private int drops;
 }
