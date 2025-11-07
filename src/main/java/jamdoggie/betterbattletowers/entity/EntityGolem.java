@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers.entity;
 
 import com.mojang.nbt.tags.CompoundTag;
-import jamdoggie.betterbattletowers.BetterBattleTowers;
+import jamdoggie.betterbattletowers.BattleTower;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobMonster;
@@ -68,7 +68,7 @@ public class EntityGolem extends MobMonster {
 
 	@Override
 	public String getEntityTexture() {
-		return "/assets/" + BetterBattleTowers.MOD_ID + "/textures" + texture;
+		return "/assets/" + BattleTower.MOD_ID + "/textures" + texture;
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class EntityGolem extends MobMonster {
 			if (entityplayer != null && canEntityBeSeen(entityplayer)) {
 				dormant = 0;
 				world.playSoundEffect(null, SoundCategory.CAVE_SOUNDS, x, y, z, "ambient.cave.cave", 0.7F, 1.0F);
-				world.playSoundAtEntity(null, this, BetterBattleTowers.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+				world.playSoundAtEntity(null, this, BattleTower.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 				texture = "/entity/golem/golem.png";
 				pathToEntity = 175;
 			}
@@ -152,7 +152,7 @@ public class EntityGolem extends MobMonster {
 				if (target instanceof Player && world.getClosestPlayerToEntity(this, 24D) == null) {
 					target = null;
 				} else if (!isHappy()) {
-					world.playSoundAtEntity(null, this, BetterBattleTowers.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+					world.playSoundAtEntity(null, this, BattleTower.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 					yd += 0.90000000000000002D;
 					growl = 1;
 				} else {
@@ -248,7 +248,7 @@ public class EntityGolem extends MobMonster {
 	@Override
 	public String getLivingSound() {
 		if (dormant == 0) {
-			return BetterBattleTowers.MOD_ID + ":mob.golem";
+			return BattleTower.MOD_ID + ":mob.golem";
 		} else {
 			return null;
 		}
@@ -256,12 +256,12 @@ public class EntityGolem extends MobMonster {
 
 	@Override
 	protected String getHurtSound() {
-		return BetterBattleTowers.MOD_ID + ":mob.golem.hurt";
+		return BattleTower.MOD_ID + ":mob.golem.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return BetterBattleTowers.MOD_ID + ":mob.golem.death";
+		return BattleTower.MOD_ID + ":mob.golem.death";
 	}
 
 	@Override

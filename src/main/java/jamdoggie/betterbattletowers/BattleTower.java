@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.EntityHelper;
 import turniplabs.halplibe.util.*;
-import turniplabs.halplibe.util.toml.Toml;
 
 import java.util.Properties;
 import java.util.Random;
@@ -27,7 +26,7 @@ import java.util.Random;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
-public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
+public class BattleTower implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
 	public static final String MOD_ID = "betterbattletowers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ConfigHandler config;
@@ -103,18 +102,18 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 		prop.setProperty("lootitemtop_3", "Item.diamond");
 
 
-		config = new ConfigHandler(BetterBattleTowers.MOD_ID, prop);
+		config = new ConfigHandler(BattleTower.MOD_ID, prop);
 		towercount = config.getInt("towercount");
 		rarity = config.getInt("rarity");
 		config.updateConfig();
 	}
 
-	public static BetterBattleTowers instance;
+	public static BattleTower instance;
 	public static int towercount;
 	public static int rarity;
 	private final int DEFAULT_RARITY = 3;
 
-	public BetterBattleTowers() {
+	public BattleTower() {
 		instance = this;
 	}
 
