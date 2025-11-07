@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.block;
 
-import jamdoggie.betterbattletowers.BattleTower;
+import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.IDUtils;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.material.Material;
@@ -10,7 +10,7 @@ import turniplabs.halplibe.helper.BlockBuilder;
 
 public class ModBlocks {
 	//ChestTower
-	public static Block ChestTower = new BlockBuilder(BattleTower.MOD_ID)
+	public static Block ChestTower = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(1200.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)

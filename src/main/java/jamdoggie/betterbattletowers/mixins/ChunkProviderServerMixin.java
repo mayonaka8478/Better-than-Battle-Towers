@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.mixins;
 
-import jamdoggie.betterbattletowers.BattleTower;
+import jamdoggie.betterbattletowers.BattleTowerMod;
 import net.minecraft.core.world.chunk.provider.IChunkProvider;
 import net.minecraft.server.world.WorldServer;
 import net.minecraft.server.world.chunk.provider.ChunkProviderServer;
@@ -31,6 +31,6 @@ public abstract class ChunkProviderServerMixin
 		long l1 = (random.nextLong() / 2L) * 2L + 1L;
 		random.setSeed((long)chunkX * l + (long)chunkZ * l1 ^ world.getRandomSeed());
 
-		BattleTower.instance.GenerateSurface(world, random, chunkX << 4, chunkZ << 4);
+		BattleTowerMod.instance.GenerateSurface(world, random, chunkX << 4, chunkZ << 4);
 	}
 }
