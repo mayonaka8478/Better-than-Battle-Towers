@@ -44,10 +44,10 @@
 			"jamdoggie.betterbattletowers.BetterBattleTowers"
 		],
 		"initModels": [
-			"jamdoggie.betterbattletowers.InitializeModels"
+			"jamdoggie.betterbattletowers.BattleTowerModel"
 		],
 		"server": [
-			"jamdoggie.betterbattletowers.InitializeServer"
+			"jamdoggie.betterbattletowers.BattleTowerServer"
 		]
 	},
   "mixins": [

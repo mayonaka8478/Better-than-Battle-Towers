@@ -14,7 +14,7 @@ import turniplabs.halplibe.util.ModelEntrypoint;
 
 import static net.minecraft.client.render.block.model.BlockModelStandard.BLOCK_TEXTURES;
 
-public class InitializeModels implements ModelEntrypoint {
+public class BattleTowerModel implements ModelEntrypoint {
 	@Override
 	public void initBlockModels(BlockModelDispatcher dispatcher) {
 		dispatcher.addDispatch(new BlockModelChest<>(ModBlocks.ChestTower, "betterbattletowers:block/chest_tower_")
