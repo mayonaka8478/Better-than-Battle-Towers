@@ -26,6 +26,7 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 public class WorldGenTower extends WorldFeature {
 
 	public static final int LOOT_AMOUNT = 12;
+	public static final int MAX_HEIGHT = 120;
 	private int currentFloor = 1;
 	private boolean isTopFloor = false;
 
@@ -54,8 +55,8 @@ public class WorldGenTower extends WorldFeature {
 		this.cobbleBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
 		if (world.worldType instanceof WorldTypeOverworld) this.offset = 64;
 		int currentHight = y - 6;
-		for (; currentHight < 120 + this.offset; currentHight += FLOOR_HEIGHT) {
-			if (currentHight + FLOOR_HEIGHT >= 120 + this.offset) {
+		for (; currentHight < MAX_HEIGHT + this.offset; currentHight += FLOOR_HEIGHT) {
+			if (currentHight + FLOOR_HEIGHT >= MAX_HEIGHT + this.offset) {
 				this.isTopFloor = true;
 			}
 			for (int height = 0; height < FLOOR_HEIGHT; height++) {
@@ -104,7 +105,7 @@ public class WorldGenTower extends WorldFeature {
 								continue;
 							}
 
-							if (length != -5 || width <= -5 || width >= 5) {
+							if (width <= -5 || width >= 5) {
 								continue;
 							}
 
@@ -125,35 +126,23 @@ public class WorldGenTower extends WorldFeature {
 								world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								continue;
 							}
-
 							if (width <= -6 || width >= 5) {
 								continue;
 							}
-
 							if (height == 5) {
 								world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 								continue;
 							}
-
-							if (world.getBlockId(ix, iy, iz) != 54) {
-								//world.setBlock(ix, k6, iz, 0);
-							}
-
 							continue;
 						}
-
-						if (length > -3 && length < 2) {
+						if (length < 2) {
 							if (width == -7 || width == 6) {
-								if (height < 0 || height > 3 || width != -7 && width != 6 || length != -1 && length != 0) {
+								if (height < 0 || height > 3 || length != -1 && length != 0) {
 									world.setBlock(ix, iy, iz, this.cobbleBag.getRandom(random));
 								} else {
 									world.setBlock(ix, iy, iz, 0);
 								}
 
-								continue;
-							}
-
-							if (width <= -7 || width >= 6) {
 								continue;
 							}
 
@@ -198,7 +187,7 @@ public class WorldGenTower extends WorldFeature {
 							continue;
 						}
 
-						if (length != 6 || width <= -3 || width >= 2) {
+						if (width <= -3 || width >= 2) {
 							continue;
 						}
 
@@ -213,44 +202,62 @@ public class WorldGenTower extends WorldFeature {
 
 			}
 
-			if (currentFloor == 2) {
-				world.setBlock(x + 3, currentHight, z - 5, this.cobbleBag.getRandom(random));
-				world.setBlock(x + 3, currentHight - 1, z - 5, this.cobbleBag.getRandom(random));
+			if (this.currentFloor == 2) {
+//				world.setBlock(x + 3, currentHight, z - 5, this.cobbleBag.getRandom(random));
+//				world.setBlock(x + 3, currentHight - 1, z - 5, this.cobbleBag.getRandom(random));
+				world.setBlock(x + 3, currentHight, z - 5, Blocks.BLOCK_LAPIS.id());
+				world.setBlock(x + 3, currentHight - 1, z - 5, Blocks.BLOCK_LAPIS.id());
 			}
-
-			if (this.isTopFloor) {
-				spawnGolem(x, currentHight + 6, z + 0.5D);
-			} else {
-				setSpawners(x, currentHight, z);
-			}
-
-			world.setBlock(x, currentHight + 6, z - 3, Blocks.STONE_POLISHED.id());
-			world.setBlock(x - 1, currentHight + 6, z - 3, Blocks.STONE_POLISHED.id());
-
-			if (currentHight + 56 >= 120 && currentFloor == 1) {
-				currentFloor = 2;
-			}
-
+			placeWholesInFloor(x, currentHight, z);
+			placeHostileDecorations(x, currentHight, z);
+			skipAFloor(currentHight);
 			placeChests(x, currentHight, z);
+			this.currentFloor++;
+		}
+		return true;
+	}
 
-			for (int l3 = 0; l3 < (currentFloor * 4 + towerDecoBlockID) - 8 && !this.isTopFloor; l3++) {
-				int k4 = 5 - random.nextInt(LOOT_AMOUNT);
-				int k5 = currentHight + 5;
-				int j6 = 5 - random.nextInt(10);
-				if (j6 < -2 && k4 < 4 && k4 > -5 && k4 != 1 && k4 != -2) {
-					continue;
-				}
-				k4 += x;
-				j6 += z;
-				if (world.getBlockId(k4, k5, j6) == Blocks.STONE_POLISHED.id() && world.getBlockId(k4, k5 + 1, j6) != Blocks.MOBSPAWNER.id()) {
-					world.setBlock(k4, k5, j6, 0);
-				}
+
+
+	/// ############################## no touchy zone ##################################################################
+
+	private void skipAFloor(int currentHight) {
+		if (currentHight + 56 >= MAX_HEIGHT && this.currentFloor == 1) {
+			this.currentFloor++;
+		}
+	}
+
+	private void placeWholesInFloor(int x, int y, int z) {
+		if(this.isTopFloor){
+			return;
+		}
+		for (int count = 0; count < (currentFloor * 4 + 3); count++) {
+			int ix = 5 - random.nextInt(12);
+			int iy = y + 5;
+			int iz = 5 - random.nextInt(10);
+
+			/// lies outside the towers perimeter
+			if (iz < -2 && ix < 4 && ix > -5 && ix != 1 && ix != -2) {
+				continue;
 			}
+			ix += x;
+			iz += z;
+			if (world.getBlockId(ix, iy, iz) == Blocks.STONE_POLISHED.id()) {
+				world.setBlock(ix, iy, iz, 0);
+			}
+		}
+	}
 
-			currentFloor++;
+	private void placeHostileDecorations(int x, int y, int z) {
+		if (this.isTopFloor) {
+			spawnGolem(x, y + 6, z + 0.5D);
+		} else {
+			setSpawners(x, y, z);
 		}
 
-		return true;
+		///  plugin the whole below the spawner
+		world.setBlock(x, y + 6, z - 3, Blocks.STONE_POLISHED.id());
+		world.setBlock(x - 1, y + 6, z - 3, Blocks.STONE_POLISHED.id());
 	}
 
 	private void placeChests(int x, int y, int z) {
@@ -273,8 +280,6 @@ public class WorldGenTower extends WorldFeature {
 			}
 		}
 	}
-
-	/// ############################## no touchy zone ##################################################################
 
 	private String getRandomSpawnerMob() {
 		int i = random.nextInt(5);
