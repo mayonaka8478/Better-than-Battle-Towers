@@ -14,7 +14,7 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
 
-import static jamdoggie.betterbattletowers.BetterBattleTowers.LOGGER;
+import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 import java.util.Random;
 
@@ -26,7 +26,7 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 public class WorldGenTower extends WorldFeature {
 	private World world;
 	private Random random;
-	private int currentFloor = 1;
+	private int currentFloor = 0;
 	private boolean isTopFloor = false;
 	private WeightedRandomBag<Integer> buildingBlockBag;
 	private int towerDecoBlockID;
@@ -53,19 +53,25 @@ public class WorldGenTower extends WorldFeature {
 		this.towerDecoBlockID = random.nextInt(11);
 		this.buildingBlockBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
 		if (world.worldType instanceof WorldTypeOverworld) this.offset = 64;
+
 		for (int currentHeight = y - 6; currentHeight < MAX_HEIGHT + this.offset; currentHeight += FLOOR_HEIGHT) {
 			if (currentHeight + FLOOR_HEIGHT >= MAX_HEIGHT + this.offset) {
 				this.isTopFloor = true;
 			}
+
 			placeCurrentFloor(x, currentHeight, z, y - 6);
 			placeHolesInFloor(x, currentHeight + 5, z);
 			placeHostileDecorations(x, currentHeight + 6, z);
-			skipAFloor(currentHeight);
 			placeChests(x, currentHeight + 7, z - 3);
-//			mysteryFunction( x + 3, currentHeight, z - 5); // commented this out cause it didnt do anything
+
+			/// those pieces of code don't seem to do anything useful
+//			skipAFloor(currentHeight);
+//			mysteryFunction( x + 3, currentHeight, z - 5);
 			this.currentFloor++;
 
 		}
+		///  for debugging
+		world.setBlockWithNotify(x, y, z, Blocks.BLOCK_DIAMOND.id());
 		return true;
 	}
 
@@ -80,7 +86,7 @@ public class WorldGenTower extends WorldFeature {
 	///  Places the current floor, that includes wall and the actual floor
 	private void placeCurrentFloor(int x, int y, int z, int floorDiv) {
 		for (int height = 0; height < FLOOR_HEIGHT; height++) {
-			if ((y == floorDiv) && (height < 4)) {
+			if ((y == floorDiv) && height < 4) {
 				height = 4;
 			}
 			for (int width = -FLOOR_WIDTH; width < FLOOR_WIDTH; width++) {
@@ -125,6 +131,7 @@ public class WorldGenTower extends WorldFeature {
 					return;
 				}
 
+				/// Clears out the area to place the stair well
 				if (width < 4 && width > -5) {
 					this.world.setBlock(ix, iy, iz, 0);
 				}
@@ -143,6 +150,7 @@ public class WorldGenTower extends WorldFeature {
 					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
 				}
 			} else {
+				/// Places the holes for the staircase
 				world.setBlock(ix, iy, iz, 0);
 			}
 
@@ -166,19 +174,19 @@ public class WorldGenTower extends WorldFeature {
 			if (width == -7 || width == 6) {
 				if (height < 0 || height > 3 || length != -1 && length != 0) {
 					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
-				} else {
+				}else if(this.currentFloor > 1){
+					/// PLACES THE WINDOWS
+					this.world.setBlock(ix, iy, iz, Blocks.GLASS_TINTED.id());
+				}else {
 					this.world.setBlock(ix, iy, iz, 0);
 				}
-
 				return;
 			}
-
 			if (height == 5) {
 				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
 			} else {
 				this.world.setBlock(ix, iy, iz, 0);
 			}
-
 			return;
 		}
 
@@ -192,7 +200,9 @@ public class WorldGenTower extends WorldFeature {
 			}
 			if (height == 5) {
 				this.world.setBlock(ix, iy, iz, Blocks.STONE_POLISHED.id());
-			} else {
+			}
+			else {
+				/// One of these places the window
 				this.world.setBlock(ix, iy, iz, 0);
 			}
 			return;
@@ -294,16 +304,38 @@ public class WorldGenTower extends WorldFeature {
 
 	/// Places the rewards chests and the plinth open the chest sits
 	private void placeChests(int x, int y, int z) {
-		placeChest(x, y, z);
-		placeChest(x - 1, y, z);
+		if(this.isTopFloor){
+			placeTopFloorChest(x, y, z);
+			placeTopFloorChest(x - 1, y, z);
+		}else {
+			placeChest(x, y, z);
+			placeChest(x - 1, y, z);
+		}
 		BlockLogicChest.setType(world, x, y, z, BlockLogicChest.Type.RIGHT);
 		BlockLogicChest.setType(world, x - 1, y, z, BlockLogicChest.Type.LEFT);
 		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
 		world.setBlock(x - 1, y - 1, z, Blocks.STONE_POLISHED.id());
+
+
 	}
 
 	/// Places the chest, sets up its tile entity and populated the chest with loot.
 	private void placeChest(int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, Blocks.CHEST_PLANKS_OAK.id());
+		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if(!(tile instanceof TileEntityChest)) return;
+		TileEntityChest tileEntityChest = (TileEntityChest) tile;
+		for (int i = 0; i < LOOT_AMOUNT; i++) {
+			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
+			if (itemstack != null) {
+				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
+			}
+		}
+	}
+
+	/// Places the chest, sets up its tile entity and populated the chest with loot.
+	private void placeTopFloorChest(int x, int y, int z) {
 		world.setBlockWithNotify(x, y, z, ModBlocks.ChestTower.id());
 		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
 		TileEntity tile = world.getTileEntity(x, y, z);

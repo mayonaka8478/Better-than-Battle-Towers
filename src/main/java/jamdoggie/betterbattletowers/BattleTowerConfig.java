@@ -10,8 +10,8 @@ import turniplabs.halplibe.util.toml.Toml;
 import java.io.IOException;
 
 import static jamdoggie.betterbattletowers.BattleTowerConfig.StrBuilder.str;
-import static jamdoggie.betterbattletowers.BattleTower.MOD_ID;
-import static jamdoggie.betterbattletowers.BattleTower.LOGGER;
+import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
+import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 public class BattleTowerConfig {
 	public static int TOWER_COUNT = 200;
@@ -143,53 +143,53 @@ public class BattleTowerConfig {
 	}
 
 
-	public static String lootitem1_0 = BattleTower.config.getString("lootitem1_0");
-	public static String lootitem1_1 = BattleTower.config.getString("lootitem1_1");
-	public static String lootitem1_2 = BattleTower.config.getString("lootitem1_2");
-	public static String lootitem1_3 = BattleTower.config.getString("lootitem1_3");
+	public static String lootitem1_0 = BattleTowerMod.config.getString("lootitem1_0");
+	public static String lootitem1_1 = BattleTowerMod.config.getString("lootitem1_1");
+	public static String lootitem1_2 = BattleTowerMod.config.getString("lootitem1_2");
+	public static String lootitem1_3 = BattleTowerMod.config.getString("lootitem1_3");
 
-	public static String lootitem2_0 = BattleTower.config.getString("lootitem2_0");
-	public static String lootitem2_1 = BattleTower.config.getString("lootitem2_1");
-	public static String lootitem2_2 = BattleTower.config.getString("lootitem2_2");
-	public static String lootitem2_3 = BattleTower.config.getString("lootitem2_3");
+	public static String lootitem2_0 = BattleTowerMod.config.getString("lootitem2_0");
+	public static String lootitem2_1 = BattleTowerMod.config.getString("lootitem2_1");
+	public static String lootitem2_2 = BattleTowerMod.config.getString("lootitem2_2");
+	public static String lootitem2_3 = BattleTowerMod.config.getString("lootitem2_3");
 
-	public static String lootitem3_0 = BattleTower.config.getString("lootitem3_0");
-	public static String lootitem3_1 = BattleTower.config.getString("lootitem3_1");
-	public static String lootitem3_2 = BattleTower.config.getString("lootitem3_2");
-	public static String lootitem3_3 = BattleTower.config.getString("lootitem3_3");
+	public static String lootitem3_0 = BattleTowerMod.config.getString("lootitem3_0");
+	public static String lootitem3_1 = BattleTowerMod.config.getString("lootitem3_1");
+	public static String lootitem3_2 = BattleTowerMod.config.getString("lootitem3_2");
+	public static String lootitem3_3 = BattleTowerMod.config.getString("lootitem3_3");
 
-	public static String lootitem4_0 = BattleTower.config.getString("lootitem4_0");
-	public static String lootitem4_1 = BattleTower.config.getString("lootitem4_1");
-	public static String lootitem4_2 = BattleTower.config.getString("lootitem4_2");
-	public static String lootitem4_3 = BattleTower.config.getString("lootitem4_3");
+	public static String lootitem4_0 = BattleTowerMod.config.getString("lootitem4_0");
+	public static String lootitem4_1 = BattleTowerMod.config.getString("lootitem4_1");
+	public static String lootitem4_2 = BattleTowerMod.config.getString("lootitem4_2");
+	public static String lootitem4_3 = BattleTowerMod.config.getString("lootitem4_3");
 
-	public static String lootitem5_0 = BattleTower.config.getString("lootitem5_0");
-	public static String lootitem5_1 = BattleTower.config.getString("lootitem5_1");
-	public static String lootitem5_2 = BattleTower.config.getString("lootitem5_2");
-	public static String lootitem5_3 = BattleTower.config.getString("lootitem5_3");
+	public static String lootitem5_0 = BattleTowerMod.config.getString("lootitem5_0");
+	public static String lootitem5_1 = BattleTowerMod.config.getString("lootitem5_1");
+	public static String lootitem5_2 = BattleTowerMod.config.getString("lootitem5_2");
+	public static String lootitem5_3 = BattleTowerMod.config.getString("lootitem5_3");
 
-	public static String lootitem6_0 = BattleTower.config.getString("lootitem6_0");
-	public static String lootitem6_1 = BattleTower.config.getString("lootitem6_1");
-	public static String lootitem6_2 = BattleTower.config.getString("lootitem6_2");
-	public static String lootitem6_3 = BattleTower.config.getString("lootitem6_3");
+	public static String lootitem6_0 = BattleTowerMod.config.getString("lootitem6_0");
+	public static String lootitem6_1 = BattleTowerMod.config.getString("lootitem6_1");
+	public static String lootitem6_2 = BattleTowerMod.config.getString("lootitem6_2");
+	public static String lootitem6_3 = BattleTowerMod.config.getString("lootitem6_3");
 
-	public static String lootitem7_0 = BattleTower.config.getString("lootitem7_0");
-	public static String lootitem7_1 = BattleTower.config.getString("lootitem7_1");
-	public static String lootitem7_2 = BattleTower.config.getString("lootitem7_2");
-	public static String lootitem7_3 = BattleTower.config.getString("lootitem7_3");
+	public static String lootitem7_0 = BattleTowerMod.config.getString("lootitem7_0");
+	public static String lootitem7_1 = BattleTowerMod.config.getString("lootitem7_1");
+	public static String lootitem7_2 = BattleTowerMod.config.getString("lootitem7_2");
+	public static String lootitem7_3 = BattleTowerMod.config.getString("lootitem7_3");
 
-	public static String lootitem8_0 = BattleTower.config.getString("lootitem8_0");
-	public static String lootitem8_1 = BattleTower.config.getString("lootitem8_1");
-	public static String lootitem8_2 = BattleTower.config.getString("lootitem8_2");
-	public static String lootitem8_3 = BattleTower.config.getString("lootitem8_3");
+	public static String lootitem8_0 = BattleTowerMod.config.getString("lootitem8_0");
+	public static String lootitem8_1 = BattleTowerMod.config.getString("lootitem8_1");
+	public static String lootitem8_2 = BattleTowerMod.config.getString("lootitem8_2");
+	public static String lootitem8_3 = BattleTowerMod.config.getString("lootitem8_3");
 
-	public static String lootitem9_0 = BattleTower.config.getString("lootitem9_0");
-	public static String lootitem9_1 = BattleTower.config.getString("lootitem9_1");
-	public static String lootitem9_2 = BattleTower.config.getString("lootitem9_2");
-	public static String lootitem9_3 = BattleTower.config.getString("lootitem9_3");
+	public static String lootitem9_0 = BattleTowerMod.config.getString("lootitem9_0");
+	public static String lootitem9_1 = BattleTowerMod.config.getString("lootitem9_1");
+	public static String lootitem9_2 = BattleTowerMod.config.getString("lootitem9_2");
+	public static String lootitem9_3 = BattleTowerMod.config.getString("lootitem9_3");
 
-	public static String lootitemtop_0 = BattleTower.config.getString("lootitemtop_0");
-	public static String lootitemtop_1 = BattleTower.config.getString("lootitemtop_1");
-	public static String lootitemtop_2 = BattleTower.config.getString("lootitemtop_2");
-	public static String lootitemtop_3 = BattleTower.config.getString("lootitemtop_3");
+	public static String lootitemtop_0 = BattleTowerMod.config.getString("lootitemtop_0");
+	public static String lootitemtop_1 = BattleTowerMod.config.getString("lootitemtop_1");
+	public static String lootitemtop_2 = BattleTowerMod.config.getString("lootitemtop_2");
+	public static String lootitemtop_3 = BattleTowerMod.config.getString("lootitemtop_3");
 	}
