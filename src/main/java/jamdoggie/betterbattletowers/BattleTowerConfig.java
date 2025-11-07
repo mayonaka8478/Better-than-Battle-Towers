@@ -1,6 +1,20 @@
 package jamdoggie.betterbattletowers;
 
-public class LootCofigUtils {
+import net.minecraft.core.WeightedRandomBag;
+import net.minecraft.core.util.collection.NamespaceID;
+
+public class BattleTowerConfig {
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_1 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_2 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_3 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_4 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_5 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_6 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_7 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_8 = new WeightedRandomBag<>();
+	public static WeightedRandomBag<NamespaceID> LOOT_FLOOR_9 = new WeightedRandomBag<>();
+
+
 	public static String lootitem1_0 = BetterBattleTowers.config.getString("lootitem1_0");
 	public static String lootitem1_1 = BetterBattleTowers.config.getString("lootitem1_1");
 	public static String lootitem1_2 = BetterBattleTowers.config.getString("lootitem1_2");

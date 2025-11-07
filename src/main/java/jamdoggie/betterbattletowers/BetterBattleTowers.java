@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.EntityHelper;
 import turniplabs.halplibe.util.*;
+import turniplabs.halplibe.util.toml.Toml;
 
 import java.util.Properties;
 import java.util.Random;
@@ -37,13 +38,25 @@ public class BetterBattleTowers implements ModInitializer, GameStartEntrypoint, 
 		prop.setProperty("starting_item_id", "26340");
 		prop.setProperty("towercount", "200");
 		prop.setProperty("rarity", "10");
+
+
 		//Tower Loot
 		//floor1
+//		prop.setProperty("level1", Items.STICK.namespaceID.toString());
+//		prop.setProperty("level1", Items.SEEDS_WHEAT.namespaceID.toString());
+//		prop.setProperty("level1", Items.AMMO_PEBBLE.namespaceID.toString());
+//		prop.setProperty("level1", Blocks.SAND.namespaceId().toString());
+
 		prop.setProperty("lootitem1_0", "Item.stick");
 		prop.setProperty("lootitem1_1", "Item.seeds.wheat");
 		prop.setProperty("lootitem1_2", "Item.ammo.pebble");
 		prop.setProperty("lootitem1_3", "Block.sand");
 		//floor2
+//		prop.setProperty("lootitem2_0", Items.COAL.namespaceID.toString());
+//		prop.setProperty("lootitem2_1", Items.SEEDS_WHEAT.namespaceID.toString());
+//		prop.setProperty("lootitem2_2", Blocks.PLANKS_OAK.namespaceId().toString());
+//		prop.setProperty("lootitem2_3", Blocks.WOOL.namespaceId().toString());
+
 		prop.setProperty("lootitem2_0", "Item.coal");
 		prop.setProperty("lootitem2_1", "Item.stick");
 		prop.setProperty("lootitem2_2", "Block.planks.oak");
