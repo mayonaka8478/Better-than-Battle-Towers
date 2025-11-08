@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen;
+package jamdoggie.betterbattletowers.worldgen.component;
 
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
@@ -8,7 +8,7 @@ import net.minecraft.core.world.biome.Biomes;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.worldgen.BlockPallet.ipair;
+import static jamdoggie.betterbattletowers.worldgen.component.BlockPallet.ipair;
 
 
 public class BlockPallets {
