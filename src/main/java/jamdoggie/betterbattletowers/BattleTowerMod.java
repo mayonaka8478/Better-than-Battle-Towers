@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers;
 
-import jamdoggie.betterbattletowers.block.ModBlocks;
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
 import jamdoggie.betterbattletowers.entity.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldGenTower;
@@ -125,7 +125,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void beforeGameStart() {
-		ModBlocks.createBlocks();
+		BattleTowerBlocks.createBlocks();
 		EntityHelper.createEntity(EntityGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "TileTowerChest");
 	}
@@ -170,12 +170,15 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	public void GenerateSurface(World world, Random random, int chunkX, int chunkZ) {
 		if (towercount >= rarity * 100) {
 			if (random.nextInt(2) == 0) {
-				int k = chunkX + random.nextInt(16) + 8;
-				int i1 = chunkZ + random.nextInt(16) + 8;
-				int l = world.getHeightValue(k, i1);
+//				int ix = chunkX + random.nextInt(16) + 8;
+//				int iy = chunkZ + random.nextInt(16) + 8;
+
+				int ix = chunkX + 8;
+				int iy = chunkZ + 8;
+				int iz = world.getHeightValue(ix, iy);
 
 
-				if ((new WorldGenTower()).place(world, random, k, l, i1)) {
+				if ((new WorldGenTower()).place(world, random, ix, iz, iy)) {
 					towercount = 0;
 				}
 			}
