@@ -1,5 +1,16 @@
 betterbattletowers.golem.name=Голем
 betterbattletowers.golem.desc=Могущественный враг, дремлющий на вершинах древних башен.
+
+betterbattletowers.subtitles.mob.golem=
+betterbattletowers.subtitles.mob.golem.awaken=
+betterbattletowers.subtitles.mob.golem.death=
+betterbattletowers.subtitles.mob.golem.hurt=
+betterbattletowers.subtitles.mob.golem.special=
+
 tile.betterbattletowers.chest.tower.name=Башенный сундук
 tile.betterbattletowers.chest.tower.desc=Старый крепкий сундук, размещенный в древних башнях.
+tile.betterbattletowers.prison_bar.name=Затемнённая железная клетка
+tile.betterbattletowers.prison_bar.desc=Железная клетка, не пропускающая ни малейшего света.
+tile.betterbattletowers.prison_fence.name=Затемнённые железные прутья
+tile.betterbattletowers.prison_fence.desc=Декоративный забор, сработанный из ржавых обломков затемнённых железных клеток.
 

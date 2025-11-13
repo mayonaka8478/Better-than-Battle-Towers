@@ -1,9 +1,15 @@
 betterbattletowers.golem.name=Golem
 betterbattletowers.golem.desc=A powerful foe that lays dormant on top of ancient towers.
-tile.betterbattletowers.chest.tower.name=Tower Chest
-tile.betterbattletowers.chest.tower.desc=Old sturdy chest placed in ancient towers. Too heavy to carry.
+
 betterbattletowers.subtitles.mob.golem=Golem growls
 betterbattletowers.subtitles.mob.golem.awaken=Golem awakens
 betterbattletowers.subtitles.mob.golem.death=Golem death
 betterbattletowers.subtitles.mob.golem.hurt=Golem hurt
 betterbattletowers.subtitles.mob.golem.special=Golem attack
+
+tile.betterbattletowers.chest.tower.name=Tower Chest
+tile.betterbattletowers.chest.tower.desc=Old sturdy chest placed in ancient towers. Too heavy to carry.
+tile.betterbattletowers.prison_bar.name=Tinted Iron Cage
+tile.betterbattletowers.prison_bar.desc=Iron cage that blocks all light.
+tile.betterbattletowers.prison_fence.name=Tinted Iron Bars
+tile.betterbattletowers.prison_fence.desc=A decorative fence salvaged from tinted iron cages.
