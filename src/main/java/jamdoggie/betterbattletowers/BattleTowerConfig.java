@@ -1,195 +1,165 @@
 package jamdoggie.betterbattletowers;
 
+import jamdoggie.betterbattletowers.mixins.TomlAccessor;
+import jamdoggie.betterbattletowers.worldgen.component.LootTable;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.item.IItemConvertible;
 import net.minecraft.core.item.Item;
-import net.minecraft.core.item.Items;
+import net.minecraft.core.util.HardIllegalArgumentException;
+import net.minecraft.core.util.collection.NamespaceID;
+import turniplabs.halplibe.util.ConfigHandler;
 import turniplabs.halplibe.util.TomlConfigHandler;
+import turniplabs.halplibe.util.toml.Entry;
 import turniplabs.halplibe.util.toml.Toml;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.util.*;
 
-import static jamdoggie.betterbattletowers.BattleTowerConfig.StrBuilder.str;
+import static jamdoggie.betterbattletowers.BattleTowerConfigOld.convertOldConfig;
+import static jamdoggie.betterbattletowers.BattleTowerConfigOld.getOldProperties;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
+import static jamdoggie.betterbattletowers.worldgen.component.LootTable.getDefaultMap;
+import static net.minecraft.core.util.collection.NamespaceID.getPermanent;
 
 public class BattleTowerConfig {
-	public static int TOWER_COUNT = 200;
-	public static int RARITY = 10;
+	public static final String GENERAL = "GENERAL";
+	public static final String LOOT = "LOOT";
+	private static int TOWER_COUNT = 200;
+	private static int RARITY = 10;
 
-	public static int STARTING_BLOCK_ID = 6340;
-	public static int STARTING_ITEM_ID = 26340;
+	private static int STARTING_BLOCK_ID = 6340;
+	private static int STARTING_ITEM_ID = 26340;
 
+	private static final String CONFIG_DIRECTORY = FabricLoader.getInstance().getGameDir().toString() + "/config/";
 	private static boolean isInit = false;
 
-	public static class StrBuilder{
-		public static StringBuilder str(){
-			return new StringBuilder();
-		}
-		public static StringBuilder str(String string){
-			return new StringBuilder(string);
-		}
+	private BattleTowerConfig() {
 	}
 
 	private static String key(String category, String key) {
-		return str(category).append(".").append(key).toString();
+		return category + "." + key;
 	}
 
-
-	public static void init(){
-		if(isInit) return;
+	public static void init() {
+		if (isInit) return;
 		isInit = true;
+		File configFile = new File(CONFIG_DIRECTORY + MOD_ID + ".cfg");
+		if (configFile.exists()) {
+			Properties properties = getOldProperties();
+			ConfigHandler config = new ConfigHandler(MOD_ID, properties);
+			TOWER_COUNT = config.getInt("towercount");
+			RARITY = config.getInt("rarity");
+			STARTING_BLOCK_ID = config.getInt("starting_block_id");
+			STARTING_ITEM_ID = config.getInt("starting_item_id");
 
+			File newFile = new File(CONFIG_DIRECTORY + "OLD_" + MOD_ID + ".cfg");
+			if (!configFile.renameTo(newFile)) {
+				LOGGER.error("Battle Towers Old Config file could not be renamed.");
+			}
+			loadConfig(createDefaultConfig(convertOldConfig(config)));
+		} else {
+			loadConfig(createDefaultConfig(getDefaultMap()));
+		}
+		LOGGER.info("Battle Towers Config initialized.");
+	}
+
+	private static void loadConfig(Toml properties) {
+		TomlConfigHandler config = new TomlConfigHandler(MOD_ID + "4.0", properties, false);
+		if (config.getConfigFile().exists()) {
+			config.loadConfig();
+		} else {
+			try {
+				if (!config.getConfigFile().createNewFile()) {
+					LOGGER.warn("Battle Towers config file already exists, skipping creation.");
+				}
+			} catch (IOException e) {
+				LOGGER.error("Battle Towers Config failed to generate, deleted the config and try again.");
+				throw new UncheckedIOException("Failed to create Battle Towers config file", e);
+			}
+			config.writeConfig();
+			config.loadConfig();
+		}
+		readConfigFile(config);
+	}
+
+	private static void readConfigFile(TomlConfigHandler config) {
+		TOWER_COUNT = config.getInt(key(GENERAL, "TOWER_COUNT"));
+		RARITY = config.getInt(key(GENERAL, "RARITY"));
+		STARTING_BLOCK_ID = config.getInt(key(GENERAL, "STARTING_BLOCK_ID"));
+		STARTING_ITEM_ID = config.getInt(key(GENERAL, "STARTING_ITEM_ID"));
+
+		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
+		Toml toml = config.getRawParsed();
+		for(Map.Entry<String, Toml> category: ((TomlAccessor)toml).getCategories().entrySet()){
+			String categoryName = category.getKey();
+			if (categoryName.equalsIgnoreCase(GENERAL) || !categoryName.contains(LOOT)) continue;
+			int index = Integer.parseInt(categoryName.substring(LOOT.length()));
+			Toml value = category.getValue();
+			if(!((TomlAccessor)value).getCategories().isEmpty()) continue;
+			List<LootTable.LootEntry> listLoot = new ArrayList<>();
+			TomlAccessor item = (TomlAccessor)value;
+			for(Map.Entry<String, Entry<?>>  entry: item.getEntries().entrySet()){
+				IItemConvertible convertible = getConvertible(entry.getKey());
+				if(convertible == null) continue;
+				int metadata = (Integer) entry.getValue().getT();
+				listLoot.add(LootTable.LootEntry.loot(convertible, metadata));
+			}
+			table.put(index, listLoot);
+		}
+		LootTable.createTables(table);
+	}
+
+	private static IItemConvertible getConvertible(String key) {
+		NamespaceID id;
+		try{
+			id = getPermanent(key);
+		}catch (HardIllegalArgumentException e) {
+			return null;
+		}
+		Block<?> block = Blocks.blockMap.get(id);
+		Item item = Item.itemsMap.get(id);
+		if(block == null && item == null) return null;
+		if(block == null) return item;
+		return block;
+	}
+
+	private static Toml createDefaultConfig(Map<Integer, List<LootTable.LootEntry>> table) {
 		Toml properties = new Toml("Battle Towers Config");
-		properties.addCategory("General")
+		properties.addCategory(GENERAL)
 			.addEntry("TOWER_COUNT", TOWER_COUNT)
 			.addEntry("RARITY", RARITY)
 			.addEntry("STARTING_BLOCK_ID", STARTING_BLOCK_ID)
 			.addEntry("STARTING_ITEM_ID", STARTING_ITEM_ID);
-//		writeLootToConfig(properties);
 
-		TomlConfigHandler config = new TomlConfigHandler(MOD_ID, properties);
-		if(config.getConfigFile().exists()){
-			config.loadConfig();
-		}else{
-			try {
-				if (config.getConfigFile().createNewFile()) {
-					LOGGER.info("Battle Towers Config initialized.");
-				}
-			}catch (IOException e){
-				LOGGER.error("Battle Towers Config failed to generate, deleted the config and try again.");
-				throw new RuntimeException(e);
+		for (int i = 0; i < table.size(); i++) {
+			Toml tomlCategory = properties.addCategory(LOOT + i);
+			List<LootTable.LootEntry> entries = table.get(i);
+			for (LootTable.LootEntry entry : entries) {
+				String name = entry.getValue().asItem().namespaceID.toString();
+				tomlCategory.addEntry(name, entry.getMetadata());
 			}
 		}
-		config.writeConfig();
-		TOWER_COUNT = config.getInt(key("General", "TOWER_COUNT"));
-		RARITY = config.getInt(key("General", "RARITY"));
-		STARTING_BLOCK_ID = config.getInt(key("General", "STARTING_BLOCK_ID"));
-		STARTING_ITEM_ID = config.getInt(key("General", "STARTING_ITEM_ID"));
-//		readLootFromConfig(config);
+		return properties;
 	}
 
-	public static String getNamespace(Object object){
-		if (((!(object instanceof Item)) && (!(object instanceof Block)))) {
-			throw new IllegalArgumentException("Expected a Item or Block, but got " + object.getClass().getSimpleName());
-		}
-		if(object instanceof Item){
-			return ((Item) object).namespaceID.toString();
-		}
-		return ((Block<?>)object).namespaceId().toString();
-
+	public static int getStartingItemId() {
+		return STARTING_ITEM_ID;
 	}
 
-	private static void writeLootToConfig(Toml properties) {
-		properties.addCategory("LOOT");
-
-
-		//Tower Loot
-		//floor1
-		properties.addEntry("lootitem1_0", getNamespace(Items.STICK));
-		properties.addEntry("lootitem1_1", getNamespace(Items.SEEDS_WHEAT));
-		properties.addEntry("lootitem1_2", getNamespace(Items.AMMO_PEBBLE));
-		properties.addEntry("lootitem1_3", getNamespace(Blocks.SAND));
-		//floor2
-		properties.addEntry("lootitem2_0", getNamespace(Items.COAL));
-		properties.addEntry("lootitem2_1", getNamespace(Items.STICK));
-		properties.addEntry("lootitem2_2", getNamespace(Blocks.PLANKS_OAK));
-		properties.addEntry("lootitem2_3", getNamespace(Blocks.WOOL));
-		//floor3
-		properties.addEntry("lootitem3_0", getNamespace(Items.FEATHER_CHICKEN));
-		properties.addEntry("lootitem3_1", getNamespace(Items.FOOD_BREAD));
-		properties.addEntry("lootitem3_2", getNamespace(Blocks.GLASS));
-		properties.addEntry("lootitem3_3", getNamespace(Blocks.MUSHROOM_BROWN));
-		//floor4
-		properties.addEntry("lootitem4_0", getNamespace(Items.FEATHER_CHICKEN));
-		properties.addEntry("lootitem4_1", getNamespace(Items.FOOD_BREAD));
-		properties.addEntry("lootitem4_2", getNamespace(Blocks.GLASS));
-		properties.addEntry("lootitem4_3", getNamespace(Blocks.MUSHROOM_BROWN));
-		//floor5
-		properties.addEntry("lootitem5_0", getNamespace(Items.BOOK));
-		properties.addEntry("lootitem5_1", getNamespace(Items.BRICK_CLAY));
-		properties.addEntry("lootitem5_2", getNamespace(Items.ORE_RAW_IRON));
-		properties.addEntry("lootitem5_3", getNamespace(Items.ROPE));
-		//floor6
-		properties.addEntry("lootitem6_0", getNamespace(Items.BOOK));
-		properties.addEntry("lootitem6_1", getNamespace(Items.FLINT));
-		properties.addEntry("lootitem6_2", getNamespace(Items.DUST_REDSTONE));
-		properties.addEntry("lootitem6_3", getNamespace(Items.ORE_RAW_GOLD));
-		//floor7
-		properties.addEntry("lootitem7_0", getNamespace(Items.BOOK));
-		properties.addEntry("lootitem7_1", getNamespace(Items.INGOT_GOLD));
-		properties.addEntry("lootitem7_2", getNamespace(Items.INGOT_IRON));
-		properties.addEntry("lootitem7_3", getNamespace(Items.BUCKET_LAVA));
-		//floor8
-		properties.addEntry("lootitem8_0", getNamespace(Blocks.TNT));
-		properties.addEntry("lootitem8_1", getNamespace(Items.OLIVINE));
-		properties.addEntry("lootitem8_2", getNamespace(Items.INGOT_GOLD));
-		properties.addEntry("lootitem8_3", getNamespace(Items.CHAINLINK));
-		//floor9
-		properties.addEntry("lootitem9_0", getNamespace(Items.QUARTZ));
-		properties.addEntry("lootitem9_1", getNamespace(Items.DYE));
-		properties.addEntry("lootitem9_2", getNamespace(Items.DUST_REDSTONE));
-		properties.addEntry("lootitem9_3", getNamespace(Items.BONE));
-		//floortop
-		properties.addEntry("lootitemtop_0", getNamespace(Blocks.MESH_GOLD));
-		properties.addEntry("lootitemtop_1", getNamespace(Items.INGOT_IRON));
-		properties.addEntry("lootitemtop_2", getNamespace(Items.DUST_REDSTONE));
-		properties.addEntry("lootitemtop_3", getNamespace(Items.DIAMOND));
+	public static int getStartingBlockId() {
+		return STARTING_BLOCK_ID;
 	}
 
-	private static void readLootFromConfig(TomlConfigHandler config) {
-
-
+	public static int getRARITY() {
+		return RARITY;
 	}
 
-
-	public static String lootitem1_0 = BattleTowerMod.config.getString("lootitem1_0");
-	public static String lootitem1_1 = BattleTowerMod.config.getString("lootitem1_1");
-	public static String lootitem1_2 = BattleTowerMod.config.getString("lootitem1_2");
-	public static String lootitem1_3 = BattleTowerMod.config.getString("lootitem1_3");
-
-	public static String lootitem2_0 = BattleTowerMod.config.getString("lootitem2_0");
-	public static String lootitem2_1 = BattleTowerMod.config.getString("lootitem2_1");
-	public static String lootitem2_2 = BattleTowerMod.config.getString("lootitem2_2");
-	public static String lootitem2_3 = BattleTowerMod.config.getString("lootitem2_3");
-
-	public static String lootitem3_0 = BattleTowerMod.config.getString("lootitem3_0");
-	public static String lootitem3_1 = BattleTowerMod.config.getString("lootitem3_1");
-	public static String lootitem3_2 = BattleTowerMod.config.getString("lootitem3_2");
-	public static String lootitem3_3 = BattleTowerMod.config.getString("lootitem3_3");
-
-	public static String lootitem4_0 = BattleTowerMod.config.getString("lootitem4_0");
-	public static String lootitem4_1 = BattleTowerMod.config.getString("lootitem4_1");
-	public static String lootitem4_2 = BattleTowerMod.config.getString("lootitem4_2");
-	public static String lootitem4_3 = BattleTowerMod.config.getString("lootitem4_3");
-
-	public static String lootitem5_0 = BattleTowerMod.config.getString("lootitem5_0");
-	public static String lootitem5_1 = BattleTowerMod.config.getString("lootitem5_1");
-	public static String lootitem5_2 = BattleTowerMod.config.getString("lootitem5_2");
-	public static String lootitem5_3 = BattleTowerMod.config.getString("lootitem5_3");
-
-	public static String lootitem6_0 = BattleTowerMod.config.getString("lootitem6_0");
-	public static String lootitem6_1 = BattleTowerMod.config.getString("lootitem6_1");
-	public static String lootitem6_2 = BattleTowerMod.config.getString("lootitem6_2");
-	public static String lootitem6_3 = BattleTowerMod.config.getString("lootitem6_3");
-
-	public static String lootitem7_0 = BattleTowerMod.config.getString("lootitem7_0");
-	public static String lootitem7_1 = BattleTowerMod.config.getString("lootitem7_1");
-	public static String lootitem7_2 = BattleTowerMod.config.getString("lootitem7_2");
-	public static String lootitem7_3 = BattleTowerMod.config.getString("lootitem7_3");
-
-	public static String lootitem8_0 = BattleTowerMod.config.getString("lootitem8_0");
-	public static String lootitem8_1 = BattleTowerMod.config.getString("lootitem8_1");
-	public static String lootitem8_2 = BattleTowerMod.config.getString("lootitem8_2");
-	public static String lootitem8_3 = BattleTowerMod.config.getString("lootitem8_3");
-
-	public static String lootitem9_0 = BattleTowerMod.config.getString("lootitem9_0");
-	public static String lootitem9_1 = BattleTowerMod.config.getString("lootitem9_1");
-	public static String lootitem9_2 = BattleTowerMod.config.getString("lootitem9_2");
-	public static String lootitem9_3 = BattleTowerMod.config.getString("lootitem9_3");
-
-	public static String lootitemtop_0 = BattleTowerMod.config.getString("lootitemtop_0");
-	public static String lootitemtop_1 = BattleTowerMod.config.getString("lootitemtop_1");
-	public static String lootitemtop_2 = BattleTowerMod.config.getString("lootitemtop_2");
-	public static String lootitemtop_3 = BattleTowerMod.config.getString("lootitemtop_3");
+	public static int getTowerCount() {
+		return TOWER_COUNT;
 	}
+}
