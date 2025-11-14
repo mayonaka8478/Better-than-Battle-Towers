@@ -1,14 +1,11 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.block.ModBlocks;
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.EntityGolem;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.block.entity.TileEntityChest;
 import net.minecraft.core.block.entity.TileEntityMobSpawner;
-import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
@@ -18,12 +15,13 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.BlockPallets.getRandomCobbledBlockBag;
-import static jamdoggie.betterbattletowers.worldgen.LootTable.generateRandomChestLoot;
+import static jamdoggie.betterbattletowers.worldgen.component.BlockPallets.getRandomCobbledBlockBag;
+import static jamdoggie.betterbattletowers.worldgen.component.LootTable.MAX_TIER;
+import static jamdoggie.betterbattletowers.worldgen.component.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
-public class WorldGenTower extends WorldFeature {
+public class WorldFeatureBattleTower extends WorldFeature {
 	private World world;
 	private Random random;
 	private int currentFloor = 0;
@@ -36,11 +34,16 @@ public class WorldGenTower extends WorldFeature {
 	public static final int FLOOR_HEIGHT = 7;
 	public static final int FLOOR_LENGTH = 7;
 	public static final int FLOOR_WIDTH = 7;
-	public static final int LOOT_AMOUNT = 12;
 	public static final int MAX_HEIGHT = 120;
 
 	/// Important for the placement via commands
-	public WorldGenTower() {}
+	public WorldFeatureBattleTower() {
+		// used by place command
+	}
+
+	public static WorldFeatureBattleTower tower(){
+		return new WorldFeatureBattleTower();
+	}
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
@@ -176,7 +179,7 @@ public class WorldGenTower extends WorldFeature {
 					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
 				}else if(this.currentFloor > 1){
 					/// PLACES THE WINDOWS
-					this.world.setBlock(ix, iy, iz, Blocks.GLASS_TINTED.id());
+					this.world.setBlock(ix, iy, iz, BattleTowerBlocks.PRISON_BAR.id());
 				}else {
 					this.world.setBlock(ix, iy, iz, 0);
 				}
@@ -304,48 +307,19 @@ public class WorldGenTower extends WorldFeature {
 
 	/// Places the rewards chests and the plinth open the chest sits
 	private void placeChests(int x, int y, int z) {
-		if(this.isTopFloor){
-			placeTopFloorChest(x, y, z);
-			placeTopFloorChest(x - 1, y, z);
-		}else {
-			placeChest(x, y, z);
-			placeChest(x - 1, y, z);
-		}
+		int tier = this.isTopFloor ? MAX_TIER : this.currentFloor;
+		placeChest(x, y, z, tier);
+		placeChest(x - 1, y, z, tier);
 		BlockLogicChest.setType(world, x, y, z, BlockLogicChest.Type.RIGHT);
 		BlockLogicChest.setType(world, x - 1, y, z, BlockLogicChest.Type.LEFT);
 		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
 		world.setBlock(x - 1, y - 1, z, Blocks.STONE_POLISHED.id());
-
-
 	}
 
 	/// Places the chest, sets up its tile entity and populated the chest with loot.
-	private void placeChest(int x, int y, int z) {
-		world.setBlockWithNotify(x, y, z, Blocks.CHEST_PLANKS_OAK.id());
+	private void placeChest(int x, int y, int z, int tier) {
+		world.setBlockWithNotify(x, y, z, BattleTowerBlocks.TOWER_CHEST.id());
 		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
-		TileEntity tile = world.getTileEntity(x, y, z);
-		if(!(tile instanceof TileEntityChest)) return;
-		TileEntityChest tileEntityChest = (TileEntityChest) tile;
-		for (int i = 0; i < LOOT_AMOUNT; i++) {
-			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
-			if (itemstack != null) {
-				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
-			}
-		}
-	}
-
-	/// Places the chest, sets up its tile entity and populated the chest with loot.
-	private void placeTopFloorChest(int x, int y, int z) {
-		world.setBlockWithNotify(x, y, z, ModBlocks.ChestTower.id());
-		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
-		TileEntity tile = world.getTileEntity(x, y, z);
-		if(!(tile instanceof TileEntityChest)) return;
-		TileEntityChest tileEntityChest = (TileEntityChest) tile;
-		for (int i = 0; i < LOOT_AMOUNT; i++) {
-			ItemStack itemstack = generateRandomChestLoot(currentFloor, random, isTopFloor);
-			if (itemstack != null) {
-				tileEntityChest.setItem(random.nextInt(tileEntityChest.getContainerSize()), itemstack);
-			}
-		}
+		populateChest(this.world, this.random, x, y, z, tier);
 	}
 }

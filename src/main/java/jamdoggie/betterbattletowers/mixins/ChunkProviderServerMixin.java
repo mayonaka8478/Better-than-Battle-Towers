@@ -29,8 +29,8 @@ public abstract class ChunkProviderServerMixin
 		Random random = new Random(world.getRandomSeed());
 		long l = (random.nextLong() / 2L) * 2L + 1L;
 		long l1 = (random.nextLong() / 2L) * 2L + 1L;
-		random.setSeed((long)chunkX * l + (long)chunkZ * l1 ^ world.getRandomSeed());
+		random.setSeed(chunkX * l + chunkZ * l1 ^ world.getRandomSeed());
 
-		BattleTowerMod.instance.GenerateSurface(world, random, chunkX << 4, chunkZ << 4);
+		BattleTowerMod.INSTANCE.generateTower(world, random, chunkX << 4, chunkZ << 4);
 	}
 }
