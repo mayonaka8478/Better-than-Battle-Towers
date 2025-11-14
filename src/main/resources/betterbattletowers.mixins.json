@@ -4,13 +4,17 @@
   "package": "jamdoggie.betterbattletowers.mixins",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "GuidebookPageMobMixin",
-    "ChunkProviderStaticMixin"
+    "ChunkProviderStaticMixin",
+    "GuidebookPageMobMixin"
   ],
   "server": [
     "ChunkProviderServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "ChunkDecoratorOverWorldMixinAddTowers",
+    "TomlAccessor"
+  ]
 }

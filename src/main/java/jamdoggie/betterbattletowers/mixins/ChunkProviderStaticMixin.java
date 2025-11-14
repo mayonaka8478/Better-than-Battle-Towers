@@ -28,6 +28,6 @@ public abstract class ChunkProviderStaticMixin
 		long l1 = (random.nextLong() / 2L) * 2L + 1L;
 		random.setSeed((long)chunkX * l + (long)chunkZ * l1 ^ worldObj.getRandomSeed());
 
-		BattleTowerMod.instance.GenerateSurface(worldObj, random, chunkX << 4, chunkZ << 4);
+		BattleTowerMod.INSTANCE.generateTower(worldObj, random, chunkX << 4, chunkZ << 4);
 	}
 }
