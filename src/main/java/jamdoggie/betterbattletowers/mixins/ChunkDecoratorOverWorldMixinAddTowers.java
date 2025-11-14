@@ -1,7 +1,5 @@
 package jamdoggie.betterbattletowers.mixins;
 
-import jamdoggie.betterbattletowers.BattleTowerConfig;
-import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.chunk.perlin.overworld.ChunkDecoratorOverworld;
@@ -11,8 +9,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Random;
 
 @Mixin(value = ChunkDecoratorOverworld.class, remap = false)
 public abstract class ChunkDecoratorOverWorldMixinAddTowers {
