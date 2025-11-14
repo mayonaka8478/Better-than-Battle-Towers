@@ -1,5 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen.component;
 
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicChest;
@@ -16,8 +17,8 @@ import java.util.*;
 public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
 	public static final double INC = 1.29f;
-	public static final int LOOT_AMOUNT = 7;
-	public static final int MAX_TIER = 10;
+	public static final int LOOT_AMOUNT = 9;
+	public static final int MAX_TIER = 9;
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
 
 	private LootTable(){}
@@ -57,10 +58,10 @@ public class LootTable {
 				int maxStacksize = Math.min(5, entry.value.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(entry.value.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 30);
 			}
-			for (int i = high; i < lootEntries.size(); i++) {
+			for (int i = high; i < lootEntryList.size(); i++) {
 				LootEntry entry = lootEntryList.get(i);
-				int minStacksize = Math.min(3, entry.value.getDefaultStack().getMaxStackSize());
-				int maxStacksize = Math.min(5, entry.value.getDefaultStack().getMaxStackSize());
+				int minStacksize = Math.min(1, entry.value.getDefaultStack().getMaxStackSize());
+				int maxStacksize = Math.min(3, entry.value.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(entry.value.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 20);
 			}
 		}
@@ -127,9 +128,8 @@ public class LootTable {
 		table.put(tier, new ArrayList<>());
 		table.get(tier).add(LootTable.LootEntry.loot(Items.STICK, 0));
 		table.get(tier).add(LootTable.LootEntry.loot(Items.AMMO_PEBBLE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.PLANKS_OAK_PAINTED, -1));
 		table.get(tier).add(LootTable.LootEntry.loot(Blocks.PLANKS_OAK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.WOOL, -1));
+		table.get(tier).add(LootTable.LootEntry.loot(Blocks.WOOL, 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
@@ -172,6 +172,7 @@ public class LootTable {
 		table.get(tier).add(LootTable.LootEntry.loot(Items.QUARTZ, 0));
 		table.get(tier).add(LootTable.LootEntry.loot(Items.OLIVINE, 0));
 		table.get(tier).add(LootTable.LootEntry.loot(Blocks.TNT, 0));
+		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
@@ -179,6 +180,7 @@ public class LootTable {
 		table.get(tier).add(LootTable.LootEntry.loot(Items.CHAINLINK, 0));
 		table.get(tier).add(LootTable.LootEntry.loot(Items.DYE, LAPIZ));
 		table.get(tier).add(LootTable.LootEntry.loot(Items.DIAMOND, 0));
+		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
@@ -186,6 +188,7 @@ public class LootTable {
 		table.get(tier).add(LootTable.LootEntry.loot(Items.DYE, LAPIZ));
 		table.get(tier).add(LootTable.LootEntry.loot(Items.DIAMOND, 0));
 		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MESH_GOLD, 0));
+		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
 
 		return table;
 	}
