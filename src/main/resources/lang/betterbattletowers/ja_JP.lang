@@ -9,7 +9,7 @@ betterbattletowers.subtitles.mob.golem.special=ゴーレムが攻撃する
 
 tile.betterbattletowers.chest.tower.name=タワーチェスト
 tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱、重くて持ち上げられない
-tile.betterbattletowers.prison_bar.name=遮光鉄ブロック
-tile.betterbattletowers.prison_bar.desc=光を遮断する、棒状の鉄製ブロック
-tile.betterbattletowers.prison_fence.name=遮光鉄格子
-tile.betterbattletowers.prison_fence.desc=棒状の鉄でできた囲い、大人の事情により遮光効果はない
+tile.betterbattletowers.prison.bar.name=遮光鉄ブロック
+tile.betterbattletowers.prison.bar.desc=光を遮断する、棒状の鉄製ブロック
+tile.betterbattletowers.prison.fence.name=遮光鉄格子
+tile.betterbattletowers.prison.fence.desc=棒状の鉄でできた囲い、大人の事情により遮光効果はない
