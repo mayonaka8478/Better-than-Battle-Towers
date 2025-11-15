@@ -1,13 +1,14 @@
 package jamdoggie.betterbattletowers.worldgen;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
-import jamdoggie.betterbattletowers.entity.EntityGolem;
+import jamdoggie.betterbattletowers.entity.MobGolem;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntityMobSpawner;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
 
@@ -15,9 +16,8 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.component.BlockPallets.getRandomCobbledBlockBag;
-import static jamdoggie.betterbattletowers.worldgen.component.LootTable.MAX_TIER;
-import static jamdoggie.betterbattletowers.worldgen.component.LootTable.populateChest;
+import static jamdoggie.betterbattletowers.worldgen.LootTable.MAX_TIER;
+import static jamdoggie.betterbattletowers.worldgen.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
@@ -27,7 +27,7 @@ public class WorldFeatureBattleTower extends WorldFeature {
 	private int currentFloor = 0;
 	private boolean isTopFloor = false;
 	private WeightedRandomBag<Integer> buildingBlockBag;
-	private int towerDecoBlockID;
+	private int golemVariant;
 	private int offset = 0;
 
 	///  Constants to avoid having magic numbers
@@ -53,8 +53,7 @@ public class WorldFeatureBattleTower extends WorldFeature {
 		}
 		this.world = world;
 		this.random = random;
-		this.towerDecoBlockID = random.nextInt(11);
-		this.buildingBlockBag = getRandomCobbledBlockBag(this.world.getBlockBiome(x, y, z), this.towerDecoBlockID);
+		this.setTowerProperties(this.world.getBlockBiome(x,y,z));
 		if (world.worldType instanceof WorldTypeOverworld) this.offset = 64;
 
 		for (int currentHeight = y - 6; currentHeight < MAX_HEIGHT + this.offset; currentHeight += FLOOR_HEIGHT) {
@@ -66,10 +65,6 @@ public class WorldFeatureBattleTower extends WorldFeature {
 			placeHolesInFloor(x, currentHeight + 5, z);
 			placeHostileDecorations(x, currentHeight + 6, z);
 			placeChests(x, currentHeight + 7, z - 3);
-
-			/// those pieces of code don't seem to do anything useful
-//			skipAFloor(currentHeight);
-//			mysteryFunction( x + 3, currentHeight, z - 5);
 			this.currentFloor++;
 
 		}
@@ -78,12 +73,10 @@ public class WorldFeatureBattleTower extends WorldFeature {
 		return true;
 	}
 
-	/// Not sure what this does, as it seem to do nothing
-	private void mysteryFunction(int x, int y, int z) {
-		if (this.currentFloor == 2) {
-			world.setBlock(x, y, z, this.buildingBlockBag.getRandom(random));
-			world.setBlock(x, y - 1, z, this.buildingBlockBag.getRandom(random));
-		}
+	private void setTowerProperties(Biome biome) {
+		TowerProperty towerProperty = TowerProperties.getTowerProperties(biome, this.random);
+		this.golemVariant = towerProperty.getSkinVariant();
+		this.buildingBlockBag = towerProperty.getTowerDecorations();
 	}
 
 	///  Places the current floor, that includes wall and the actual floor
@@ -233,13 +226,6 @@ public class WorldFeatureBattleTower extends WorldFeature {
 		this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
 	}
 
-	/// In case the tower spawn quite height to prevent the top to be cut off we skip the second floor.
-	private void skipAFloor(int currentHight) {
-		if (currentHight + 56 >= MAX_HEIGHT && this.currentFloor == 1) {
-			this.currentFloor++;
-		}
-	}
-
 	///  Create holes for mob to fall through to lower level
 	private void placeHolesInFloor(int x, int y, int z) {
 		if(this.isTopFloor){
@@ -273,10 +259,11 @@ public class WorldFeatureBattleTower extends WorldFeature {
 
 	///  Spawns and moves the golem to the top floor
 	private void spawnGolem(double x, double y, double z) {
-		EntityGolem entitygolem = new EntityGolem(world, towerDecoBlockID);
-		entitygolem.spawnInit();
-		entitygolem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
-		world.entityJoinedWorld(entitygolem);
+		MobGolem golem = new MobGolem(world);
+		golem.setSkinVariant(this.golemVariant);
+		golem.spawnInit();
+		golem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
+		world.entityJoinedWorld(golem);
 		LOGGER.info("Spawned golem at {} {} {}", x, y, z);
 	}
 
