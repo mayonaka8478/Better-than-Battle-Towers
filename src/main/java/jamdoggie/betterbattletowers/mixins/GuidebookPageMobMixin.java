@@ -2,7 +2,7 @@ package jamdoggie.betterbattletowers.mixins;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
-import jamdoggie.betterbattletowers.entity.EntityGolem;
+import jamdoggie.betterbattletowers.entity.MobGolem;
 import net.minecraft.client.gui.guidebook.mobs.GuidebookPageMob;
 import net.minecraft.core.entity.Mob;
 import org.spongepowered.asm.mixin.Final;
@@ -23,6 +23,6 @@ public abstract class GuidebookPageMobMixin {
 	@Inject(method = "renderMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Lighting;enableLight()V"))
 	private void offset(int x, int y, int mouseX, int mouseY, float partialTicks, CallbackInfo ci, @Local(ordinal = 1) float heightFactor, @Local(ordinal = 4) LocalFloatRef f6) {
 		//Guidebook entity mouse tracking fix
-		if (this.example instanceof EntityGolem) f6.set(f6.get() + 2 * heightFactor);
+		if (this.example instanceof MobGolem) f6.set(f6.get() + 2 * heightFactor);
 	}
 }
