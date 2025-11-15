@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
-import jamdoggie.betterbattletowers.entity.EntityGolem;
+import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.entity.render.RenderGolem;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
@@ -10,18 +10,12 @@ import net.minecraft.client.render.block.model.BlockModelChest;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.block.model.BlockModelFenceThin;
 import net.minecraft.client.render.block.model.BlockModelTransparent;
-import net.minecraft.client.render.item.model.ItemModel;
-import net.minecraft.client.render.item.model.ItemModelBlock;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
-import net.minecraft.core.block.Blocks;
-import net.minecraft.core.item.block.ItemBlock;
 import net.minecraft.core.util.helper.Side;
 import turniplabs.halplibe.helper.ModelHelper;
 import turniplabs.halplibe.util.ModelEntrypoint;
-
-import javax.swing.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static net.minecraft.client.render.block.model.BlockModelStandard.BLOCK_TEXTURES;
@@ -56,7 +50,7 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 	@Override
 	public void initEntityModels(EntityRenderDispatcher dispatcher) {
-		ModelHelper.setEntityModel(EntityGolem.class, RenderGolem::new);
+		ModelHelper.setEntityModel(MobGolem.class, RenderGolem::new);
 	}
 
 	@Override
