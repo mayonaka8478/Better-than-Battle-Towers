@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers;
 
-import jamdoggie.betterbattletowers.worldgen.component.LootTable;
+import jamdoggie.betterbattletowers.worldgen.LootTable;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.Item;
@@ -9,7 +9,7 @@ import turniplabs.halplibe.util.ConfigHandler;
 
 import java.util.*;
 
-import static jamdoggie.betterbattletowers.worldgen.component.LootTable.LootEntry.loot;
+import static jamdoggie.betterbattletowers.worldgen.LootTable.LootEntry.loot;
 
 public class BattleTowerConfigOld {
 
@@ -45,7 +45,7 @@ public class BattleTowerConfigOld {
 		for(int i = 1; i < 10; i++){
 			List<LootTable.LootEntry> lootEnties = convertableItems.computeIfAbsent(i, k -> new ArrayList<>());
 			for(int level = 0; level < 4; level++){
-				String name = new StringBuilder(prefix).append(i).append('_').append(level).toString();
+				String name = prefix + i + '_' + level;
 				String lootItem = handler.getString(name);
 				ItemStack stack = getBlockByName(lootItem);
 				if(stack == null) continue;

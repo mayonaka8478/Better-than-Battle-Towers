@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers;
 
-import jamdoggie.betterbattletowers.mixins.TomlAccessor;
-import jamdoggie.betterbattletowers.worldgen.component.LootTable;
+import jamdoggie.betterbattletowers.mixins.accessor.TomlAccessor;
+import jamdoggie.betterbattletowers.worldgen.LootTable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
@@ -23,17 +23,17 @@ import static jamdoggie.betterbattletowers.BattleTowerConfigOld.convertOldConfig
 import static jamdoggie.betterbattletowers.BattleTowerConfigOld.getOldProperties;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
-import static jamdoggie.betterbattletowers.worldgen.component.LootTable.getDefaultMap;
+import static jamdoggie.betterbattletowers.worldgen.LootTable.getDefaultMap;
 import static net.minecraft.core.util.collection.NamespaceID.getPermanent;
 
 public class BattleTowerConfig {
 	public static final String GENERAL = "GENERAL";
 	public static final String LOOT = "LOOT";
-	private static int TOWER_COUNT = 200;
-	private static int RARITY = 10;
+	private static int towerCount = 200;
+	private static int rarity = 10;
 
-	private static int STARTING_BLOCK_ID = 6340;
-	private static int STARTING_ITEM_ID = 26340;
+	private static int startingBlockId = 6340;
+	private static int startingItemId = 26340;
 
 	private static final String CONFIG_DIRECTORY = FabricLoader.getInstance().getGameDir().toString() + "/config/";
 	private static boolean isInit = false;
@@ -52,10 +52,10 @@ public class BattleTowerConfig {
 		if (configFile.exists()) {
 			Properties properties = getOldProperties();
 			ConfigHandler config = new ConfigHandler(MOD_ID, properties);
-			TOWER_COUNT = config.getInt("towercount");
-			RARITY = config.getInt("rarity");
-			STARTING_BLOCK_ID = config.getInt("starting_block_id");
-			STARTING_ITEM_ID = config.getInt("starting_item_id");
+			towerCount = config.getInt("towercount");
+			rarity = config.getInt("rarity");
+			startingBlockId = config.getInt("starting_block_id");
+			startingItemId = config.getInt("starting_item_id");
 
 			File newFile = new File(CONFIG_DIRECTORY + "OLD_" + MOD_ID + ".cfg");
 			if (!configFile.renameTo(newFile)) {
@@ -88,30 +88,34 @@ public class BattleTowerConfig {
 	}
 
 	private static void readConfigFile(TomlConfigHandler config) {
-		TOWER_COUNT = config.getInt(key(GENERAL, "TOWER_COUNT"));
-		RARITY = config.getInt(key(GENERAL, "RARITY"));
-		STARTING_BLOCK_ID = config.getInt(key(GENERAL, "STARTING_BLOCK_ID"));
-		STARTING_ITEM_ID = config.getInt(key(GENERAL, "STARTING_ITEM_ID"));
+		towerCount = config.getInt(key(GENERAL, "TOWER_COUNT"));
+		rarity = config.getInt(key(GENERAL, "RARITY"));
+		startingBlockId = config.getInt(key(GENERAL, "STARTING_BLOCK_ID"));
+		startingItemId = config.getInt(key(GENERAL, "STARTING_ITEM_ID"));
 
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
 		Toml toml = config.getRawParsed();
 		for(Map.Entry<String, Toml> category: ((TomlAccessor)toml).getCategories().entrySet()){
-			String categoryName = category.getKey();
-			if (categoryName.equalsIgnoreCase(GENERAL) || !categoryName.contains(LOOT)) continue;
-			int index = Integer.parseInt(categoryName.substring(LOOT.length()));
-			Toml value = category.getValue();
-			if(!((TomlAccessor)value).getCategories().isEmpty()) continue;
-			List<LootTable.LootEntry> listLoot = new ArrayList<>();
-			TomlAccessor item = (TomlAccessor)value;
-			for(Map.Entry<String, Entry<?>>  entry: item.getEntries().entrySet()){
-				IItemConvertible convertible = getConvertible(entry.getKey());
-				if(convertible == null) continue;
-				int metadata = (Integer) entry.getValue().getT();
-				listLoot.add(LootTable.LootEntry.loot(convertible, metadata));
-			}
-			table.put(index, listLoot);
+			addEntryToTable(category, table);
 		}
 		LootTable.createTables(table);
+	}
+
+	private static void addEntryToTable(Map.Entry<String, Toml> category, Map<Integer, List<LootTable.LootEntry>> table) {
+		String categoryName = category.getKey();
+		if (categoryName.equalsIgnoreCase(GENERAL) || !categoryName.contains(LOOT)) return;
+		int index = Integer.parseInt(categoryName.substring(LOOT.length()));
+		Toml value = category.getValue();
+		if(!((TomlAccessor)value).getCategories().isEmpty()) return;
+		List<LootTable.LootEntry> listLoot = new ArrayList<>();
+		TomlAccessor item = (TomlAccessor)value;
+		for(Map.Entry<String, Entry<?>>  entry: item.getEntries().entrySet()){
+			IItemConvertible convertible = getConvertible(entry.getKey());
+			if(convertible == null) continue;
+			int metadata = (Integer) entry.getValue().getT();
+			listLoot.add(LootTable.LootEntry.loot(convertible, metadata));
+		}
+		table.put(index, listLoot);
 	}
 
 	private static IItemConvertible getConvertible(String key) {
@@ -131,10 +135,10 @@ public class BattleTowerConfig {
 	private static Toml createDefaultConfig(Map<Integer, List<LootTable.LootEntry>> table) {
 		Toml properties = new Toml("Battle Towers Config");
 		properties.addCategory(GENERAL)
-			.addEntry("TOWER_COUNT", TOWER_COUNT)
-			.addEntry("RARITY", RARITY)
-			.addEntry("STARTING_BLOCK_ID", STARTING_BLOCK_ID)
-			.addEntry("STARTING_ITEM_ID", STARTING_ITEM_ID);
+			.addEntry("TOWER_COUNT", towerCount)
+			.addEntry("RARITY", rarity)
+			.addEntry("STARTING_BLOCK_ID", startingBlockId)
+			.addEntry("STARTING_ITEM_ID", startingItemId);
 
 		for (int i = 0; i < table.size(); i++) {
 			Toml tomlCategory = properties.addCategory(LOOT + i);
@@ -148,18 +152,18 @@ public class BattleTowerConfig {
 	}
 
 	public static int getStartingItemId() {
-		return STARTING_ITEM_ID;
+		return startingItemId;
 	}
 
 	public static int getStartingBlockId() {
-		return STARTING_BLOCK_ID;
+		return startingBlockId;
 	}
 
-	public static int getRARITY() {
-		return RARITY;
+	public static int getRarity() {
+		return rarity;
 	}
 
 	public static int getTowerCount() {
-		return TOWER_COUNT;
+		return towerCount;
 	}
 }
