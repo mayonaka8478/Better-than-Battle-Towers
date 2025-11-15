@@ -2,7 +2,6 @@ package jamdoggie.betterbattletowers.block;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
-import jamdoggie.betterbattletowers.entity.TileEntityChestTower;
 import net.minecraft.core.block.material.Material;
 
 public class BlockLogicChestTower extends BlockLogicChest {
