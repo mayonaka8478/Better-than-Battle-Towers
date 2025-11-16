@@ -1,7 +1,6 @@
 package jamdoggie.betterbattletowers.block;
 
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFenceThin;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
@@ -11,8 +10,8 @@ import net.minecraft.core.world.WorldSource;
 
 import java.util.ArrayList;
 
-public class BlockLogicNonSolidFence extends BlockLogicFenceThin {
-	public BlockLogicNonSolidFence(Block<?> block, Material material) {
+public class BlockLogicTaintedFence extends BlockLogicFenceThin {
+	public BlockLogicTaintedFence(Block<?> block, Material material) {
 		super(block, material);
 	}
 

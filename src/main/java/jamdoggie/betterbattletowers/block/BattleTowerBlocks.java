@@ -24,7 +24,7 @@ public class BattleTowerBlocks {
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("prison_bar", id++, b -> new BlockLogicNonSolid(b, Material.metal));
+		.build("prison_bar", id++, b -> new BlockLogicTainedCage(b, Material.metal));
 
 
 	public static final Block<BlockLogicFenceThin> PRISON_BAR_FENCE = new BlockBuilder(BattleTowerMod.MOD_ID)
@@ -32,7 +32,7 @@ public class BattleTowerBlocks {
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("prison_fence", id++, b -> new BlockLogicNonSolidFence(b, Material.metal));
+		.build("prison_fence", id++, b -> new BlockLogicTaintedFence(b, Material.metal));
 
 	public static void init() {
 		// to make sure the constant are initialized
