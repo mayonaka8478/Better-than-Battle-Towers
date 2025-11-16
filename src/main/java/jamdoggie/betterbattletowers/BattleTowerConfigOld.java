@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers;
 import jamdoggie.betterbattletowers.worldgen.LootTable;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.item.IItemConvertible;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import turniplabs.halplibe.util.ConfigHandler;
@@ -15,13 +16,13 @@ public class BattleTowerConfigOld {
 
 	private BattleTowerConfigOld(){}
 
-	public static ItemStack getBlockByName(String name) {
+	public static IItemConvertible getBlockByName(String name) {
 		if (name.startsWith("Block.")) {
 			for (Block<?> block : Blocks.blocksList) {
 				if (block != null) {
 					String otherName = block.getKey().substring(5);
 					if (name.substring(6).equalsIgnoreCase(otherName)) {
-						return new ItemStack(block);
+						return block;
 					}
 				}
 			}
@@ -30,12 +31,11 @@ public class BattleTowerConfigOld {
 				if (item != null) {
 					String otherName = item.getKey().substring(5);
 					if (name.substring(5).equalsIgnoreCase(otherName)) {
-						return new ItemStack(item);
+						return item;
 					}
 				}
 			}
 		}
-
 		return null;
 	}
 
@@ -47,9 +47,7 @@ public class BattleTowerConfigOld {
 			for(int level = 0; level < 4; level++){
 				String name = prefix + i + '_' + level;
 				String lootItem = handler.getString(name);
-				ItemStack stack = getBlockByName(lootItem);
-				if(stack == null) continue;
-				lootEnties.add(loot(stack.getItem(), 0));
+				lootEnties.add(loot(lootItem, 0));
 			}
 		}
 		List<LootTable.LootEntry> zero = convertableItems.get(1);
@@ -58,9 +56,7 @@ public class BattleTowerConfigOld {
 		for(int level = 0; level < 4; level++){
 			String name = "lootitemtop_" +  level;
 			String lootItem = handler.getString(name);
-			ItemStack stack = getBlockByName(lootItem);
-			if(stack == null) continue;
-			topFloor.add(loot(stack.getItem(), 0));
+			topFloor.add(loot(lootItem, 0));
 		}
 		return convertableItems;
 	}
