@@ -28,10 +28,11 @@ import static net.minecraft.core.util.collection.NamespaceID.getPermanent;
 public class BattleTowerConfig {
 	public static final String GENERAL = "GENERAL";
 	public static final String LOOT = "LOOT";
-	private static int towerCount = 200;
+	private static int towerrarity = 200;
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int version = 4;
+	private static boolean tint = false;
 	private static Map<Integer, List<LootTable.LootEntry>> tempTable;
 
 	private static final String CONFIG_DIRECTORY = FabricLoader.getInstance().getGameDir().toString() + "/config/";
@@ -40,7 +41,7 @@ public class BattleTowerConfig {
 	private BattleTowerConfig() {
 	}
 
-	public static Map<Integer, List<LootTable.LootEntry>> getTempTable(){
+	public static Map<Integer, List<LootTable.LootEntry>> getTempTable() {
 		return tempTable;
 	}
 
@@ -55,11 +56,11 @@ public class BattleTowerConfig {
 		if (configFile.exists()) {
 			Properties properties = getOldProperties();
 			ConfigHandler config = new ConfigHandler(MOD_ID, properties);
-			towerCount = config.getInt("towercount");
+			towerrarity = config.getInt("towercount");
 			startingBlockId = config.getInt("starting_block_id");
 			startingItemId = config.getInt("starting_item_id");
 
-			File newFile = new File(CONFIG_DIRECTORY + "OLD_" + MOD_ID + ".cfg");
+			File newFile = new File(CONFIG_DIRECTORY + "old_" + MOD_ID + ".cfg");
 			if (!configFile.renameTo(newFile)) {
 				LOGGER.error("Battle Towers Old Config file could not be renamed.");
 			}
@@ -91,13 +92,14 @@ public class BattleTowerConfig {
 
 	private static void readConfigFile(TomlConfigHandler config) {
 		version = config.getInt(key(GENERAL, "VERSION"));
-		towerCount = config.getInt(key(GENERAL, "TOWER_COUNT"));
+		towerrarity = config.getInt(key(GENERAL, "RARITY"));
 		startingBlockId = config.getInt(key(GENERAL, "STARTING_BLOCK_ID"));
 		startingItemId = config.getInt(key(GENERAL, "STARTING_ITEM_ID"));
+		tint = config.getBoolean(key(GENERAL, "DARKEN_FLOORS"));
 
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
 		Toml toml = config.getRawParsed();
-		for(Map.Entry<String, Toml> category: ((TomlAccessor)toml).getCategories().entrySet()){
+		for (Map.Entry<String, Toml> category : ((TomlAccessor) toml).getCategories().entrySet()) {
 			addEntryToTable(category, table);
 		}
 		tempTable = table;
@@ -108,10 +110,10 @@ public class BattleTowerConfig {
 		if (categoryName.equalsIgnoreCase(GENERAL) || !categoryName.contains(LOOT)) return;
 		int index = Integer.parseInt(categoryName.substring(LOOT.length()));
 		Toml value = category.getValue();
-		if(!((TomlAccessor)value).getCategories().isEmpty()) return;
+		if (!((TomlAccessor) value).getCategories().isEmpty()) return;
 		List<LootTable.LootEntry> listLoot = new ArrayList<>();
-		TomlAccessor item = (TomlAccessor)value;
-		for(Map.Entry<String, Entry<?>>  entry: item.getEntries().entrySet()){
+		TomlAccessor item = (TomlAccessor) value;
+		for (Map.Entry<String, Entry<?>> entry : item.getEntries().entrySet()) {
 			int metadata = (Integer) entry.getValue().getT();
 			listLoot.add(LootTable.LootEntry.loot(entry.getKey(), metadata));
 		}
@@ -120,33 +122,38 @@ public class BattleTowerConfig {
 
 	public static IItemConvertible getConvertible(String key) {
 		NamespaceID id;
-		try{
+		try {
 			id = getPermanent(key);
-		}catch (HardIllegalArgumentException e) {
+		} catch (HardIllegalArgumentException e) {
 			return null;
 		}
 		Block<?> block = Blocks.blockMap.get(id);
 		Item item = Item.itemsMap.get(id);
-		if(block == null && item == null) {
+		if (block == null && item == null) {
 			return getBlockByName(key);
 		}
-		if(block == null) return item;
+		if (block == null) return item;
 		return block;
 	}
 
 	private static Toml createDefaultConfig(Map<Integer, List<LootTable.LootEntry>> table) {
-		Toml properties = new Toml("Battle Towers Config");
+		Toml properties = new Toml(
+			"Battle Towers Config 4.0! Older config file can be found in the same directory under the name of old_betterbattletowers."
+		);
 		properties.addCategory(GENERAL)
-			.addEntry("VERSION", version)
-			.addEntry("TOWER_COUNT", towerCount)
+			.addEntry("VERSION", "Mod version.", version)
+			.addEntry("RARITY", "Chance to spawn per chunk.", towerrarity)
 			.addEntry("STARTING_BLOCK_ID", startingBlockId)
-			.addEntry("STARTING_ITEM_ID", startingItemId);
+			.addEntry("STARTING_ITEM_ID", startingItemId)
+			.addEntry("DARKEN_FLOORS", "Adds tainted cages that darken the floors. Greatly increases the difficulty of newer tower.", tint);
 
 		for (int i = 0; i < table.size(); i++) {
-			Toml tomlCategory = properties.addCategory(LOOT + i);
+			Toml tomlCategory = properties.addCategory(String.format("Loot for %d Floor", i), LOOT + i);
 			List<LootTable.LootEntry> entries = table.get(i);
 			for (LootTable.LootEntry entry : entries) {
-				tomlCategory.addEntry(entry.namespaceID(), entry.metadata());
+				String key = entry.namespaceID().replace('.', ':');
+				;
+				tomlCategory.addEntry(key, entry.metadata());
 			}
 		}
 		return properties;
@@ -160,7 +167,12 @@ public class BattleTowerConfig {
 		return startingBlockId;
 	}
 
-	public static int getTowerCount() {
-		return towerCount;
+	public static int getTowerrarity() {
+		return towerrarity;
 	}
+
+	public static boolean isTint() {
+		return tint;
+	}
+
 }
