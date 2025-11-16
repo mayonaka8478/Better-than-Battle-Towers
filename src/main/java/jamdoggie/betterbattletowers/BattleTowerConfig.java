@@ -32,12 +32,16 @@ public class BattleTowerConfig {
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int version = 4;
-	public static Map<Integer, List<LootTable.LootEntry>> temp_table;
+	private static Map<Integer, List<LootTable.LootEntry>> tempTable;
 
 	private static final String CONFIG_DIRECTORY = FabricLoader.getInstance().getGameDir().toString() + "/config/";
 	private static boolean isInit = false;
 
 	private BattleTowerConfig() {
+	}
+
+	public static Map<Integer, List<LootTable.LootEntry>> getTempTable(){
+		return tempTable;
 	}
 
 	private static String key(String category, String key) {
@@ -96,7 +100,7 @@ public class BattleTowerConfig {
 		for(Map.Entry<String, Toml> category: ((TomlAccessor)toml).getCategories().entrySet()){
 			addEntryToTable(category, table);
 		}
-		temp_table = table;
+		tempTable = table;
 	}
 
 	private static void addEntryToTable(Map.Entry<String, Toml> category, Map<Integer, List<LootTable.LootEntry>> table) {

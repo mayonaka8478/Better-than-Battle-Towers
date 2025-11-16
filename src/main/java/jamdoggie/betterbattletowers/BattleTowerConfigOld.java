@@ -5,7 +5,6 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.IItemConvertible;
 import net.minecraft.core.item.Item;
-import net.minecraft.core.item.ItemStack;
 import turniplabs.halplibe.util.ConfigHandler;
 
 import java.util.*;

@@ -11,6 +11,7 @@ import static net.minecraft.core.block.Blocks.GRANITE;
 
 public class GolemManager {
 	private static final Map<Integer, WeightedRandomBag<WeightedRandomLootObject>> biomeToTowerProperties = new HashMap<>();
+	public static final int HELLWORLD = 8;
 
 	public static Builder register(int skinVariant) {
 		return new Builder(skinVariant);
@@ -77,7 +78,7 @@ public class GolemManager {
 			.addDrop(new WeightedRandomLootObject(BRICK_MARBLE.getDefaultStack(), 0, 4), 50.0f)
 			.addDrop(new WeightedRandomLootObject(SLAB_BRICK_MARBLE.getDefaultStack(), 0, 8), 50.0f);
 
-		register(8)
+		register(HELLWORLD)
 			.addDrop(new WeightedRandomLootObject(BRICK_NETHERRACK.getDefaultStack(), 0, 3), 33.3f)
 			.addDrop(new WeightedRandomLootObject(NETHERRACK_POLISHED.getDefaultStack(), 0, 3), 33.3f)
 			.addDrop(new WeightedRandomLootObject(NETHERRACK_CARVED.getDefaultStack(), 0, 4), 33.3f);
