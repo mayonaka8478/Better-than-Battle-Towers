@@ -1,0 +1,56 @@
+package jamdoggie.betterbattletowers.entity.render;
+
+import jamdoggie.betterbattletowers.entity.MobGolem;
+import net.minecraft.client.render.LightmapHelper;
+import net.minecraft.client.render.entity.MobRenderer;
+import net.minecraft.client.render.model.ModelBiped;
+import org.lwjgl.opengl.GL11;
+
+public class MobRendererGolem extends MobRenderer<MobGolem> {
+
+
+
+	public MobRendererGolem() {
+		super(new ModelBiped(), 1.0F);
+		setArmorModel(new ModelBiped(0.01F));
+	}
+
+	@Override
+	protected void setupScale(MobGolem entityliving, float f) {
+		GL11.glScalef(2.0F, 2.0F, 2.0F);
+		super.setupScale(entityliving, f);
+	}
+
+	protected boolean prepareArmor(MobGolem golem, int renderPass, float partialTick) {
+		boolean prep = false;
+		prep |= this.renderGlow(golem, renderPass, partialTick);
+		prep |= this.renderEye(golem, renderPass, partialTick);
+		return prep;
+	}
+
+	protected boolean renderGlow(MobGolem golem, int renderPass, float partialTick){
+//		if (renderPass == 0 && golem.isSpecial()) {
+//			this.bindTexture("/assets/betterbattletowers/textures/entity/golem/" + golem.getTextureReference() + "_glow.png");
+//			return renderArmor();
+//		}
+		return false;
+	}
+
+	protected boolean renderEye(MobGolem golem, int renderPass, float partialTick){
+		if (renderPass == 1 && !golem.isDormant()) {
+			this.bindTexture("/assets/betterbattletowers/textures/entity/golem/eye.png");
+			return renderArmor();
+		}
+		return false;
+	}
+
+	private static boolean renderArmor() {
+		if (LightmapHelper.isLightmapEnabled()) {
+			LightmapHelper.setLightmapCoord(LightmapHelper.getLightmapCoord(15, 15));
+		}
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		return true;
+	}
+}
