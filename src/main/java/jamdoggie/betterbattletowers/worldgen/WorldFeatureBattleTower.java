@@ -47,6 +47,7 @@ public class WorldFeatureBattleTower extends WorldFeature {
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
+		LootTable.init();
 		int blockId = world.getBlockId(x, y, z);
 		if (blockId == Blocks.FLUID_WATER_STILL.id() || blockId == 0) {
 			return false;

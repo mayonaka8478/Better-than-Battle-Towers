@@ -1,10 +1,9 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.BattleTowerConfig;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicChest;
-import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.*;
 import net.minecraft.core.player.inventory.container.Container;
 import net.minecraft.core.util.helper.DyeColor;
@@ -20,23 +19,29 @@ public class LootTable {
 	public static final int LOOT_AMOUNT = 9;
 	public static final int MAX_TIER = 9;
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
+	private static boolean init = true;
 
 	private LootTable(){}
 
+	public static void init() {
+		if(init) init = false;
+		LootTable.createTables(BattleTowerConfig.getTempTable());
+	}
+
 	public static class LootEntry {
-		protected IItemConvertible value;
+		protected String namespaceID;
 		protected int metadata;
 
-		public IItemConvertible getValue() {return value;}
-		public int getMetadata() {return metadata;}
+		public String namespaceID() {return namespaceID;}
+		public int metadata() {return metadata;}
 
-		LootEntry(IItemConvertible value, int metadata) {
-			this.value = value;
+		LootEntry(String namespaceID, int metadata) {
+			this.namespaceID = namespaceID;
 			this.metadata = metadata;
 		}
 
-		public static LootEntry loot(IItemConvertible value, int metadata) {
-			return new LootEntry(value, metadata);
+		public static LootEntry loot(String namespaceID, int metadata) {
+			return new LootEntry(namespaceID, metadata);
 		}
 	}
 
@@ -54,15 +59,17 @@ public class LootTable {
 			int high = lootEntryList.size() / 2;
 			for (int i = 0; i < high; i++) {
 				LootEntry entry = lootEntryList.get(i);
-				int minStacksize = Math.min(3, entry.value.getDefaultStack().getMaxStackSize());
-				int maxStacksize = Math.min(5, entry.value.getDefaultStack().getMaxStackSize());
-				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(entry.value.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 30);
+				IItemConvertible loot = BattleTowerConfig.getConvertible(entry.namespaceID());
+				int minStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
+				int maxStacksize = Math.min(5, loot.getDefaultStack().getMaxStackSize());
+				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 30);
 			}
 			for (int i = high; i < lootEntryList.size(); i++) {
 				LootEntry entry = lootEntryList.get(i);
-				int minStacksize = Math.min(1, entry.value.getDefaultStack().getMaxStackSize());
-				int maxStacksize = Math.min(3, entry.value.getDefaultStack().getMaxStackSize());
-				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(entry.value.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 20);
+				IItemConvertible loot = BattleTowerConfig.getConvertible(entry.namespaceID());
+				int minStacksize = Math.min(1, loot.getDefaultStack().getMaxStackSize());
+				int maxStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
+				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 20);
 			}
 		}
 	}
@@ -119,76 +126,76 @@ public class LootTable {
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
 		int tier = 0;
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.STICK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.SEEDS_WHEAT, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.AMMO_PEBBLE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.SAND, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/stick", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/seeds_wheat", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ammo_pebble", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/sand", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.STICK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.AMMO_PEBBLE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.PLANKS_OAK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.WOOL, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/stick", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/seeds_wheat", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ammo_pebble", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/sand", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.FEATHER_CHICKEN, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.FOOD_BREAD, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MUSHROOM_BROWN, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MUSHROOM_RED, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/feather_chicken", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/food_bread", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mushroom_brown", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mushroom_red", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.FEATHER_CHICKEN, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.FOOD_BREAD, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MUSHROOM_BROWN, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MUSHROOM_RED, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/feather_chicken", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/food_bread", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mushroom_brown", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mushroom_red", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.BOOK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.ROPE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.BRICK_CLAY, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.ORE_RAW_IRON, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/rope", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/brick_clay", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ore_raw_iron", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.BOOK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.FLINT, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DUST_REDSTONE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.ORE_RAW_GOLD, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/flint", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dust_redstone", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ore_raw_gold", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.BOOK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.INGOT_IRON, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.INGOT_GOLD, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.BUCKET_LAVA, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_iron", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_gold", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/bucket_lava", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.INGOT_GOLD, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.QUARTZ, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.OLIVINE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.TNT, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_gold", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/quartz", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/olivine", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/tnt", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.QUARTZ, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.CHAINLINK, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DYE, LAPIZ));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DIAMOND, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/quartz", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/chainlink", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dye", LAPIZ));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/diamond", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DUST_REDSTONE, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DYE, LAPIZ));
-		table.get(tier).add(LootTable.LootEntry.loot(Items.DIAMOND, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(Blocks.MESH_GOLD, 0));
-		table.get(tier).add(LootTable.LootEntry.loot(BattleTowerBlocks.PRISON_BAR, 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dust_redstone", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dye", LAPIZ));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/diamond", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mesh_gold", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
 
 		return table;
 	}
