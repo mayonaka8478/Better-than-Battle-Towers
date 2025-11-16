@@ -2,7 +2,7 @@ package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
-import jamdoggie.betterbattletowers.entity.render.RenderGolem;
+import jamdoggie.betterbattletowers.entity.render.MobRendererGolem;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
@@ -46,20 +46,21 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 	@Override
 	public void initItemModels(ItemModelDispatcher dispatcher) {
+		// no items
 	}
 
 	@Override
 	public void initEntityModels(EntityRenderDispatcher dispatcher) {
-		ModelHelper.setEntityModel(MobGolem.class, RenderGolem::new);
+		ModelHelper.setEntityModel(MobGolem.class, MobRendererGolem::new);
 	}
 
 	@Override
 	public void initTileEntityModels(TileEntityRenderDispatcher dispatcher) {
-
+		// no tile entity models
 	}
 
 	@Override
 	public void initBlockColors(BlockColorDispatcher dispatcher) {
-
+		// no map colors
 	}
 }
