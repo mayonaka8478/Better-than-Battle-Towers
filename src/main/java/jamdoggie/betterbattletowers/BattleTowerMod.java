@@ -40,6 +40,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void beforeGameStart() {
+		BattleTowerConfig.init();
 		BattleTowerBlocks.init();
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
 		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
@@ -54,7 +55,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterClientStart() {
-		MobInfoRegistry.register(MobGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", MobGolem.getMaxHP(), 10000,
+		MobInfoRegistry.register(MobGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", MobGolem.MAX_HEALTH, 10000,
 			new MobInfoRegistry.MobDrop[]{
 				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
 				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
@@ -63,7 +64,6 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterGameStart() {
-		BattleTowerConfig.init();
 		TowerProperties.init();
 		this.towercount = BattleTowerConfig.getTowerCount();
 	}
@@ -93,10 +93,11 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	public static void generateTower(World world, Chunk chunk) {
 		Random random = chunk.getChunkRandom(0x544f574552L);
-		if(random.nextInt(200) == 0){
+		int randomNum = random.nextInt(20);
+		if(randomNum == 0){
 			int x =  chunk.xPosition * 16 + 8;
 			int z =  chunk.zPosition * 16 + 8;
-			int y  = world.getHeightValue(x, z);
+			int y  = world.getHeightValue(x, z) - 1;
 			WorldFeatureBattleTower.tower().place(world, random, x, y, z);
 		}
 	}
