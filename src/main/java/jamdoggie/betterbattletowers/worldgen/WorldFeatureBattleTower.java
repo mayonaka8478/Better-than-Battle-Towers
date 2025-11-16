@@ -1,5 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen;
 
+import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
 import net.minecraft.core.WeightedRandomBag;
@@ -173,7 +174,8 @@ public class WorldFeatureBattleTower extends WorldFeature {
 					this.world.setBlock(ix, iy, iz, this.buildingBlockBag.getRandom(this.random));
 				}else if(this.currentFloor > 1){
 					/// PLACES THE WINDOWS
-					this.world.setBlock(ix, iy, iz, BattleTowerBlocks.PRISON_BAR.id());
+					int id = BattleTowerConfig.isTint() ? BattleTowerBlocks.PRISON_BAR.id() : 0;
+					this.world.setBlock(ix, iy, iz, id);
 				}else {
 					this.world.setBlock(ix, iy, iz, 0);
 				}

@@ -65,7 +65,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	@Override
 	public void afterGameStart() {
 		TowerProperties.init();
-		this.towercount = BattleTowerConfig.getTowerCount();
+		this.towercount = BattleTowerConfig.getTowerrarity();
 	}
 
 	@Override

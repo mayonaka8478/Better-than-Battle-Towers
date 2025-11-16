@@ -16,7 +16,8 @@ public class BattleTowerConfigOld {
 	private BattleTowerConfigOld(){}
 
 	public static IItemConvertible getBlockByName(String name) {
-		if (name.startsWith("Block.")) {
+		String correctedString = name.replace(':', '.');
+		if (correctedString.startsWith("Block.")) {
 			for (Block<?> block : Blocks.blocksList) {
 				if (block != null) {
 					String otherName = block.getKey().substring(5);
@@ -25,7 +26,7 @@ public class BattleTowerConfigOld {
 					}
 				}
 			}
-		} else if (name.startsWith("Item.")) {
+		} else if (correctedString.startsWith("Item.")) {
 			for (Item item : Item.itemsList) {
 				if (item != null) {
 					String otherName = item.getKey().substring(5);
