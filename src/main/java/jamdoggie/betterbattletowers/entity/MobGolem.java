@@ -2,8 +2,6 @@ package jamdoggie.betterbattletowers.entity;
 
 import com.mojang.nbt.tags.CompoundTag;
 import jamdoggie.betterbattletowers.BattleTowerMod;
-import jamdoggie.betterbattletowers.util.MathUtil;
-import net.minecraft.core.Global;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
@@ -13,7 +11,6 @@ import net.minecraft.core.entity.MobPathfinder;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.item.Items;
-import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
@@ -23,7 +20,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.entity.GolemManager.HELLWORLD;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianInt;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
@@ -86,7 +82,8 @@ public class MobGolem extends MobPathfinder {
 		for (int i = 0; i < 2; i++) {
 			loot.add(this.drops.getRandom(this.random));
 		}
-		return this.mobDrops;
+		loot.addAll(this.mobDrops);
+		return loot;
 	}
 
 	@Override
@@ -101,7 +98,7 @@ public class MobGolem extends MobPathfinder {
 
 	private void wakeUp() {
 		dormant = false;
-		world.playSoundEffect(null, SoundCategory.CAVE_SOUNDS, x, y, z, "ambient.cave.cave", 0.7F, 1.0F);
+//		world.playSoundEffect(null, SoundCategory.CAVE_SOUNDS, x, y, z, "ambient.cave.cave", 0.7F, 1.0F);
 		world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 		timer = 10 * TICKS_PER_SECOND;
 	}
@@ -120,8 +117,8 @@ public class MobGolem extends MobPathfinder {
 		if (random.nextInt(5) == 0) {
 			super.knockBack(attacker, damage, distX, distY);
 		}
-		if(this.attackTime > 0){
-			this.timer = Math.max(timer, 2 * TICKS_PER_SECOND);
+		if(this.attackTime > - 2 * TICKS_PER_SECOND ){
+			this.timer = Math.max(timer, 4 * TICKS_PER_SECOND);
 		}
 	}
 
@@ -162,7 +159,7 @@ public class MobGolem extends MobPathfinder {
 				this.timer = 10 * TICKS_PER_SECOND;
 				this.growl = false;
 			}
-			if (timer-- <= 0 && !growl && this.target != null && this.onGround) {
+			if (timer-- <= 0 && !growl && this.target != null && this.onGround && world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2) != null) {
 				this.world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 				this.yd += 0.9D;
 				this.growl = true;
@@ -177,7 +174,7 @@ public class MobGolem extends MobPathfinder {
 	protected void attackEntity(@NotNull Entity victim, float distance) {
 		if (this.attackTime <= 0 && distance < 3.0F && victim.bb.maxY > this.bb.minY && victim.bb.minY < this.bb.maxY) {
 			this.attackTime = ATTACK_TIME;
-			victim.hurt(this, attackStrength, this.getSkinVariant() == HELLWORLD ? DamageType.FIRE : DamageType.COMBAT);
+			victim.hurt(this, attackStrength, DamageType.COMBAT);
 		}
 	}
 
@@ -212,7 +209,6 @@ public class MobGolem extends MobPathfinder {
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
 		if (this.dormant && attacker != null && type != null) return false;
-		if (type == DamageType.BLAST) return false;
 		return super.hurt(this, damage, type);
 	}
 
