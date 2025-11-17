@@ -95,8 +95,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		Random random = chunk.getChunkRandom(0x544f574552L);
 		int randomNum = random.nextInt(20);
 		if(randomNum == 0){
-			int x =  chunk.xPosition * 16 + 8;
-			int z =  chunk.zPosition * 16 + 8;
+			int x =  chunk.xPosition * 16;
+			int z =  chunk.zPosition * 16;
 			int y  = world.getHeightValue(x, z) - 1;
 			WorldFeatureBattleTower.tower().place(world, random, x, y, z);
 		}
