@@ -3,7 +3,7 @@ package jamdoggie.betterbattletowers;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
-import jamdoggie.betterbattletowers.worldgen.TowerProperties;
+import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
@@ -29,8 +29,6 @@ import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFea
 public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
 	public static final String MOD_ID = "betterbattletowers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final BattleTowerMod INSTANCE = new BattleTowerMod();
-	private int towercount;
 
 
 	@Override
@@ -65,7 +63,6 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	@Override
 	public void afterGameStart() {
 		TowerProperties.init();
-		this.towercount = BattleTowerConfig.getTowerrarity();
 	}
 
 	@Override
@@ -93,7 +90,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	public static void generateTower(World world, Chunk chunk) {
 		Random random = chunk.getChunkRandom(0x544f574552L);
-		int randomNum = random.nextInt(20);
+//		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
+		int randomNum = random.nextInt(5);
 		if(randomNum == 0){
 			int x =  chunk.xPosition * 16;
 			int z =  chunk.zPosition * 16;
