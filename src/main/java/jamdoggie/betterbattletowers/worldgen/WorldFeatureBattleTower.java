@@ -3,6 +3,9 @@ package jamdoggie.betterbattletowers.worldgen;
 import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
+import jamdoggie.betterbattletowers.worldgen.util.LootTable;
+import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
+import jamdoggie.betterbattletowers.worldgen.util.TowerProperty;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
@@ -18,8 +21,8 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.LootTable.MAX_TIER;
-import static jamdoggie.betterbattletowers.worldgen.LootTable.populateChest;
+import static jamdoggie.betterbattletowers.worldgen.util.LootTable.MAX_TIER;
+import static jamdoggie.betterbattletowers.worldgen.util.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 

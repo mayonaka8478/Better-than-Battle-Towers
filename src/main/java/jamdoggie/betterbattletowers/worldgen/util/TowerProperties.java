@@ -1,11 +1,11 @@
-package jamdoggie.betterbattletowers.worldgen;
+package jamdoggie.betterbattletowers.worldgen.util;
 
 import net.minecraft.core.world.biome.Biome;
 
 import java.util.*;
 
-import static jamdoggie.betterbattletowers.worldgen.BlockPallet.ipair;
-import static jamdoggie.betterbattletowers.worldgen.TowerProperty.tower;
+import static jamdoggie.betterbattletowers.worldgen.util.BlockPallet.ipair;
+import static jamdoggie.betterbattletowers.worldgen.util.TowerProperty.tower;
 import static net.minecraft.core.block.Blocks.*;
 import static net.minecraft.core.world.biome.Biomes.*;
 
