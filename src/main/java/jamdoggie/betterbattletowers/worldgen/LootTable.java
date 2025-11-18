@@ -16,15 +16,15 @@ import java.util.*;
 public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
 	public static final double INC = 1.29f;
-	public static final int LOOT_AMOUNT = 9;
 	public static final int MAX_TIER = 9;
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
 	private static boolean init = true;
 
-	private LootTable(){}
+	private LootTable() {
+	}
 
 	public static void init() {
-		if(init) init = false;
+		if (init) init = false;
 		LootTable.createTables(BattleTowerConfig.getTempTable());
 	}
 
@@ -74,22 +74,21 @@ public class LootTable {
 		}
 	}
 
-	public static void populateChest(World world, Random random, int x, int y, int z, int tier
-	) {
+	public static void populateChest(World world, Random random, int x, int y, int z, int tier, int lootAmount) {
 		Container inventory = BlockLogicChest.getInventory(world, x, y, z);
 		if (inventory == null) return;
-		List<ItemStack> stacks = generateLootList(random, tier);
+		List<ItemStack> stacks = generateLootList(random, tier, lootAmount);
 		for (ItemStack stack : stacks) {
 			LootTable.placeItemInChest(random, stack, inventory);
 		}
 	}
 
-	private static List<ItemStack> generateLootList(Random random, int tier) {
+	private static List<ItemStack> generateLootList(Random random, int tier, int lootAmount) {
 		List<ItemStack> itemStackList = new ArrayList<>();
 		if (tier > MAX_TIER) tier = MAX_TIER;
 		if (tier < 0) tier = 0;
 		WeightedRandomBag<WeightedRandomLootObject> bag = TOWER_LOOT_TABLE[tier];
-		for (int i = 0; i < LOOT_AMOUNT; i++) {
+		for (int i = 0; i < lootAmount; i++) {
 			itemStackList.add(bag.getRandom(random).getItemStack(random));
 		}
 		return itemStackList;
