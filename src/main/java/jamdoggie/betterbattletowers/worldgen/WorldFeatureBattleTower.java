@@ -42,7 +42,7 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 	protected void placeTower(int x, int y, int z, int availableHeight) {
 		int addedFloors = MathHelper.ceilInt(availableHeight, FLOOR_HEIGHT) - MIN_HEIGHT / FLOOR_HEIGHT;
 		int maxFloors = this.random.nextInt(addedFloors) + FLOOR_HEIGHT;
-		int lootAmount = BattleTowerConfig.isTint() ? LOOT_AMOUNT + 3 : LOOT_AMOUNT;
+		int lootAmount = getLootAmount();
 		this.placeFoundation(x, y - 1, z);
 		for (this.currentFloor = 0; this.currentFloor < maxFloors - 1; this.currentFloor += 1) {
 			int py = y + FLOOR_HEIGHT * this.currentFloor;
@@ -54,6 +54,11 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 		}
 		this.placeCapStaircase(x, y, z);
 		this.placeCrown(x, y + FLOOR_HEIGHT * (maxFloors - 1), z);
+	}
+
+	@Override
+	protected int getLootAmount() {
+		return BattleTowerConfig.isTint() ? (int) Math.floor(LOOT_AMOUNT * 0.3) + LOOT_AMOUNT : LOOT_AMOUNT;
 	}
 
 	///  Places the top floor, that includes wall and the actual floor

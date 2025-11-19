@@ -33,7 +33,7 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 	protected void placeTower(int x, int y, int z, int availableHeight) {
 		int addedFloors = Math.floorDiv(availableHeight, FLOOR_HEIGHT) - MIN_HEIGHT / FLOOR_HEIGHT;
 		int maxFloors = this.random.nextInt(addedFloors) + FLOOR_HEIGHT;
-		int lootAmount = LOOT_AMOUNT + 3;
+		int lootAmount = getLootAmount();
 		this.placeCrown(x, y, z);
 		this.currentFloor++;
 		for (; this.currentFloor < maxFloors - 1; this.currentFloor += 1) {
@@ -45,6 +45,11 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 		}
 		this.placePrison(x, y - FLOOR_HEIGHT * (maxFloors - 1), z);
 		this.placeCapStaircase(x, y - FLOOR_HEIGHT * (maxFloors - 1), z);
+	}
+
+	@Override
+	protected int getLootAmount() {
+		return  (int) Math.floor(LOOT_AMOUNT * 0.3) + LOOT_AMOUNT;
 	}
 
 	private void placePrison(int x, int y, int z) {
