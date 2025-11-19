@@ -33,7 +33,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Constants to avoid having magic numbers
 	public static final int FLOOR_HEIGHT = 7;
-	public static final int LOOT_AMOUNT = 9;
+	public static final int LOOT_AMOUNT = BattleTowerConfig.getLootAmount();
 	public static final int BLOCK_AIR = 0;
 
 	///  Sets the golem type as well as the tower decorations

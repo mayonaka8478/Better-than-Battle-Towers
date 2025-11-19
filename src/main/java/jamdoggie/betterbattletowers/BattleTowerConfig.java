@@ -146,6 +146,7 @@ public class BattleTowerConfig {
 			.append("Older config, will produce a different formated and should not be imitated for loot editing!\n")
 			.append("If you want to edit the loot use the namespace id for the items.\n")
 			.append("The numerical value is the metadata that is used to populate the chest. For most item the metadata is 0.\n")
+			.append("Loot Tables for each floor can hold an arbitrary amount of different loot")
 			.toString()
 		);
 		properties.addCategory(GENERAL)
@@ -216,7 +217,7 @@ public class BattleTowerConfig {
 			}
 		}
 		config.writeConfig();
-		LOGGER.info("Converted old namspace to new.");
+		LOGGER.info("Converted old namespace to new.");
 	}
 
 	public static int getStartingItemId() {
@@ -235,5 +236,7 @@ public class BattleTowerConfig {
 		return tint;
 	}
 
-
+	public static int getLootAmount() {
+		return lootamount;
+	}
 }
