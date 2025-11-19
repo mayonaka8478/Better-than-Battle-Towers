@@ -1,6 +1,5 @@
-package jamdoggie.betterbattletowers.entity.render;
+package jamdoggie.betterbattletowers.entity;
 
-import jamdoggie.betterbattletowers.entity.MobGolem;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.entity.MobRenderer;
 import net.minecraft.client.render.model.ModelBiped;
