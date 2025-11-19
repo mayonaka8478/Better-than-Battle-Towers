@@ -21,17 +21,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianInt;
+import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
+@SuppressWarnings("java:S2160")
 public class MobGolem extends MobPathfinder {
 	private static final float SIGHT_RADIUS = 16.0F;
 	private static final float DEFAULT_SPEED = 0.35f;
 	private static final int ATTACK_TIME = 2 * TICKS_PER_SECOND;
 	private final int attackStrength;
-	private WeightedRandomBag<WeightedRandomLootObject> drops;
 	private boolean dormant;
 	private boolean growl;
 	private int timer;
+
+	private final static WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
+	static {
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 0, 5), 40);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 0, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 0, 5), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 0, 10), 3);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 0, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 0, 3), 20);
+	}
 
 	public static final int MAX_HEALTH = 450;
 
@@ -43,7 +54,6 @@ public class MobGolem extends MobPathfinder {
 		this.fireImmune = true;
 		this.attackStrength = 8;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
-		this.drops = GolemManager.getDropsFromVariant(this.getSkinVariant());
 		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 1, 5));
 		this.footSize = 2;
 		this.dormant = false;
@@ -73,14 +83,13 @@ public class MobGolem extends MobPathfinder {
 				this.world.playBlockSoundEffect(this, this.x, this.y - this.heightOffset, this.z, Blocks.blocksList[blockID], EnumBlockSoundEffectType.ENTITY_LAND);
 			}
 		}
-
 	}
 
 	@Override
 	protected List<WeightedRandomLootObject> getMobDrops() {
 		List<WeightedRandomLootObject> loot = new ArrayList<>(this.mobDrops);
 		for (int i = 0; i < 2; i++) {
-			loot.add(this.drops.getRandom(this.random));
+			loot.add(DROPS.getRandom(this.random));
 		}
 		loot.addAll(this.mobDrops);
 		return loot;
@@ -98,7 +107,6 @@ public class MobGolem extends MobPathfinder {
 
 	private void wakeUp() {
 		dormant = false;
-//		world.playSoundEffect(null, SoundCategory.CAVE_SOUNDS, x, y, z, "ambient.cave.cave", 0.7F, 1.0F);
 		world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 		timer = 10 * TICKS_PER_SECOND;
 	}
