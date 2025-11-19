@@ -17,6 +17,7 @@ public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
 	public static final double INC = 1.29f;
 	public static final int MAX_TIER = 9;
+	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
 	private static boolean init = true;
 
@@ -32,8 +33,13 @@ public class LootTable {
 		protected String namespaceID;
 		protected int metadata;
 
-		public String namespaceID() {return namespaceID;}
-		public int metadata() {return metadata;}
+		public String namespaceID() {
+			return namespaceID;
+		}
+
+		public int metadata() {
+			return metadata;
+		}
 
 		LootEntry(String namespaceID, int metadata) {
 			this.namespaceID = namespaceID;
