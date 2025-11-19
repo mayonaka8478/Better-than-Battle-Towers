@@ -46,6 +46,11 @@ public class LootTable {
 			this.metadata = metadata;
 		}
 
+		public LootEntry setNamespaceID(String namespaceID) {
+			this.namespaceID = namespaceID;
+			return this;
+		}
+
 		public static LootEntry loot(String namespaceID, int metadata) {
 			return new LootEntry(namespaceID, metadata);
 		}
