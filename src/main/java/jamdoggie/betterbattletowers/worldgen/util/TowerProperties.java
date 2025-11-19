@@ -44,7 +44,7 @@ public class TowerProperties {
 	}
 
 	public static class TowerProperty {
-		WeightedRandomBag<Integer> towerDecorations = new WeightedRandomBag<>();
+		WeightedRandomBag<Integer> towerDecorations;
 		int skinVariant;
 		private TowerProperty(WeightedRandomBag<Integer> towerDecorations, int skinVariant){
 			this.skinVariant = skinVariant;
@@ -113,7 +113,10 @@ public class TowerProperties {
 			, 0
 		);
 
-		RETRO_TOWER = register(asSet(OVERWORLD_RETRO),
+		RETRO_TOWER = register(asSet(
+			OVERWORLD_RETRO,OVERWORLD_SEASONAL_FOREST, OVERWORLD_FOREST, OVERWORLD_GRASSLANDS, OVERWORLD_SHRUBLAND, OVERWORLD_BOREAL_FOREST,
+				OVERWORLD_PLAINS, OVERWORLD_MEADOW, OVERWORLD_BIRCH_FOREST
+			),
 			asBag(ipair(COBBLE_STONE.id(), 100.0f))
 			, 0
 		);
@@ -199,7 +202,10 @@ public class TowerProperties {
 			, 6
 		);
 
-		PARADISE_TOWER = register(asSet(PARADISE_PARADISE),
+		PARADISE_TOWER = register(asSet(
+			PARADISE_PARADISE, OVERWORLD_SEASONAL_FOREST, OVERWORLD_FOREST, OVERWORLD_GRASSLANDS, OVERWORLD_SHRUBLAND,
+				OVERWORLD_BOREAL_FOREST, OVERWORLD_PLAINS, OVERWORLD_MEADOW, OVERWORLD_BIRCH_FOREST, OVERWORLD_HELL
+			),
 			asBag(ipair(BRICK_MARBLE.id(), 100.0f))
 			, 7
 		);
