@@ -136,6 +136,9 @@ public class MobGolem extends MobPathfinder {
 	}
 
 	@Override
+	public void fling(double xd, double yd, double zd, float pushTime) {}
+
+	@Override
 	protected Player findPlayerToAttack() {
 		if (dormant) return null;
 		assert world != null;
@@ -216,7 +219,7 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
-		if (this.dormant && attacker != null && type != null) return false;
+		if(this.dormant || (attacker != null && type != null) || attacker instanceof MobGolem) return false;
 		return super.hurt(this, damage, type);
 	}
 
