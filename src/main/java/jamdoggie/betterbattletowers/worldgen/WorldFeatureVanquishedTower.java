@@ -60,7 +60,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	protected void placeTower(int x, int y, int z, int availableHeight) {
 		int addedFloors = MathHelper.ceilInt(availableHeight, FLOOR_HEIGHT) - MIN_HEIGHT / FLOOR_HEIGHT;
 		int maxFloors = this.random.nextInt(addedFloors) + FLOOR_HEIGHT;
-		int lootAmount = 3;
+		int lootAmount = getLootAmount();
 		this.placeFoundation(x, y - 1, z);
 		this.calcHeight(y, maxFloors);
 		for (this.currentFloor = 0; this.currentFloor < maxFloors - 1; this.currentFloor += 1) {
@@ -78,6 +78,11 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		for (Entry e : this.doors) {
 			world.setBlock(e.x, e.y, e.z, e.blockID);
 		}
+	}
+
+	@Override
+	protected int getLootAmount() {
+		return MathHelper.ceilInt(LOOT_AMOUNT, 3);
 	}
 
 	private void calcHeight(int y, int maxFloors) {

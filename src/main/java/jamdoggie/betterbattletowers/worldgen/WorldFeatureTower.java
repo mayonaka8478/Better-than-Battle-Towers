@@ -46,6 +46,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	///  Places tower
 	protected abstract void placeTower(int x, int y, int z, int availableHeight);
 
+	protected abstract int getLootAmount();
+
 	///  Place the tower on a plinth
 	protected void placeFoundation(int x, int y, int z) {
 		int sy = y;
