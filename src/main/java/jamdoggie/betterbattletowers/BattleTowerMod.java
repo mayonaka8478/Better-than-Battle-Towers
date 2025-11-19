@@ -3,6 +3,8 @@ package jamdoggie.betterbattletowers;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
+import jamdoggie.betterbattletowers.worldgen.WorldFeatureReverseTower;
+import jamdoggie.betterbattletowers.worldgen.WorldFeatureVanquishedTower;
 import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
@@ -62,6 +64,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterGameStart() {
+		BattleTowerConfig.processOldConfig();
 		TowerProperties.init();
 	}
 
@@ -96,7 +99,9 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 			int x =  chunk.xPosition * 16;
 			int z =  chunk.zPosition * 16;
 			int y  = world.getHeightValue(x, z) - 1;
-			WorldFeatureBattleTower.tower().place(world, random, x, y, z);
+//			WorldFeatureBattleTower.tower().place(world, random, x, y, z);
+//			WorldFeatureReverseTower.tower().place(world, random, x, y, z);
+			WorldFeatureVanquishedTower.tower().place(world, random, x, y, z);
 		}
 	}
 }

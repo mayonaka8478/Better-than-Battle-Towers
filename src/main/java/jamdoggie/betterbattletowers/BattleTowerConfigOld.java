@@ -21,7 +21,7 @@ public class BattleTowerConfigOld {
 			for (Block<?> block : Blocks.blocksList) {
 				if (block != null) {
 					String otherName = block.getKey().substring(5);
-					if (name.substring(6).equalsIgnoreCase(otherName)) {
+					if (correctedString.substring(6).equalsIgnoreCase(otherName)) {
 						return block;
 					}
 				}
@@ -30,7 +30,7 @@ public class BattleTowerConfigOld {
 			for (Item item : Item.itemsList) {
 				if (item != null) {
 					String otherName = item.getKey().substring(5);
-					if (name.substring(5).equalsIgnoreCase(otherName)) {
+					if (correctedString.substring(5).equalsIgnoreCase(otherName)) {
 						return item;
 					}
 				}
