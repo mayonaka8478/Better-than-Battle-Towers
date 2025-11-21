@@ -25,6 +25,7 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Random;
 
+import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
@@ -43,23 +44,19 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		BattleTowerConfig.init();
 		BattleTowerBlocks.init();
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
-		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "TowerGolem");
-		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "TileTowerChest");
+		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseTower");
+		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "RuinedTower");
+		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.guidebook.golem.name");
+		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
 	}
 
 	@Override
 	public void beforeClientStart() {
 		SoundRepository.registerNamespace(MOD_ID);
-
 	}
 
 	@Override
 	public void afterClientStart() {
-		MobInfoRegistry.register(MobGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", MobGolem.MAX_HEALTH, 10000,
-			new MobInfoRegistry.MobDrop[]{
-				new MobInfoRegistry.MobDrop(new ItemStack(Blocks.SLAB_STONE_POLISHED), 1.0f, 9, 12),
-				new MobInfoRegistry.MobDrop(new ItemStack(Items.DIAMOND), 1.0f, 1, 6)
-			});
 	}
 
 	@Override
@@ -70,15 +67,14 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void onRecipesReady() {
-		RecipeBuilder.Shaped(MOD_ID, "IO", "OI")
+		RecipeBuilder.Shaped(MOD_ID, "IOI", "IOI", "IOI")
 			.addInput('O', Items.OLIVINE)
 			.addInput('I', Items.INGOT_IRON)
 			.create("tinted_iron_bar_block", new ItemStack((BattleTowerBlocks.PRISON_BAR)));
 
-		RecipeBuilder.Shaped(MOD_ID, "TIT", "TIT")
+		RecipeBuilder.Shaped(MOD_ID, "T")
 			.addInput('T', BattleTowerBlocks.PRISON_BAR)
-			.addInput('I', Items.INGOT_IRON)
-			.create("tinted_iron_bar_fence", new ItemStack((BattleTowerBlocks.PRISON_BAR_FENCE)));
+			.create("tinted_iron_bar_fence", new ItemStack(BattleTowerBlocks.PRISON_BAR_FENCE, 32));
 	}
 
 	@Override
@@ -93,15 +89,19 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	public static void generateTower(World world, Chunk chunk) {
 		Random random = chunk.getChunkRandom(0x544f574552L);
-//		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
-		int randomNum = random.nextInt(5);
-		if(randomNum == 0){
-			int x =  chunk.xPosition * 16;
-			int z =  chunk.zPosition * 16;
-			int y  = world.getHeightValue(x, z) - 1;
-//			WorldFeatureBattleTower.tower().place(world, random, x, y, z);
-//			WorldFeatureReverseTower.tower().place(world, random, x, y, z);
-			WorldFeatureVanquishedTower.tower().place(world, random, x, y, z);
+		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
+		if (randomNum == 0) {
+			int x = chunk.xPosition * 16;
+			int z = chunk.zPosition * 16;
+			int y = world.getHeightValue(x, z) - 1;
+			int towerRand = random.nextInt(16);
+			if (towerRand < 7) {
+				WorldFeatureBattleTower.tower().place(world, random, x, y, z);
+			} else if (towerRand < 14) {
+				WorldFeatureReverseTower.tower().place(world, random, x, y, z);
+			} else {
+				WorldFeatureVanquishedTower.tower().place(world, random, x, y, z);
+			}
 		}
 	}
 }

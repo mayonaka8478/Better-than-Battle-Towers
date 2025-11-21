@@ -23,6 +23,8 @@ public abstract class GuidebookPageMobMixin {
 	@Inject(method = "renderMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Lighting;enableLight()V"))
 	private void offset(int x, int y, int mouseX, int mouseY, float partialTicks, CallbackInfo ci, @Local(ordinal = 1) float heightFactor, @Local(ordinal = 4) LocalFloatRef f6) {
 		//Guidebook entity mouse tracking fix
-		if (this.example instanceof MobGolem) f6.set(f6.get() + 2 * heightFactor);
+//		if (this.example instanceof MobGolem) {
+//			f6.set(f6.get() - 2 * heightFactor);
+//		}
 	}
 }

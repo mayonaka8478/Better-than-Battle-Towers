@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers.entity;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.entity.MobRenderer;
 import net.minecraft.client.render.model.ModelBiped;
+import net.minecraft.client.render.tessellator.Tessellator;
 import org.lwjgl.opengl.GL11;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
@@ -33,5 +34,13 @@ public class MobRendererGolem extends MobRenderer<MobGolem> {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void renderPreview(Tessellator tessellator, MobGolem golem, double x, double y, double z, float yaw, float partialTick) {
+		GL11.glPushMatrix();
+//		GL11.glScalef(0.5F, 0.5F, 0.5F);
+		super.renderPreview(tessellator, golem, x, y - 2.0, z, yaw, partialTick);
+		GL11.glPopMatrix();
 	}
 }
