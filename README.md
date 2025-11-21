@@ -11,10 +11,6 @@
 ## About
 Port of the [Battle Towers](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1272384-1-7-3-battle-towers-chicken-gliding-kodaichi) mod for Better Than Adventure. While this mod is mostly a faithfull recreation of the original some features were omitted or adapted to better fit with BTA.
 
-## Requirements
-- BTA = 7.3_04
-- Halplibe >= 5.3.1
-
 ## Features
 Here is a list of all the features that Battle Towers offers:
 - Golems with 9 different skins:
