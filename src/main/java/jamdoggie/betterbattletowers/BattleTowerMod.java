@@ -5,13 +5,12 @@ import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureVanquishedTower;
+import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
-import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.collection.NamespaceID;
@@ -25,7 +24,6 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
@@ -79,7 +77,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void initNamespaces() {
-		// no need
+		RecipeBuilder.initNameSpace(MOD_ID);
 	}
 
 	@Override
@@ -91,6 +89,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		Random random = chunk.getChunkRandom(0x544f574552L);
 		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
 		if (randomNum == 0) {
+			LootTable.init();
 			int x = chunk.xPosition * 16;
 			int z = chunk.zPosition * 16;
 			int y = world.getHeightValue(x, z) - 1;

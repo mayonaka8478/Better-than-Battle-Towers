@@ -17,7 +17,6 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
-		LootTable.init();
 		int blockID = world.getBlockId(x + 8, y, z + 8);
 		if (y <= MIN_HEIGHT || blockID == 0) {
 			return false;

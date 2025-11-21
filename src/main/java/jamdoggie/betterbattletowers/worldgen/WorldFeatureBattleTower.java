@@ -24,7 +24,6 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
-		LootTable.init();
 		int availableHeight = world.getHeightBlocks() - y;
 		int blockID = world.getBlockId(x + 8, y, z + 8);
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
