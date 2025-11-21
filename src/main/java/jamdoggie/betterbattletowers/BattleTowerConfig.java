@@ -141,12 +141,9 @@ public class BattleTowerConfig {
 	}
 
 	private static Toml createDefaultConfig(Map<Integer, List<LootTable.LootEntry>> table) {
-		Toml properties = new Toml(new StringBuilder("Battle Towers Config 4.0.0!\n")
+		Toml properties = new Toml(new StringBuilder("Battle Towers Config 4.0!\n")
 			.append("Older config file can be found in the same directory under the name of old_betterbattletowers.cfg\n")
-			.append("Older config, will produce a different formated and should not be imitated for loot editing!\n")
-			.append("If you want to edit the loot use the namespace id for the items.\n")
-			.append("The numerical value is the metadata that is used to populate the chest. For most item the metadata is 0.\n")
-			.append("Loot Tables for each floor can hold an arbitrary amount of different loot")
+			.append("If you read this the config conversion has failed or not started yet and what you see is a config formated witht he loot formated the old way.")
 			.toString()
 		);
 		properties.addCategory(GENERAL)
@@ -172,11 +169,13 @@ public class BattleTowerConfig {
 	public static void processOldConfig() {
 		if (!isOldConfig) return;
 		Toml newProperties;
-		if (postProcessing.getComment().isPresent()) {
-			newProperties = new Toml(postProcessing.getComment().get());
-		} else {
-			newProperties = new Toml();
-		}
+		newProperties = new Toml(new StringBuilder("Battle Towers Config 4.0!\n")
+			.append("Older config file can be found in the same directory under the name of old_betterbattletowers.cfg\n")
+			.append("If you want to edit the loot use the namespace id for the items.\n")
+			.append("The numerical value is the metadata that is used to populate the chest. For most item the metadata is 0.\n")
+			.append("Loot Tables for each floor can hold an arbitrary amount of different loot")
+			.toString());
+
 		newProperties.addCategory(GENERAL)
 			.addEntry("VERSION", "Mod version.", version)
 			.addEntry("RARITY", "Chance to spawn per chunk.", towerrarity)
@@ -186,15 +185,15 @@ public class BattleTowerConfig {
 			.addEntry("LOOT_AMOUNT", "Base amount of loot for all tree structures.", lootamount);
 
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
-		for (Map.Entry<String, Toml> category : ((TomlAccessor)postProcessing).getCategories().entrySet()) {
+		for (Map.Entry<String, Toml> category : ((TomlAccessor) postProcessing).getCategories().entrySet()) {
 			addEntryToTable(category, table);
 		}
 		LOGGER.info("Starting to convert the old config into new format");
-		for(List<LootTable.LootEntry> entryList : table.values()){
-			for(LootTable.LootEntry entry : entryList){
+		for (List<LootTable.LootEntry> entryList : table.values()) {
+			for (LootTable.LootEntry entry : entryList) {
 				String namescape = entry.namespaceID();
 				IItemConvertible convertible = getBlockByName(namescape);
-				if(convertible == null) continue;
+				if (convertible == null) continue;
 				NamespaceID id = convertible.asItem().namespaceID;
 				entry.setNamespaceID(id.toString());
 			}
@@ -212,7 +211,7 @@ public class BattleTowerConfig {
 		TomlConfigHandler config = new TomlConfigHandler(MOD_ID + "4.0", newProperties, false);
 		if (config.getConfigFile().exists()) {
 			File file = new File(CONFIG_DIRECTORY + MOD_ID + "4.0" + ".cfg");
-			if(file.delete()){
+			if (file.delete()) {
 				LOGGER.warn("Old Battle Tower Config could not be deleted!");
 			}
 		}
