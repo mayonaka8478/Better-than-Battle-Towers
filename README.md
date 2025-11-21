@@ -1,7 +1,7 @@
 # Better than Batte Tower
-![GitHub Release](https://img.shields.io/github/v/release/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
-![GitHub last commit](https://img.shields.io/github/last-commit/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mayonaka8478/Better-than-Battle-Towers/total?labelColor=808080&color=badbff)
+[![GitHub Release](https://img.shields.io/github/v/release/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)](https://github.com/mayonaka8478/Better-than-Battle-Towers/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)](https://github.com/mayonaka8478/Better-than-Battle-Towers/commits/7.3/)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mayonaka8478/Better-than-Battle-Towers/total?labelColor=808080&color=badbff)](https://tooomm.github.io/github-release-stats/?username=mayonaka8478&repository=Better-than-Battle-Towers)
 ![GitHub top language](https://img.shields.io/github/languages/top/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
 
 
