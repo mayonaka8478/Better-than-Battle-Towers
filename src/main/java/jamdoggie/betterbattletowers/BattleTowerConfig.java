@@ -32,7 +32,7 @@ public class BattleTowerConfig {
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int lootamount = 26340;
-	private static String version = "4.0.0";
+	private static String version = "4.0";
 	private static boolean tint = false;
 	private static Map<Integer, List<LootTable.LootEntry>> tempTable;
 	private static Toml postProcessing;
