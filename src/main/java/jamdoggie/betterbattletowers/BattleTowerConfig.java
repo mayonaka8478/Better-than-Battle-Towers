@@ -31,7 +31,7 @@ public class BattleTowerConfig {
 	private static int towerrarity = 200;
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
-	private static int lootamount = 26340;
+	private static int lootamount = 8;
 	private static String version = "4.0";
 	private static boolean tint = false;
 	private static Map<Integer, List<LootTable.LootEntry>> tempTable;
@@ -125,6 +125,8 @@ public class BattleTowerConfig {
 	}
 
 	public static IItemConvertible getConvertible(String key) {
+		IItemConvertible conv = getBlockByName(key);
+		if(conv != null) return conv;
 		NamespaceID id;
 		try {
 			id = getPermanent(key);
@@ -133,9 +135,6 @@ public class BattleTowerConfig {
 		}
 		Block<?> block = Blocks.blockMap.get(id);
 		Item item = Item.itemsMap.get(id);
-		if (block == null && item == null) {
-			return getBlockByName(key);
-		}
 		if (block == null) return item;
 		return block;
 	}

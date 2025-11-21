@@ -13,19 +13,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
+
 public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
 	public static final double INC = 1.29f;
 	public static final int MAX_TIER = 9;
 	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
-	private static boolean init = true;
+	private static boolean init = false;
 
 	private LootTable() {
 	}
 
 	public static void init() {
-		if (init) init = false;
+		if (init) return;
+		init = true;
 		LootTable.createTables(BattleTowerConfig.getTempTable());
 	}
 
@@ -71,6 +74,10 @@ public class LootTable {
 			for (int i = 0; i < high; i++) {
 				LootEntry entry = lootEntryList.get(i);
 				IItemConvertible loot = BattleTowerConfig.getConvertible(entry.namespaceID());
+				if (loot == null) {
+					LOGGER.warn("Loot could not be added because the id {} could not be queried", entry.namespaceID());
+					continue;
+				}
 				int minStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
 				int maxStacksize = Math.min(5, loot.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 30);
@@ -78,6 +85,10 @@ public class LootTable {
 			for (int i = high; i < lootEntryList.size(); i++) {
 				LootEntry entry = lootEntryList.get(i);
 				IItemConvertible loot = BattleTowerConfig.getConvertible(entry.namespaceID());
+				if (loot == null) {
+					LOGGER.warn("Loot could not be added because the id {} could not be queried", entry.namespaceID());
+					continue;
+				}
 				int minStacksize = Math.min(1, loot.getDefaultStack().getMaxStackSize());
 				int maxStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 20);
