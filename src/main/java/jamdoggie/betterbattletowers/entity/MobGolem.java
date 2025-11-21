@@ -26,6 +26,7 @@ import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
 @SuppressWarnings("java:S2160")
 public class MobGolem extends MobPathfinder {
+	public static final int DEFAULT_TIME = 10 * TICKS_PER_SECOND;
 	private static final float SIGHT_RADIUS = 16.0F;
 	private static final float DEFAULT_SPEED = 0.35f;
 	private static final int ATTACK_TIME = 2 * TICKS_PER_SECOND;
@@ -36,12 +37,11 @@ public class MobGolem extends MobPathfinder {
 
 	private final static WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
 	static {
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 0, 5), 40);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 0, 3), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 0, 5), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 0, 10), 3);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 0, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 0, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), 3);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 1, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, 3), 20);
 	}
 
 	public static final int MAX_HEALTH = 450;
@@ -58,7 +58,7 @@ public class MobGolem extends MobPathfinder {
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
-		this.timer = 10 * TICKS_PER_SECOND;
+		this.timer = DEFAULT_TIME;
 		this.setHealthRaw(200 + posGausssianInt(this.random, 250));
 	}
 
@@ -108,7 +108,7 @@ public class MobGolem extends MobPathfinder {
 	private void wakeUp() {
 		dormant = false;
 		world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
-		timer = 10 * TICKS_PER_SECOND;
+		timer = DEFAULT_TIME;
 	}
 
 	private void gotoSleep() {
@@ -167,7 +167,7 @@ public class MobGolem extends MobPathfinder {
 			}
 			if (growl && onGround) {
 				this.world.createExplosion(this, x, y, z, 4.5F + 3 / 4F);
-				this.timer = 10 * TICKS_PER_SECOND;
+				this.timer = DEFAULT_TIME;
 				this.growl = false;
 			}
 			if (timer-- <= 0 && !growl && this.target != null && this.onGround && world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2) != null) {
@@ -219,7 +219,7 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
-		if(this.dormant || (attacker != null && type != null) || attacker instanceof MobGolem) return false;
+		if(this.dormant || (attacker != null && type != null && damage == 100) || attacker instanceof MobGolem) return false;
 		return super.hurt(this, damage, type);
 	}
 
