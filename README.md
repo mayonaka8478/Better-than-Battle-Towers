@@ -1,12 +1,19 @@
 # Better than Batte Tower
+![GitHub Release](https://img.shields.io/github/v/release/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
+![GitHub last commit](https://img.shields.io/github/last-commit/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mayonaka8478/Better-than-Battle-Towers/total?labelColor=808080&color=badbff)
+![GitHub top language](https://img.shields.io/github/languages/top/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
+
+
+
+
 
 ## About
 Port of the [Battle Towers](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1272384-1-7-3-battle-towers-chicken-gliding-kodaichi) mod for Better Than Adventure. While this mod is mostly a faithfull recreation of the original some features were omitted or adapted to better fit with BTA.
 
 ## Requirements
-Lates release requies:
-BTA = 7.3_04
-Halplibe >= 5.3.1
+- BTA = 7.3_04
+- Halplibe >= 5.3.1
 
 ## Features
 Here is a list of all the features that Battle Towers offers:
