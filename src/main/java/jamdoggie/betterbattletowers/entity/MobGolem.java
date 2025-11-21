@@ -35,7 +35,7 @@ public class MobGolem extends MobPathfinder {
 	private boolean growl;
 	private int timer;
 
-	private final static WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
+	private static final WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
 	static {
 		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 20);
 		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 20);
