@@ -168,7 +168,6 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		this.actWhileAwake();
-		super.onLivingUpdate();
 	}
 
 	private void actWhileAwake() {
@@ -192,6 +191,7 @@ public class MobGolem extends MobPathfinder {
 		if(this.target != null){
 			timer--;
 		}
+		super.onLivingUpdate();
 	}
 
 	private void actwhileDormant() {
