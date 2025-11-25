@@ -13,11 +13,12 @@
 		"mayonaka8478",
 		"baguchan",
 		"Redart15",
-		"Cauliflower"
+		"Cauliflower",
+		"Astronomical360"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://modrinth.com/mod/better-than-battle-towers",
+    "sources": "https://github.com/mayonaka8478/Better-than-Battle-Towers"
   },
 
 	"icon": "icon.png",

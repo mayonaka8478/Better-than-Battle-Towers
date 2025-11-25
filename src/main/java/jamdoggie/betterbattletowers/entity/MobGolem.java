@@ -59,7 +59,14 @@ public class MobGolem extends MobPathfinder {
 		this.dormant = false;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
-		this.setHealthRaw(200 + posGausssianInt(this.random, 250));
+		this.setHealthRaw(200 + posGausssianInt(this.random, 300));
+		this.isElderly();
+	}
+
+	private void isElderly() {
+		if(this.getHealth() > 450){
+			this.scoreValue += 2500;
+		}
 	}
 
 	@Override
@@ -119,12 +126,18 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public void knockBack(Entity attacker, int damage, double distX, double distY) {
-		float modifier = (this.getMaxHealth() - this.getHealth() * 1.0f) / this.getMaxHealth();
-		float speed = MathHelper.lerp(DEFAULT_SPEED, DEFAULT_SPEED * 2, modifier);
-		this.moveSpeed = Math.max(DEFAULT_SPEED, speed);
 		if (random.nextInt(5) == 0) {
 			super.knockBack(attacker, damage, distX, distY);
 		}
+		resetTimer();
+	}
+
+	@Override
+	public void fling(double xd, double yd, double zd, float pushTime) {
+		resetTimer();
+	}
+
+	private void resetTimer() {
 		if(this.attackTime > - 2 * TICKS_PER_SECOND ){
 			this.timer = Math.max(timer, 4 * TICKS_PER_SECOND);
 		}
@@ -134,9 +147,6 @@ public class MobGolem extends MobPathfinder {
 	protected void roamRandomPath() {
 		// we don't want the golem to roam
 	}
-
-	@Override
-	public void fling(double xd, double yd, double zd, float pushTime) {}
 
 	@Override
 	protected Player findPlayerToAttack() {
@@ -154,29 +164,40 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		if (dormant) {
-			Player player = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2.0D);
-			if (player != null) {
-				this.wakeUp();
-			}
-		} else {
-			Player player = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS * 4.0D);
-			if (player == null) {
-				this.gotoSleep();
-				super.onLivingUpdate();
-				return;
-			}
-			if (growl && onGround) {
-				this.world.createExplosion(this, x, y, z, 4.5F + 3 / 4F);
-				this.timer = DEFAULT_TIME;
-				this.growl = false;
-			}
-			if (timer-- <= 0 && !growl && this.target != null && this.onGround && world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2) != null) {
-				this.world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
-				this.yd += 0.9D;
-				this.growl = true;
-				this.onGround = false;
-				return;
-			}
+			this.actwhileDormant();
+			return;
+		}
+		this.actWhileAwake();
+		super.onLivingUpdate();
+	}
+
+	private void actWhileAwake() {
+		Player player = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS * 4.0D);
+		if (player == null) {
+			this.gotoSleep();
+			return;
+		}
+		if (growl && onGround) {
+			this.world.createExplosion(this, x, y, z, 4.5F + 3 / 4F);
+			this.timer = DEFAULT_TIME;
+			this.growl = false;
+		}
+		if (timer <= 0 && !growl && this.onGround && world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2) != null) {
+			this.world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+			this.yd += 0.9D;
+			this.growl = true;
+			this.onGround = false;
+			return;
+		}
+		if(this.target != null){
+			timer--;
+		}
+	}
+
+	private void actwhileDormant() {
+		Player player = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2.0D);
+		if (player != null) {
+			this.wakeUp();
 		}
 		super.onLivingUpdate();
 	}
@@ -220,6 +241,9 @@ public class MobGolem extends MobPathfinder {
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
 		if(this.dormant || (attacker != null && type != null && damage == 100) || attacker instanceof MobGolem) return false;
+		float modifier = (this.getMaxHealth() - this.getHealth() * 1.0f) / this.getMaxHealth();
+		float speed = MathHelper.lerp(DEFAULT_SPEED, DEFAULT_SPEED * 2, modifier);
+		this.moveSpeed = Math.max(DEFAULT_SPEED, speed);
 		return super.hurt(this, damage, type);
 	}
 
@@ -241,5 +265,15 @@ public class MobGolem extends MobPathfinder {
 	@Override
 	protected String getDeathSound() {
 		return BattleTowerMod.MOD_ID + ":mob.golem.death";
+	}
+
+	@Override
+	public boolean isPushable() {
+		return false;
+	}
+
+	@Override
+	public float getHeadHeight() {
+		return this.bbHeight * 1.08F;
 	}
 }

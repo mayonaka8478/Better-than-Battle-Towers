@@ -28,17 +28,17 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 		dispatcher.addDispatch(new BlockModelTransparent<>(BattleTowerBlocks.PRISON_BAR, false)
 			.onRenderLayer(1)
-			.setTex(0, MOD_ID + ":block/prison_side_alt", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
-			.setTex(0, MOD_ID + ":block/prison_top_alt", Side.TOP, Side.BOTTOM));
+			.setTex(0, MOD_ID + ":block/prison2", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
+			.setTex(0, MOD_ID + ":block/prison2top", Side.TOP, Side.BOTTOM));
 
 		dispatcher.addDispatch(
 			(
 				new BlockModelFenceThin<>(
 					BattleTowerBlocks.PRISON_BAR_FENCE,
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/center"),
+					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/center2"),
 					(IconCoordinate)null,
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/top"),
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/column")
+					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/top2"),
+					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/column2")
 				)
 			).setAllTextures(0, MOD_ID + ":block/fence_prison/center")
 		);
