@@ -2,6 +2,7 @@ package jamdoggie.betterbattletowers.entity;
 
 import com.mojang.nbt.tags.CompoundTag;
 import jamdoggie.betterbattletowers.BattleTowerMod;
+import jamdoggie.betterbattletowers.damage.BattleTowerMultiHurt;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jamdoggie.betterbattletowers.damage.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianInt;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
@@ -36,12 +38,15 @@ public class MobGolem extends MobPathfinder {
 	private int timer;
 
 	private static final WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
+
+	public static final int PIERCE_DAMAGE = 3;
+
 	static {
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, PIERCE_DAMAGE), 20);
 		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), 3);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), PIERCE_DAMAGE);
 		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 1, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, PIERCE_DAMAGE), 20);
 	}
 
 	public static final int MAX_HEALTH = 450;
@@ -177,7 +182,7 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		if (growl && onGround) {
-			this.world.createExplosion(this, x, y, z, 4.5F + 3 / 4F);
+			this.world.createExplosion(this, x, y, z, 4.5F + PIERCE_DAMAGE / 4F);
 			this.timer = DEFAULT_TIME;
 			this.growl = false;
 		}
@@ -206,7 +211,11 @@ public class MobGolem extends MobPathfinder {
 	protected void attackEntity(@NotNull Entity victim, float distance) {
 		if (this.attackTime <= 0 && distance < 3.0F && victim.bb.maxY > this.bb.minY && victim.bb.minY < this.bb.maxY) {
 			this.attackTime = ATTACK_TIME;
-			victim.hurt(this, attackStrength, DamageType.COMBAT);
+			((BattleTowerMultiHurt) victim).multiHurt(
+				this,
+				inst(DamageType.GENERIC, PIERCE_DAMAGE, 1.0),
+				inst(DamageType.COMBAT, this.attackStrength - PIERCE_DAMAGE)
+			);
 		}
 	}
 
