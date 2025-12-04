@@ -58,7 +58,7 @@ public class MobGolem extends MobPathfinder {
 		this.fireImmune = true;
 		this.attackStrength = 8;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
-		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 1, 5));
+		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, 8));
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
