@@ -78,8 +78,8 @@ public class LootTable {
 					LOGGER.warn("Loot could not be added because the id {} could not be queried", entry.namespaceID());
 					continue;
 				}
-				int minStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
-				int maxStacksize = Math.min(5, loot.getDefaultStack().getMaxStackSize());
+				int minStacksize = Math.min(1, loot.getDefaultStack().getMaxStackSize());
+				int maxStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 30);
 			}
 			for (int i = high; i < lootEntryList.size(); i++) {
@@ -90,7 +90,7 @@ public class LootTable {
 					continue;
 				}
 				int minStacksize = Math.min(1, loot.getDefaultStack().getMaxStackSize());
-				int maxStacksize = Math.min(3, loot.getDefaultStack().getMaxStackSize());
+				int maxStacksize = Math.min(1, loot.getDefaultStack().getMaxStackSize());
 				TOWER_LOOT_TABLE[jndex].addEntry(new WeightedRandomLootObject(loot.getDefaultStack(), minStacksize, maxStacksize).setRandomMetadata(entry.metadata, entry.metadata), level * 20);
 			}
 		}
