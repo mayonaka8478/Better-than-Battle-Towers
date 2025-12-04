@@ -17,7 +17,7 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
-	public static final double INC = 1.11f; // 1.29f
+	public static final double INC = 1.20f; // 1.29f
 	public static final int MAX_TIER = 9;
 	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
