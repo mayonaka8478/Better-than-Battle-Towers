@@ -17,7 +17,7 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 public class LootTable {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
-	public static final double INC = 1.29f;
+	public static final double INC = 1.11f; // 1.29f
 	public static final int MAX_TIER = 9;
 	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
@@ -183,21 +183,21 @@ public class LootTable {
 
 		table.put(tier, new ArrayList<>());
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/flint", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/brick_clay", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ore_raw_iron", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dust_redstone", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ore_raw_gold", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_iron", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_gold", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/bucket_lava", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/sulphur", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/olivine", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/quartz", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/ingot_gold", 0));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/quartz", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/book", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/sulphur", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/olivine", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/tnt", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
@@ -207,14 +207,13 @@ public class LootTable {
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/quartz", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/chainlink", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dye", LAPIZ));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/diamond", 0));
+		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/bucket_lava", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
 		tier++;
 
 		table.put(tier, new ArrayList<>());
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dust_redstone", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/dye", LAPIZ));
-		table.get(tier).add(LootTable.LootEntry.loot("minecraft:item/diamond", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("minecraft:block/mesh_gold", 0));
 		table.get(tier).add(LootTable.LootEntry.loot("betterbattletowers:block/prison_bar", 0));
 
