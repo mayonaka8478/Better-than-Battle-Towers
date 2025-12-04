@@ -13,7 +13,6 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "MobMixinMultiHurt",
     "accessor.TomlAccessor",
     "decorate.ChunkDecoratorHellMixinAddTowers",
     "decorate.ChunkDecoratorOverWorldMixinAddTowers",

@@ -2,7 +2,6 @@ package jamdoggie.betterbattletowers.entity;
 
 import com.mojang.nbt.tags.CompoundTag;
 import jamdoggie.betterbattletowers.BattleTowerMod;
-import jamdoggie.betterbattletowers.damage.BattleTowerMultiHurt;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
@@ -211,8 +210,8 @@ public class MobGolem extends MobPathfinder {
 	protected void attackEntity(@NotNull Entity victim, float distance) {
 		if (this.attackTime <= 0 && distance < 3.0F && victim.bb.maxY > this.bb.minY && victim.bb.minY < this.bb.maxY) {
 			this.attackTime = ATTACK_TIME;
-			((BattleTowerMultiHurt) victim).multiHurt(
-				this,
+			MobUtil.multiHit(
+				this, victim,
 				inst(DamageType.GENERIC, PIERCE_DAMAGE, 1.0),
 				inst(DamageType.COMBAT, this.attackStrength - PIERCE_DAMAGE)
 			);

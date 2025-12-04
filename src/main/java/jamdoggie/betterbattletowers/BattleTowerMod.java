@@ -89,7 +89,6 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		Random random = chunk.getChunkRandom(0x544f574552L);
 		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
 		if (randomNum == 0) {
-			LootTable.init();
 			int x = chunk.xPosition * 16;
 			int z = chunk.zPosition * 16;
 			int y = world.getHeightValue(x, z) - 1;
