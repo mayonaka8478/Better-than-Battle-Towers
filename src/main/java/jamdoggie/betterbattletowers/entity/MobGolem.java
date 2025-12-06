@@ -22,6 +22,7 @@ import java.util.List;
 
 import static jamdoggie.betterbattletowers.damage.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianInt;
+import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
@@ -58,12 +59,12 @@ public class MobGolem extends MobPathfinder {
 		this.fireImmune = true;
 		this.attackStrength = 8;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
-		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, 8));
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
-		this.setHealthRaw(200 + posGausssianInt(this.random, 300));
+		this.setHealthRaw(200 + posGausssianIntBounded(this.random, 300, 0, 8801));
+		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, this.getHealth() / 100));
 		this.isElderly();
 	}
 

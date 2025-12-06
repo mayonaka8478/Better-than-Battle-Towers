@@ -24,4 +24,8 @@ public class MathUtil {
 	public static int posGausssianInt(Random random, int mean){
 		return (int) Math.round(posGausssian(random, mean));
 	}
+
+	public static int posGausssianIntBounded(Random random, int mean, int lower, int upper){
+		return Math.max((Math.min(posGausssianInt(random, mean), upper)), lower);
+	}
 }
