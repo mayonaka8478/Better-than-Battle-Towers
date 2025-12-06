@@ -5,7 +5,6 @@ import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureVanquishedTower;
-import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
@@ -44,7 +43,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
 		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "RuinedTower");
-		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.guidebook.golem.name");
+		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.golem.name");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
 	}
 

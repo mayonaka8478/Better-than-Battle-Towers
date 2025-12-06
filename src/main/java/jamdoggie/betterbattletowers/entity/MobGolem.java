@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static jamdoggie.betterbattletowers.damage.DamageInstance.inst;
-import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianInt;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
@@ -32,51 +31,47 @@ public class MobGolem extends MobPathfinder {
 	private static final float SIGHT_RADIUS = 16.0F;
 	private static final float DEFAULT_SPEED = 0.35f;
 	private static final int ATTACK_TIME = 2 * TICKS_PER_SECOND;
-	private final int attackStrength;
 	private boolean dormant;
 	private boolean growl;
 	private int timer;
+	private int attackStrength;
+	private final int pieceDamage;
+	private int lootAmount;
 
 	private static final WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
 
-	public static final int PIERCE_DAMAGE = 3;
 
 	static {
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, PIERCE_DAMAGE), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 20);
 		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), PIERCE_DAMAGE);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), 3);
 		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 1, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, PIERCE_DAMAGE), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, 3), 20);
 	}
 
-	public static final int MAX_HEALTH = 450;
+	public static final int MAX_HEALTH = 500;
 
 	public MobGolem(World world) {
 		super(world);
 		this.setSize(1.6F, 3.4F);
-		this.scoreValue = 10000;
+		this.setHealthRaw(200 + posGausssianIntBounded(this.random, 300, 0, 8801));
 		this.moveSpeed = DEFAULT_SPEED;
 		this.fireImmune = true;
-		this.attackStrength = 8;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
-		this.setHealthRaw(200 + posGausssianIntBounded(this.random, 300, 0, 8801));
+		this.attackStrength = 8 + (int)Math.floor((this.getHealth() - 200) / 733.416);
+		this.pieceDamage = (int)Math.floor(3.0f / 8.0f * this.attackStrength);
+		this.scoreValue = 10000 + Math.max(this.getHealth() - this.getMaxHealth(), 0);
+		this.lootAmount = 2 + Math.max(this.getHealth() - this.getMaxHealth(), 0) / 50;
 		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, this.getHealth() / 100));
-		this.isElderly();
-	}
-
-	private void isElderly() {
-		if(this.getHealth() > 450){
-			this.scoreValue += 2500;
-		}
 	}
 
 	@Override
 	public int getMaxHealth() {
-		return 450;
+		return 500;
 	}
 
 	public boolean isDormant() {
@@ -100,7 +95,7 @@ public class MobGolem extends MobPathfinder {
 	@Override
 	protected List<WeightedRandomLootObject> getMobDrops() {
 		List<WeightedRandomLootObject> loot = new ArrayList<>(this.mobDrops);
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < this.lootAmount; i++) {
 			loot.add(DROPS.getRandom(this.random));
 		}
 		loot.addAll(this.mobDrops);
@@ -182,7 +177,7 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		if (growl && onGround) {
-			this.world.createExplosion(this, x, y, z, 4.5F + PIERCE_DAMAGE / 4F);
+			this.world.createExplosion(this, x, y, z, 4.5F + pieceDamage / 4F);
 			this.timer = DEFAULT_TIME;
 			this.growl = false;
 		}
@@ -213,8 +208,8 @@ public class MobGolem extends MobPathfinder {
 			this.attackTime = ATTACK_TIME;
 			MobUtil.multiHit(
 				this, victim,
-				inst(DamageType.GENERIC, PIERCE_DAMAGE, 1.0),
-				inst(DamageType.COMBAT, this.attackStrength - PIERCE_DAMAGE)
+				inst(DamageType.GENERIC, pieceDamage, 1.0),
+				inst(DamageType.COMBAT, this.attackStrength - pieceDamage)
 			);
 		}
 	}
@@ -225,18 +220,23 @@ public class MobGolem extends MobPathfinder {
 		if (!canSave) {
 			return false;
 		}
-		nbttagcompound.putByte("isDormant", (byte) (dormant ? 1 : 0));
-		nbttagcompound.putByte("hasGrowled", (byte) (growl ? 1 : 0));
-		nbttagcompound.putByte("explosiveAttackTimer", (byte) timer);
+		nbttagcompound.putByte("isDormant", (byte) (this.dormant ? 1 : 0));
+		nbttagcompound.putByte("hasGrowled", (byte) (this.growl ? 1 : 0));
+		nbttagcompound.putByte("attackStrength", (byte) this.attackStrength);
+		nbttagcompound.putByte("score", (byte) this.scoreValue);
+		nbttagcompound.putByte("lootAmount", (byte) this.lootAmount);
 		return true;
 	}
 
 	@Override
 	public void load(@NotNull CompoundTag nbttagcompound) {
 		super.load(nbttagcompound);
-		dormant = nbttagcompound.getByte("isDormant") == 1;
-		growl = nbttagcompound.getByte("hasGrowled") == 1;
-		timer = nbttagcompound.getByte("explosiveAttackTimer") & 0xff;
+		this.dormant = nbttagcompound.getByte("isDormant") == 1;
+		this.growl = nbttagcompound.getByte("hasGrowled") == 1;
+		this.timer = nbttagcompound.getByte("explosiveAttackTimer") & 0xff;
+		this.attackStrength = nbttagcompound.getByte("attackStrength");
+		this.scoreValue = nbttagcompound.getByte("score");
+		this.lootAmount = nbttagcompound.getByte("lootAmount");
 	}
 
 	@Override
@@ -249,7 +249,10 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
-		if(this.dormant || (attacker != null && type != null && damage == 100) || attacker instanceof MobGolem) return false;
+		if(attacker == null && type == null && damage == 100){
+			return MobUtil.killMob(this);
+		}
+		if(this.dormant || attacker instanceof MobGolem)return false;
 		float modifier = (this.getMaxHealth() - this.getHealth() * 1.0f) / this.getMaxHealth();
 		float speed = MathHelper.lerp(DEFAULT_SPEED, DEFAULT_SPEED * 2, modifier);
 		this.moveSpeed = Math.max(DEFAULT_SPEED, speed);
