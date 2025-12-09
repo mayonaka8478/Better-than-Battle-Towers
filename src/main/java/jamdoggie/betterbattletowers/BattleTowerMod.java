@@ -1,6 +1,7 @@
 package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureReverseTower;
@@ -44,6 +45,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "RuinedTower");
 		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.golem.name");
+		EntityHelper.createEntity(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), "betterbattletowers.aggro_zombie_pigman.name");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
 	}
 
