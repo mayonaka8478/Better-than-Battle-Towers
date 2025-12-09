@@ -164,7 +164,7 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		if (dormant) {
-			this.actwhileDormant();
+			this.actWhileDormant();
 			return;
 		}
 		this.actWhileAwake();
@@ -194,7 +194,7 @@ public class MobGolem extends MobPathfinder {
 		super.onLivingUpdate();
 	}
 
-	private void actwhileDormant() {
+	private void actWhileDormant() {
 		Player player = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2.0D);
 		if (player != null) {
 			this.wakeUp();
@@ -225,6 +225,7 @@ public class MobGolem extends MobPathfinder {
 		nbttagcompound.putByte("attackStrength", (byte) this.attackStrength);
 		nbttagcompound.putByte("score", (byte) this.scoreValue);
 		nbttagcompound.putByte("lootAmount", (byte) this.lootAmount);
+		nbttagcompound.putByte("timer", (byte) this.timer);
 		return true;
 	}
 
@@ -237,6 +238,7 @@ public class MobGolem extends MobPathfinder {
 		this.attackStrength = nbttagcompound.getByte("attackStrength");
 		this.scoreValue = nbttagcompound.getByte("score");
 		this.lootAmount = nbttagcompound.getByte("lootAmount");
+		this.timer = nbttagcompound.getByte("timer");
 	}
 
 	@Override
