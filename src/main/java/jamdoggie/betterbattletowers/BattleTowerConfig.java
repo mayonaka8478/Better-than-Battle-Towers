@@ -106,9 +106,10 @@ public class BattleTowerConfig {
 			Toml toml = ((TomlConfigHandlerAccessor) config).getDefaults();
 			HashMap<String, Toml> fields = ((TomlAccessor) toml).getCategories();
 			fields.remove(key(GENERAL, "VERSION"));
-			fields.get(GENERAL).addEntry("VERSION", "Config version.", version);
+			fields.get(GENERAL).addEntry("VERSION", "Config version.", "BUGGA");
 			fields.get(GENERAL).addEntry("HARDCORE", "Significantly increases the tower difficulty, does not increase drops.", hardcore);
-			config.setDefaults(toml);
+			((TomlAccessor) toml).setCategories(fields);
+			config = new TomlConfigHandler(MOD_ID + "4.0", toml);
 			config.writeConfig();
 			config.loadConfig();
 		}
@@ -205,7 +206,8 @@ public class BattleTowerConfig {
 			.addEntry("STARTING_BLOCK_ID", startingBlockId)
 			.addEntry("STARTING_ITEM_ID", startingItemId)
 			.addEntry("DARKEN_FLOORS", "Adds tainted cages that darken the floors. Greatly increases the difficulty and rewards of newer tower.", tint)
-			.addEntry("LOOT_AMOUNT", "Base amount of loot for all tree structures.", lootamount);
+			.addEntry("LOOT_AMOUNT", "Base amount of loot for all tree structures.", lootamount)
+			.addEntry("HARDCORE", "Significantly increases the tower difficulty, does not increase drops.", hardcore);
 
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
 		for (Map.Entry<String, Toml> category : ((TomlAccessor) postProcessing).getCategories().entrySet()) {

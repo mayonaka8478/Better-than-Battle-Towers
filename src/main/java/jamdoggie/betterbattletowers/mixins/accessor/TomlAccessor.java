@@ -14,4 +14,7 @@ public interface TomlAccessor {
 
 	@Accessor("entries")
 	HashMap<String, Entry<?>> getEntries();
+
+	@Accessor("categories")
+	void setCategories(HashMap<String, Toml> categories);
 }
