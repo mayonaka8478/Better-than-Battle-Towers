@@ -14,6 +14,7 @@
   },
   "mixins": [
     "accessor.TomlAccessor",
+    "accessor.TomlConfigHandlerAccessor",
     "decorate.ChunkDecoratorHellMixinAddTowers",
     "decorate.ChunkDecoratorOverWorldMixinAddTowers",
     "decorate.ChunkDecoratorRetroMixinAddTowers"

@@ -1,6 +1,7 @@
 package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.mixins.accessor.TomlAccessor;
+import jamdoggie.betterbattletowers.mixins.accessor.TomlConfigHandlerAccessor;
 import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.block.Block;
@@ -14,10 +15,12 @@ import turniplabs.halplibe.util.TomlConfigHandler;
 import turniplabs.halplibe.util.toml.Entry;
 import turniplabs.halplibe.util.toml.Toml;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.*;
+import java.util.List;
 
 import static jamdoggie.betterbattletowers.BattleTowerConfigOld.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
@@ -32,8 +35,9 @@ public class BattleTowerConfig {
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int lootamount = 8;
-	private static String version = "4.0";
+	private static String version = "4.1";
 	private static boolean tint = false;
+	private static boolean hardcore = false;
 	private static Map<Integer, List<LootTable.LootEntry>> tempTable;
 	private static Toml postProcessing;
 	private static boolean isOldConfig = false;
@@ -57,21 +61,25 @@ public class BattleTowerConfig {
 		isInit = true;
 		File configFile = new File(CONFIG_DIRECTORY + MOD_ID + ".cfg");
 		if (configFile.exists()) {
-			Properties properties = getOldProperties();
-			ConfigHandler config = new ConfigHandler(MOD_ID, properties);
-			towerrarity = config.getInt("towercount");
-			startingBlockId = config.getInt("starting_block_id");
-			startingItemId = config.getInt("starting_item_id");
-			isOldConfig = true;
-			File newFile = new File(CONFIG_DIRECTORY + "old_" + MOD_ID + ".cfg");
-			if (!configFile.renameTo(newFile)) {
-				LOGGER.error("Battle Towers Old Config file could not be renamed.");
-			}
-			loadConfig(createDefaultConfig(convertOldConfig(config)));
+			loadNewConfig(configFile);
 		} else {
 			loadConfig(createDefaultConfig(getDefaultMap()));
 		}
 		LOGGER.info("Battle Towers Config initialized.");
+	}
+
+	private static void loadNewConfig(File configFile) {
+		Properties properties = getOldProperties();
+		ConfigHandler config = new ConfigHandler(MOD_ID, properties);
+		towerrarity = config.getInt("towercount");
+		startingBlockId = config.getInt("starting_block_id");
+		startingItemId = config.getInt("starting_item_id");
+		isOldConfig = true;
+		File newFile = new File(CONFIG_DIRECTORY + "old_" + MOD_ID + ".cfg");
+		if (!configFile.renameTo(newFile)) {
+			LOGGER.error("Battle Towers Old Config file could not be renamed.");
+		}
+		loadConfig(createDefaultConfig(convertOldConfig(config)));
 	}
 
 	private static void loadConfig(Toml properties) {
@@ -90,6 +98,20 @@ public class BattleTowerConfig {
 			config.writeConfig();
 			config.loadConfig();
 		}
+		String configVersion = config.getString(key(GENERAL, "VERSION"));
+		boolean Version4_1 = configVersion.equals(version);
+		if(!Version4_1){
+			LOGGER.warn("Loaded config Version is {}, but the current Version is {}", configVersion, version);
+			LOGGER.info("Updating the config. Increase version and new property hardcore");
+			Toml toml = ((TomlConfigHandlerAccessor) config).getDefaults();
+			HashMap<String, Toml> fields = ((TomlAccessor) toml).getCategories();
+			fields.remove(key(GENERAL, "VERSION"));
+			fields.get(GENERAL).addEntry("VERSION", "Config version.", version);
+			fields.get(GENERAL).addEntry("HARDCORE", "Significantly increases the tower difficulty, does not increase drops.", hardcore);
+			config.setDefaults(toml);
+			config.writeConfig();
+			config.loadConfig();
+		}
 		readConfigFile(config);
 	}
 
@@ -100,6 +122,7 @@ public class BattleTowerConfig {
 		startingBlockId = config.getInt(key(GENERAL, "STARTING_BLOCK_ID"));
 		startingItemId = config.getInt(key(GENERAL, "STARTING_ITEM_ID"));
 		tint = config.getBoolean(key(GENERAL, "DARKEN_FLOORS"));
+		hardcore = config.getBoolean(key(GENERAL, "HARDCORE"));
 
 		Map<Integer, List<LootTable.LootEntry>> table = new HashMap<>();
 		Toml toml = config.getRawParsed();
@@ -146,12 +169,13 @@ public class BattleTowerConfig {
 			.toString()
 		);
 		properties.addCategory(GENERAL)
-			.addEntry("VERSION", "Mod version.", version)
+			.addEntry("VERSION", "Config version.", version)
 			.addEntry("RARITY", "Chance to spawn per chunk.", towerrarity)
 			.addEntry("STARTING_BLOCK_ID", startingBlockId)
 			.addEntry("STARTING_ITEM_ID", startingItemId)
 			.addEntry("DARKEN_FLOORS", "Adds tainted cages that darken the floors. Greatly increases the difficulty and rewards of newer tower.", tint)
-			.addEntry("LOOT_AMOUNT", "Base amount of loot for all tree structures.", lootamount);
+			.addEntry("LOOT_AMOUNT", "Base amount of loot for all tree structures.", lootamount)
+			.addEntry("HARDCORE", "Significantly increases the tower difficulty, does not increase drops.", hardcore);
 
 		for (int i = 0; i < table.size(); i++) {
 			Toml tomlCategory = properties.addCategory(String.format("Loot for %d Floor", i), LOOT + i);
@@ -176,7 +200,7 @@ public class BattleTowerConfig {
 			.toString());
 
 		newProperties.addCategory(GENERAL)
-			.addEntry("VERSION", "Mod version.", version)
+			.addEntry("VERSION", "Config version.", version)
 			.addEntry("RARITY", "Chance to spawn per chunk.", towerrarity)
 			.addEntry("STARTING_BLOCK_ID", startingBlockId)
 			.addEntry("STARTING_ITEM_ID", startingItemId)
@@ -232,6 +256,10 @@ public class BattleTowerConfig {
 
 	public static boolean isTint() {
 		return tint;
+	}
+
+	public static boolean isHardcore() {
+		return hardcore;
 	}
 
 	public static int getLootAmount() {
