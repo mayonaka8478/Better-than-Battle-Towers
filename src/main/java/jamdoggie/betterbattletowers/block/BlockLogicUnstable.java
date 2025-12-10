@@ -12,14 +12,14 @@ import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
-import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class BlockLogicUnstable extends BlockLogic {
-	public static float BASE_VALUE = 15.0f;
+	public static float BASE_VALUE_BLAST = 15.0f;
+	public static float BASE_VALUE_HARDNESS = 2000.0f;
 
 	public BlockLogicUnstable(Block<?> block, Material material) {
 		super(block, material);
@@ -37,7 +37,7 @@ public class BlockLogicUnstable extends BlockLogic {
 
 	@Override
 	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		return new ItemStack[]{new ItemStack(Blocks.STONE_POLISHED)};
+		return meta > 0 ? new ItemStack[]{new ItemStack(Blocks.STONE_POLISHED)} : null;
 	}
 
 	@Override
@@ -49,14 +49,15 @@ public class BlockLogicUnstable extends BlockLogic {
 		if ((metadata >> 7) == 1) {
 			return;
 		}
-		if ((metadata & 0b0000_0111) == 0) {
+		if ((metadata & 0b0000_0011) == 0) {
 			this.spawnParticle(world, x, y, z);
 			world.setBlockWithNotify(x, y, z, 0);
 			world.playBlockSoundEffect(null, x, y + 0.5F, z, this.block, EnumBlockSoundEffectType.MINE);
 			return;
 		}
 		world.setBlockMetadataWithNotify(x, y, z, (0b1000_0000) + ((metadata & 0b0000_0011) - 1));
-		this.block.blastResistance = BASE_VALUE  / (float)Math.pow(4, (3 - (metadata & 0b0000_0011)));
+		this.block.blastResistance = BASE_VALUE_BLAST / (float)Math.pow(4, (3 - (metadata & 0b0000_0011)));
+		this.block.blockHardness = BASE_VALUE_HARDNESS / (float)Math.pow(4, (3 - (metadata & 0b0000_0011)));
 		world.playBlockSoundEffect(null, x, y + 0.5F, z, this.block, EnumBlockSoundEffectType.DIG);
 		world.scheduleBlockUpdate(x, y, z, this.id(), 2 * Global.TICKS_PER_SECOND);
 	}
@@ -64,7 +65,17 @@ public class BlockLogicUnstable extends BlockLogic {
 
 	@Override
 	public void onBlockPlacedByWorld(World world, int x, int y, int z) {
-		world.setBlockMetadata(x, y, z, world.rand.nextInt(2) + 1);
+		int metadata = world.getBlockMetadata(x, y, z);
+		this.block.blastResistance = BASE_VALUE_BLAST / (float)Math.pow(4, (3 - (metadata & 0b0000_0011)));
+		this.block.blockHardness = BASE_VALUE_HARDNESS / (float)Math.pow(4, (3 - (metadata & 0b0000_0011)));
+		world.setBlockMetadata(x, y, z, this.getRandomMetadata(world));
+	}
+
+	private int getRandomMetadata(World world){
+		int rand = world.rand.nextInt(10);
+		if(rand >= 5) return 2;
+		if(rand >= 2) return 1;
+		return 0;
 	}
 
 	private void spawnParticle(World world, int x, int y, int z) {
