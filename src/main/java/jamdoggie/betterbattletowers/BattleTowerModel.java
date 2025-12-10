@@ -6,42 +6,69 @@ import jamdoggie.betterbattletowers.entity.MobRendererGolem;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
-import net.minecraft.client.render.block.model.BlockModelChest;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
-import net.minecraft.client.render.block.model.BlockModelFenceThin;
-import net.minecraft.client.render.block.model.BlockModelTransparent;
+import net.minecraft.client.render.block.model.*;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 import turniplabs.halplibe.helper.ModelHelper;
 import turniplabs.halplibe.util.ModelEntrypoint;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static net.minecraft.client.render.block.model.BlockModelStandard.BLOCK_TEXTURES;
+import static net.minecraft.client.render.block.model.BlockModelStandard.OVERBRIGHT_TEXTURES;
 
 public class BattleTowerModel implements ModelEntrypoint {
 	@Override
 	public void initBlockModels(BlockModelDispatcher dispatcher) {
-		dispatcher.addDispatch(new BlockModelChest<>(BattleTowerBlocks.TOWER_CHEST, "betterbattletowers:block/chest_tower_")
-			.setAllTextures(BLOCK_TEXTURES, "betterbattletowers:block/chest_tower_top"));
+		dispatcher.addDispatch(new BlockModelChest<>(BattleTowerBlocks.TOWER_CHEST, "betterbattletowers:block/tower_chest/chest_tower_")
+			.setAllTextures(BLOCK_TEXTURES, "betterbattletowers:block/tower_chest/chest_tower_top"));
 
 		dispatcher.addDispatch(new BlockModelTransparent<>(BattleTowerBlocks.PRISON_BAR, false)
 			.onRenderLayer(1)
-			.setTex(0, MOD_ID + ":block/prison2", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
-			.setTex(0, MOD_ID + ":block/prison2top", Side.TOP, Side.BOTTOM));
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2top", Side.TOP, Side.BOTTOM));
 
 		dispatcher.addDispatch(
 			(
 				new BlockModelFenceThin<>(
 					BattleTowerBlocks.PRISON_BAR_FENCE,
 					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/center2"),
-					(IconCoordinate)null,
+					(IconCoordinate) null,
 					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/top2"),
 					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/column2")
 				)
-			).setAllTextures(0, MOD_ID + ":block/fence_prison/center")
+			).setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/fence_prison/center")
 		);
+
+		dispatcher.addDispatch(new BlockModelUnstable<>(BattleTowerBlocks.CRUMBLING_STONE)
+			.setTex(BLOCK_TEXTURES, "minecraft:block/polished_stone_top", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, "minecraft:block/polished_stone_side", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH));
+
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.RUNIC_STONE)
+			.setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone"));
+
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.RUNIC_CARVED_STONE)
+			.setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/runic/carved_runic_stone"));
+
+		dispatcher.addDispatch(new BlockModelHorizontalRotation<>(BattleTowerBlocks.RUNIC_GLYPH_STONE)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph_runic_stone", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_north", Side.NORTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_east", Side.EAST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_south", Side.SOUTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_west", Side.WEST)
+		);
+
+//		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.OVERGROWN_MOSSY_BRICK)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/north", Side.NORTH)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/east", Side.EAST)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/south", Side.SOUTH)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/west", Side.WEST)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/top", Side.BOTTOM)
+//			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/mossy/bottom", Side.TOP)
+//		);
 	}
 
 	@Override
