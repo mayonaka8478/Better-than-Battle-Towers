@@ -32,16 +32,9 @@ public class BlockLogicTainedCage extends BlockLogic {
 
 	@Override
 	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		switch (dropCause){
-			case IMPROPER_TOOL:{
-				return new ItemStack[]{new ItemStack(BattleTowerBlocks.PRISON_BAR_FENCE, world.rand.nextInt(3) + 3)};
-			}
-			case SILK_TOUCH: {
-				return new ItemStack[]{new ItemStack(this.block)};
-			}
-			default: {
-				return null;
-			}
+		if(dropCause == EnumDropCause.SILK_TOUCH){
+			return new ItemStack[]{new ItemStack(this.block)};
 		}
+		return new ItemStack[]{new ItemStack(BattleTowerBlocks.PRISON_BAR_FENCE, world.rand.nextInt(3) + 3)};
 	}
 }
