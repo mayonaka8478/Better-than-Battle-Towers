@@ -2,10 +2,10 @@ package jamdoggie.betterbattletowers.block;
 
 import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.BattleTowerMod;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogicFenceThin;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
 
@@ -13,14 +13,14 @@ public class BattleTowerBlocks {
 	private static int id = BattleTowerConfig.getStartingBlockId();
 	//ChestTower
 	public static final Block<?> TOWER_CHEST = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setResistance(1200.0f)
+		.setResistance(2000.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.MINEABLE_BY_PICKAXE)
 		.build("chest_tower", id++, b -> new BlockLogicChestTower(b, Material.metal));
 
 	public static final Block<?> PRISON_BAR = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setResistance(1200.0f)
+		.setResistance(2000.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
@@ -28,11 +28,50 @@ public class BattleTowerBlocks {
 
 
 	public static final Block<BlockLogicFenceThin> PRISON_BAR_FENCE = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setResistance(1200.0f)
+		.setResistance(2000.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.build("prison_fence", id++, b -> new BlockLogicTaintedFence(b, Material.metal));
+
+	/// HARDCORE
+	public static final Block<?> RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(15.0f)
+		.setBlockSound(BlockSounds.PERMAFROST)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.setImmovable()
+		.build("runic_stone", id++, b -> new BlockLogic(b, Material.metal));
+
+	public static final Block<?> RUNIC_CARVED_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(15.0f)
+		.setBlockSound(BlockSounds.PERMAFROST)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.setImmovable()
+		.build("runic_carved_stone", id++, b -> new BlockLogic(b, Material.metal));
+
+	public static final Block<?> RUNIC_GLYPH_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(15.0f)
+		.setBlockSound(BlockSounds.PERMAFROST)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.setImmovable()
+		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Material.metal));
+
+	public static final Block<?> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(15.0f)
+		.setBlockSound(new BlockSound("step.permafrost", "step.permafrost", 1.0F, 0.1F))
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.build("crumbling_stone", id++, b -> new BlockLogicUnstable(b, Material.stone));
+
+	public static final Block<?> OVERGROWN_MOSSY_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0f)
+		.setHardness(1.5f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.build("overgrown_mossy_stone", id++, b -> new BlockLogic(b, Material.stone));
 
 	public static void init() {
 		// to make sure the constant are initialized
