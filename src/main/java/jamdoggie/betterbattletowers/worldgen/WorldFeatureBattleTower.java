@@ -24,7 +24,6 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
-		LootTable.init();
 		int availableHeight = world.getHeightBlocks() - y;
 		int blockID = world.getBlockId(x + 8, y, z + 8);
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
@@ -33,7 +32,7 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 		this.world = world;
 		this.random = random;
 		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
-		placeTower(x, y, z, availableHeight);
+		this.placeTower(x, y, z, availableHeight);
 		return true;
 	}
 
@@ -58,7 +57,7 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 
 	@Override
 	protected int getLootAmount() {
-		return BattleTowerConfig.isTint() ? (int) Math.floor(LOOT_AMOUNT * 0.3) + LOOT_AMOUNT : LOOT_AMOUNT;
+		return BattleTowerConfig.isTint() ? (int) Math.floor(LOOT_AMOUNT * 0.2) + LOOT_AMOUNT : LOOT_AMOUNT;
 	}
 
 	///  Places the top floor, that includes wall and the actual floor

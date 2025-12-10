@@ -40,7 +40,6 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
-		LootTable.init();
 		int availableHeight = world.getHeightBlocks() - y;
 		int blockID = world.getBlockId(x + 8, y, z + 8);
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
@@ -128,7 +127,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			}
 			if (maxHeight > py + 7) {
 				///  Create holes for mob to fall through to lower level
-				int id = this.random.nextInt(5) == 0 ? BLOCK_AIR : Blocks.STONE_POLISHED.id();
+				int id = this.random.nextInt(5) == 0 ? BLOCK_AIR : FLOOR_BLOCK;
 				this.canReplace(px, py, pz, id);
 			}
 		}
@@ -172,14 +171,15 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 				int py = iy + y + 1;
 				this.doors.add(new Entry(px, py, z, BLOCK_AIR));
 			}
-			this.world.setBlock(px, y, z, Blocks.STONE_POLISHED.id());
+			this.world.setBlock(px, y, z, FLOOR_BLOCK);
 		}
 		int pz = z - 1;
-		this.world.setBlock(x, y, pz, Blocks.STONE_POLISHED.id());
+		this.world.setBlock(x, y, pz, FLOOR_BLOCK);
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
 			this.world.setBlockAndMetadata(px, py, pz, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
+			this.world.setBlockAndMetadata(px, py - 1, pz, this.buildingBlockBag.getRandom(this.random), 0);
 		}
 	}
 
