@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.damage.DamageInstance.inst;
+import static jamdoggie.betterbattletowers.entity.damage.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;

@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.entity;
 
-import jamdoggie.betterbattletowers.damage.DamageInstance;
+import jamdoggie.betterbattletowers.entity.damage.DamageInstance;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.Mob;
 import net.minecraft.core.util.helper.MathHelper;
