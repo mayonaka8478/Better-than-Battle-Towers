@@ -5,7 +5,6 @@ import jamdoggie.betterbattletowers.BattleTowerMod;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
-import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
 
@@ -62,9 +61,9 @@ public class BattleTowerBlocks {
 	public static final Block<?> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(15.0f)
-		.setBlockSound(new BlockSound("step.permafrost", "step.permafrost", 1.0F, 0.1F))
+		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("crumbling_stone", id++, b -> new BlockLogicUnstable(b, Material.stone));
+		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Material.stone, 3.0f));
 
 	public static final Block<?> OVERGROWN_MOSSY_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
