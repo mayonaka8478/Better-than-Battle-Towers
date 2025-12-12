@@ -36,7 +36,7 @@ public class BattleTowerBlocks {
 	/// HARDCORE
 	public static final Block<?> RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(150.0f)
+		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
 		.setImmovable()
@@ -44,7 +44,7 @@ public class BattleTowerBlocks {
 
 	public static final Block<?> RUNIC_CARVED_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(150.0f)
+		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
@@ -52,7 +52,7 @@ public class BattleTowerBlocks {
 
 	public static final Block<?> RUNIC_GLYPH_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(150.0f)
+		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
