@@ -84,11 +84,12 @@ public class MobGolem extends MobPathfinder {
 		int iy = MathHelper.floor(this.y - 0.2 - this.heightOffset);
 		int iz = MathHelper.floor(this.z);
 		int fallDistanceForParticle = (int)Math.ceil((distance - 3.0F));
-		if (fallDistanceForParticle > 0) {
-			int blockID = this.world.getBlockId(ix, iy, iz);
-			if (blockID > 0) {
-				this.world.playBlockSoundEffect(this, this.x, this.y - this.heightOffset, this.z, Blocks.blocksList[blockID], EnumBlockSoundEffectType.ENTITY_LAND);
-			}
+		if (fallDistanceForParticle <= 0) {
+			return;
+		}
+		int blockID = this.world.getBlockId(ix, iy, iz);
+		if (blockID > 0) {
+			this.world.playBlockSoundEffect(this, this.x, this.y - this.heightOffset, this.z, Blocks.blocksList[blockID], EnumBlockSoundEffectType.ENTITY_LAND);
 		}
 	}
 
@@ -150,7 +151,9 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	protected Player findPlayerToAttack() {
-		if (dormant) return null;
+		if (dormant) {
+			return null;
+		}
 		assert world != null;
 		Player entityplayer = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS);
 		return entityplayer != null && this.canEntityBeSeen(entityplayer) && entityplayer.getGamemode().areMobsHostile() ? entityplayer : null;
@@ -204,14 +207,15 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	protected void attackEntity(@NotNull Entity victim, float distance) {
-		if (this.attackTime <= 0 && distance < 3.0F && victim.bb.maxY > this.bb.minY && victim.bb.minY < this.bb.maxY) {
-			this.attackTime = ATTACK_TIME;
-			MobUtil.multiHit(
-				this, victim,
-				inst(DamageType.GENERIC, pieceDamage, 1.0),
-				inst(DamageType.COMBAT, this.attackStrength - pieceDamage)
-			);
+		if (this.attackTime > 0 || (distance >= 3.0F) || (victim.bb.maxY <= this.bb.minY) || victim.bb.minY >= this.bb.maxY) {
+			return;
 		}
+		this.attackTime = ATTACK_TIME;
+		MobUtil.multiHit(
+			this, victim,
+			inst(DamageType.GENERIC, pieceDamage, 1.0),
+			inst(DamageType.COMBAT, this.attackStrength - pieceDamage)
+		);
 	}
 
 	@Override
@@ -258,7 +262,12 @@ public class MobGolem extends MobPathfinder {
 		float modifier = (this.getMaxHealth() - this.getHealth() * 1.0f) / this.getMaxHealth();
 		float speed = MathHelper.lerp(DEFAULT_SPEED, DEFAULT_SPEED * 2, modifier);
 		this.moveSpeed = Math.max(DEFAULT_SPEED, speed);
-		return super.hurt(this, damage, type);
+		boolean hurt = super.hurt(attacker, damage, type);
+		if (!hurt || this.passenger == attacker || this.vehicle == attacker || attacker == this) {
+			return false;
+		}
+		this.target = attacker;
+		return true;
 	}
 
 	@Override
