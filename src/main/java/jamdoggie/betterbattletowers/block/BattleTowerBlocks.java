@@ -36,41 +36,41 @@ public class BattleTowerBlocks {
 	/// HARDCORE
 	public static final Block<?> RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(15.0f)
-		.setBlockSound(BlockSounds.PERMAFROST)
+		.setHardness(150.0f)
+		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
 		.setImmovable()
 		.build("runic_stone", id++, b -> new BlockLogic(b, Material.metal));
 
 	public static final Block<?> RUNIC_CARVED_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(15.0f)
-		.setBlockSound(BlockSounds.PERMAFROST)
+		.setHardness(150.0f)
+		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
 		.build("runic_carved_stone", id++, b -> new BlockLogic(b, Material.metal));
 
 	public static final Block<?> RUNIC_GLYPH_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
-		.setHardness(15.0f)
-		.setBlockSound(BlockSounds.PERMAFROST)
+		.setHardness(150.0f)
+		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
 		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Material.metal));
 
 	public static final Block<?> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setResistance(2000.0f)
-		.setHardness(15.0f)
+		.setResistance(10.0f)
+		.setHardness(1.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
 		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Material.stone, 3.0f));
 
-	public static final Block<?> OVERGROWN_MOSSY_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setResistance(10.0f)
-		.setHardness(1.5f)
-		.setBlockSound(BlockSounds.STONE)
-		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("overgrown_mossy_stone", id++, b -> new BlockLogic(b, Material.stone));
+//	public static final Block<?> OVERGROWN_MOSSY_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
+//		.setResistance(10.0f)
+//		.setHardness(1.5f)
+//		.setBlockSound(BlockSounds.STONE)
+//		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+//		.build("overgrown_mossy_stone", id++, b -> new BlockLogic(b, Material.stone));
 
 	public static void init() {
 		// to make sure the constant are initialized
