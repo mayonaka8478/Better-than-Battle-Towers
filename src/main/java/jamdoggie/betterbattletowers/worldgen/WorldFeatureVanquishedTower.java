@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.worldgen.util.LootTable;
+import jamdoggie.betterbattletowers.worldgen.util.BlockData;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
@@ -48,6 +48,9 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		this.world = world;
 		this.random = random;
 		this.ruinFactor = 1.0f;
+		this.runicChance = 80.0f;
+		this.carvedChance = 19.0f;
+		this.glyphChance = 1f;
 		this.maxHeight = y;
 		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
 		placeTower(x, y, z, availableHeight);
@@ -114,7 +117,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			int py = y + addY;
 			int pz = z + addZ;
 			if (isWall(addX, addZ)) {
-				stackWall(px, py, pz);
+				this.stackWall(px, py, pz);
 				return;
 			}
 			if (((addX > 3 && addX < 12) && addZ == 2 && addX != 11) || addY != 0) {
@@ -127,20 +130,19 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			}
 			if (maxHeight > py + 7) {
 				///  Create holes for mob to fall through to lower level
-				int id = this.random.nextInt(5) == 0 ? BLOCK_AIR : FLOOR_BLOCK;
-				this.canReplace(px, py, pz, id);
+				BlockData data = this.floorBlockBag.getRandom(random);
+				this.canReplace(px, py, pz, data.id(), data.metadata());
 			}
 		}
 	}
 
 	private void stackWall(int px, int py, int pz) {
 		if (this.random.nextFloat() < (1.0f / this.ruinFactor)) {
-			int blockID = this.buildingBlockBag.getRandom(this.random);
 			int iy = py;
 			while (world.getBlockId(px, iy - 1, pz) == BLOCK_AIR) {
 				iy--;
 			}
-			this.world.setBlock(px, iy, pz, blockID);
+			this.placeBlock(this.buildingBlockBag.getRandom(random), px, iy, pz);
 		} else {
 			this.world.setBlock(px, py, pz, BLOCK_AIR);
 		}
@@ -171,15 +173,15 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 				int py = iy + y + 1;
 				this.doors.add(new Entry(px, py, z, BLOCK_AIR));
 			}
-			this.world.setBlock(px, y, z, FLOOR_BLOCK);
+			this.world.setBlock(px, y, z, Blocks.BLOCK_DIAMOND.id());
 		}
 		int pz = z - 1;
-		this.world.setBlock(x, y, pz, FLOOR_BLOCK);
+		this.world.setBlock(x, y, pz, Blocks.STONE_POLISHED.id());
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
+			this.placeBlock(this.buildingBlockBag.getRandom(random), px, py - 1, pz);
 			this.world.setBlockAndMetadata(px, py, pz, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
-			this.world.setBlockAndMetadata(px, py - 1, pz, this.buildingBlockBag.getRandom(this.random), 0);
 		}
 	}
 
