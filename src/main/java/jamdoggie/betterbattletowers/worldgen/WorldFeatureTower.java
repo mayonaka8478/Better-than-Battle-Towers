@@ -4,6 +4,7 @@ package jamdoggie.betterbattletowers.worldgen;
 import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.entity.MobGolem;
+import jamdoggie.betterbattletowers.worldgen.util.BlockData;
 import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import jamdoggie.betterbattletowers.worldgen.util.TowerProperties;
 import net.minecraft.core.WeightedRandomBag;
@@ -24,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
+import static jamdoggie.betterbattletowers.worldgen.util.BlockData.bd;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
@@ -32,16 +34,19 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 public abstract class WorldFeatureTower extends WorldFeature {
 	protected World world;
 	protected Random random;
-	protected int currentFloor = 0;
-	protected WeightedRandomBag<Integer> buildingBlockBag;
-	protected int golemVariant;
 	protected Biome biome;
-	protected int FLOOR_BLOCK;
+	protected int golemVariant;
+	protected int currentFloor = 0;
+	protected WeightedRandomBag<BlockData> buildingBlockBag;
+	protected WeightedRandomBag<BlockData> floorBlockBag;
 
 	///  Constants to avoid having magic numbers
+	public static final int BLOCK_AIR = 0;
 	public static final int FLOOR_HEIGHT = 7;
 	public static final int LOOT_AMOUNT = BattleTowerConfig.getLootAmount();
-	public static final int BLOCK_AIR = 0;
+	protected float runicChance = 65.0f;
+	protected float carvedChance = 25.0f;
+	protected float glyphChance = 10.0f;
 
 	///  Sets the golem type as well as the tower decorations
 	protected final void setTowerProperties(Biome biome) {
@@ -49,21 +54,44 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		TowerProperties.TowerProperty towerProperty = TowerProperties.getTowerProperties(biome, this.random);
 		this.golemVariant = towerProperty.getSkinVariant();
 		this.biome = biome;
-		this.FLOOR_BLOCK = BattleTowerConfig.isHardcore() ? BattleTowerBlocks.CRUMBLING_STONE.id() : Blocks.STONE_POLISHED.id();
-		if(BattleTowerConfig.isHardcore()){
-			this.buildingBlockBag = new WeightedRandomBag<>();
-			this.buildingBlockBag.addEntry(BattleTowerBlocks.RUNIC_STONE.id(), 65);
-			this.buildingBlockBag.addEntry(BattleTowerBlocks.RUNIC_CARVED_STONE.id(), 25);
-			this.buildingBlockBag.addEntry(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 10);
-		}else{
+
+		this.buildingBlockBag = new WeightedRandomBag<>();
+		this.floorBlockBag = new WeightedRandomBag<>();
+		if (BattleTowerConfig.isHardcore()) {
+			this.setHardcoreDecoration();
+		} else {
 			this.buildingBlockBag = towerProperty.getTowerDecorations();
+			this.floorBlockBag.addEntry(bd(Blocks.STONE_POLISHED.id()), 30.0f);
+			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 2), 15.0f);
+			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 1), 5.0f);
+			this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 		}
+	}
+
+	///  For the hardcore tower
+	private void setHardcoreDecoration() {
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_STONE.id()), this.runicChance);
+
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_CARVED_STONE.id()), this.carvedChance);
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 2), this.glyphChance / 4);
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 3), this.glyphChance / 4);
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), this.glyphChance / 4);
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 5), this.glyphChance / 4);
+
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 2), 30.0f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 1), 15.0f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 0), 5.0f);
+		this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 	}
 
 	///  Places tower
 	protected abstract void placeTower(int x, int y, int z, int availableHeight);
 
 	protected abstract int getLootAmount();
+
+	protected final void placeBlock(BlockData blockData, int x, int y, int z) {
+		this.world.setBlockAndMetadata(x, y, z, blockData.id(), blockData.metadata());
+	}
 
 	///  Place the tower on a plinth
 	protected void placeFoundation(int x, int y, int z) {
@@ -78,7 +106,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 					if (!this.isInPerimeter(ix, iz) || (!material.isLiquid() && material.isSolid())) {
 						continue;
 					}
-					world.setBlock(px, y, pz, this.buildingBlockBag.getRandom(this.random));
+					this.placeBlock(this.buildingBlockBag.getRandom(random), px, y, pz);
 					count++;
 				}
 			}
@@ -91,10 +119,11 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Checks if a block is part of the wall
 	protected final boolean isWall(int ix, int iz) {
-		boolean wall0 = (iz == 1 || (iz == 3 && !BattleTowerConfig.isHardcore()) || iz == 14 || ix == 1 || ix == 14);
+		boolean isInnerWall = iz == 3 && !BattleTowerConfig.isHardcore();
+		boolean wall0 = (iz == 1 || iz == 14 || ix == 1 || ix == 14);
 		boolean wall1 = (ix == 2 || ix == 13) && ((iz > 3 && iz < 6) || (iz > 9 && iz < 12));
 		boolean wall2 = (ix == 3 || ix == 12) && ((iz > 1 && iz < 4) || (iz > 11 && iz < 14));
-		return wall0 || wall1 || wall2;
+		return wall0 || wall1 || wall2 || isInnerWall;
 	}
 
 	/// Checks if a block is within the tower (including walls)
@@ -119,12 +148,12 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  This function places the individual blocks of a given floor.
 	protected void placeFloor(int x, int addX, int y, int addY, int z, int addZ, boolean topFloor) {
-		if (isInPerimeter(addX, addZ)) {
+		if (this.isInPerimeter(addX, addZ)) {
 			int px = x + addX;
 			int py = y + addY;
 			int pz = z + addZ;
-			if (isWall(addX, addZ)) {
-				this.world.setBlock(px, py, pz, this.buildingBlockBag.getRandom(this.random));
+			if (this.isWall(addX, addZ)) {
+				this.placeBlock(this.buildingBlockBag.getRandom(random), px, py, pz);
 				return;
 			}
 			if (((addX > 3 && addX < 12) && addZ == 2 && addX != 11) || addY != 0) {
@@ -135,18 +164,22 @@ public abstract class WorldFeatureTower extends WorldFeature {
 				this.canReplace(px, py, pz, Blocks.STONE_POLISHED.id());
 				return;
 			}
-			///  Create holes for mob to fall through to lower level
-			int id = this.random.nextInt(6) == 0 ? BLOCK_AIR : FLOOR_BLOCK;
-			this.canReplace(px, py, pz, id);
+			// Create holes for mob to fall through to lower level
+			BlockData data = this.floorBlockBag.getRandom(random);
+			this.canReplace(px, py, pz, data.id(), data.metadata());
 		}
 	}
 
 	protected final void canReplace(int x, int y, int z, int placeID) {
+		this.canReplace(x, y, z, placeID, 0);
+	}
+
+	protected final void canReplace(int x, int y, int z, int placeID, int metadata) {
 		int blockID = this.world.getBlockId(x, y, z);
 		if (blockID == Blocks.STONE_POLISHED.id() || blockID == Blocks.STAIRS_BRICK_STONE_POLISHED.id() || blockID == BattleTowerBlocks.CRUMBLING_STONE.id()) {
 			return;
 		}
-		this.world.setBlock(x, y, z, placeID);
+		this.world.setBlockAndMetadata(x, y, z, placeID, metadata);
 	}
 
 	///  Places the windows
@@ -177,7 +210,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 			TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
 			tileentitymobspawner.setMobId(this.getRandomSpawnerMob());
 		}
-		world.setBlock(x, y - 1, z, FLOOR_BLOCK);
+		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
 	}
 
 	///  Picks a mob to spawn for spawner
@@ -192,6 +225,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		return getArachnid();
 	}
 
+	///  Pick a random spider
 	protected @NotNull String getArachnid() {
 		if (biome.hasSurfaceSnow()) {
 			return "minecraft:spider";
@@ -209,6 +243,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		return "minecraft:spider";
 	}
 
+	///  Pick a random zombie
 	protected @NotNull String getZombie() {
 		int pick = this.random.nextInt(100);
 		if (pick >= 80) {
@@ -241,8 +276,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
+			this.placeBlock(this.buildingBlockBag.getRandom(random), px, py - 1, pz);
 			this.world.setBlockAndMetadata(px, py, pz, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
-			this.world.setBlockAndMetadata(px, py - 1, pz, this.buildingBlockBag.getRandom(this.random), 0);
 		}
 	}
 
@@ -254,11 +289,11 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		BlockLogicChest.setType(world, x, y, z, BlockLogicChest.Type.LEFT);
 		BlockLogicChest.setType(world, x + 1, y, z, BlockLogicChest.Type.RIGHT);
 		/// so the chest won't fly
-		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
-		world.setBlock(x + 1, y - 1, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlock(x + 1, y - 1, z, Blocks.STONE_POLISHED.id());
 		/// fix the holes underneath the plinth
-		world.setBlock(x, y - 2, z, Blocks.STONE_POLISHED.id());
-		world.setBlock(x + 1, y - 2, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlock(x, y - 2, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlock(x + 1, y - 2, z, Blocks.STONE_POLISHED.id());
 	}
 
 	/// Sets up the chest and fills it with loot
@@ -275,15 +310,15 @@ public abstract class WorldFeatureTower extends WorldFeature {
 				int iy = ix - 4;
 				if (iy > 2) {
 					for (int cy = 0; cy < iy; cy++) {
-						this.world.setBlock(x + ix, y + cy, z + 2, this.buildingBlockBag.getRandom(this.random));
+						this.placeBlock(this.buildingBlockBag.getRandom(random), x + ix, y + cy, z + 2);
 					}
 				}
-				this.world.setBlock(x + ix, y, z + 2, FLOOR_BLOCK);
+				this.world.setBlock(x + ix, y, z + 2, Blocks.STONE_POLISHED.id());
 			}
 		}
-		if(BattleTowerConfig.isHardcore()) return;
-		this.world.setBlock(x + 11, y + 1, z + 3, this.buildingBlockBag.getRandom(this.random));
-		this.world.setBlock(x + 11, y + 2, z + 3, this.buildingBlockBag.getRandom(this.random));
+		if (BattleTowerConfig.isHardcore()) return;
+		this.placeBlock(this.buildingBlockBag.getRandom(random), x + 11, y + 1, z + 3);
+		this.placeBlock(this.buildingBlockBag.getRandom(random), x + 11, y + 2, z + 3);
 	}
 
 	///  Spawns and moves the golem to the top floor
@@ -298,11 +333,11 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Decorate the crown with grenulations
 	protected void createCrenulations(int x, int y, int z) {
-		int crenulation = 0;
-		for (int ix = 0; ix < Chunk.CHUNK_SIZE_X; ix++) {
-			for (int iz = 0; iz < Chunk.CHUNK_SIZE_X; iz++) {
-				if (isInPerimeter(ix, iz) && isWall(ix, iz) && (crenulation++ & 1) == 0) {
-					this.world.setBlock(ix + x, y + 2, iz + z, this.buildingBlockBag.getRandom(this.random));
+		boolean crenulation = false;
+		for (int ix = 0; ix < Chunk.CHUNK_SIZE_X; ix++, crenulation = !crenulation) {
+			for (int iz = 0; iz < Chunk.CHUNK_SIZE_X; iz++, crenulation = !crenulation) {
+				if (this.isInPerimeter(ix, iz) && this.isWall(ix, iz) && crenulation) {
+					this.placeBlock(this.buildingBlockBag.getRandom(random), ix + x, y + 2, iz + z);
 				}
 			}
 		}
