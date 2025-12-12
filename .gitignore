@@ -4,5 +4,4 @@ build/
 out/
 run/
 run-server/
-/src/main/resources/assets/betterbattletowers/textures/entity/golem/temp/
-/src/main/resources/assets/betterbattletowers/textures/entity/golem/backup/
+/assets/
