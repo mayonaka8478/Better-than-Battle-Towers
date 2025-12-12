@@ -14,6 +14,7 @@ tile.betterbattletowers.prison.bar.desc=Iron cage that blocks all light.
 tile.betterbattletowers.prison.fence.name=Tinted Iron Bars
 tile.betterbattletowers.prison.fence.desc=A decorative fence salvaged from tinted iron cages.
 
+# Missing jap and russian translation
 tile.betterbattletowers.crumbling.stone.name=Crumbling Polished Stone
 tile.betterbattletowers.crumbling.stone.desc=These old tile wont hold up much longer.
 tile.betterbattletowers.runic.stone.name=Runic Stone
