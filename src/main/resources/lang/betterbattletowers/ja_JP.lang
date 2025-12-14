@@ -9,7 +9,16 @@ betterbattletowers.subtitles.mob.golem.special=ゴーレムが攻撃する
 
 tile.betterbattletowers.chest.tower.name=タワーチェスト
 tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱、重くて持ち上げられない
-tile.betterbattletowers.prison.bar.name=遮光鉄ブロック
+tile.betterbattletowers.prison.bar.name=遮光鉄棒ブロック
 tile.betterbattletowers.prison.bar.desc=光を遮断する、棒状の鉄製ブロック
-tile.betterbattletowers.prison.fence.name=遮光鉄格子
+tile.betterbattletowers.prison.fence.name=鉄棒の柵
 tile.betterbattletowers.prison.fence.desc=棒状の鉄でできた囲い、大人の事情により遮光効果はない
+
+tile.betterbattletowers.crumbling.stone.name=朽ちたつやあり石
+tile.betterbattletowers.crumbling.stone.desc=この石は叩いたら渡れなくなってしまうだろう
+tile.betterbattletowers.runic.stone.name=古代の石材
+tile.betterbattletowers.runic.stone.desc=タワーの住民を封印するために作られたであろう石材
+tile.betterbattletowers.runic.carved.stone.name=彫刻した古代の石材
+tile.betterbattletowers.runic.carved.stone.desc=彫刻された古代の石材、素敵な模様からはこの石材の存在意義を感じ取れる
+tile.betterbattletowers.runic.glyph.stone.name=刻まれた古代の石材
+tile.betterbattletowers.runic.glyph.stone.desc=輝いているのに光ってない古代の石材…どういうことだろう
