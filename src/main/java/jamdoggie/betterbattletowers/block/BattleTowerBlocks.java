@@ -2,6 +2,9 @@ package jamdoggie.betterbattletowers.block;
 
 import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.BattleTowerMod;
+import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
+import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling;
+import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicStairsCrumbling;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
@@ -58,19 +61,31 @@ public class BattleTowerBlocks {
 		.setImmovable()
 		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Material.metal));
 
-	public static final Block<?> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+	public static final Block<BlockLogicCrumbling> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
 		.setHardness(1.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Material.stone, 3.0f));
+		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Blocks.STONE_POLISHED, Material.stone, 3.0f));
 
-//	public static final Block<?> OVERGROWN_MOSSY_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
-//		.setResistance(10.0f)
-//		.setHardness(1.5f)
-//		.setBlockSound(BlockSounds.STONE)
-//		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-//		.build("overgrown_mossy_stone", id++, b -> new BlockLogic(b, Material.stone));
+	public static final Block<BlockLogicSlabCrumbling> SLAB_CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0f)
+		.setHardness(1.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.build("slab_crumbling_stone", id++, b -> new BlockLogicSlabCrumbling(b, CRUMBLING_STONE)
+			.setDropBlock(Blocks.SLAB_STONE_POLISHED)
+		);
+
+	public static final Block<BlockLogicStairsCrumbling> STAIRS_CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0f)
+		.setHardness(1.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.build("stairs_crumbling_stone", id++, b -> new BlockLogicStairsCrumbling(b, CRUMBLING_STONE)
+			.setDropBlock(Blocks.SLAB_STONE_POLISHED)
+		);
+
 
 	public static void init() {
 		// to make sure the constant are initialized
