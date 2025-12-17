@@ -45,7 +45,7 @@
 			"jamdoggie.betterbattletowers.BattleTowerMod"
 		],
 		"initModels": [
-			"jamdoggie.betterbattletowers.BattleTowerModel"
+			"jamdoggie.betterbattletowers.model.BattleTowerModel"
 		],
 		"server": [
 			"jamdoggie.betterbattletowers.BattleTowerServer"
