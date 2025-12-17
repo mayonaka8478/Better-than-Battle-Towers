@@ -173,7 +173,6 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 				int py = iy + y + 1;
 				this.doors.add(new Entry(px, py, z, BLOCK_AIR));
 			}
-			this.world.setBlock(px, y, z, Blocks.BLOCK_DIAMOND.id());
 		}
 		int pz = z - 1;
 		this.world.setBlock(x, y, pz, Blocks.STONE_POLISHED.id());

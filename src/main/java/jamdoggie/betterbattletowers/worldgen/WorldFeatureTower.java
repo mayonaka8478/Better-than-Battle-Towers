@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers.worldgen;
 
 import jamdoggie.betterbattletowers.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.entity.MobGolem;
 import jamdoggie.betterbattletowers.worldgen.util.BlockData;
 import jamdoggie.betterbattletowers.worldgen.util.LootTable;
@@ -25,6 +26,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
+import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling.BreakingStage.*;;
+import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling.SLAB_STATE.LOWER;
+import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling.SLAB_STATE.UPPER;
 import static jamdoggie.betterbattletowers.worldgen.util.BlockData.bd;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
@@ -61,9 +65,10 @@ public abstract class WorldFeatureTower extends WorldFeature {
 			this.setHardcoreDecoration();
 		} else {
 			this.buildingBlockBag = towerProperty.getTowerDecorations();
-			this.floorBlockBag.addEntry(bd(Blocks.STONE_POLISHED.id()), 30.0f);
-			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 2), 15.0f);
-			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 1), 5.0f);
+			this.floorBlockBag.addEntry(bd(Blocks.STONE_POLISHED.id()), 20.0f);
+			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 13.33f);
+			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 10.0f);
+			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 6.67f);
 			this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 		}
 	}
@@ -78,9 +83,11 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), this.glyphChance / 4);
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 5), this.glyphChance / 4);
 
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 2), 30.0f);
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 1), 15.0f);
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), 0), 5.0f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 20.0f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 13.34f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 10.0f);
+		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(HEAVY.ordinal())), 6.66f);
+
 		this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 	}
 
