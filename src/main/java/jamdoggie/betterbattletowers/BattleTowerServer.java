@@ -9,10 +9,10 @@ public class BattleTowerServer implements DedicatedServerModInitializer {
 	@Override
 	public void onInitializeServer() {
 		// Register sounds for the server
-		register(MOD_ID + ":mob.golem");
-		register(MOD_ID + ":mob.golem.awaken");
-		register(MOD_ID + ":mob.golem.death");
-		register(MOD_ID + ":mob.golem.hurt");
-		register(MOD_ID + ":mob.golem.special");
+//		register(MOD_ID + ":mob.golem");
+//		register(MOD_ID + ":mob.golem.awaken");
+//		register(MOD_ID + ":mob.golem.death");
+//		register(MOD_ID + ":mob.golem.hurt");
+//		register(MOD_ID + ":mob.golem.special");
 	}
 }
