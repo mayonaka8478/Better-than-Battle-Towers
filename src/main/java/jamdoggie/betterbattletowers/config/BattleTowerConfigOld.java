@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers;
+package jamdoggie.betterbattletowers.config;
 
 import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import net.minecraft.core.block.Block;

@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.block;
 
-import jamdoggie.betterbattletowers.BattleTowerConfig;
+import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling;

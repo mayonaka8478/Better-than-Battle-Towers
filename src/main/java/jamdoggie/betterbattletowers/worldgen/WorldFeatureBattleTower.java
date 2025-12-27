@@ -1,7 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.BattleTowerConfig;
-import jamdoggie.betterbattletowers.worldgen.util.LootTable;
+import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;

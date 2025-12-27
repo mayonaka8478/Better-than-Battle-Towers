@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers;
+package jamdoggie.betterbattletowers.config;
 
 import jamdoggie.betterbattletowers.mixins.accessor.TomlAccessor;
 import jamdoggie.betterbattletowers.mixins.accessor.TomlConfigHandlerAccessor;
@@ -15,14 +15,13 @@ import turniplabs.halplibe.util.TomlConfigHandler;
 import turniplabs.halplibe.util.toml.Entry;
 import turniplabs.halplibe.util.toml.Toml;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.*;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.BattleTowerConfigOld.*;
+import static jamdoggie.betterbattletowers.config.BattleTowerConfigOld.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.getDefaultMap;
