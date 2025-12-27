@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers.worldgen;
 
 
-import jamdoggie.betterbattletowers.BattleTowerConfig;
+import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.entity.MobGolem;
@@ -27,8 +27,6 @@ import java.util.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling.BreakingStage.*;;
-import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling.SLAB_STATE.LOWER;
-import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling.SLAB_STATE.UPPER;
 import static jamdoggie.betterbattletowers.worldgen.util.BlockData.bd;
 import static jamdoggie.betterbattletowers.worldgen.util.LootTable.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
