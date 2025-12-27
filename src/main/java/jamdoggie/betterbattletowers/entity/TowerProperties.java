@@ -1,11 +1,12 @@
-package jamdoggie.betterbattletowers.worldgen.util;
+package jamdoggie.betterbattletowers.entity;
 
+import jamdoggie.betterbattletowers.util.BlockData;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.world.biome.Biome;
 
 import java.util.*;
 
-import static jamdoggie.betterbattletowers.worldgen.util.TowerProperties.BlockPallet.pallet;
+import static jamdoggie.betterbattletowers.entity.TowerProperties.BlockPallet.pallet;
 import static net.minecraft.core.block.Blocks.*;
 import static net.minecraft.core.world.biome.Biomes.*;
 

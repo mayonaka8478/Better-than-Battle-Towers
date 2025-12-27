@@ -2,7 +2,6 @@ package jamdoggie.betterbattletowers.config;
 
 import jamdoggie.betterbattletowers.mixins.accessor.TomlAccessor;
 import jamdoggie.betterbattletowers.mixins.accessor.TomlConfigHandlerAccessor;
-import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
@@ -24,7 +23,7 @@ import java.util.List;
 import static jamdoggie.betterbattletowers.config.BattleTowerConfigOld.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
-import static jamdoggie.betterbattletowers.worldgen.util.LootTable.getDefaultMap;
+import static jamdoggie.betterbattletowers.config.LootTable.getDefaultMap;
 import static net.minecraft.core.util.collection.NamespaceID.getPermanent;
 
 public class BattleTowerConfig {
