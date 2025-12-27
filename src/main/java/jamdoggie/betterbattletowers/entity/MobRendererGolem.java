@@ -39,7 +39,6 @@ public class MobRendererGolem extends MobRenderer<MobGolem> {
 	@Override
 	public void renderPreview(Tessellator tessellator, MobGolem golem, double x, double y, double z, float yaw, float partialTick) {
 		GL11.glPushMatrix();
-//		GL11.glScalef(0.5F, 0.5F, 0.5F);
 		super.renderPreview(tessellator, golem, x, y - 2.0, z, yaw, partialTick);
 		GL11.glPopMatrix();
 	}
