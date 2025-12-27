@@ -38,6 +38,9 @@
 		"afterGameStart": [
 			"jamdoggie.betterbattletowers.BattleTowerMod"
 		],
+		"afterClientStart": [
+			"jamdoggie.betterbattletowers.BattleTowerMod"
+		],
 		"recipesReady": [
 			"jamdoggie.betterbattletowers.BattleTowerMod"
 		],
