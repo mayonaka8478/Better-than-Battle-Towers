@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.util;
+package jamdoggie.betterbattletowers.util;
 
 import java.util.Objects;
 

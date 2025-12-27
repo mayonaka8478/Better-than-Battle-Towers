@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen;
 
-import jamdoggie.betterbattletowers.worldgen.util.BlockData;
+import jamdoggie.betterbattletowers.util.BlockData;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;

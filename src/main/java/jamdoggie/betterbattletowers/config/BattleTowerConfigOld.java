@@ -1,6 +1,5 @@
 package jamdoggie.betterbattletowers.config;
 
-import jamdoggie.betterbattletowers.worldgen.util.LootTable;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.IItemConvertible;
@@ -9,7 +8,7 @@ import turniplabs.halplibe.util.ConfigHandler;
 
 import java.util.*;
 
-import static jamdoggie.betterbattletowers.worldgen.util.LootTable.LootEntry.loot;
+import static jamdoggie.betterbattletowers.config.LootTable.LootEntry.loot;
 
 public class BattleTowerConfigOld {
 
