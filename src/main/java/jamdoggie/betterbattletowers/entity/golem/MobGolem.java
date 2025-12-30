@@ -3,7 +3,9 @@ package jamdoggie.betterbattletowers.entity.golem;
 import com.mojang.nbt.tags.CompoundTag;
 import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.entity.MobUtil;
-import jamdoggie.betterbattletowers.SkinVariantReflection;
+import jamdoggie.betterbattletowers.mixins.accessor.EntityVariantsAccessor;
+import jamdoggie.betterbattletowers.mixins.accessor.SkinVariantAccessor;
+import net.minecraft.client.entity.ClientSkinVariantList;
 import net.minecraft.core.Global;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
@@ -24,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jamdoggie.betterbattletowers.entity.golem.GolemVariants.DEFAULT;
 import static jamdoggie.betterbattletowers.util.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
 import static jamdoggie.betterbattletowers.config.LootTable.LAPIZ;
@@ -74,12 +77,12 @@ public class MobGolem extends MobPathfinder {
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(3, "normal", String.class);
+		this.entityData.define(3, DEFAULT, String.class);
 	}
 
 	@Override
 	public @NotNull String getDefaultEntityTexture() {
-		return String.format("/assets/%s/textures/entity/%s/normal/0.png", this.textureIdentifier.namespace(), this.textureIdentifier.value());
+		return String.format("/assets/%s/textures/entity/%s/%s/0.png", this.textureIdentifier.namespace(), DEFAULT, this.textureIdentifier.value());
 	}
 
 	@Override
@@ -95,39 +98,25 @@ public class MobGolem extends MobPathfinder {
 		return variantList.getSkinReference(basePath + "variants.json", "0", this.getSkinVariant());
 	}
 
-	public void setVariant(String index) {
+	public final void setVariant(String index) {
+		GolemVariants.addEntry(index);
 		this.entityData.set(3, index);
-	}
-
-	@Override
-	public int getSkinVariant() {
-		return Byte.toUnsignedInt(this.entityData.getByte(1));
-	}
-
-	public void setSkinVariant(int skinVariant) {
-		this.entityData.set(1, (byte)skinVariant);
 	}
 
 	@Override
 	public boolean cycleVariant() {
 		SkinVariantList variantList = Global.accessor.getSkinVariantList();
 		String basePath = String.format("/assets/%s/textures/entity/%s/%s/", this.textureIdentifier.namespace(), this.textureIdentifier.value(), this.entityData.getString(3));
-		Object entityVariants = SkinVariantReflection.getEntityVariants(variantList, basePath + "variants.json");
+		ClientSkinVariantList.EntityVariants entityVariants = ((SkinVariantAccessor)variantList).invokeGetEntityVariants(basePath + "variants.json");
 		int skinVar = this.getSkinVariant();
-		if(SkinVariantReflection.getIndexedSkins(entityVariants).length - 1 == this.getSkinVariant()) {
-			String nextPath = this.getNextPath(this.entityData.getString(3));
+		if(((EntityVariantsAccessor)entityVariants).getIndexedSkins().length - 1 == this.getSkinVariant()) {
+			String nextPath = GolemVariants.getNextValue(this.entityData.getString(3));
 			this.setVariant(nextPath);
 			skinVar = 0;
 			basePath = String.format("/assets/%s/textures/entity/%s/%s/", this.textureIdentifier.namespace(), this.textureIdentifier.value(), nextPath);
 		}
 		this.setSkinVariant(variantList.nextSkinVariant(basePath + "variants.json", skinVar));
 		return skinVar != this.getSkinVariant();
-	}
-
-	public static String getNextPath(String string) {
-		if(string.equalsIgnoreCase("normal")) return "hot";
-		if(string.equalsIgnoreCase("hot")) return "cold";
-		return "normal";
 	}
 
 

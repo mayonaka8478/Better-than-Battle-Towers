@@ -2,12 +2,14 @@ package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
+import jamdoggie.betterbattletowers.config.LootTable;
 import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
-import jamdoggie.betterbattletowers.entity.MobGolem;
+import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
+import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureVanquishedTower;
-import jamdoggie.betterbattletowers.entity.TowerProperties;
+import jamdoggie.betterbattletowers.util.TowerProperties;
 import jamdoggie.betterbattletowers.worldgen.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
@@ -54,6 +56,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void beforeClientStart() {
+		LOGGER.info("");
 		SoundRepository.registerNamespace(MOD_ID);
 	}
 
@@ -74,8 +77,9 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterGameStart() {
-		BattleTowerConfig.processOldConfig();
 		TowerProperties.init();
+		LootTable.init();
+		GolemVariants.init();
 	}
 
 	@Override
