@@ -23,3 +23,7 @@ tile.betterbattletowers.runic.carved.stone.name=Carved Runic Stone
 tile.betterbattletowers.runic.carved.stone.desc=A carved runic stone, a pretty reminder of its purpose.
 tile.betterbattletowers.runic.glyph.stone.name=Glyph Runic Stone
 tile.betterbattletowers.runic.glyph.stone.desc=A glowing runic stone that emits no light.
+
+# Model viewer
+model.category.entity.golem.state=State: %s
+
