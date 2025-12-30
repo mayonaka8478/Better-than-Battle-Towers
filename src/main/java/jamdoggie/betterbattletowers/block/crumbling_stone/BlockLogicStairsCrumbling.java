@@ -24,7 +24,12 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 
 	@Override
 	public void onEntityStandOn(World world, int x, int y, int z, Entity entity) {
-		this.modelBlock.onEntityWalking(world, x, y, z, entity);
+		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
+	}
+
+	@Override
+	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
+		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
 	}
 
 	@Override
