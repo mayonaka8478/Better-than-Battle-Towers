@@ -4,10 +4,10 @@ package jamdoggie.betterbattletowers.worldgen;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
-import jamdoggie.betterbattletowers.entity.MobGolem;
+import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.util.BlockData;
 import jamdoggie.betterbattletowers.config.LootTable;
-import jamdoggie.betterbattletowers.entity.TowerProperties;
+import jamdoggie.betterbattletowers.util.TowerProperties;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
@@ -37,7 +37,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	protected World world;
 	protected Random random;
 	protected Biome biome;
-	protected int golemVariant;
+	protected String golemVariant;
 	protected int currentFloor = 0;
 	protected WeightedRandomBag<BlockData> buildingBlockBag;
 	protected WeightedRandomBag<BlockData> floorBlockBag;
@@ -181,7 +181,12 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	protected final void canReplace(int x, int y, int z, int placeID, int metadata) {
 		int blockID = this.world.getBlockId(x, y, z);
-		if (blockID == Blocks.STONE_POLISHED.id() || blockID == Blocks.STAIRS_BRICK_STONE_POLISHED.id() || blockID == BattleTowerBlocks.CRUMBLING_STONE.id()) {
+		if (blockID == Blocks.STONE_POLISHED.id()
+			|| blockID == Blocks.STAIRS_BRICK_STONE_POLISHED.id()
+			|| blockID == BattleTowerBlocks.SLAB_CRUMBLING_STONE.id()
+			|| blockID == BattleTowerBlocks.CRUMBLING_STONE.id()
+			|| blockID == BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id()
+		) {
 			return;
 		}
 		this.world.setBlockAndMetadata(x, y, z, placeID, metadata);
@@ -329,7 +334,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	///  Spawns and moves the golem to the top floor
 	protected final void placeGolem(double x, double y, double z) {
 		MobGolem golem = new MobGolem(world);
-		golem.setSkinVariant(this.golemVariant);
+		golem.setVariant(this.golemVariant);
 		golem.spawnInit();
 		golem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
 		world.entityJoinedWorld(golem);
