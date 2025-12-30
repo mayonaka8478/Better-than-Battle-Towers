@@ -1,8 +1,8 @@
 package jamdoggie.betterbattletowers.model;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
-import jamdoggie.betterbattletowers.entity.MobGolem;
-import jamdoggie.betterbattletowers.entity.MobRendererGolem;
+import jamdoggie.betterbattletowers.entity.golem.MobGolem;
+import jamdoggie.betterbattletowers.entity.golem.MobRendererGolem;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;

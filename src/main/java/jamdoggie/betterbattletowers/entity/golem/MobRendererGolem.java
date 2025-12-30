@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.entity;
+package jamdoggie.betterbattletowers.entity.golem;
 
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.entity.MobRenderer;
@@ -24,7 +24,7 @@ public class MobRendererGolem extends MobRenderer<MobGolem> {
 	@Override
 	protected boolean prepareArmor(MobGolem golem, int renderPass, float partialTick) {
 		if (renderPass == 0 && !golem.isDormant()) {
-			this.bindTexture(String.format("/assets/%s/textures/entity/golem/eyes/%s.png", MOD_ID, golem.getTextureReference()));
+			this.bindTexture(String.format("/assets/%s/textures/entity/golem/%s/eyes/%s.png", MOD_ID, golem.getEntityData().getString(3), golem.getTextureReference()));
 			if (LightmapHelper.isLightmapEnabled()) {
 				LightmapHelper.setLightmapCoord(LightmapHelper.getLightmapCoord(15, 15));
 			}
