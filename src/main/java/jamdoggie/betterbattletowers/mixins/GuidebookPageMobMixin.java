@@ -2,7 +2,6 @@ package jamdoggie.betterbattletowers.mixins;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
-import jamdoggie.betterbattletowers.entity.MobGolem;
 import net.minecraft.client.gui.guidebook.mobs.GuidebookPageMob;
 import net.minecraft.core.entity.Mob;
 import org.spongepowered.asm.mixin.Final;

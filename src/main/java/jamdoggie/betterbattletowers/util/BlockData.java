@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class BlockData {
 	private int id;
-
 	private int metadata;
 
 	public static BlockData bd(int id){

@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.entity.damage;
+package jamdoggie.betterbattletowers.util;
 
 import net.minecraft.core.util.helper.DamageType;
 import org.jetbrains.annotations.NotNull;
