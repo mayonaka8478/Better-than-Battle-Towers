@@ -1,5 +1,7 @@
 package jamdoggie.betterbattletowers.worldgen;
 
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.util.BlockData;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
@@ -13,12 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static jamdoggie.betterbattletowers.util.BlockData.bd;
+
 public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	private static final int MIN_HEIGHT = 7 * FLOOR_HEIGHT;
 	private static final float BASE_VALUE = 1.10f;
 	private float ruinFactor;
 	private double maxHeight;
 	private final List<Entry> doors = new ArrayList<>();
+	public static WeightedRandomBag<BlockData> stairs = new WeightedRandomBag<>();
+	static {
+		stairs.addEntry(bd(Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0), 20.0f);
+		stairs.addEntry(bd(BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(3)), 35.0f);
+		stairs.addEntry(bd(BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(2)), 25.0f);
+		stairs.addEntry(bd(BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(1)), 15.0f);
+		stairs.addEntry(bd(BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(0)), 10.0f);
+	}
 
 	private static class Entry {
 		int x;
@@ -179,8 +191,9 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
-			this.placeBlock(this.buildingBlockBag.getRandom(random), px, py - 1, pz);
-			this.world.setBlockAndMetadata(px, py, pz, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
+			this.placeBlock(this.floorBlockBag.getRandom(random), px, py - 1, pz);
+// 			this.world.setBlockAndMetadata(px, py, pz, BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), 0);
+			this.placeBlock(stairs.getRandom(random), px, py, pz );
 		}
 	}
 
