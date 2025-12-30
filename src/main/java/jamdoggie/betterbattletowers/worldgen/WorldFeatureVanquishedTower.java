@@ -192,7 +192,6 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
 			this.placeBlock(this.floorBlockBag.getRandom(random), px, py - 1, pz);
-// 			this.world.setBlockAndMetadata(px, py, pz, BattleTowerBlocks.STAIRS_CRUMBLING_STONE.id(), 0);
 			this.placeBlock(stairs.getRandom(random), px, py, pz );
 		}
 	}
