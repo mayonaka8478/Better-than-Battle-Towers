@@ -23,7 +23,7 @@
 
 	"icon": "icon.png",
   "license": "CC0-1.0",
-
+	"accessWidener" : "betterbattletowers.classtweaker",
   "environment": "*",
   "entrypoints": {
     "main": [
