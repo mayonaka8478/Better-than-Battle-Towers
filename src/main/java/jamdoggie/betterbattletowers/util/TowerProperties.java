@@ -232,7 +232,7 @@ public class TowerProperties {
 		);
 		OBSIDIAN_TOWER = register(asSet(OVERWORLD_HELL),
 			asBag(BlockPallet.pallet(OBSIDIAN.id(), 100.0f))
-			, "netherrack"
+			, "obsidian"
 		);
 		SLAVERS_TOWER = register(asSet(OVERWORLD_HELL),
 			asBag(BlockPallet.pallet(BRICK_NETHERRACK.id(), 100.0f))
@@ -244,7 +244,7 @@ public class TowerProperties {
 		);
 		SLATE_TOWER = register(asSet(OVERWORLD_HELL),
 			asBag(BlockPallet.pallet(SLATE_POLISHED.id(), 50.0f), BlockPallet.pallet(SLATE.id(), 50.0f))
-			, "netherrack"
+			, "slate"
 		);
 
 	}
