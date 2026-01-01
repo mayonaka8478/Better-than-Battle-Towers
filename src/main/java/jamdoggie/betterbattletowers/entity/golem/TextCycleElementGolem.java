@@ -11,6 +11,7 @@ public class TextCycleElementGolem extends TextCycleElement<String> {
 
 	@Override
 	public String cycleElement(String string, int i) {
+		if(i == -1) return GolemVariants.getPrevValue(string);
 		return GolemVariants.getNextValue(string);
 	}
 
