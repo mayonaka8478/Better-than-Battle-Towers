@@ -29,7 +29,7 @@ import java.util.List;
 import static jamdoggie.betterbattletowers.entity.golem.GolemVariants.DEFAULT;
 import static jamdoggie.betterbattletowers.util.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
-import static jamdoggie.betterbattletowers.config.LootTable.LAPIZ;
+import static jamdoggie.betterbattletowers.config.LootTables.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
 @SuppressWarnings("java:S2160")
@@ -47,11 +47,11 @@ public class MobGolem extends MobPathfinder {
 
 	private static final WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
 	static {
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), 3);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 1, 5).setRandomMetadata(LAPIZ, LAPIZ), 20);
-		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, 3), 20);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.OLIVINE.getDefaultStack(), 1, 10), 250);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DYE.getDefaultStack(), 1, 5).setRandomMetadata(LAPIZ, LAPIZ), 250);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_IRON.getDefaultStack(), 1, 3), 200);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.ORE_RAW_GOLD.getDefaultStack(), 1, 3), 150);
+		DROPS.addEntry(new WeightedRandomLootObject(Items.DUST_REDSTONE.getDefaultStack(), 1, 5), 100);
 	}
 
 	public static final int MAX_HEALTH = 500;
@@ -64,14 +64,19 @@ public class MobGolem extends MobPathfinder {
 		this.fireImmune = true;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
 		this.footSize = 2;
-		this.dormant = false;
+		this.dormant = true;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
 		this.attackStrength = 8 + (int)Math.floor((this.getHealth() - 200) / 733.416);
 		this.pieceDamage = (int)Math.floor(3.0f / 8.0f * this.attackStrength);
-		this.scoreValue = 10000 + Math.max(this.getHealth() - this.getMaxHealth(), 0);
+		this.scoreValue = 10000 + Math.max(this.getHealth() - this.getMaxHealth(), 0) * 20;
 		this.lootAmount = 2 + Math.max(this.getHealth() - this.getMaxHealth(), 0) / 50;
 		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, this.getHealth() / 100));
+	}
+
+	@Override
+	public void spawnInit() {
+		this.entityData.set(3, GolemVariants.getRandomEntry(this.random));
 	}
 
 	@Override
@@ -283,9 +288,9 @@ public class MobGolem extends MobPathfinder {
 		nbttagcompound.putByte("isDormant", (byte) (this.dormant ? 1 : 0));
 		nbttagcompound.putByte("hasGrowled", (byte) (this.growl ? 1 : 0));
 		nbttagcompound.putByte("attackStrength", (byte) this.attackStrength);
-		nbttagcompound.putByte("score", (byte) this.scoreValue);
+		nbttagcompound.putInt("score", (byte) this.scoreValue);
 		nbttagcompound.putByte("lootAmount", (byte) this.lootAmount);
-		nbttagcompound.putByte("timer", (byte) this.timer);
+		nbttagcompound.putInt("timer",this.timer);
 		nbttagcompound.putString("type", (String) this.entityData.getString(3));
 		return true;
 	}
@@ -295,11 +300,10 @@ public class MobGolem extends MobPathfinder {
 		super.load(nbttagcompound);
 		this.dormant = nbttagcompound.getByte("isDormant") == 1;
 		this.growl = nbttagcompound.getByte("hasGrowled") == 1;
-		this.timer = nbttagcompound.getByte("explosiveAttackTimer") & 0xff;
 		this.attackStrength = nbttagcompound.getByte("attackStrength");
-		this.scoreValue = nbttagcompound.getByte("score");
+		this.scoreValue = nbttagcompound.getInteger("score");
 		this.lootAmount = nbttagcompound.getByte("lootAmount");
-		this.timer = nbttagcompound.getByte("timer");
+		this.timer = nbttagcompound.getInteger("timer");
 		this.entityData.set(3, nbttagcompound.getString("type"));
 	}
 
