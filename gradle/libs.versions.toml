@@ -39,6 +39,8 @@ gson = "2.13.2"
 commonsLang3 = "3.20.0"
 # This should match the version used by the current BTA release.
 lwjgl = "3.3.3"
+# hocon
+hocon = "1.4.3"
 ##########################################################################
 
 [libraries]
@@ -56,6 +58,7 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 commonsLang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commonsLang3" }
 # https://piston-data.mojang.com/v1/objects/43db9b498cb67058d2e12d394e6507722e71bb45/client.jar
 clientJar = { group = "objects", name = "client", version = "43db9b498cb67058d2e12d394e6507722e71bb45" }
+hocon = {group = "com.typesafe", name = "config", version.ref = "hocon"}
 
 [plugins]
 loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }

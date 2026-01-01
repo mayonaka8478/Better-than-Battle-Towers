@@ -47,8 +47,12 @@ lwjgl {
 dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
+
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
+    // a more human readable js
+    implementation(libs.hocon)
+
     // If you do not need Halplibe you can comment out or delete this line.
     implementation(libs.halplibe)
     implementation(libs.modMenu)
