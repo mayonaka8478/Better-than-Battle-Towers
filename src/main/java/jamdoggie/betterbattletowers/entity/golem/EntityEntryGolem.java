@@ -22,7 +22,7 @@ public class EntityEntryGolem extends EntityEntry<MobGolem> {
 	public List<ButtonElement> getEntryButtons(Minecraft minecraft, Screen parentScreen, MobGolem mobGolem) {
 		List<ButtonElement> buttonList = new ArrayList<>();
 		I18n translator = I18n.getInstance();
-		ListenerButtonElement golemState = new ListenerButtonElement(-1, -120, 0, 120, 20, translator.translateKeyAndFormat("model.category.entity.golem.state", "Awake"));
+		ListenerButtonElement golemState = new ListenerButtonElement(-1, -120, 0, 120, 20, translator.translateKeyAndFormat("model.category.entity.golem.state", "Dormant"));
 		golemState.setActionListener(() -> dormantState(mobGolem, golemState, translator));
 		buttonList.add(golemState);
 		TextCycleElement<String> type = new TextCycleElementGolem(parentScreen, minecraft.font, -120, golemState.yPosition + 21, 120, 20, "Stone");
