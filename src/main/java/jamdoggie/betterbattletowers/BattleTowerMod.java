@@ -2,7 +2,7 @@ package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
-import jamdoggie.betterbattletowers.config.LootTable;
+import jamdoggie.betterbattletowers.config.LootTables;
 import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
@@ -28,7 +28,7 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.config.LootTable.LAPIZ;
+import static jamdoggie.betterbattletowers.config.LootTables.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
@@ -78,7 +78,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	@Override
 	public void afterGameStart() {
 		TowerProperties.init();
-		LootTable.init();
+		LootTables.init();
 		GolemVariants.init();
 	}
 
