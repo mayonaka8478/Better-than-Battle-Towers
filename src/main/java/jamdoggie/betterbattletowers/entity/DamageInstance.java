@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.util;
+package jamdoggie.betterbattletowers.entity;
 
 import net.minecraft.core.util.helper.DamageType;
 import org.jetbrains.annotations.NotNull;
@@ -9,20 +9,14 @@ public class DamageInstance implements Comparable<DamageInstance> {
 
 	int damage;
 	DamageType type;
-	double weight;
 
 	public static DamageInstance inst(DamageType type, int damage) {
-		return new DamageInstance(type, damage, 0);
+		return new DamageInstance(type, damage);
 	}
 
-	public static DamageInstance inst(DamageType type, int damage, double weight) {
-		return new DamageInstance(type, damage, weight);
-	}
-
-	public DamageInstance(DamageType type, int damage, double weight) {
+	public DamageInstance(DamageType type, int damage) {
 		this.damage = damage;
 		this.type = type;
-		this.weight = weight;
 	}
 
 	public int getDamage() {
@@ -31,10 +25,6 @@ public class DamageInstance implements Comparable<DamageInstance> {
 
 	public DamageType getType() {
 		return type;
-	}
-
-	public double getWeight() {
-		return weight;
 	}
 
 	@Override
@@ -51,12 +41,6 @@ public class DamageInstance implements Comparable<DamageInstance> {
 
 	@Override
 	public int compareTo(@NotNull DamageInstance that) {
-		if(this.weight - that.weight < 1.0E-5){
-			if(this.damage == that.damage){
-				return 0;
-			}
-			return this.damage - that.damage;
-		}
-		return (int)Math.round(this.weight - that.weight);
+		return this.damage - that.damage;
 	}
 }

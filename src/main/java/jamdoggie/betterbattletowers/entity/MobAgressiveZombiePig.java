@@ -1,5 +1,6 @@
 package jamdoggie.betterbattletowers.entity;
 
+import jamdoggie.betterbattletowers.mixins.accessor.MobZombiePigAccessor;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobZombiePig;
 import net.minecraft.core.entity.player.Player;
@@ -11,6 +12,7 @@ public class MobAgressiveZombiePig extends MobZombiePig {
 
 	public MobAgressiveZombiePig(World world) {
 		super(world);
+		((MobZombiePigAccessor)this).setRandomSoundDelay(this.random.nextInt(40));
 	}
 
 	@Override

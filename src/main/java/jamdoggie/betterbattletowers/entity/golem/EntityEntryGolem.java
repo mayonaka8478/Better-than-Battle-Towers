@@ -22,12 +22,12 @@ public class EntityEntryGolem extends EntityEntry<MobGolem> {
 	public List<ButtonElement> getEntryButtons(Minecraft minecraft, Screen parentScreen, MobGolem mobGolem) {
 		List<ButtonElement> buttonList = new ArrayList<>();
 		I18n translator = I18n.getInstance();
-		ListenerButtonElement golemState = new ListenerButtonElement(-1, -120, 0, 120, 20, translator.translateKeyAndFormat("model.category.entity.golem.state", "Dormant"));
+		ListenerButtonElement golemState = new ListenerButtonElement(-1, -120, 0, 120, 20, translator.translateKey("model.category.entity.golem.state.dormant"));
 		golemState.setActionListener(() -> dormantState(mobGolem, golemState, translator));
 		buttonList.add(golemState);
 		TextCycleElement<String> type = new TextCycleElementGolem(parentScreen, minecraft.font, -120, golemState.yPosition + 21, 120, 20, "Stone");
-		type.textField.setPrefaceText("Type: ");
-		type.textField.setPlaceholder("Golem Type");
+		type.textField.setPrefaceText(translator.translateKey("model.category.entity.golem.placeholder.text"));
+		type.textField.setPlaceholder(translator.translateKey("model.category.entity.golem.placeholder"));
 		type.setOnValueChanged(() -> setNextType(type, mobGolem));
 		buttonList.add(type);
 		return buttonList;
@@ -39,7 +39,7 @@ public class EntityEntryGolem extends EntityEntry<MobGolem> {
 
 	private static void dormantState(MobGolem mobGolem, ListenerButtonElement button, I18n translator) {
 		mobGolem.setDormant(!mobGolem.isDormant());
-		button.displayString = translator.translateKeyAndFormat("model.category.entity.golem.state", mobGolem.isDormant() ? "Dormant" : "Awake");
+		button.displayString = translator.translateKey("model.category.entity.golem.state" + (mobGolem.isDormant() ? "dormant" : "awake"));
 	}
 
 	@Override

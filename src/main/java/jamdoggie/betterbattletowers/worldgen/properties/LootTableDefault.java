@@ -1,7 +1,6 @@
-package jamdoggie.betterbattletowers.config.util;
+package jamdoggie.betterbattletowers.worldgen.properties;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
-import jamdoggie.betterbattletowers.config.LootTables;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.IItemConvertible;
@@ -11,10 +10,10 @@ import net.minecraft.core.item.Items;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.config.util.LootTable.table;
+import static jamdoggie.betterbattletowers.worldgen.properties.LootTable.table;
 
-public class DefaultTable {
-	private DefaultTable(){}
+public class LootTableDefault {
+	private LootTableDefault(){}
 	public static LootEntry looObj(IItemConvertible item, int metadata, double weight, int fixedField) {
 		ItemStack stack = item.getDefaultStack();
 		stack.setMetadata(metadata);

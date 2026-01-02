@@ -1,5 +1,6 @@
-package jamdoggie.betterbattletowers.block;
+package jamdoggie.betterbattletowers.block.tainted;
 
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.entity.TileEntity;

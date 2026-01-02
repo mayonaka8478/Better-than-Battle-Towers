@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.util;
+package jamdoggie.betterbattletowers.worldgen.properties;
 
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.world.biome.Biome;

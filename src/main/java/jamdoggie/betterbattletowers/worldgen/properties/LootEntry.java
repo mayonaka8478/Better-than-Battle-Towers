@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.config.util;
+package jamdoggie.betterbattletowers.worldgen.properties;
 
 import net.minecraft.core.WeightedRandomLootObject;
 

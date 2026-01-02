@@ -1,6 +1,8 @@
-package jamdoggie.betterbattletowers.config.util;
+package jamdoggie.betterbattletowers.worldgen.properties.adapter;
 
 import com.google.gson.*;
+import jamdoggie.betterbattletowers.worldgen.properties.LootEntry;
+import jamdoggie.betterbattletowers.worldgen.properties.LootTable;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
