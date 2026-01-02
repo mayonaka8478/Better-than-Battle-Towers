@@ -1,5 +1,7 @@
 package jamdoggie.betterbattletowers.block;
 
+import jamdoggie.betterbattletowers.block.tainted.BlockLogicTainedCage;
+import jamdoggie.betterbattletowers.block.tainted.BlockLogicTaintedFence;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;

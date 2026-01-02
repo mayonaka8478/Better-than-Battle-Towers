@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.block;
+package jamdoggie.betterbattletowers.block.tainted;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicFenceThin;

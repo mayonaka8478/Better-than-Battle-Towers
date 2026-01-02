@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.WorldFeatureTower.BLOCK_AIR;
+import static jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureTower.BLOCK_AIR;
 
 public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTriggerStandOn {
 	public Block<?> dropBlock;

@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static jamdoggie.betterbattletowers.entity.golem.GolemVariants.DEFAULT;
-import static jamdoggie.betterbattletowers.util.DamageInstance.inst;
+import static jamdoggie.betterbattletowers.entity.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
-import static jamdoggie.betterbattletowers.config.LootTables.LAPIZ;
+import static jamdoggie.betterbattletowers.worldgen.properties.LootTables.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
 @SuppressWarnings("java:S2160")
@@ -38,12 +38,12 @@ public class MobGolem extends MobPathfinder {
 	private static final float SIGHT_RADIUS = 16.0F;
 	private static final float DEFAULT_SPEED = 0.35f;
 	private static final int ATTACK_TIME = 2 * TICKS_PER_SECOND;
-	private boolean dormant;
-	private boolean growl;
-	private int timer;
-	private int attackStrength;
-	private final int pieceDamage;
-	private int lootAmount;
+	private boolean dormant = true;
+	private boolean growl = false;
+	private int timer = DEFAULT_TIME;
+	private int attackStrength = 8;
+	private int pieceDamage = 3;
+	private int lootAmount = 10;
 
 	private static final WeightedRandomBag<WeightedRandomLootObject> DROPS = new WeightedRandomBag<>();
 	static {
@@ -55,11 +55,12 @@ public class MobGolem extends MobPathfinder {
 	}
 
 	public static final int MAX_HEALTH = 500;
+	private int maxHealth;
 
 	public MobGolem(World world) {
 		super(world);
 		this.setSize(1.6F, 3.4F);
-		this.setHealthRaw(200 + posGausssianIntBounded(this.random, 300, 0, 8801));
+		this.maxHealth = 200 + posGausssianIntBounded(this.random, 300, 0, 8801);
 		this.moveSpeed = DEFAULT_SPEED;
 		this.fireImmune = true;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
@@ -67,6 +68,7 @@ public class MobGolem extends MobPathfinder {
 		this.dormant = true;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
+		this.setHealthRaw(this.getMaxHealth());
 		this.attackStrength = 8 + (int)Math.floor((this.getHealth() - 200) / 733.416);
 		this.pieceDamage = (int)Math.floor(3.0f / 8.0f * this.attackStrength);
 		this.scoreValue = 10000 + Math.max(this.getHealth() - this.getMaxHealth(), 0) * 20;
@@ -127,7 +129,7 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public int getMaxHealth() {
-		return 500;
+		return this.maxHealth;
 	}
 
 	public MobGolem setDormant(boolean value){
@@ -191,16 +193,16 @@ public class MobGolem extends MobPathfinder {
 		if (random.nextInt(5) == 0) {
 			super.knockBack(attacker, damage, distX, distY);
 		}
-		resetTimer();
+		this.resetTimer();
 	}
 
 	@Override
 	public void fling(double xd, double yd, double zd, float pushTime) {
-		resetTimer();
+		this.resetTimer();
 	}
 
 	private void resetTimer() {
-		if(this.attackTime > - 2 * TICKS_PER_SECOND ){
+		if(this.attackTime > - 2 * TICKS_PER_SECOND && (float) this.getHealth() /this.getMaxHealth() > 0.35f){
 			this.timer = Math.max(timer, 4 * TICKS_PER_SECOND);
 		}
 	}
@@ -253,7 +255,7 @@ public class MobGolem extends MobPathfinder {
 			return;
 		}
 		if(this.target != null){
-			timer--;
+			this.timer--;
 		}
 		super.onLivingUpdate();
 	}
@@ -274,7 +276,7 @@ public class MobGolem extends MobPathfinder {
 		this.attackTime = ATTACK_TIME;
 		MobUtil.multiHit(
 			this, victim,
-			inst(DamageType.GENERIC, pieceDamage, 1.0),
+			inst(DamageType.GENERIC, pieceDamage),
 			inst(DamageType.COMBAT, this.attackStrength - pieceDamage)
 		);
 	}
@@ -285,13 +287,14 @@ public class MobGolem extends MobPathfinder {
 		if (!canSave) {
 			return false;
 		}
+		nbttagcompound.putInt("maxHealth", this.getMaxHealth());
 		nbttagcompound.putByte("isDormant", (byte) (this.dormant ? 1 : 0));
 		nbttagcompound.putByte("hasGrowled", (byte) (this.growl ? 1 : 0));
 		nbttagcompound.putByte("attackStrength", (byte) this.attackStrength);
 		nbttagcompound.putInt("score", (byte) this.scoreValue);
 		nbttagcompound.putByte("lootAmount", (byte) this.lootAmount);
 		nbttagcompound.putInt("timer",this.timer);
-		nbttagcompound.putString("type", (String) this.entityData.getString(3));
+		nbttagcompound.putString("type", this.entityData.getString(3));
 		return true;
 	}
 
@@ -304,6 +307,7 @@ public class MobGolem extends MobPathfinder {
 		this.scoreValue = nbttagcompound.getInteger("score");
 		this.lootAmount = nbttagcompound.getByte("lootAmount");
 		this.timer = nbttagcompound.getInteger("timer");
+		this.maxHealth = nbttagcompound.getInteger("maxHealth");
 		this.entityData.set(3, nbttagcompound.getString("type"));
 	}
 

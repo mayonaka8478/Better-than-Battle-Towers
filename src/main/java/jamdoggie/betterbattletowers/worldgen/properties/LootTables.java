@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.config;
+package jamdoggie.betterbattletowers.worldgen.properties;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -8,7 +8,8 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
-import jamdoggie.betterbattletowers.config.util.*;
+import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootEntryJsonAdapter;
+import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootTableJsonAdapter;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
@@ -47,6 +48,7 @@ public class LootTables {
 	private LootTables() {
 	}
 
+
 	public static void init() {
 		if (init) {
 			return;
@@ -62,44 +64,44 @@ public class LootTables {
 		Type type = new TypeToken<List<LootTable>>() {
 		}.getType();
 
-		if (Files.notExists(CONFIG_PATH)) {
+		if (Files.notExists(LootTables.CONFIG_PATH)) {
 			try {
-				if(FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(ASSETS_JAR_PATH) == null){
-					List<LootTable> defaultTable = DefaultTable.getDefaultTable();
+				if(FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(LootTables.ASSETS_JAR_PATH) == null){
+					List<LootTable> defaultTable = LootTableDefault.getDefaultTable();
 					String json = gson.toJson(defaultTable, type);
 					Config config = ConfigFactory.parseString("{ loot_tables = " + json + " }");
-					Files.write(CONFIG_PATH, config.root()
+					Files.write(LootTables.CONFIG_PATH, config.root()
 						.render(ConfigRenderOptions.defaults()
 							.setJson(false)
 							.setOriginComments(false))
 						.getBytes(StandardCharsets.UTF_8));
 				}
-				try (InputStream stream = DataLoader.class.getResourceAsStream(ASSETS_JAR_PATH)) {
+				try (InputStream stream = DataLoader.class.getResourceAsStream(LootTables.ASSETS_JAR_PATH)) {
 					if (stream == null) {
 						LOGGER.error("LootTable could not be regenerated, betterbattletowers.jar is corrupted.");
-						throw new RuntimeException("Asset not found in JAR: " + ASSETS_JAR_PATH);
+						throw new RuntimeException("Asset not found in JAR: " + LootTables.ASSETS_JAR_PATH);
 					}
-					Files.copy(stream, CONFIG_PATH);
+					Files.copy(stream, LootTables.CONFIG_PATH);
 				}
 			} catch (IOException e) {
 				LOGGER.error("Loot table failed to be copied to config.");
 				throw new RuntimeException("Failed to create default loot config at: "
-					+ CONFIG_PATH.toAbsolutePath(), e);
+					+ LootTables.CONFIG_PATH.toAbsolutePath(), e);
 			}
 		}
 
 		try {
-			Config config = ConfigFactory.parseFile(CONFIG_PATH.toFile());
+			Config config = ConfigFactory.parseFile(LootTables.CONFIG_PATH.toFile());
 			String jsonString = config.getValue("loot_tables")
 				.render(ConfigRenderOptions.concise());
 			List<LootTable> table = gson.fromJson(jsonString, type);
-			createTables(table);
+			LootTables.createTables(table);
 		} catch (ConfigException e) {
 			LOGGER.error("Failed to read configuration file.");
-			throw new RuntimeException("Failed to parse HOCON config: " + CONFIG_PATH.toAbsolutePath(), e);
+			throw new RuntimeException("Failed to parse HOCON config: " + LootTables.CONFIG_PATH.toAbsolutePath(), e);
 		} catch (JsonSyntaxException e) {
 			LOGGER.error("");
-			throw new RuntimeException("Loot configuration file is malformed: " + CONFIG_PATH.toAbsolutePath(), e);
+			throw new RuntimeException("Loot configuration file is malformed: " + LootTables.CONFIG_PATH.toAbsolutePath(), e);
 		}
 	}
 

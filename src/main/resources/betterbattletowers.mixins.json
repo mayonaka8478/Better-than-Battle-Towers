@@ -17,6 +17,7 @@
   },
   "mixins": [
     "EntityMixinBlockStandOn",
+    "accessor.MobZombiePigAccessor",
     "accessor.SkinVariantAccessor",
     "decorate.ChunkDecoratorHellMixinAddTowers",
     "decorate.ChunkDecoratorOverWorldMixinAddTowers",
