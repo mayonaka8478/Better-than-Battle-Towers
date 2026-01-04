@@ -1,12 +1,15 @@
+# Guidebook
 betterbattletowers.golem.name=Golem
 betterbattletowers.golem.desc=A powerful foe that lays dormant on top of ancient towers.
 
+# Golem sounds
 betterbattletowers.subtitles.mob.golem=Golem growls
 betterbattletowers.subtitles.mob.golem.awaken=Golem awakens
 betterbattletowers.subtitles.mob.golem.death=Golem death
 betterbattletowers.subtitles.mob.golem.hurt=Golem hurt
 betterbattletowers.subtitles.mob.golem.special=Golem attack
 
+# Blocks
 tile.betterbattletowers.chest.tower.name=Tower Chest
 tile.betterbattletowers.chest.tower.desc=Old sturdy chest placed in ancient towers. Too heavy to carry.
 tile.betterbattletowers.prison.bar.name=Tinted Iron Cage
@@ -14,7 +17,6 @@ tile.betterbattletowers.prison.bar.desc=Iron cage that blocks all light.
 tile.betterbattletowers.prison.fence.name=Tinted Iron Bars
 tile.betterbattletowers.prison.fence.desc=A decorative fence salvaged from tinted iron cages.
 
-# Missing russian translation
 tile.betterbattletowers.crumbling.stone.name=Crumbling Polished Stone
 tile.betterbattletowers.crumbling.stone.desc=These old tile wont hold up much longer.
 tile.betterbattletowers.runic.stone.name=Runic Stone
@@ -25,5 +27,8 @@ tile.betterbattletowers.runic.glyph.stone.name=Glyph Runic Stone
 tile.betterbattletowers.runic.glyph.stone.desc=A glowing runic stone that emits no light.
 
 # Model viewer
-model.category.entity.golem.state=State: %s
+model.category.entity.golem.state.dormant = State: Dormant.
+model.category.entity.golem.state.awake = State: Awake.
+model.category.entity.golem.placeholder.text = Type:
+model.category.entity.golem.placeholder = Golem Type
 
