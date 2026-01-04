@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.properties;
+package jamdoggie.betterbattletowers.worldgen.properties.loot;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -10,6 +10,7 @@ import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
 import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootEntryJsonAdapter;
 import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootTableJsonAdapter;
+import jamdoggie.betterbattletowers.worldgen.properties.defaults.LootTableDefault;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;

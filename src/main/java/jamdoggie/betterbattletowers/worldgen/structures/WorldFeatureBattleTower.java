@@ -7,7 +7,7 @@ import net.minecraft.core.world.World;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.LootTables.MAX_TIER;
+import static jamdoggie.betterbattletowers.worldgen.properties.loot.LootTables.MAX_TIER;
 
 public class WorldFeatureBattleTower extends WorldFeatureTower {
 	public static final int MIN_HEIGHT = 10 * FLOOR_HEIGHT;
