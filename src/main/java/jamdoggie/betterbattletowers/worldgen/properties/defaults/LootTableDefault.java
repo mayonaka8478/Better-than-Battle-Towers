@@ -1,6 +1,9 @@
-package jamdoggie.betterbattletowers.worldgen.properties;
+package jamdoggie.betterbattletowers.worldgen.properties.defaults;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.worldgen.properties.loot.LootEntry;
+import jamdoggie.betterbattletowers.worldgen.properties.loot.LootTable;
+import jamdoggie.betterbattletowers.worldgen.properties.loot.LootTables;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.IItemConvertible;
@@ -10,7 +13,7 @@ import net.minecraft.core.item.Items;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.LootTable.table;
+import static jamdoggie.betterbattletowers.worldgen.properties.loot.LootTable.table;
 
 public class LootTableDefault {
 	private LootTableDefault(){}

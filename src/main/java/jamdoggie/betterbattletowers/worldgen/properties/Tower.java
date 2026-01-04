@@ -1,5 +1,7 @@
 package jamdoggie.betterbattletowers.worldgen.properties;
 
+import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockPallet;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.world.biome.Biome;
 
@@ -8,7 +10,7 @@ import java.util.*;
 import static net.minecraft.core.block.Blocks.*;
 import static net.minecraft.core.world.biome.Biomes.*;
 
-public class TowerProperties {
+public class Tower {
 	private static final Map<Biome, Set<TowerProperty>> biomeToTowerProperties = new HashMap<>();
 	private static final List<TowerProperty> LIST_TOWER_PROPERTIES = new ArrayList<>();
 	// normal towers
@@ -39,25 +41,7 @@ public class TowerProperties {
 	public static final TowerProperty DILAPIDATED_NETHERRACK_TOWER;
 	public static final TowerProperty SLAVERS_TOWER;
 
-	private TowerProperties() {
-	}
-
-	public static class BlockPallet{
-		protected final BlockData data;
-		protected final float chance;
-
-		public BlockPallet(BlockData data, float chance) {
-			this.data = data;
-			this.chance = chance;
-		}
-
-		public static BlockPallet pallet(int blockID, float chance) {
-			return new BlockPallet(new BlockData(blockID), chance);
-		}
-
-		public static BlockPallet pallet(BlockData data, float chance) {
-			return new BlockPallet(data, chance);
-		}
+	private Tower() {
 	}
 
 	public static class TowerProperty {
@@ -89,7 +73,7 @@ public class TowerProperties {
 	private static WeightedRandomBag<BlockData> asBag(BlockPallet... elements) {
 		WeightedRandomBag<BlockData> pallet = new WeightedRandomBag<>();
 		for(BlockPallet block : elements){
-			pallet.addEntry(block.data, block.chance);
+			pallet.addEntry(block.getData(), block.getChance());
 		}
 		return pallet;
 	}
