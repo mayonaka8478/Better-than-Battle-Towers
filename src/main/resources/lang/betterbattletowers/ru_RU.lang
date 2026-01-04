@@ -1,12 +1,15 @@
+# Guidebook
 betterbattletowers.golem.name=Голем
 betterbattletowers.golem.desc=Могущественный враг, дремлющий на вершинах древних башен.
 
+# Golem sounds
 betterbattletowers.subtitles.mob.golem=
 betterbattletowers.subtitles.mob.golem.awaken=
 betterbattletowers.subtitles.mob.golem.death=
 betterbattletowers.subtitles.mob.golem.hurt=
 betterbattletowers.subtitles.mob.golem.special=
 
+# Blocks
 tile.betterbattletowers.chest.tower.name=Башенный сундук
 tile.betterbattletowers.chest.tower.desc=Старый крепкий сундук, размещенный в древних башнях.
 tile.betterbattletowers.prison.bar.name=Затемнённая железная клетка
@@ -14,3 +17,15 @@ tile.betterbattletowers.prison.bar.desc=Железная клетка, не пр
 tile.betterbattletowers.prison.fence.name=Затемнённые железные прутья
 tile.betterbattletowers.prison.fence.desc=Декоративный забор, сработанный из ржавых обломков затемнённых железных клеток.
 
+tile.betterbattletowers.crumbling.stone.name=
+tile.betterbattletowers.crumbling.stone.desc=
+tile.betterbattletowers.runic.stone.name=
+tile.betterbattletowers.runic.stone.desc=
+tile.betterbattletowers.runic.carved.stone.name=
+tile.betterbattletowers.runic.carved.stone.desc=
+tile.betterbattletowers.runic.glyph.stone.name=
+tile.betterbattletowers.runic.glyph.stone.desc=
+
+# Model viewer
+model.category.entity.golem.state.dormant =
+model.category.entity.golem.state.awake =

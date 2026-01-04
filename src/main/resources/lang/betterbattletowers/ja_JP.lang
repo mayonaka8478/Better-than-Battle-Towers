@@ -1,12 +1,15 @@
+# Guidebook
 betterbattletowers.golem.name=ゴーレム
 betterbattletowers.golem.desc=タワーの頂上に眠る強敵
 
+# Golem sounds
 betterbattletowers.subtitles.mob.golem=ゴーレムが唸る
 betterbattletowers.subtitles.mob.golem.awaken=ゴーレムが目覚める
 betterbattletowers.subtitles.mob.golem.death=ゴーレムが死ぬ
 betterbattletowers.subtitles.mob.golem.hurt=ゴーレムがダメージを受ける
 betterbattletowers.subtitles.mob.golem.special=ゴーレムが攻撃する
 
+# Blocks
 tile.betterbattletowers.chest.tower.name=タワーチェスト
 tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱、重くて持ち上げられない
 tile.betterbattletowers.prison.bar.name=遮光鉄棒ブロック
@@ -22,3 +25,9 @@ tile.betterbattletowers.runic.carved.stone.name=彫刻した古代の石材
 tile.betterbattletowers.runic.carved.stone.desc=彫刻された古代の石材、素敵な模様からはこの石材の存在意義を感じ取れる
 tile.betterbattletowers.runic.glyph.stone.name=刻まれた古代の石材
 tile.betterbattletowers.runic.glyph.stone.desc=輝いているのに光ってない古代の石材…どういうことだろう
+
+# Model viewer
+model.category.entity.golem.state.dormant = 状態: 非稼働
+model.category.entity.golem.state.awake = 状態: 稼働
+model.category.entity.golem.placeholder.text = 素材:
+model.category.entity.golem.placeholder = ゴーレムの構成素材
