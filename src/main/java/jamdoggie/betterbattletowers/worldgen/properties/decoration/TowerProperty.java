@@ -1,29 +1,33 @@
 package jamdoggie.betterbattletowers.worldgen.properties.decoration;
 
+import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import net.minecraft.core.WeightedRandomBag;
-import net.minecraft.core.block.Blocks;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData.bd;
+import java.util.Random;
 
 public class TowerProperty {
 	String golemType;
 	WeightedRandomBag<BlockData> towerDecorations;
+	double chance;
 
-	private TowerProperty(String golemType, WeightedRandomBag<BlockData> towerDecorations) {
+	public TowerProperty(String golemType, WeightedRandomBag<BlockData> towerDecorations, double chance) {
 		this.towerDecorations = towerDecorations;
 		this.golemType = golemType;
+		this.chance = chance;
 	}
 
-	public static TowerProperty tower(String golemType, BlockPallet ... palettes){
-		WeightedRandomBag<BlockData> towerDecoration = new WeightedRandomBag<>();
-		if(palettes.length == 0){
-			towerDecoration.addEntry(bd(Blocks.COBBLE_STONE.id()), 1.0f);
-			return new TowerProperty(golemType, towerDecoration);
-		}
-		for(BlockPallet pallet : palettes){
-			towerDecoration.addEntry(pallet.data, pallet.chance);
-		}
-		return new TowerProperty(golemType, towerDecoration);
+	private TowerProperty(String golemType, double chance) {
+		this.golemType = golemType;
+		this.chance = chance;
+		this.towerDecorations = new WeightedRandomBag<>();
+	}
+
+	public static TowerProperty deco(String golemType, WeightedRandomBag<BlockData> towerDecorations, double chance) {
+		return new TowerProperty(golemType, towerDecorations, chance);
+	}
+
+	public static TowerProperty deco(WeightedRandomBag<BlockData> towerDecorations, double chance, Random random) {
+		return new TowerProperty(GolemVariants.getRandomEntry(random), towerDecorations, chance);
 	}
 
 	public WeightedRandomBag<BlockData> getTowerDecorations() {
@@ -32,5 +36,9 @@ public class TowerProperty {
 
 	public String getGolemType() {
 		return this.golemType;
+	}
+
+	public double getChance() {
+		return chance;
 	}
 }
