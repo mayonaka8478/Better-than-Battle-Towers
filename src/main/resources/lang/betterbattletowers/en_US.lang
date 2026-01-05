@@ -22,16 +22,16 @@ tile.betterbattletowers.prison.fence.desc=A decorative fence salvaged from tinte
 # Crumbling
 tile.betterbattletowers.crumbling.stone.name=Crumbling Polished Stone
 tile.betterbattletowers.crumbling.stone.desc=These old tiles wont hold up much longer.
-tile.betterbattletowers.crumbling.stone.bridle.name=Bridle Polished Stone
-tile.betterbattletowers.crumbling.stone.bridle.desc=These old tiles are about to break!
+tile.betterbattletowers.bridle.stone.name=Bridle Polished Stone
+tile.betterbattletowers.bridle.stone.desc=These old tiles are about to break!
 tile.betterbattletowers.slab.crumbling.stone.name=Crumbling Polished Stone Slab
 tile.betterbattletowers.slab.crumbling.stone.desc=A slab of old polished stone.
-tile.betterbattletowers.slab.crumbling.stone.bridle.name=Bridle Polished Stone Slab
-tile.betterbattletowers.slab.crumbling.stone.bridle.desc=A slab of about to break polished stone!
+tile.betterbattletowers.slab.bridle.stone.name=Bridle Polished Stone Slab
+tile.betterbattletowers.slab.bridle.stone.desc=A slab of about to break polished stone!
 tile.betterbattletowers.stairs.crumbling.stone.name=Crumbling Polished Stone Stairs
 tile.betterbattletowers.stairs.crumbling.stone.desc=Polished Stone block used for very careful vertical movement.
-tile.betterbattletowers.stairs.crumbling.stone.bridle.name=Bridle Polished Stone Stairs
-tile.betterbattletowers.stairs.crumbling.stone.bridle.desc=Polished Stone block used for very careful and very dangerous vertical movement!
+tile.betterbattletowers.stairs.bridle.stone.name=Bridle Polished Stone Stairs
+tile.betterbattletowers.stairs.bridle.stone.desc=Polished Stone block used for very careful and very dangerous vertical movement!
 # Runic
 tile.betterbattletowers.runic.stone.name=Runic Stone
 tile.betterbattletowers.runic.stone.desc=A runic stone created to imprison the denizen of the tower.

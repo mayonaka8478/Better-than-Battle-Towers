@@ -60,9 +60,6 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		this.world = world;
 		this.random = random;
 		this.ruinFactor = 1.0f;
-		this.runicChance = 80.0f;
-		this.carvedChance = 19.0f;
-		this.glyphChance = 1f;
 		this.maxHeight = y;
 		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
 		placeTower(x, y, z, availableHeight);
@@ -142,7 +139,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			}
 			if (maxHeight > py + 7) {
 				///  Create holes for mob to fall through to lower level
-				BlockData data = this.floorBlockBag.getRandom(random);
+				BlockData data = this.nonHardCoreBag.getRandom(random);
 				this.canReplace(px, py, pz, data.id(), data.metadata());
 			}
 		}
@@ -191,7 +188,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
-			this.placeBlock(this.floorBlockBag.getRandom(random), px, py - 1, pz);
+			this.placeBlock(this.nonHardCoreBag.getRandom(random), px, py - 1, pz);
 			this.placeBlock(stairs.getRandom(random), px, py, pz );
 		}
 	}
