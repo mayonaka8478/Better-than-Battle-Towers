@@ -1,6 +1,8 @@
-# Guidebook
+# Entities
 betterbattletowers.golem.name=Голем
 betterbattletowers.golem.desc=Могущественный враг, дремлющий на вершинах древних башен.
+betterbattletowers.aggro_zombie_pigman.name=Одичавший зомби свиночеловек
+betterbattletowers.aggro_zombie_pigman.desc=Зомби свиночеловек, рождённые в проклятых башнях. Они враждебны и всегда готовы к атаке.
 
 # Golem sounds
 betterbattletowers.subtitles.mob.golem=Голем рычит
