@@ -1,9 +1,8 @@
-package jamdoggie.betterbattletowers.worldgen.data.defaults;
+package jamdoggie.betterbattletowers.worldgen.data.loader;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.worldgen.data.loot.LootEntry;
 import jamdoggie.betterbattletowers.worldgen.data.loot.LootTable;
-import jamdoggie.betterbattletowers.worldgen.data.loot.LootLoader;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.IItemConvertible;

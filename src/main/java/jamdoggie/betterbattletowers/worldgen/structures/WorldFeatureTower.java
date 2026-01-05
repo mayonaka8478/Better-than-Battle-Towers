@@ -6,7 +6,8 @@ import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
-import jamdoggie.betterbattletowers.worldgen.data.decoration.Tower;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty;
+import jamdoggie.betterbattletowers.worldgen.data.loader.TowerPropertiesLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
@@ -27,7 +28,7 @@ import java.util.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling.BreakingStage.*;;
 import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
-import static jamdoggie.betterbattletowers.worldgen.data.loot.LootLoader.populateChest;
+import static jamdoggie.betterbattletowers.worldgen.data.loader.LootLoader.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
@@ -51,8 +52,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Sets the golem type as well as the tower decorations
 	protected final void setTowerProperties(Biome biome) {
-		Tower.TowerProperty towerProperty = Tower.getTowerProperties(biome, this.random);
-		this.golemVariant = towerProperty.getSkinVariant();
+		TowerProperty towerProperty = TowerPropertiesLoader.getTowerProperties(biome, this.random);
+		this.golemVariant = towerProperty.getGolemType();
 		this.biome = biome;
 
 		this.buildingBlockBag = new WeightedRandomBag<>();

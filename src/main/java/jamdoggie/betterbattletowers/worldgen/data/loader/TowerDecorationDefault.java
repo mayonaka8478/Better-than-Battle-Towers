@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.data.defaults;
+package jamdoggie.betterbattletowers.worldgen.data.loader;
 
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties;
@@ -11,13 +11,13 @@ import static jamdoggie.betterbattletowers.block.BattleTowerBlocks.*;
 import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
 import static jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties.properties;
 import static jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty.deco;
-import static jamdoggie.betterbattletowers.worldgen.data.defaults.DefaultTowerDecoration.BlockPallet.pallet;
+import static jamdoggie.betterbattletowers.worldgen.data.loader.TowerDecorationDefault.BlockPallet.pallet;
 import static net.minecraft.core.block.Blocks.*;
 import static net.minecraft.core.world.biome.Biomes.*;
 
 
-public class DefaultTowerDecoration {
-	private DefaultTowerDecoration() {
+public class TowerDecorationDefault {
+	private TowerDecorationDefault() {
 	}
 
 	public static class BlockPallet {

@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers.worldgen.data.decoration;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import net.minecraft.core.WeightedRandomBag;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class TowerProperty {
@@ -36,5 +37,19 @@ public class TowerProperty {
 
 	public double getChance() {
 		return chance;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof TowerProperty)) return false;
+		TowerProperty that = (TowerProperty) object;
+		return Double.compare(chance, that.chance) == 0
+			&& Objects.equals(golemType, that.golemType)
+			&& Objects.equals(towerDecorations, that.towerDecorations);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(golemType, towerDecorations, chance);
 	}
 }

@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.data.loot;
+package jamdoggie.betterbattletowers.worldgen.data.loader;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -10,7 +10,8 @@ import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
 import jamdoggie.betterbattletowers.worldgen.data.adapter.LootEntryJsonAdapter;
 import jamdoggie.betterbattletowers.worldgen.data.adapter.LootTableJsonAdapter;
-import jamdoggie.betterbattletowers.worldgen.data.defaults.LootTableDefault;
+import jamdoggie.betterbattletowers.worldgen.data.loot.LootEntry;
+import jamdoggie.betterbattletowers.worldgen.data.loot.LootTable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
@@ -44,7 +45,7 @@ public class LootLoader {
 	public static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve(MOD_ID + "loot.conf");
 	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
-	public static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/loot.conf", MOD_ID, MOD_ID);
+	public static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/loot.conf", MOD_ID);
 	private static boolean init = false;
 
 	private LootLoader() {
@@ -55,6 +56,7 @@ public class LootLoader {
 		if (init) {
 			return;
 		}
+		LOGGER.info("Loading tower loot.");
 		init = true;
 		Gson gson = new GsonBuilder()
 			.registerTypeAdapter(LootTable.class, new LootTableJsonAdapter())
@@ -63,17 +65,17 @@ public class LootLoader {
 			.registerTypeAdapter(ItemStack.class, new ItemStackJsonAdapter())
 			.setPrettyPrinting()
 			.create();
-		Type type = new TypeToken<List<LootTable>>() {
-		}.getType();
+		Type type = new TypeToken<List<LootTable>>() {}.getType();
 
 		if (Files.notExists(LootLoader.CONFIG_PATH)) {
+			Path devPath;
 			try {
 				if(FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(LootLoader.ASSETS_JAR_PATH) == null){
 					List<LootTable> defaultTable = LootTableDefault.getDefaultTable();
 					String json = gson.toJson(defaultTable, type);
 					Config config = ConfigFactory.parseString("{ loot_tables = " + json + " }");
 					Path projectRoot = FabricLoader.getInstance().getGameDir().getParent();
-					Path devPath = projectRoot.resolve("src/main/resources" + ASSETS_JAR_PATH);
+					devPath = projectRoot.resolve("src/main/resources" + ASSETS_JAR_PATH);
 					Files.createDirectories(devPath.getParent());
 					Files.write(devPath, config.root()
 						.render(ConfigRenderOptions.defaults()
