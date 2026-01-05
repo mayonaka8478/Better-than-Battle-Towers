@@ -11,7 +11,7 @@ public class TowerPropertyJsonAdapter implements JsonDeserializer<TowerProperty>
 	@Override
 	public TowerProperty deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 		JsonObject obj = json.getAsJsonObject();
-		String golemType = obj.get("golemType").getAsString();
+		String golemType = obj.get("golem_type").getAsString();
 		double decorationWeight = obj.get("decoration_weight").getAsDouble();
 		JsonArray array = obj.get("tower_decoration").getAsJsonArray();
 		WeightedRandomBag<BlockData> decoration = new WeightedRandomBag<>();

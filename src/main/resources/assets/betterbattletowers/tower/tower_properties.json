@@ -1,0 +1,3556 @@
+[
+  {
+    "biome": "minecraft:overworld.rainforest",
+    "tower_properties": [
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/slate_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/slate"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "obsidian",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/obsidian"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_stone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_limestone"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.swampland",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/slate_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/slate"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_stone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_limestone"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.seasonal_forest",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.forest",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_stone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_limestone"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.grasslands",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.outback",
+    "tower_properties": [
+      {
+        "golem_type": "obsidian",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/obsidian"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_carved"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_polished"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_granite"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/mud_baked"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.shrubland",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.taiga",
+    "tower_properties": [
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_permafrost"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permaice"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_permafrost"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/block_snow"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.boreal_forest",
+    "tower_properties": [
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_permafrost"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_permafrost"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.desert",
+    "tower_properties": [
+      {
+        "golem_type": "sandstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/sandstone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_sandstone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "sandstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_sandstone"
+            },
+            "weight": 30.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/sandstone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/sand"
+            },
+            "weight": 30.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_carved"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_polished"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_granite"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/mud_baked"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.plains",
+    "tower_properties": [
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.glacier",
+    "tower_properties": [
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_permafrost"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permaice"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_permafrost"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/block_snow"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.tundra",
+    "tower_properties": [
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_permafrost"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permaice"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/permafrost"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_permafrost"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "permafrost",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/block_snow"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.meadow",
+    "tower_properties": [
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:nether.nether",
+    "tower_properties": []
+  },
+  {
+    "biome": "minecraft:paradise.paradise",
+    "tower_properties": [
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/marble"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "marble",
+        "decoration_weight": 1.67,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/pillar_marble"
+            },
+            "weight": 90.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/capstone_marble"
+            },
+            "weight": 10.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.birch_forest",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_stone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_limestone"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_carved"
+            },
+            "weight": 45.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/stone_polished"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "stone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.retro",
+    "tower_properties": [
+      {
+        "golem_type": "stone",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 100.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.hell",
+    "tower_properties": [
+      {
+        "golem_type": "obsidian",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/obsidian"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "netherrack",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_netherrack"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "netherrack",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/netherrack"
+            },
+            "weight": 49.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_netherrack"
+            },
+            "weight": 49.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/ore_nethercoal_netherrack"
+            },
+            "weight": 1.600000023841858
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_netherrack_igneous"
+            },
+            "weight": 0.4000000059604645
+          }
+        ]
+      },
+      {
+        "golem_type": "netherrack",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/netherrack"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "netherrack",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/netherrack_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/netherrack_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/slate_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/slate"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.swampland.muddy",
+    "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/limestone_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_limestone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/slate_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/slate"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_stone_polished_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_stone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/moss_limestone"
+            },
+            "weight": 10.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.outback.grassy",
+    "tower_properties": [
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.caatinga",
+    "tower_properties": [
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "sandstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/sandstone"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_sandstone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "sandstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_sandstone"
+            },
+            "weight": 30.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/sandstone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/sand"
+            },
+            "weight": 30.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_carved"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_polished"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_granite"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "biome": "minecraft:overworld.caatinga.plains",
+    "tower_properties": [
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_polished"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/basalt_carved"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "basalt",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_carved"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite_polished"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_granite"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "slate",
+        "decoration_weight": 1.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_stone"
+            },
+            "weight": 60.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_chiseled_stone"
+            },
+            "weight": 25.0
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 2
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 3
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 4
+            },
+            "weight": 3.75
+          },
+          {
+            "decoration": {
+              "id": "betterbattletowers:block/runic_glyph_stone",
+              "metadata": 5
+            },
+            "weight": 3.75
+          }
+        ]
+      }
+    ]
+  }
+]

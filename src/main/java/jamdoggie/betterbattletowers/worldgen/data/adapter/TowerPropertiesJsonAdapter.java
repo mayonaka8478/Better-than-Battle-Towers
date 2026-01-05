@@ -18,8 +18,7 @@ public class TowerPropertiesJsonAdapter implements JsonDeserializer<TowerPropert
 		JsonArray jsonArray = obj.getAsJsonArray("tower_properties");
 		List<TowerProperty> towerProperties = new ArrayList<>();
 		for (JsonElement element : jsonArray) {
-			TowerProperty property =
-				context.deserialize(element, TowerProperty.class);
+			TowerProperty property = context.deserialize(element, TowerProperty.class);
 			towerProperties.add(property);
 		}
 		return new TowerProperties(biome, towerProperties);
