@@ -51,4 +51,13 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 
 		return result;
 	}
+
+	@Override
+	public String getLanguageKey(int meta) {
+		String lang = super.getLanguageKey(meta);
+		if (BlockLogicCrumbling.getStageFromMetadata(meta) != 0) {
+			return lang;
+		}
+		return lang.replace("crumbling", "bridle");
+	}
 }

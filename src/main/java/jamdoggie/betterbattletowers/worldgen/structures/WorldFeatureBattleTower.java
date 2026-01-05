@@ -30,9 +30,6 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 		}
 		this.world = world;
 		this.random = random;
-		this.runicChance = 65.0f;
-		this.carvedChance = 25.0f;
-		this.glyphChance = 10.0f;
 		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
 		this.placeTower(x, y, z, availableHeight);
 		return true;

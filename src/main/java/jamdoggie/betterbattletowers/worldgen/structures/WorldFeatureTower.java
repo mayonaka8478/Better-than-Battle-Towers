@@ -41,51 +41,54 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	protected int currentFloor = 0;
 	protected WeightedRandomBag<BlockData> buildingBlockBag;
 	protected WeightedRandomBag<BlockData> floorBlockBag;
-
 	///  Constants to avoid having magic numbers
 	public static final int BLOCK_AIR = 0;
+
 	public static final int FLOOR_HEIGHT = 7;
 	public static final int LOOT_AMOUNT = BattleTowerConfig.getLootAmount();
-	protected float runicChance = 65.0f;
-	protected float carvedChance = 25.0f;
-	protected float glyphChance = 10.0f;
+
+	protected static WeightedRandomBag<BlockData> nonHardCoreBag = new WeightedRandomBag<>();
+	static {
+		nonHardCoreBag.addEntry(bd(Blocks.STONE_POLISHED.id()), 20.0f);
+		nonHardCoreBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 13.33f);
+		nonHardCoreBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 10.0f);
+		nonHardCoreBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 6.67f);
+		nonHardCoreBag.addEntry(bd(BLOCK_AIR), 10.0f);
+	}
+
+	protected static WeightedRandomBag<BlockData> hardCoreBlockBag = new WeightedRandomBag<>();
+	static {
+		hardCoreBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 20.0f);
+		hardCoreBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 13.34f);
+		hardCoreBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 10.0f);
+		hardCoreBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(HEAVY.ordinal())), 6.66f);
+		hardCoreBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
+	}
+
+	protected static WeightedRandomBag<BlockData> hardCoreBuildingBlockBag = new WeightedRandomBag<>();
+	static {
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_STONE.id()), 65.0f);
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.CHISELED_RUNIC_STONE.id()), 25.0f);
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 2), 2.5f);
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 3), 2.5f);
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), 2.5f);
+		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 5), 2.5f);
+	}
 
 	///  Sets the golem type as well as the tower decorations
 	protected final void setTowerProperties(Biome biome) {
 		TowerProperty towerProperty = TowerPropertiesLoader.getTowerProperties(biome, this.random);
 		this.golemVariant = towerProperty.getGolemType();
 		this.biome = biome;
-
 		this.buildingBlockBag = new WeightedRandomBag<>();
-		this.floorBlockBag = new WeightedRandomBag<>();
+
 		if (BattleTowerConfig.isHardcore()) {
-			this.setHardcoreDecoration();
+			this.floorBlockBag = hardCoreBlockBag;
+			this.buildingBlockBag = hardCoreBuildingBlockBag;
 		} else {
+			this.floorBlockBag = nonHardCoreBag;
 			this.buildingBlockBag = towerProperty.getTowerDecorations();
-			this.floorBlockBag.addEntry(bd(Blocks.STONE_POLISHED.id()), 20.0f);
-			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 13.33f);
-			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 10.0f);
-			this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 6.67f);
-			this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 		}
-	}
-
-	///  For the hardcore tower
-	private void setHardcoreDecoration() {
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_STONE.id()), this.runicChance);
-
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.CHISELED_RUNIC_STONE.id()), this.carvedChance);
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 2), this.glyphChance / 4);
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 3), this.glyphChance / 4);
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), this.glyphChance / 4);
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 5), this.glyphChance / 4);
-
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(UNDAMAGED.ordinal())), 20.0f);
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(LIGHT.ordinal())), 13.34f);
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(MEDIUM.ordinal())), 10.0f);
-		this.floorBlockBag.addEntry(bd(BattleTowerBlocks.CRUMBLING_STONE.id(), BlockLogicCrumbling.setMetadataFromStage(HEAVY.ordinal())), 6.66f);
-
-		this.floorBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 	}
 
 	///  Places tower

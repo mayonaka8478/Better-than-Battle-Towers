@@ -22,9 +22,6 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 		}
 		this.world = world;
 		this.random = random;
-		this.runicChance = 60.0f;
-		this.carvedChance = 25.0f;
-		this.glyphChance = 15.0f;
 		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
 		this.placeTower(x, y, z, y);
 		return true;
