@@ -62,4 +62,8 @@ public class GolemVariants {
 	public static String getRandomEntry(Random random) {
 		return instance.cycleList.get(random.nextInt(instance.cycleList.size()));
 	}
+
+	public static int getLength(){
+		return instance.cycleList.size();
+	}
 }

@@ -65,7 +65,7 @@ public class MobGolem extends MobPathfinder {
 		this.fireImmune = true;
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
 		this.footSize = 2;
-		this.dormant = true;
+		this.dormant = false;
 		this.growl = false;
 		this.timer = DEFAULT_TIME;
 		this.setHealthRaw(this.getMaxHealth());
@@ -123,7 +123,7 @@ public class MobGolem extends MobPathfinder {
 			basePath = String.format("/assets/%s/textures/entity/%s/%s/", this.textureIdentifier.namespace(), this.textureIdentifier.value(), nextPath);
 		}
 		this.setSkinVariant(variantList.nextSkinVariant(basePath + "variants.json", skinVar));
-		return skinVar != this.getSkinVariant();
+		return GolemVariants.getLength() > 1;
 	}
 
 
