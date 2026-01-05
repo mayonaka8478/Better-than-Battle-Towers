@@ -13,6 +13,6 @@ public class BattleTowerBTWCompat implements BTWailaCustomTooltipPlugin {
     @Override
     public void initializePlugin(TooltipRegistry tooltipRegistry, Logger logger) {
         addEntityIcon(MobGolem.class, Items.DIAMOND);
-        addEntityIcon(MobAgressiveZombiePig.class, Items.INGOT_GOLD);
+        addEntityIcon(MobAgressiveZombiePig.class, Items.ORE_RAW_GOLD);
     }
 }
