@@ -26,10 +26,6 @@ public class TowerProperty {
 		return new TowerProperty(golemType, towerDecorations, chance);
 	}
 
-	public static TowerProperty deco(WeightedRandomBag<BlockData> towerDecorations, double chance, Random random) {
-		return new TowerProperty(GolemVariants.getRandomEntry(random), towerDecorations, chance);
-	}
-
 	public WeightedRandomBag<BlockData> getTowerDecorations() {
 		return this.towerDecorations;
 	}
