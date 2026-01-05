@@ -29,7 +29,7 @@ import java.util.List;
 import static jamdoggie.betterbattletowers.entity.golem.GolemVariants.DEFAULT;
 import static jamdoggie.betterbattletowers.entity.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
-import static jamdoggie.betterbattletowers.worldgen.data.loader.LootLoader.LAPIZ;
+import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.LAPIZ;
 import static net.minecraft.core.Global.TICKS_PER_SECOND;
 
 @SuppressWarnings("java:S2160")
