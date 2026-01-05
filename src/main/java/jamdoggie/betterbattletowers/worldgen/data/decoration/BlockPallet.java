@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.properties.decoration;
+package jamdoggie.betterbattletowers.worldgen.data.decoration;
 
 public class BlockPallet{
 	protected final BlockData data;

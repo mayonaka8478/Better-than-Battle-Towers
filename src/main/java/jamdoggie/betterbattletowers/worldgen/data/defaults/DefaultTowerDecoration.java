@@ -1,18 +1,18 @@
-package jamdoggie.betterbattletowers.worldgen.properties.defaults;
+package jamdoggie.betterbattletowers.worldgen.data.defaults;
 
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockPallet;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperties;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockPallet;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
 
 import java.util.*;
 
 import static jamdoggie.betterbattletowers.block.BattleTowerBlocks.*;
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData.bd;
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockPallet.*;
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperties.*;
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperty.deco;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockPallet.*;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties.*;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty.deco;
 import static net.minecraft.core.block.Blocks.*;
 import static net.minecraft.core.world.biome.Biomes.*;
 

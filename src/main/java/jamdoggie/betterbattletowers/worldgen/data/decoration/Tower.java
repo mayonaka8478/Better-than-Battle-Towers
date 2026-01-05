@@ -1,7 +1,5 @@
-package jamdoggie.betterbattletowers.worldgen.properties;
+package jamdoggie.betterbattletowers.worldgen.data.decoration;
 
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockPallet;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.world.biome.Biome;
 

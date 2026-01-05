@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.properties.loot;
+package jamdoggie.betterbattletowers.worldgen.data.loot;
 
 import java.util.List;
 

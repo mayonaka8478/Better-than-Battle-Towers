@@ -1,8 +1,8 @@
-package jamdoggie.betterbattletowers.worldgen.properties.adapter;
+package jamdoggie.betterbattletowers.worldgen.data.adapter;
 
 import com.google.gson.*;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperty;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty;
 import net.minecraft.core.WeightedRandomBag;
 
 import java.lang.reflect.Type;

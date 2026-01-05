@@ -5,8 +5,8 @@ import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
-import jamdoggie.betterbattletowers.worldgen.properties.Tower;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.Tower;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
@@ -26,8 +26,8 @@ import java.util.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling.BreakingStage.*;;
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData.bd;
-import static jamdoggie.betterbattletowers.worldgen.properties.loot.LootTables.populateChest;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
+import static jamdoggie.betterbattletowers.worldgen.data.loot.LootTables.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 

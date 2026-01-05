@@ -1,6 +1,5 @@
-package jamdoggie.betterbattletowers.worldgen.properties.decoration;
+package jamdoggie.betterbattletowers.worldgen.data.decoration;
 
-import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.world.biome.Biome;
 
 import java.util.ArrayList;

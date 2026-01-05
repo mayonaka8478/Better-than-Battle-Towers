@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.properties.loot;
+package jamdoggie.betterbattletowers.worldgen.data.loot;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -8,9 +8,9 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
-import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootEntryJsonAdapter;
-import jamdoggie.betterbattletowers.worldgen.properties.adapter.LootTableJsonAdapter;
-import jamdoggie.betterbattletowers.worldgen.properties.defaults.LootTableDefault;
+import jamdoggie.betterbattletowers.worldgen.data.adapter.LootEntryJsonAdapter;
+import jamdoggie.betterbattletowers.worldgen.data.adapter.LootTableJsonAdapter;
+import jamdoggie.betterbattletowers.worldgen.data.defaults.LootTableDefault;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
@@ -31,7 +31,6 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
