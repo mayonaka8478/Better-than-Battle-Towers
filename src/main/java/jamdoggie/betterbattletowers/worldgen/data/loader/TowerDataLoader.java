@@ -24,7 +24,7 @@ import java.util.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 
-public class TowerPropertiesLoader {
+public class TowerDataLoader {
 	private static final Map<Biome, Set<TowerProperty>> BIOME_TO_TOWER_PROPERTIES = new HashMap<>();
 	private static final List<TowerProperty> LIST_PROPERTY = new ArrayList<>();
 	private static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/tower_properties.json", MOD_ID);
@@ -59,8 +59,8 @@ public class TowerPropertiesLoader {
 		Type type = new TypeToken<List<TowerProperties>>() {
 		}.getType();
 
-		if (FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(TowerPropertiesLoader.ASSETS_JAR_PATH) == null) {
-			List<TowerProperties> defaultTable = TowerDecorationDefault.getDefaultTowers();
+		if (FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(TowerDataLoader.ASSETS_JAR_PATH) == null) {
+			List<TowerProperties> defaultTable = TowerDataDefault.getDefaultTowers();
 			String json = gson.toJson(defaultTable, type);
 			Path projectRoot = FabricLoader.getInstance().getGameDir().getParent();
 			Path devPath = projectRoot.resolve("src/main/resources" + ASSETS_JAR_PATH);
@@ -74,17 +74,17 @@ public class TowerPropertiesLoader {
 		}
 
 		List<TowerProperties> towerProperties = null;
-		try (InputStream stream = DataLoader.class.getResourceAsStream(TowerPropertiesLoader.ASSETS_JAR_PATH)) {
+		try (InputStream stream = DataLoader.class.getResourceAsStream(TowerDataLoader.ASSETS_JAR_PATH)) {
 			if (stream == null) {
 				LOGGER.error("LootTable could not be regenerated, betterbattletowers.jar is corrupted.");
-				throw new RuntimeException("Asset not found in JAR: " + TowerPropertiesLoader.ASSETS_JAR_PATH);
+				throw new RuntimeException("Asset not found in JAR: " + TowerDataLoader.ASSETS_JAR_PATH);
 			}
 			String jsonString = StringUtils.readInputString(stream);
 			towerProperties = gson.fromJson(jsonString, type);
 		} catch (IOException e) {
 			throw new RuntimeException("Tower properties could not be read from file!", e);
 		} catch (JsonSyntaxException | JsonIOException e) {
-			throw new RuntimeException("Failed to parse tower properties json at: " + TowerPropertiesLoader.ASSETS_JAR_PATH, e);
+			throw new RuntimeException("Failed to parse tower properties json at: " + TowerDataLoader.ASSETS_JAR_PATH, e);
 		}
 
 		Set<TowerProperty> setProperties = new HashSet<>();

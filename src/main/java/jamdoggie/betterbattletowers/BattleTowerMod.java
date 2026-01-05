@@ -7,8 +7,8 @@ import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
-import jamdoggie.betterbattletowers.worldgen.data.loader.LootLoader;
-import jamdoggie.betterbattletowers.worldgen.data.loader.TowerPropertiesLoader;
+import jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader;
+import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureVanquishedTower;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureBattleTower;
@@ -30,7 +30,7 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.data.loader.LootLoader.LAPIZ;
+import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
@@ -81,8 +81,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	@Override
 	public void afterGameStart() {
 		GolemVariants.init();
-		LootLoader.init();
-		TowerPropertiesLoader.init();
+		LootDataLoader.init();
+		TowerDataLoader.init();
 	}
 
 	@Override

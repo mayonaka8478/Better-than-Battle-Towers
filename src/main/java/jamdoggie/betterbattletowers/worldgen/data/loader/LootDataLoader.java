@@ -38,7 +38,7 @@ import java.util.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 
-public class LootLoader {
+public class LootDataLoader {
 	public static final int LAPIZ = DyeColor.BLUE.itemMeta;
 	public static final double INC = 1.20f; // 1.29f
 	public static final int MAX_TIER = 9;
@@ -48,7 +48,7 @@ public class LootLoader {
 	public static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/loot.conf", MOD_ID);
 	private static boolean init = false;
 
-	private LootLoader() {
+	private LootDataLoader() {
 	}
 
 
@@ -67,11 +67,11 @@ public class LootLoader {
 			.create();
 		Type type = new TypeToken<List<LootTable>>() {}.getType();
 
-		if (Files.notExists(LootLoader.CONFIG_PATH)) {
+		if (Files.notExists(LootDataLoader.CONFIG_PATH)) {
 			Path devPath;
 			try {
-				if(FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(LootLoader.ASSETS_JAR_PATH) == null){
-					List<LootTable> defaultTable = LootTableDefault.getDefaultTable();
+				if(FabricLoader.getInstance().isDevelopmentEnvironment() && DataLoader.class.getResourceAsStream(LootDataLoader.ASSETS_JAR_PATH) == null){
+					List<LootTable> defaultTable = LootDataDefault.getDefaultTable();
 					String json = gson.toJson(defaultTable, type);
 					Config config = ConfigFactory.parseString("{ loot_tables = " + json + " }");
 					Path projectRoot = FabricLoader.getInstance().getGameDir().getParent();
@@ -84,30 +84,30 @@ public class LootLoader {
 						.getBytes(StandardCharsets.UTF_8));
 					Files.copy(devPath, CONFIG_PATH, StandardCopyOption.REPLACE_EXISTING);
 				}else{
-					try (InputStream stream = DataLoader.class.getResourceAsStream(LootLoader.ASSETS_JAR_PATH)) {
+					try (InputStream stream = DataLoader.class.getResourceAsStream(LootDataLoader.ASSETS_JAR_PATH)) {
 						if (stream == null) {
 							LOGGER.error("LootTable could not be regenerated, betterbattletowers.jar is corrupted.");
-							throw new RuntimeException("Asset not found in JAR: " + LootLoader.ASSETS_JAR_PATH);
+							throw new RuntimeException("Asset not found in JAR: " + LootDataLoader.ASSETS_JAR_PATH);
 						}
-						Files.copy(stream, LootLoader.CONFIG_PATH);
+						Files.copy(stream, LootDataLoader.CONFIG_PATH);
 					}
 				}
 			} catch (IOException e) {
 				throw new RuntimeException("Failed to create default loot config at: "
-					+ LootLoader.CONFIG_PATH.toAbsolutePath(), e);
+					+ LootDataLoader.CONFIG_PATH.toAbsolutePath(), e);
 			}
 		}
 
 		try {
-			Config config = ConfigFactory.parseFile(LootLoader.CONFIG_PATH.toFile());
+			Config config = ConfigFactory.parseFile(LootDataLoader.CONFIG_PATH.toFile());
 			String jsonString = config.getValue("loot_tables")
 				.render(ConfigRenderOptions.concise());
 			List<LootTable> table = gson.fromJson(jsonString, type);
-			LootLoader.createTables(table);
+			LootDataLoader.createTables(table);
 		} catch (ConfigException e) {
-			throw new RuntimeException("Failed to parse HOCON config: " + LootLoader.CONFIG_PATH.toAbsolutePath(), e);
+			throw new RuntimeException("Failed to parse HOCON config: " + LootDataLoader.CONFIG_PATH.toAbsolutePath(), e);
 		} catch (JsonSyntaxException e) {
-			throw new RuntimeException("Loot configuration file is malformed: " + LootLoader.CONFIG_PATH.toAbsolutePath(), e);
+			throw new RuntimeException("Loot configuration file is malformed: " + LootDataLoader.CONFIG_PATH.toAbsolutePath(), e);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class LootLoader {
 		if (inventory == null) return;
 		List<ItemStack> stacks = generateLootList(random, tier, lootAmount);
 		for (ItemStack stack : stacks) {
-			LootLoader.placeItemInChest(random, stack, inventory);
+			LootDataLoader.placeItemInChest(random, stack, inventory);
 		}
 	}
 

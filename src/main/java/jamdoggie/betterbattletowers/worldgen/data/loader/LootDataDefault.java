@@ -14,8 +14,8 @@ import java.util.List;
 
 import static jamdoggie.betterbattletowers.worldgen.data.loot.LootTable.table;
 
-public class LootTableDefault {
-	private LootTableDefault(){}
+public class LootDataDefault {
+	private LootDataDefault(){}
 	public static LootEntry looObj(IItemConvertible item, int metadata, double weight, int fixedField) {
 		ItemStack stack = item.getDefaultStack();
 		stack.setMetadata(metadata);
@@ -87,13 +87,13 @@ public class LootTableDefault {
 		List<LootEntry> l7 = new ArrayList<>();
 		l7.add(looObj(Items.DUST_REDSTONE, 0, 1.0f, 3, 5));
 		l7.add(looObj(Items.OLIVINE, 0, 1.0f, 2, 4));
-		l7.add(looObj(Items.DYE, LootLoader.LAPIZ, 1.0f, 1, 2));
+		l7.add(looObj(Items.DYE, LootDataLoader.LAPIZ, 1.0f, 1, 2));
 		l7.add(looObj(Items.QUARTZ, 0, 1.0f, 1, 2));
 		lootTables.add(table(index++, l7));
 
 		List<LootEntry> l8 = new ArrayList<>();
 		l8.add(looObj(Items.OLIVINE, 0, 1.0f, 2, 4));
-		l8.add(looObj(Items.DYE, LootLoader.LAPIZ, 1.0f, 1, 2));
+		l8.add(looObj(Items.DYE, LootDataLoader.LAPIZ, 1.0f, 1, 2));
 		l8.add(looObj(Items.QUARTZ, 0, 1.0f, 1, 2));
 		l8.add(looObj(Items.CHAINLINK, 0, 1.0f, 2, 3));
 		l8.add(looObj(Items.BUCKET_LAVA, 0, 1.0f, 1));
@@ -101,7 +101,7 @@ public class LootTableDefault {
 		lootTables.add(table(index++, l8));
 
 		List<LootEntry> l9 = new ArrayList<>();
-		l9.add(looObj(Items.DYE, LootLoader.LAPIZ, 1.0f, 1, 2));
+		l9.add(looObj(Items.DYE, LootDataLoader.LAPIZ, 1.0f, 1, 2));
 		l9.add(looObj(Items.CHAINLINK, 0, 1.0f, 2, 3));
 		l9.add(looObj(BattleTowerBlocks.PRISON_BAR, 0, 1.0f, 2, 3));
 		l9.add(looObj(Items.DIAMOND, 0, 1.0f, 1));
