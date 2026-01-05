@@ -43,17 +43,17 @@ public class BattleTowerBlocks {
 		.setResistance(2000.0f)
 		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
-		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
 		.build("runic_stone", id++, b -> new BlockLogic(b, Material.metal));
 
-	public static final Block<?> RUNIC_CARVED_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
+	public static final Block<?> CHISELED_RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
-		.build("runic_carved_stone", id++, b -> new BlockLogic(b, Material.metal));
+		.build("runic_chiseled_stone", id++, b -> new BlockLogic(b, Material.metal));
 
 	public static final Block<?> RUNIC_GLYPH_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
@@ -62,6 +62,13 @@ public class BattleTowerBlocks {
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.setImmovable()
 		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Material.metal));
+
+	public static final Block<?> PILLAR_RUNIC = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(10.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.build("pillar_runic", id++, b -> new BlockLogic(b, Material.metal));
 
 	public static final Block<BlockLogicCrumbling> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
@@ -87,6 +94,29 @@ public class BattleTowerBlocks {
 		.build("stairs_crumbling_stone", id++, b -> new BlockLogicStairsCrumbling(b, CRUMBLING_STONE)
 			.setDropBlock(Blocks.SLAB_STONE_POLISHED)
 		);
+
+	public static final Block<?> CARVED_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(10.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
+		.build("carved_obsidian", id++, b -> new BlockLogic(b, Material.stone));
+
+	public static final Block<BlockLogicSlab> SLAB_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(10.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
+		.build("slab_obsidian", id++, b -> new BlockLogicSlab(b, CARVED_OBSIDIAN));
+
+	public static final Block<BlockLogicStairs> STAIRS_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(2000.0f)
+		.setHardness(10.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
+		.build("stairs_obsidian", id++, b -> new BlockLogicStairs(b, CARVED_OBSIDIAN));
+
+
 
 
 	public static void init() {

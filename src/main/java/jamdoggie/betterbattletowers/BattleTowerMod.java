@@ -1,6 +1,7 @@
 package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
+import jamdoggie.betterbattletowers.block.BattleTowerDetail;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
@@ -15,6 +16,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
+import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.collection.NamespaceID;
@@ -62,6 +64,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterClientStart() {
+		BattleTowerDetail.init();
 		ItemStack lapiz = new ItemStack(Items.DYE);
 		lapiz.setMetadata(LAPIZ);
 		MobInfoRegistry.register(MobGolem.class, "betterbattletowers.golem.name", "betterbattletowers.golem.desc", MobGolem.MAX_HEALTH, 10000,
@@ -84,6 +87,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void onRecipesReady() {
+//		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/workbench.json");
+
 		RecipeBuilder.Shaped(MOD_ID, "IOI", "IOI", "IOI")
 			.addInput('O', Items.OLIVINE)
 			.addInput('I', Items.INGOT_IRON)

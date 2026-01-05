@@ -53,17 +53,30 @@ public class BattleTowerModel implements ModelEntrypoint {
 		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.RUNIC_STONE)
 			.setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone"));
 
-		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.RUNIC_CARVED_STONE)
-			.setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/runic/carved_runic_stone"));
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.CHISELED_RUNIC_STONE)
+			.setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/runic/chiseled_runic"));
+
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.PILLAR_RUNIC)
+			.setTex(0, "minecraft:block/polished_slate_top", Side.TOP, Side.BOTTOM)
+			.setTex(0, MOD_ID + ":block/runic/pillar_runic", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST));
 
 		dispatcher.addDispatch(new BlockModelHorizontalRotation<>(BattleTowerBlocks.RUNIC_GLYPH_STONE)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph_runic_stone", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_north", Side.NORTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_east", Side.EAST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_south", Side.SOUTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_west", Side.WEST)
 			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_north", Side.NORTH)
 			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_east", Side.EAST)
 			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_south", Side.SOUTH)
 			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_west", Side.WEST)
 		);
+
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.CARVED_OBSIDIAN)
+			.setTex(0, "minecraft:block/obsidian", Side.TOP, Side.BOTTOM)
+			.setTex(0, MOD_ID + ":block/carved_obsidian", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST));
+		dispatcher.addDispatch(new BlockModelSlab<>(BattleTowerBlocks.SLAB_OBSIDIAN));
+		dispatcher.addDispatch(new BlockModelStairs<>(BattleTowerBlocks.STAIRS_OBSIDIAN));
 	}
 
 	@Override
