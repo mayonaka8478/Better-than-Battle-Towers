@@ -2,7 +2,7 @@ package jamdoggie.betterbattletowers.worldgen.structures;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData.bd;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
 
 public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	private static final int MIN_HEIGHT = 7 * FLOOR_HEIGHT;

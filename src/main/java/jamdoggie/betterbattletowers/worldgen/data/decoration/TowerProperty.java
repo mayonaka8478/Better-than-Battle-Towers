@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.worldgen.properties.decoration;
+package jamdoggie.betterbattletowers.worldgen.data.decoration;
 
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import net.minecraft.core.WeightedRandomBag;

@@ -1,7 +1,7 @@
-package jamdoggie.betterbattletowers.worldgen.properties.adapter;
+package jamdoggie.betterbattletowers.worldgen.data.adapter;
 
 import com.google.gson.*;
-import jamdoggie.betterbattletowers.worldgen.properties.loot.LootEntry;
+import jamdoggie.betterbattletowers.worldgen.data.loot.LootEntry;
 import net.minecraft.core.WeightedRandomLootObject;
 
 import java.lang.reflect.Type;

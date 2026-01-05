@@ -7,10 +7,10 @@ import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
-import jamdoggie.betterbattletowers.worldgen.properties.loot.LootTables;
+import jamdoggie.betterbattletowers.worldgen.data.loot.LootTables;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureVanquishedTower;
-import jamdoggie.betterbattletowers.worldgen.properties.Tower;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.Tower;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureBattleTower;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
@@ -30,7 +30,7 @@ import turniplabs.halplibe.util.*;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.loot.LootTables.LAPIZ;
+import static jamdoggie.betterbattletowers.worldgen.data.loot.LootTables.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 

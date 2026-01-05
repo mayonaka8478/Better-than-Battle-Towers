@@ -1,8 +1,8 @@
-package jamdoggie.betterbattletowers.worldgen.properties.adapter;
+package jamdoggie.betterbattletowers.worldgen.data.adapter;
 
 import com.google.gson.*;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperties;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.TowerProperty;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.world.biome.Biome;
 

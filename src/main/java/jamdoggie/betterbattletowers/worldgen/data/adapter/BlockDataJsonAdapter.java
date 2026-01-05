@@ -1,7 +1,7 @@
-package jamdoggie.betterbattletowers.worldgen.properties.adapter;
+package jamdoggie.betterbattletowers.worldgen.data.adapter;
 
 import com.google.gson.*;
-import jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData;
+import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.HardIllegalArgumentException;
@@ -9,7 +9,7 @@ import net.minecraft.core.util.collection.NamespaceID;
 
 import java.lang.reflect.Type;
 
-import static jamdoggie.betterbattletowers.worldgen.properties.decoration.BlockData.bd;
+import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
 
 public class BlockDataJsonAdapter implements JsonDeserializer<BlockData>, JsonSerializer<BlockData> {
 	@Override
