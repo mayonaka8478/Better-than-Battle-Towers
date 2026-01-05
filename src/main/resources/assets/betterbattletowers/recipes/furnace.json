@@ -1,0 +1,14 @@
+[
+  {
+    "name": "minecraft:furnace/obsidian_to_stairs",
+    "type": "minecraft:smelting",
+    "input": {
+      "stack": {
+        "id": "minecraft:block/obsidian"
+      }
+    },
+    "output": {
+      "id": "betterbattletowers:block/stairs_obsidian"
+    }
+  }
+]

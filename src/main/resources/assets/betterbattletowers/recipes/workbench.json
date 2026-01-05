@@ -1,0 +1,103 @@
+[
+  {
+    "name": "betterbattletowers:workbench/tinted_iron_bar_block",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["IOI", "IOI", "IOI"],
+    "symbols": [
+      {
+        "symbol": "I",
+        "stack": {"id": "minecraft:item/olivine"}
+      },
+      {
+        "symbol": "O",
+        "stack": {"id": "minecraft:item/ingot_iron"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/prison_bar"
+    }
+  },
+  {
+    "name": "betterbattletowers:workbench/tinted_iron_bar_fence",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["T"],
+    "symbols": [
+      {
+        "symbol": "T",
+        "stack": {"id": "betterbattletowers:block/prison_bar"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/prison_fence",
+      "amount": 6
+    }
+  },
+  {
+    "name": "betterbattletowers:workbench/runic_stone",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["SSS", "SOS", "SSS"],
+    "symbols": [
+      {
+        "symbol": "S",
+        "stack": {"id": "minecraft:block/brick_slate"}
+      },
+      {
+        "symbol": "O",
+        "stack": {"id": "minecraft:block/obsidian"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/runic_stone",
+      "amount": 8
+    }
+  },
+  {
+    "name": "betterbattletowers:workbench/runic_chiseled_stone",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["SS", "SS"],
+    "symbols": [
+      {
+        "symbol": "S",
+        "stack": {"id": "betterbattletowers:block/runic_stone"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/runic_chiseled_stone",
+      "amount": 4
+    }
+  },
+  {
+    "name": "betterbattletowers:workbench/pillar_runic",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["S", "S"],
+    "symbols": [
+      {
+        "symbol": "S",
+        "stack": {"id": "betterbattletowers:block/runic_stone"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/pillar_runic",
+      "amount": 2
+    }
+  },
+  {
+    "name": "betterbattletowers:workbench/runic_glyph_stone",
+    "type": "minecraft:crafting/shaped",
+    "pattern": ["SSS", "SDS", "SSS"],
+    "symbols": [
+      {
+        "symbol": "S",
+        "stack": {"id": "betterbattletowers:block/runic_stone"}
+      },
+      {
+        "symbol": "D",
+        "stack": {"id": "minecraft:item/diamond"}
+      }
+    ],
+    "result": {
+      "id": "betterbattletowers:block/runic_glyph_stone",
+      "amount": 8
+    }
+  }
+]
