@@ -54,6 +54,7 @@ Special thanks goes to the people that have over the years contributed to this p
 - MonkeySaint
 - Redart15
 - Cauliflower
+- Hobble
 
 ## Issues:
 Please contact us regarding issues via BTA discord. The channel can be found under community content/mods/Better than Batte Tower
