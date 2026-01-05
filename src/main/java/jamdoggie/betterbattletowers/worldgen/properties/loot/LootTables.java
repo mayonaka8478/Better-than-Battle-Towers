@@ -31,6 +31,8 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
@@ -43,7 +45,7 @@ public class LootTables {
 	public static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve(MOD_ID + "loot.conf");
 	@SuppressWarnings("java:S1905")
 	protected static final WeightedRandomBag<WeightedRandomLootObject>[] TOWER_LOOT_TABLE = (WeightedRandomBag<WeightedRandomLootObject>[]) new WeightedRandomBag[10];
-	public static final String ASSETS_JAR_PATH = String.format("/assets/%s/loot_table/%sloot.conf", MOD_ID, MOD_ID);
+	public static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/loot.conf", MOD_ID, MOD_ID);
 	private static boolean init = false;
 
 	private LootTables() {
@@ -71,21 +73,25 @@ public class LootTables {
 					List<LootTable> defaultTable = LootTableDefault.getDefaultTable();
 					String json = gson.toJson(defaultTable, type);
 					Config config = ConfigFactory.parseString("{ loot_tables = " + json + " }");
-					Files.write(LootTables.CONFIG_PATH, config.root()
+					Path projectRoot = FabricLoader.getInstance().getGameDir().getParent();
+					Path devPath = projectRoot.resolve("src/main/resources" + ASSETS_JAR_PATH);
+					Files.createDirectories(devPath.getParent());
+					Files.write(devPath, config.root()
 						.render(ConfigRenderOptions.defaults()
 							.setJson(false)
 							.setOriginComments(false))
 						.getBytes(StandardCharsets.UTF_8));
-				}
-				try (InputStream stream = DataLoader.class.getResourceAsStream(LootTables.ASSETS_JAR_PATH)) {
-					if (stream == null) {
-						LOGGER.error("LootTable could not be regenerated, betterbattletowers.jar is corrupted.");
-						throw new RuntimeException("Asset not found in JAR: " + LootTables.ASSETS_JAR_PATH);
+					Files.copy(devPath, CONFIG_PATH, StandardCopyOption.REPLACE_EXISTING);
+				}else{
+					try (InputStream stream = DataLoader.class.getResourceAsStream(LootTables.ASSETS_JAR_PATH)) {
+						if (stream == null) {
+							LOGGER.error("LootTable could not be regenerated, betterbattletowers.jar is corrupted.");
+							throw new RuntimeException("Asset not found in JAR: " + LootTables.ASSETS_JAR_PATH);
+						}
+						Files.copy(stream, LootTables.CONFIG_PATH);
 					}
-					Files.copy(stream, LootTables.CONFIG_PATH);
 				}
 			} catch (IOException e) {
-				LOGGER.error("Loot table failed to be copied to config.");
 				throw new RuntimeException("Failed to create default loot config at: "
 					+ LootTables.CONFIG_PATH.toAbsolutePath(), e);
 			}
@@ -98,10 +104,8 @@ public class LootTables {
 			List<LootTable> table = gson.fromJson(jsonString, type);
 			LootTables.createTables(table);
 		} catch (ConfigException e) {
-			LOGGER.error("Failed to read configuration file.");
 			throw new RuntimeException("Failed to parse HOCON config: " + LootTables.CONFIG_PATH.toAbsolutePath(), e);
 		} catch (JsonSyntaxException e) {
-			LOGGER.error("");
 			throw new RuntimeException("Loot configuration file is malformed: " + LootTables.CONFIG_PATH.toAbsolutePath(), e);
 		}
 	}

@@ -26,38 +26,21 @@
 	"accessWidener" : "betterbattletowers.classtweaker",
   "environment": "*",
   "entrypoints": {
-    "main": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-    ],
-		"beforeGameStart": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"beforeClientStart": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"afterGameStart": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"afterClientStart": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"recipesReady": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"client": [
-			"jamdoggie.betterbattletowers.BattleTowerMod"
-		],
-		"initModels": [
-			"jamdoggie.betterbattletowers.model.BattleTowerModel"
-		],
-		"server": [
-			"jamdoggie.betterbattletowers.BattleTowerServer"
-		]
+    "main": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"beforeGameStart": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"beforeClientStart": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"afterGameStart": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"afterClientStart": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"recipesReady": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"client": ["jamdoggie.betterbattletowers.BattleTowerMod"],
+		"initModels": ["jamdoggie.betterbattletowers.model.BattleTowerModel"],
+		"server": ["jamdoggie.betterbattletowers.BattleTowerServer"],
+		"preLaunch": ["jamdoggie.betterbattletowers.compat.waila.BattleTowerBTWLoader"],
+		"btwaila": ["jamdoggie.betterbattletowers.compat.waila.BattleTowerBTWCompat"]
 	},
   "mixins": [
 		"betterbattletowers.mixins.json"
   ],
-
   "depends": {
 		"minecraft": "~7.3",
     "fabricloader": ">=0.15.6-babric.6-bta",
