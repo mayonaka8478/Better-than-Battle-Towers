@@ -12,23 +12,44 @@ betterbattletowers.subtitles.mob.golem.special=Golem attack
 # Blocks
 tile.betterbattletowers.chest.tower.name=Tower Chest
 tile.betterbattletowers.chest.tower.desc=Old sturdy chest placed in ancient towers. Too heavy to carry.
+# Tinted
 tile.betterbattletowers.prison.bar.name=Tinted Iron Cage
 tile.betterbattletowers.prison.bar.desc=Iron cage that blocks all light.
 tile.betterbattletowers.prison.fence.name=Tinted Iron Bars
 tile.betterbattletowers.prison.fence.desc=A decorative fence salvaged from tinted iron cages.
-
+# Crumbling
 tile.betterbattletowers.crumbling.stone.name=Crumbling Polished Stone
-tile.betterbattletowers.crumbling.stone.desc=These old tile wont hold up much longer.
+tile.betterbattletowers.crumbling.stone.desc=These old tiles wont hold up much longer.
+tile.betterbattletowers.crumbling.stone.bridle.name=Bridle Polished Stone
+tile.betterbattletowers.crumbling.stone.bridle.desc=These old tiles are about to break!
+tile.betterbattletowers.slab.crumbling.stone.name=Crumbling Polished Stone Slab
+tile.betterbattletowers.slab.crumbling.stone.desc=A slab of old polished stone.
+tile.betterbattletowers.slab.crumbling.stone.bridle.name=Bridle Polished Stone Slab
+tile.betterbattletowers.slab.crumbling.stone.bridle.desc=A slab of about to break polished stone!
+tile.betterbattletowers.stairs.crumbling.stone.name=Crumbling Polished Stone Stairs
+tile.betterbattletowers.stairs.crumbling.stone.desc=Polished Stone block used for very careful vertical movement.
+tile.betterbattletowers.stairs.crumbling.stone.bridle.name=Bridle Polished Stone Stairs
+tile.betterbattletowers.stairs.crumbling.stone.bridle.desc=Polished Stone block used for very careful and very dangerous vertical movement!
+# Runic
 tile.betterbattletowers.runic.stone.name=Runic Stone
 tile.betterbattletowers.runic.stone.desc=A runic stone created to imprison the denizen of the tower.
-tile.betterbattletowers.runic.carved.stone.name=Carved Runic Stone
-tile.betterbattletowers.runic.carved.stone.desc=A carved runic stone, a pretty reminder of its purpose.
+tile.betterbattletowers.runic.chiseled.stone.name=Chiseled Runic Stone
+tile.betterbattletowers.runic.chiseled.stone.desc=A chiseled runic stone, a pretty reminder of its purpose.
 tile.betterbattletowers.runic.glyph.stone.name=Glyph Runic Stone
 tile.betterbattletowers.runic.glyph.stone.desc=A glowing runic stone that emits no light.
+tile.betterbattletowers.pillar.runic.name=Runic Pillar
+tile.betterbattletowers.pillar.runic.desc=We have battle tower at home.
+# Obsidian
+tile.betterbattletowers.carved.obsidian.name=Carved Obsidian
+tile.betterbattletowers.carved.obsidian.desc=Obsidian with lines hewn through the middle.
+tile.betterbattletowers.slab.obsidian.name=Obsidian Slab
+tile.betterbattletowers.slab.obsidian.desc=A slab of obsidian.
+tile.betterbattletowers.stairs.obsidian.name=Obsidian Stairs
+tile.betterbattletowers.stairs.obsidian.desc=Obsidian block used for rapid vertical movement.
 
 # Model viewer
-model.category.entity.golem.state.dormant = State: Dormant.
-model.category.entity.golem.state.awake = State: Awake.
-model.category.entity.golem.placeholder.text = Type:
-model.category.entity.golem.placeholder = Golem Type
+model.category.entity.golem.state.dormant=State: Dormant.
+model.category.entity.golem.state.awake=State: Awake.
+model.category.entity.golem.placeholder.text=Type:
+model.category.entity.golem.placeholder=Golem Type
 
