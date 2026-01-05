@@ -27,7 +27,7 @@ import java.util.*;
 import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling.BreakingStage.*;;
 import static jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData.bd;
-import static jamdoggie.betterbattletowers.worldgen.data.loot.LootTables.populateChest;
+import static jamdoggie.betterbattletowers.worldgen.data.loot.LootLoader.populateChest;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
