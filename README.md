@@ -13,18 +13,24 @@ Port of the [Battle Towers](https://www.minecraftforum.net/forums/mapping-and-mo
 
 ## Features
 Here is a list of all the features that Battle Towers offers:
-- Golems with 9 different skins:
+- Golems with 11 different skins:
   - Golems are fall and knockback resistant mobs
   - Guarding the top of the tower 
   - They speed up as they loose health.
   - While dormant, golems cannot be harmed
   - In peaceful mode golems are always dormant
-- 22 different looking towers with 3 different types:
+- 32 different looking towers with 3 different types:
   - Battle Towers, a spawner filled tower rising into the sky
   - Reverse Towers, battle tower that disappeare into the ground
   - Ruined Towers, vanquished battle tower with the golem slain and many spawner destoryed.
-- Tinted Iron Cage, a block to see through that block light, can be enabled to spawn as windows in towers. 
-- Tinted Iron Bars, a decorative fence made from tinted iron cage.
+- New Blocks:
+  - Tinted Iron Cage, a block to see through that block light, can be enabled to spawn as windows in towers.
+  - Tinted Iron Bars, a decorative fence made from tinted iron cage.
+  - Obsidian Slabs and Stairs
+  - Crumbling Block, Slab and Stairs, that crumbling under player feet.
+  - Runic Stone, Pillar, Chiseled, Glyph, decorational explosion resistant blocks, used in hardcore towers.
+- Hardcore mode, enabled in config for a more challenging tower with more deadly mob and traps.
+- Support for BTWaila.
 
 **This mod uses a modified version of Fabric (Babric) and is designed only for [Better than Adventure](https://www.betterthanadventure.net/), a heavily modified version of Minecraft b1.7.3! For more information, join the discord server provided on this projects page.**
 
