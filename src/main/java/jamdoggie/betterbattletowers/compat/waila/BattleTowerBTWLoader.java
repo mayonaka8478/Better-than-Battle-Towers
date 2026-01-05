@@ -1,0 +1,18 @@
+package jamdoggie.betterbattletowers.compat.waila;
+
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
+import org.spongepowered.asm.mixin.Mixins;
+import turniplabs.halplibe.helper.EnvironmentHelper;
+
+public class BattleTowerBTWLoader implements PreLaunchEntrypoint {
+	@Override
+	public void onPreLaunch() {
+		if (!EnvironmentHelper.isServerEnvironment()) {
+			FabricLoader loader = FabricLoader.getInstance();
+			if (loader.isModLoaded("btwaila")) {
+				Mixins.addConfiguration("compat/waila.mixins.json");
+			}
+		}
+	}
+}

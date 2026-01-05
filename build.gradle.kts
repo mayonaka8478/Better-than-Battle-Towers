@@ -47,6 +47,7 @@ lwjgl {
 dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
+    compileOnly(libs.btwaila)
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
