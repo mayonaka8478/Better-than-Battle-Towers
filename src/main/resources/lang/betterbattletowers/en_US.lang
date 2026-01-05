@@ -1,7 +1,6 @@
-# Guidebook
+# Entities
 betterbattletowers.golem.name=Golem
 betterbattletowers.golem.desc=A powerful foe that lays dormant on top of ancient towers.
-
 betterbattletowers.aggro_zombie_pigman.name=Feral Zombie Pigman
 betterbattletowers.aggro_zombie_pigman.desc=Zombie pigmen spawned within the accursed towers. They are hostile provoked.
 
