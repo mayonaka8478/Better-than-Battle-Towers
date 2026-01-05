@@ -1,6 +1,8 @@
-# Guidebook
+# Entities
 betterbattletowers.golem.name=ゴーレム
 betterbattletowers.golem.desc=タワーの頂上に眠る強敵
+betterbattletowers.aggro_zombie_pigman.name=
+betterbattletowers.aggro_zombie_pigman.desc=
 
 # Golem sounds
 betterbattletowers.subtitles.mob.golem=ゴーレムが唸る
@@ -12,19 +14,40 @@ betterbattletowers.subtitles.mob.golem.special=ゴーレムが攻撃する
 # Blocks
 tile.betterbattletowers.chest.tower.name=タワーチェスト
 tile.betterbattletowers.chest.tower.desc=タワーに置かれた古くて頑丈な箱、重くて持ち上げられない
+# Tinted
 tile.betterbattletowers.prison.bar.name=遮光鉄棒ブロック
 tile.betterbattletowers.prison.bar.desc=光を遮断する、棒状の鉄製ブロック
 tile.betterbattletowers.prison.fence.name=鉄棒の柵
 tile.betterbattletowers.prison.fence.desc=棒状の鉄でできた囲い、大人の事情により遮光効果はない
-
+# Crumbling
 tile.betterbattletowers.crumbling.stone.name=朽ちたつやあり石
 tile.betterbattletowers.crumbling.stone.desc=この石は叩いたら渡れなくなってしまうだろう
+tile.betterbattletowers.crumbling.stone.bridle.name=
+tile.betterbattletowers.crumbling.stone.bridle.desc=
+tile.betterbattletowers.slab.crumbling.stone.name=
+tile.betterbattletowers.slab.crumbling.stone.desc=
+tile.betterbattletowers.slab.crumbling.stone.bridle.name=
+tile.betterbattletowers.slab.crumbling.stone.bridle.desc=
+tile.betterbattletowers.stairs.crumbling.stone.name=
+tile.betterbattletowers.stairs.crumbling.stone.desc=
+tile.betterbattletowers.stairs.crumbling.stone.bridle.name=
+tile.betterbattletowers.stairs.crumbling.stone.bridle.desc=
+# Runic
 tile.betterbattletowers.runic.stone.name=古代の石材
 tile.betterbattletowers.runic.stone.desc=タワーの住民を封印するために作られたであろう石材
-tile.betterbattletowers.runic.carved.stone.name=彫刻した古代の石材
-tile.betterbattletowers.runic.carved.stone.desc=彫刻された古代の石材、素敵な模様からはこの石材の存在意義を感じ取れる
+tile.betterbattletowers.runic.chiseled.stone.name=
+tile.betterbattletowers.runic.chiseled.stone.desc=
 tile.betterbattletowers.runic.glyph.stone.name=刻まれた古代の石材
 tile.betterbattletowers.runic.glyph.stone.desc=輝いているのに光ってない古代の石材…どういうことだろう
+tile.betterbattletowers.pillar.runic.name=
+tile.betterbattletowers.pillar.runic.desc=
+# Obsidian
+tile.betterbattletowers.carved.obsidian.name=
+tile.betterbattletowers.carved.obsidian.desc=
+tile.betterbattletowers.slab.obsidian.name=
+tile.betterbattletowers.slab.obsidian.desc=
+tile.betterbattletowers.stairs.obsidian.name=
+tile.betterbattletowers.stairs.obsidian.desc=
 
 # Model viewer
 model.category.entity.golem.state.dormant = 状態: 非稼働

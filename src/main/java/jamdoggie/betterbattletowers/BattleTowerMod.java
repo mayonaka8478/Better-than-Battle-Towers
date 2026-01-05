@@ -87,16 +87,9 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void onRecipesReady() {
-//		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/workbench.json");
-
-		RecipeBuilder.Shaped(MOD_ID, "IOI", "IOI", "IOI")
-			.addInput('O', Items.OLIVINE)
-			.addInput('I', Items.INGOT_IRON)
-			.create("tinted_iron_bar_block", new ItemStack((BattleTowerBlocks.PRISON_BAR)));
-
-		RecipeBuilder.Shaped(MOD_ID, "T")
-			.addInput('T', BattleTowerBlocks.PRISON_BAR)
-			.create("tinted_iron_bar_fence", new ItemStack(BattleTowerBlocks.PRISON_BAR_FENCE, 32));
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/workbench.json");
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/blast_furnace.json");
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/furnace.json");
 	}
 
 	@Override

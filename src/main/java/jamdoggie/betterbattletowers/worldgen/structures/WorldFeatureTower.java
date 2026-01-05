@@ -73,7 +73,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	private void setHardcoreDecoration() {
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_STONE.id()), this.runicChance);
 
-		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_CARVED_STONE.id()), this.carvedChance);
+		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.CHISELED_RUNIC_STONE.id()), this.carvedChance);
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 2), this.glyphChance / 4);
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 3), this.glyphChance / 4);
 		this.buildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), this.glyphChance / 4);
