@@ -6,16 +6,25 @@
   "name": "Better than Battle Towers",
   "description": "A version of the original Battle Towers mod for Better than Adventure.",
   "authors": [
-    "JamDoggie",
-		"LukeisStuff",
-		"UselessBullets",
-		"bigsir24",
+		"JamDoggie",
 		"mayonaka8478",
 		"baguchan",
-		"Redart15",
+		{
+			"name": "Redart15",
+			"contact": {
+				"discord": "Official BTA Discord, @Redart15",
+				"github": "Redart15"
+			}
+		}
+	],
+	"contributors": [
 		"Cauliflower",
-		"Astronomical360"
-  ],
+		"bigsir24",
+		"LukeisStuff",
+		"UselessBullets",
+		"Astronomical360",
+		"Hobblerox"
+	],
   "contact": {
     "homepage": "https://modrinth.com/mod/better-than-battle-towers",
     "sources": "https://github.com/mayonaka8478/Better-than-Battle-Towers"
