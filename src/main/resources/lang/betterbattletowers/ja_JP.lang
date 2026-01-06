@@ -1,8 +1,8 @@
 # Entities
 betterbattletowers.golem.name=ゴーレム
 betterbattletowers.golem.desc=タワーの頂上に眠る強敵
-betterbattletowers.aggro_zombie_pigman.name=
-betterbattletowers.aggro_zombie_pigman.desc=
+betterbattletowers.aggro_zombie_pigman.name=凶暴ゾンビピッグマン
+betterbattletowers.aggro_zombie_pigman.desc=呪われたタワーに出現する凶暴な\nゾンビピッグマン。普段は温厚な\n普通のゾンビピッグマンと違い、\nこちらから攻撃をしなくても攻撃を\nしてくる
 
 # Golem sounds
 betterbattletowers.subtitles.mob.golem=ゴーレムが唸る
@@ -22,32 +22,32 @@ tile.betterbattletowers.prison.fence.desc=棒状の鉄でできた囲い、大�
 # Crumbling
 tile.betterbattletowers.crumbling.stone.name=朽ちたつやあり石
 tile.betterbattletowers.crumbling.stone.desc=この石は叩いたら渡れなくなってしまうだろう
-tile.betterbattletowers.crumbling.stone.bridle.name=
-tile.betterbattletowers.crumbling.stone.bridle.desc=
-tile.betterbattletowers.slab.crumbling.stone.name=
-tile.betterbattletowers.slab.crumbling.stone.desc=
-tile.betterbattletowers.slab.crumbling.stone.bridle.name=
-tile.betterbattletowers.slab.crumbling.stone.bridle.desc=
-tile.betterbattletowers.stairs.crumbling.stone.name=
-tile.betterbattletowers.stairs.crumbling.stone.desc=
-tile.betterbattletowers.stairs.crumbling.stone.bridle.name=
-tile.betterbattletowers.stairs.crumbling.stone.bridle.desc=
+tile.betterbattletowers.bridle.stone.name=崩れかけつやあり石
+tile.betterbattletowers.bridle.stone.desc=この石は叩くまえに渡れなくなってしまうだろう
+tile.betterbattletowers.slab.crumbling.stone.name=朽ちたつやあり石半ブロック
+tile.betterbattletowers.slab.crumbling.stone.desc=ボロのくせにつやがあると名乗っている石の半ブロック
+tile.betterbattletowers.slab.bridle.stone.name=崩れかけつやあり石半ブロック
+tile.betterbattletowers.slab.bridle.stone.desc=つやがあると名乗るにはさすがにもう無理がある石の半ブロック
+tile.betterbattletowers.stairs.crumbling.stone.name=朽ちたつやあり石の階段
+tile.betterbattletowers.stairs.crumbling.stone.desc=迅速な垂直方向への移動に間違いなく使えないボロさなのにつやがあると名乗っている石
+tile.betterbattletowers.stairs.bridle.stone.name=崩れかけつやあり石の階段
+tile.betterbattletowers.stairs.bridle.stone.desc=迅速な垂直方向への移動云々どころか根本的にもうダメそうな石の半ブロック
 # Runic
 tile.betterbattletowers.runic.stone.name=古代の石材
 tile.betterbattletowers.runic.stone.desc=タワーの住民を封印するために作られたであろう石材
-tile.betterbattletowers.runic.chiseled.stone.name=
-tile.betterbattletowers.runic.chiseled.stone.desc=
+tile.betterbattletowers.runic.chiseled.stone.name=模様入り古代の石材
+tile.betterbattletowers.runic.chiseled.stone.desc=模様が刻まれた古代の石材、素敵な模様からはこの石材の存在意義を感じ取れる
 tile.betterbattletowers.runic.glyph.stone.name=刻まれた古代の石材
 tile.betterbattletowers.runic.glyph.stone.desc=輝いているのに光ってない古代の石材…どういうことだろう
-tile.betterbattletowers.pillar.runic.name=
-tile.betterbattletowers.pillar.runic.desc=
+tile.betterbattletowers.pillar.runic.name=古代の石柱
+tile.betterbattletowers.pillar.runic.desc=バトルタワー！！ハンドキャノンを相手のゴールにシュゥゥゥーッ！！超！エキサイティン！！
 # Obsidian
-tile.betterbattletowers.carved.obsidian.name=
-tile.betterbattletowers.carved.obsidian.desc=
-tile.betterbattletowers.slab.obsidian.name=
-tile.betterbattletowers.slab.obsidian.desc=
-tile.betterbattletowers.stairs.obsidian.name=
-tile.betterbattletowers.stairs.obsidian.desc=
+tile.betterbattletowers.carved.obsidian.name=彫刻した黒曜石
+tile.betterbattletowers.carved.obsidian.desc=中央に線を刻んだ黒曜石
+tile.betterbattletowers.slab.obsidian.name=黒曜石半ブロック
+tile.betterbattletowers.slab.obsidian.desc=黒曜石の半ブロック
+tile.betterbattletowers.stairs.obsidian.name=黒曜石の階段
+tile.betterbattletowers.stairs.obsidian.desc=迅速な垂直方向への移動に使用できる黒曜石のブロック
 
 # Model viewer
 model.category.entity.golem.state.dormant = 状態: 非稼働

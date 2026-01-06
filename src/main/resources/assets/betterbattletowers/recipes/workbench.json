@@ -2,7 +2,7 @@
   {
     "name": "betterbattletowers:workbench/tinted_iron_bar_block",
     "type": "minecraft:crafting/shaped",
-    "pattern": ["IOI", "IOI", "IOI"],
+    "pattern": ["IO", "OI"],
     "symbols": [
       {
         "symbol": "I",
