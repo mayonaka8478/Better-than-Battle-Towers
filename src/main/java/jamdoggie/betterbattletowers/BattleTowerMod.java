@@ -8,6 +8,7 @@ import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader;
+import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataDefault;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureReverseTower;
 import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureVanquishedTower;
@@ -83,6 +84,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		GolemVariants.init();
 		LootDataLoader.init();
 		TowerDataLoader.init();
+		TowerDataDefault.init();
 	}
 
 	@Override

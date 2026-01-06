@@ -7,6 +7,7 @@ import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty;
+import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataDefault;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.BlockLogicChest;
@@ -65,26 +66,14 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		hardCoreBlockBag.addEntry(bd(BLOCK_AIR), 10.0f);
 	}
 
-	protected static WeightedRandomBag<BlockData> hardCoreBuildingBlockBag = new WeightedRandomBag<>();
-	static {
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_STONE.id()), 65.0f);
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.CHISELED_RUNIC_STONE.id()), 25.0f);
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 2), 2.5f);
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 3), 2.5f);
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 4), 2.5f);
-		hardCoreBuildingBlockBag.addEntry(bd(BattleTowerBlocks.RUNIC_GLYPH_STONE.id(), 5), 2.5f);
-	}
-
 	///  Sets the golem type as well as the tower decorations
 	protected final void setTowerProperties(Biome biome) {
 		TowerProperty towerProperty = TowerDataLoader.getTowerProperties(biome, this.random);
 		this.golemVariant = towerProperty.getGolemType();
 		this.biome = biome;
-		this.buildingBlockBag = new WeightedRandomBag<>();
-
 		if (BattleTowerConfig.isHardcore()) {
 			this.floorBlockBag = hardCoreBlockBag;
-			this.buildingBlockBag = hardCoreBuildingBlockBag;
+			this.buildingBlockBag = TowerDataDefault.hardCoreBuildingBlocks(this.random);
 		} else {
 			this.floorBlockBag = nonHardCoreBag;
 			this.buildingBlockBag = towerProperty.getTowerDecorations();
@@ -336,8 +325,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	///  Spawns and moves the golem to the top floor
 	protected final void placeGolem(double x, double y, double z) {
 		MobGolem golem = new MobGolem(world);
-		golem.setVariant(this.golemVariant);
 		golem.spawnInit();
+		golem.setVariant(this.golemVariant);
 		golem.moveTo(x, y, z, world.rand.nextFloat() * 360F, 0.0F);
 		world.entityJoinedWorld(golem);
 		LOGGER.info("Spawned golem at {} {} {}", x, y, z);
@@ -345,11 +334,16 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Decorate the crown with grenulations
 	protected void createCrenulations(int x, int y, int z) {
-		boolean crenulation = false;
-		for (int ix = 0; ix < Chunk.CHUNK_SIZE_X; ix++, crenulation = !crenulation) {
-			for (int iz = 0; iz < Chunk.CHUNK_SIZE_X; iz++, crenulation = !crenulation) {
-				if (this.isInPerimeter(ix, iz) && this.isWall(ix, iz) && crenulation) {
-					this.placeBlock(this.buildingBlockBag.getRandom(random), ix + x, y + 2, iz + z);
+		for (int ix = 0; ix < Chunk.CHUNK_SIZE_X; ix++) {
+			for (int iz = 0; iz < Chunk.CHUNK_SIZE_X; iz++) {
+				if (this.isInPerimeter(ix, iz) && this.isWall(ix, iz)){
+					boolean top = (ix & 1) == 0 && iz == 1;
+					boolean bot = (ix & 1) == 1 && iz == 14;
+					boolean side1 = ix > 0 && ix < 4 && (iz == 9 - ix * 2 || iz == 7 + ix * 2);
+					boolean side2 = ix > 11 && ix < 15 && (iz == 8 - (15 - ix) * 2 || iz == 6 + (15 - ix) * 2);
+					if(top || bot || side1 || side2){
+						this.placeBlock(this.buildingBlockBag.getRandom(random), x + ix, y + 2, z + iz);
+					}
 				}
 			}
 		}

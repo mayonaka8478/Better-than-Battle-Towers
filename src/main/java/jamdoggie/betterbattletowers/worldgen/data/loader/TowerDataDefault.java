@@ -1,5 +1,6 @@
 package jamdoggie.betterbattletowers.worldgen.data.loader;
 
+import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperties;
 import net.minecraft.core.WeightedRandomBag;
@@ -17,7 +18,37 @@ import static net.minecraft.core.world.biome.Biomes.*;
 
 
 public class TowerDataDefault {
+	private static WeightedRandomBag<WeightedRandomBag<BlockData>> hardCoreTowerBuildingBlocks = new WeightedRandomBag<>();
+	private static WeightedRandomBag<BlockData> RUNIC;
+	private static WeightedRandomBag<BlockData> PILLAR_RUNIC;
+	static {
+		RUNIC = asBag(
+			pallet(RUNIC_STONE.id(), 60.0f),
+			pallet(CHISELED_RUNIC_STONE.id(), 25.0f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 2), 3.75f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 3), 3.75f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 4), 3.75f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 5), 3.75f)
+		);
+
+		PILLAR_RUNIC = asBag(
+			pallet(BattleTowerBlocks.PILLAR_RUNIC.id(), 99.0f),
+			pallet(RUNIC_STONE.id(), 1.0f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 2), 1.0f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 3), 1.0f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 4), 1.0f),
+			pallet(bd(RUNIC_GLYPH_STONE.id(), 5), 1.0f)
+		);
+
+		hardCoreTowerBuildingBlocks.addEntry(RUNIC, 1.0f);
+		hardCoreTowerBuildingBlocks.addEntry(PILLAR_RUNIC, 1.0f);
+	}
+
 	private TowerDataDefault() {
+	}
+
+	public static void init() {
+		/* to load the class to use its elements*/
 	}
 
 	public static class BlockPallet {
@@ -36,6 +67,10 @@ public class TowerDataDefault {
 		public static BlockPallet pallet(BlockData data, float chance) {
 			return new BlockPallet(data, chance);
 		}
+	}
+
+	public static WeightedRandomBag<BlockData> hardCoreBuildingBlocks(Random random){
+		return hardCoreTowerBuildingBlocks.getRandom(random);
 	}
 
 	@SafeVarargs
@@ -99,11 +134,8 @@ public class TowerDataDefault {
 
 		WeightedRandomBag<BlockData> SLATE = asBag(pallet(SLATE_POLISHED.id(), 50.0f), pallet(Blocks.SLATE.id(), 50.0f));
 
-		WeightedRandomBag<BlockData> HARDCORE = asBag(pallet(RUNIC_STONE.id(), 60.0f), pallet(CHISELED_RUNIC_STONE.id(), 25.0f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 2), 3.75f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 3), 3.75f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 4), 3.75f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 5), 3.75f));
+		hardCoreTowerBuildingBlocks.addEntry(RUNIC, 50.0f);
+		hardCoreTowerBuildingBlocks.addEntry(PILLAR_RUNIC, 50.0f);
 
 		/// basalt			wet		hot
 		/// obsidian		wet		hot
@@ -137,7 +169,7 @@ public class TowerDataDefault {
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 100.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 100.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -156,7 +188,7 @@ public class TowerDataDefault {
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 50.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		///
@@ -176,7 +208,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		///
@@ -198,7 +230,7 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", POLISH_STONE, 100.0))
 				.addProperty(deco("stone", BRICK_STONE, 100.0))
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		///
@@ -212,7 +244,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -222,7 +254,7 @@ public class TowerDataDefault {
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
 				.addProperty(deco("granite", BACKED_MUD, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -235,7 +267,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -248,7 +280,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -263,7 +295,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -274,7 +306,7 @@ public class TowerDataDefault {
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
 				.addProperty(deco("granite", BACKED_MUD, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -290,7 +322,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -299,7 +331,7 @@ public class TowerDataDefault {
 				.addProperty(deco("permafrost", PERMA_ICE, 100.0))
 				.addProperty(deco("permafrost", COBBLE_PERMA, 100.0))
 				.addProperty(deco("permafrost", SNOW, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -317,7 +349,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
 
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -335,7 +367,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -367,7 +399,7 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", POLISH_STONE, 100.0))
 				.addProperty(deco("stone", BRICK_STONE, 100.0))
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -383,7 +415,7 @@ public class TowerDataDefault {
 				.addProperty(deco("netherrack", NETHER, 100.0))
 				.addProperty(deco("netherrack", POLISH_NETHER, 100.0))
 				.addProperty(deco("slate", SLATE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -402,12 +434,12 @@ public class TowerDataDefault {
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 50.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
 			properties(OVERWORLD_OUTBACK_GRASSY)
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -420,7 +452,7 @@ public class TowerDataDefault {
 				.addProperty(deco("sandstone", SANDSTONE, 100.0))
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
@@ -431,7 +463,7 @@ public class TowerDataDefault {
 
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
-				.addProperty(deco("slate", HARDCORE, 1.0))
+				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		return listProperties;
