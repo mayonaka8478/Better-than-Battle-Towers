@@ -30,18 +30,7 @@ public class TowerDataDefault {
 			pallet(bd(RUNIC_GLYPH_STONE.id(), 4), 3.75f),
 			pallet(bd(RUNIC_GLYPH_STONE.id(), 5), 3.75f)
 		);
-
-		PILLAR_RUNIC = asBag(
-			pallet(BattleTowerBlocks.PILLAR_RUNIC.id(), 99.0f),
-			pallet(RUNIC_STONE.id(), 1.0f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 2), 1.0f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 3), 1.0f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 4), 1.0f),
-			pallet(bd(RUNIC_GLYPH_STONE.id(), 5), 1.0f)
-		);
-
 		hardCoreTowerBuildingBlocks.addEntry(RUNIC, 1.0f);
-		hardCoreTowerBuildingBlocks.addEntry(PILLAR_RUNIC, 1.0f);
 	}
 
 	private TowerDataDefault() {
