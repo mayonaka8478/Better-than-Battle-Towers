@@ -46,12 +46,6 @@ public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTrigge
 		return Metadata.setBitBlock(metadata, 4, 5, value);
 	}
 
-
-	public BlockLogicCrumbling setDropBlock (Block<?> dropBlock){
-		this.dropBlock = dropBlock;
-		return this;
-	}
-
 	public Block<?> getDropBlock (){
 		return this.dropBlock;
 	}

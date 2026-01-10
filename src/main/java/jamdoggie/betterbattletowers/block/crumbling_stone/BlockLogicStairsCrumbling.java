@@ -12,14 +12,11 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 
 public class BlockLogicStairsCrumbling extends BlockLogicStairs implements BattleTowerTriggerStandOn {
+	public Block<?> dropBlock;
 
-	public BlockLogicStairsCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock) {
+	public BlockLogicStairsCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, Block<?> dropBlock) {
 		super(block, modelBlock);
-	}
-
-	public BlockLogicStairsCrumbling setDropBlock (Block<?> dropBlock){
-		((BlockLogicCrumbling)this.modelBlock.getLogic()).setDropBlock(dropBlock);
-		return this;
+		this.dropBlock = dropBlock;
 	}
 
 	@Override
@@ -35,6 +32,10 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 	@Override
 	public float blockStrength(World world, int x, int y, int z, Side side, Player player) {
 		return this.modelBlock.blockStrength(world, x, y, z, side, player);
+	}
+
+	public Block<?> getDropBlock (){
+		return this.dropBlock;
 	}
 
 	@Override

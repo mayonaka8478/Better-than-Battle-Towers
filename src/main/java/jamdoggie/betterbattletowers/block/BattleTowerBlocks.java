@@ -82,18 +82,14 @@ public class BattleTowerBlocks {
 		.setHardness(1.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("slab_crumbling_stone", id++, b -> new BlockLogicSlabCrumbling(b, CRUMBLING_STONE)
-			.setDropBlock(Blocks.SLAB_STONE_POLISHED)
-		);
+		.build("slab_crumbling_stone", id++, b -> new BlockLogicSlabCrumbling(b, CRUMBLING_STONE, Blocks.SLAB_STONE_POLISHED));
 
 	public static final Block<BlockLogicStairsCrumbling> STAIRS_CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
 		.setHardness(1.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("stairs_crumbling_stone", id++, b -> new BlockLogicStairsCrumbling(b, CRUMBLING_STONE)
-			.setDropBlock(Blocks.SLAB_STONE_POLISHED)
-		);
+		.build("stairs_crumbling_stone", id++, b -> new BlockLogicStairsCrumbling(b, CRUMBLING_STONE, Blocks.SLAB_STONE_POLISHED));
 
 	public static final Block<?> CARVED_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
