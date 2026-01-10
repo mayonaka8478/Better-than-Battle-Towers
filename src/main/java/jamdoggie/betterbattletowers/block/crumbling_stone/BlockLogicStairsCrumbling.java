@@ -41,7 +41,7 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		if(BlockLogicCrumbling.getStageFromMetadata(meta) <= 0) return null;
-		Block<?> block = ((BlockLogicCrumbling)this.modelBlock.getLogic()).getDropBlock();
+		Block<?> block = this.getDropBlock();
 		ItemStack[] result = dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(block)} : null;
 		if (result != null) {
 			for(ItemStack stack : result) {
