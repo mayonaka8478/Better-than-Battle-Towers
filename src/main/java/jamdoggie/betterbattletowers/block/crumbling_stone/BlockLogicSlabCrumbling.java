@@ -12,22 +12,25 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 
 public class BlockLogicSlabCrumbling extends BlockLogicSlab implements BattleTowerTriggerStandOn{
+	public Block<?> dropBlock;
 	public enum SLAB_STATE{
 		LOWER, FULL, UPPER;
 	}
 
-	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock) {
+	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, Block<?> dropBlock) {
 		super(block, modelBlock);
+		this.dropBlock = dropBlock;
 	}
 
-	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, int modelBlockMetadata) {
+	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, int modelBlockMetadata, Block<?> dropBlock) {
 		super(block, modelBlock, modelBlockMetadata);
+		this.dropBlock = dropBlock;
 	}
 
-	public BlockLogicSlabCrumbling setDropBlock (Block<?> dropBlock){
-		((BlockLogicCrumbling)this.modelBlock.getLogic()).setDropBlock(dropBlock);
-		return this;
+	public Block<?> getDropBlock (){
+		return this.dropBlock;
 	}
+
 
 	@Override
 	public void onEntityStandOn(World world, int x, int y, int z, Entity entity) {
@@ -47,7 +50,7 @@ public class BlockLogicSlabCrumbling extends BlockLogicSlab implements BattleTow
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		if(BlockLogicCrumbling.getStageFromMetadata(meta) <= 0) return null;
-		Block<?> block = ((BlockLogicCrumbling)this.modelBlock.getLogic()).getDropBlock();
+		Block<?> block = this.getDropBlock();
 		ItemStack[] result = dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(block)} : null;
 		if (result != null) {
 			for(ItemStack stack : result) {
