@@ -81,14 +81,14 @@ public class BattleTowerModel implements ModelEntrypoint {
 		dispatcher.addDispatch(new BlockModelStairs<>(BattleTowerBlocks.STAIRS_OBSIDIAN));
 
 
-		dispatcher.addDispatch(new BlockModelOnTopOverlay<>(BattleTowerBlocks.OVERGROWN_BLOOM, MOD_ID + ":block/overgrown/overlay")
+		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN_BLOOM, MOD_ID + ":block/overgrown/brick")
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/growth", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
 		);
 
-		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.OVERGROWN)
+		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN, MOD_ID + ":block/overgrown/brick_bloom")
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/growth_cut", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
 		);
 	}
 
