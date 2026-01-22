@@ -2,6 +2,7 @@ package jamdoggie.betterbattletowers.block.crumbling_stone;
 
 import jamdoggie.betterbattletowers.block.BattleTowerTriggerStandOn;
 import jamdoggie.betterbattletowers.util.Metadata;
+import jamdoggie.betterbattletowers.util.ParticleHelper;
 import net.minecraft.core.Global;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
@@ -119,7 +120,7 @@ public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTrigge
 			double dy = fy * 0.3 + (random.nextDouble() - 0.5) * 0.2;
 			double dz = fz * 0.3 + (random.nextDouble() - 0.5) * 0.2;
 
-			world.spawnParticle("block", fx, fy, fz, dx, dy, dz, blockID);
+			ParticleHelper.spawnParticle(world, "block", fx, fy, fz, dx, dy, dz, blockID);
 		}
 	}
 
