@@ -10,13 +10,13 @@ import jamdoggie.betterbattletowers.block.TileEntityChestTower;
 import jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataDefault;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
-import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureReverseTower;
-import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureVanquishedTower;
-import jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureBattleTower;
+import jamdoggie.betterbattletowers.worldgen.structures.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
+import net.minecraft.core.WeightedRandomBag;
+import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -30,6 +30,7 @@ import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.util.*;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
@@ -38,6 +39,14 @@ import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFea
 public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
 	public static final String MOD_ID = "betterbattletowers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public static WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag();
+	{
+		TOWER.addEntry(WorldFeatureBattleTower::new, 7);
+		TOWER.addEntry(WorldFeatureReverseTower::new, 7);
+		TOWER.addEntry(WorldFeatureSquareTower::new, 7);
+		TOWER.addEntry(WorldFeatureVanquishedTower::new, 2);
+	}
 
 
 	@Override
@@ -52,6 +61,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
 		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "RuinedTower");
+		registerWorldFeatureClass(WorldFeatureSquareTower.class, "PrisonTower");
 		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.golem.name");
 		EntityHelper.createEntity(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), "betterbattletowers.aggro_zombie_pigman.name");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
@@ -111,14 +121,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 			int x = chunk.xPosition * 16;
 			int z = chunk.zPosition * 16;
 			int y = world.getHeightValue(x, z) - 1;
-			int towerRand = random.nextInt(16);
-			if (towerRand < 7) {
-				WorldFeatureBattleTower.tower().place(world, random, x, y, z);
-			} else if (towerRand < 14) {
-				WorldFeatureReverseTower.tower().place(world, random, x, y, z);
-			} else {
-				WorldFeatureVanquishedTower.tower().place(world, random, x, y, z);
-			}
+			Supplier<? extends WorldFeatureTower> supply = TOWER.getRandom(random);
+			supply.get().place(world, random, x, y, z);
 		}
 	}
 }

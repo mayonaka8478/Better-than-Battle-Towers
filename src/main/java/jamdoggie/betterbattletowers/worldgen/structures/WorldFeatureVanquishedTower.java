@@ -46,10 +46,6 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		}
 	}
 
-	public static WorldFeatureVanquishedTower tower() {
-		return new WorldFeatureVanquishedTower();
-	}
-
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
 		int availableHeight = world.getHeightBlocks() - y;

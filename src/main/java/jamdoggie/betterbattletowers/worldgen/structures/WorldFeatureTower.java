@@ -114,7 +114,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	}
 
 	///  Checks if a block is part of the wall
-	protected final boolean isWall(int ix, int iz) {
+	protected boolean isWall(int ix, int iz) {
 		boolean isInnerWall = iz == 3 && !BattleTowerConfig.isHardcore();
 		boolean wall0 = (iz == 1 || iz == 14 || ix == 1 || ix == 14);
 		boolean wall1 = (ix == 2 || ix == 13) && ((iz > 3 && iz < 6) || (iz > 9 && iz < 12));
@@ -123,7 +123,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	}
 
 	/// Checks if a block is within the tower (including walls)
-	protected final boolean isInPerimeter(int ix, int iz) {
+	protected boolean isInPerimeter(int ix, int iz) {
 		boolean perimeter0 = (iz > 0 && iz < 15) && (ix > 3 && ix < 12);
 		boolean perimeter1 = (ix == 3 || ix == 12) && (iz > 1 && iz < 14);
 		boolean perimeter2 = (ix == 2 || ix == 13) && (iz > 3 && iz < 12);
@@ -298,7 +298,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	}
 
 	/// Sets up the chest and fills it with loot
-	protected final void placeChest(int x, int y, int z, int tier, int lootAmount) {
+	protected void placeChest(int x, int y, int z, int tier, int lootAmount) {
 		world.setBlockWithNotify(x, y, z, BattleTowerBlocks.TOWER_CHEST.id());
 		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
 		populateChest(this.world, this.random, x, y, z, tier, lootAmount);
@@ -341,7 +341,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 					boolean bot = (ix & 1) == 1 && iz == 14;
 					boolean side1 = ix > 0 && ix < 4 && (iz == 9 - ix * 2 || iz == 7 + ix * 2);
 					boolean side2 = ix > 11 && ix < 15 && (iz == 8 - (15 - ix) * 2 || iz == 6 + (15 - ix) * 2);
-					if(top || bot || side1 || side2){
+					boolean innerwall = (iz == 3) && (ix > 3 && ix < 11) && (ix & 1) == 1 && !BattleTowerConfig.isHardcore();
+					if(top || bot || side1 || side2 || innerwall){
 						this.placeBlock(this.buildingBlockBag.getRandom(random), x + ix, y + 2, z + iz);
 					}
 				}

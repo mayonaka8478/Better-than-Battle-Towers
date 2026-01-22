@@ -17,10 +17,6 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 		// used by place command
 	}
 
-	public static WorldFeatureBattleTower tower() {
-		return new WorldFeatureBattleTower();
-	}
-
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
 		int availableHeight = world.getHeightBlocks() - y;
