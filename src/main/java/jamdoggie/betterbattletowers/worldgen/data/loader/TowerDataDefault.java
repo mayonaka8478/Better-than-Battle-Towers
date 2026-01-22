@@ -230,6 +230,10 @@ public class TowerDataDefault {
 				.addProperty(deco("limestone", POLISH_LIMESTONE, 100.0))
 				.addProperty(deco("limestone", BRICK_LIMESTONE, 100.0))
 
+				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 5.0))
+
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
@@ -253,9 +257,12 @@ public class TowerDataDefault {
 				.addProperty(deco("limestone", POLISH_LIMESTONE, 100.0))
 				.addProperty(deco("limestone", BRICK_LIMESTONE, 100.0))
 
+
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
+
+				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 1.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
@@ -269,6 +276,8 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
+
+				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 1.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
@@ -284,6 +293,8 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
+
+				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 1.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
@@ -308,6 +319,10 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", BRICK_STONE, 100.0))
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
 
+				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 5.0))
+
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
@@ -321,6 +336,7 @@ public class TowerDataDefault {
 				.addProperty(deco("permafrost", COBBLE_PERMA, 100.0))
 				.addProperty(deco("permafrost", SNOW, 100.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
+				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 0.5F))
 		);
 
 		listProperties.add(
@@ -339,6 +355,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
 
 				.addProperty(deco("slate", RUNIC, 1.0))
+				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 0.5F))
 		);
 
 		listProperties.add(
@@ -357,6 +374,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
 				.addProperty(deco("slate", RUNIC, 1.0))
+				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 0.5F))
 		);
 
 		listProperties.add(
