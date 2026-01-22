@@ -10,10 +10,6 @@ import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.M
 public class WorldFeatureReverseTower extends WorldFeatureTower{
 	public static final int MIN_HEIGHT = 7 * FLOOR_HEIGHT;
 
-	public static WorldFeatureReverseTower tower() {
-		return new WorldFeatureReverseTower();
-	}
-
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
 		int blockID = world.getBlockId(x + 8, y, z + 8);

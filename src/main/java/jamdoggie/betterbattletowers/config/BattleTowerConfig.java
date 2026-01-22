@@ -11,7 +11,7 @@ import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 
 public class BattleTowerConfig {
 	public static final String GENERAL = "GENERAL";
-	private static int towerrarity = 200;
+	private static int towerrarity = 300;
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int lootamount = 8;
