@@ -112,7 +112,15 @@ public class BattleTowerBlocks {
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
 		.build("stairs_obsidian", id++, b -> new BlockLogicStairs(b, CARVED_OBSIDIAN));
 
+	public static final Block<?> OVERGROWN_BLOOM = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.build("overgrown_bloom", id++, b -> new BlockLogic(b, Material.stone));
 
+	public static final Block<?> OVERGROWN = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
+		.build("overgrown", id++, b -> new BlockLogic(b, Material.stone));
 
 
 	public static void init() {
