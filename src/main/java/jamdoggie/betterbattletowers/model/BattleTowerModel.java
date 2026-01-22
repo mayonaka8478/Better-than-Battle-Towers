@@ -5,8 +5,10 @@ import jamdoggie.betterbattletowers.entity.golem.MobGolem;
 import jamdoggie.betterbattletowers.entity.golem.MobRendererGolem;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
+import net.minecraft.client.render.block.color.BlockColorCustom;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.client.render.colorizer.Colorizers;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
@@ -77,6 +79,17 @@ public class BattleTowerModel implements ModelEntrypoint {
 			.setTex(0, MOD_ID + ":block/carved_obsidian", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST));
 		dispatcher.addDispatch(new BlockModelSlab<>(BattleTowerBlocks.SLAB_OBSIDIAN));
 		dispatcher.addDispatch(new BlockModelStairs<>(BattleTowerBlocks.STAIRS_OBSIDIAN));
+
+
+		dispatcher.addDispatch(new BlockModelOnTopOverlay<>(BattleTowerBlocks.OVERGROWN_BLOOM, MOD_ID + ":block/overgrown/overlay")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		);
+
+		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.OVERGROWN)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		);
 	}
 
 	@Override
@@ -96,6 +109,7 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 	@Override
 	public void initBlockColors(BlockColorDispatcher dispatcher) {
-		// no map colors
+		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN, new BlockColorCustom(Colorizers.grass));
+		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN_BLOOM, new BlockColorCustom(Colorizers.grass));
 	}
 }
