@@ -189,7 +189,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		int placeID = groundFloor ? BLOCK_AIR : windowID;
 		for (int c = 0; c < 2; c++) {
 			for (int iz = 0; iz < 2; iz++) {
-				for (int iy = 0; iy < 4; iy++) {
+				for (int iy = -1; iy < 4; iy++) {
+					if(!groundFloor && iy == -1) continue;
 					int px = c * 13 + x;
 					int py = iy + y;
 					int pz = iz + z;
