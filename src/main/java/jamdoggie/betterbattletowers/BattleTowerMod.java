@@ -16,7 +16,6 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.WeightedRandomBag;
-import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -43,8 +42,8 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 	public static WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag();
 	{
 		TOWER.addEntry(WorldFeatureBattleTower::new, 7);
-		TOWER.addEntry(WorldFeatureReverseTower::new, 7);
 		TOWER.addEntry(WorldFeatureSquareTower::new, 7);
+		TOWER.addEntry(WorldFeatureReverseTower::new, 4);
 		TOWER.addEntry(WorldFeatureVanquishedTower::new, 2);
 	}
 
@@ -59,9 +58,10 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 		BattleTowerConfig.init();
 		BattleTowerBlocks.init();
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
-		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseTower");
-		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "RuinedTower");
-		registerWorldFeatureClass(WorldFeatureSquareTower.class, "PrisonTower");
+		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseBattleTower");
+		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "VanquishedBattleTower");
+		registerWorldFeatureClass(WorldFeatureSquareTower.class, "BastionTower");
+		registerWorldFeatureClass(WorldFeatureVanquishedSquareTower.class, "VanquishedBastionTower");
 		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.golem.name");
 		EntityHelper.createEntity(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), "betterbattletowers.aggro_zombie_pigman.name");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
