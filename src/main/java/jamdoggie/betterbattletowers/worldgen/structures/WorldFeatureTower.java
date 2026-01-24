@@ -185,7 +185,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Places the windows
 	protected void placeWindows(int x, int y, int z, boolean groundFloor) {
-		int windowID = BattleTowerConfig.isTint() ? BattleTowerBlocks.PRISON_BAR.id() : BLOCK_AIR;
+		int windowID = BattleTowerConfig.isTint() ? BattleTowerBlocks.PRISON_BAR_FENCE.id() : BLOCK_AIR;
 		int placeID = groundFloor ? BLOCK_AIR : windowID;
 		for (int c = 0; c < 2; c++) {
 			for (int iz = 0; iz < 2; iz++) {
