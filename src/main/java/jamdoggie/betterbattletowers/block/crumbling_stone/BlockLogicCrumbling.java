@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers.block.crumbling_stone;
 
 import jamdoggie.betterbattletowers.block.BattleTowerTriggerStandOn;
-import jamdoggie.betterbattletowers.util.Metadata;
+import jamdoggie.betterbattletowers.util.metadata.Metadata;
 import jamdoggie.betterbattletowers.util.ParticleHelper;
 import net.minecraft.core.Global;
 import net.minecraft.core.block.Block;

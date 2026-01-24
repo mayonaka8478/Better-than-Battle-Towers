@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.util;
+package jamdoggie.betterbattletowers.util.metadata;
 
 public class Metadata {
 	private static final int MAX_METAVALUE = 0b1111_1111;
