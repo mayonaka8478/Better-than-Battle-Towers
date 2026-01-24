@@ -180,7 +180,7 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 	///  Places the windows
 	@Override
 	protected void placeWindows(int x, int y, int z, boolean groundFloor) {
-		int windowID = (BattleTowerConfig.isTint() || BattleTowerConfig.isHardcore()) ? BattleTowerBlocks.PRISON_BAR.id() : BattleTowerBlocks.PRISON_BAR_FENCE.id();
+		int windowID = (BattleTowerConfig.isTint() || BattleTowerConfig.isHardcore()) ? BattleTowerBlocks.PRISON_BAR_FENCE.id() : BLOCK_AIR;
 		if (groundFloor) {
 			this.placeBottomDoors(x, y, z, BLOCK_AIR);
 		} else {
