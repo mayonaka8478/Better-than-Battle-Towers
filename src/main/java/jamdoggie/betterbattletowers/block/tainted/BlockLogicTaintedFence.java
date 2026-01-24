@@ -56,7 +56,7 @@ public class BlockLogicTaintedFence extends BlockLogicFenceThin {
 
 	@Override
 	public boolean blocksLight() {
-		return false;
+		return true;
 	}
 
 }
