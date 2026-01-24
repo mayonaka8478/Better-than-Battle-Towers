@@ -58,7 +58,7 @@ public class BattleTowerConfig {
 		Toml properties = new Toml(
 			new StringBuilder("Battle Towers Config 4.1!\n")
 			.append("Older Config are not supported!\n")
-			.append("Loot can now be found in the battletowerloot.json!\n")
+			.append("Loot can now be found in the betterbattletowersloot.json as well an comprehensive guide to build your own!\n")
 			.toString()
 		);
 		properties.addCategory(GENERAL)
