@@ -35,6 +35,7 @@ public class BattleTowerBlocks {
 		.setResistance(2000.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
+		.setUseInternalLight()
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.build("prison_fence", id++, b -> new BlockLogicTaintedFence(b, Material.metal));
 
