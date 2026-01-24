@@ -8,6 +8,7 @@ import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 
@@ -61,4 +62,5 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 		}
 		return lang.replace("crumbling", "bridle");
 	}
+
 }
