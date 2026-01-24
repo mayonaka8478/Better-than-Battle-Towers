@@ -48,6 +48,11 @@ tile.betterbattletowers.slab.obsidian.name=Obsidian Slab
 tile.betterbattletowers.slab.obsidian.desc=A slab of obsidian.
 tile.betterbattletowers.stairs.obsidian.name=Obsidian Stairs
 tile.betterbattletowers.stairs.obsidian.desc=Obsidian block used for rapid vertical movement.
+# Overgrown
+tile.betterbattletowers.overgrown.bloom.name=Blooming Overgrown Stone Brick
+tile.betterbattletowers.overgrown.bloom.desc=It is beautiful.
+tile.betterbattletowers.overgrown.name=Overgrown Stone Brick
+tile.betterbattletowers.overgrown.desc=Industry meets nature.
 
 # Model viewer
 model.category.entity.golem.state.dormant=State: Dormant.

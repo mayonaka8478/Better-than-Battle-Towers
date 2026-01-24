@@ -48,6 +48,11 @@ tile.betterbattletowers.slab.obsidian.name=黒曜石半ブロック
 tile.betterbattletowers.slab.obsidian.desc=黒曜石の半ブロック
 tile.betterbattletowers.stairs.obsidian.name=黒曜石の階段
 tile.betterbattletowers.stairs.obsidian.desc=迅速な垂直方向への移動に使用できる黒曜石のブロック
+# Overgrown
+tile.betterbattletowers.overgrown.bloom.name=Blooming Overgrown Stone Brick
+tile.betterbattletowers.overgrown.bloom.desc=It is beautiful.
+tile.betterbattletowers.overgrown.name=Overgrown Stone Brick
+tile.betterbattletowers.overgrown.desc=Industry meets nature.
 
 # Model viewer
 model.category.entity.golem.state.dormant = 状態: 非稼働
