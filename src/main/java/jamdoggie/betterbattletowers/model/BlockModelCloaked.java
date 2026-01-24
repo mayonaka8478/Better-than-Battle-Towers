@@ -73,7 +73,6 @@ public class BlockModelCloaked<T extends BlockLogic> extends BlockModelStandard<
 	public void renderBlockOnInventory(Tessellator tessellator, int metadata, float brightness, float alpha, @Nullable Integer lightmapCoordinate) {
 		AABB bounds = this.block.getBounds();
 		renderBlocks.useInventoryTint = true;
-		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 		int color = BlockColorDispatcher.getInstance().getDispatch(this.block).getFallbackColor(metadata);
 		float r = (float) (color >> 16 & 255) / 255.0F;
 		float g = (float) (color >> 8 & 255) / 255.0F;
@@ -99,6 +98,7 @@ public class BlockModelCloaked<T extends BlockLogic> extends BlockModelStandard<
 		tessellator.setNormal(1.0F, 0.0F, 0.0F);
 		this.renderEastFace(tessellator, bounds, 0.0F, 0.0F, 0.0F, this.nonCloak);
 		tessellator.draw();
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 
 }
