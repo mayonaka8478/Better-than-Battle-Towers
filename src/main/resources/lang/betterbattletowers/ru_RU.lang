@@ -41,7 +41,6 @@ tile.betterbattletowers.runic.glyph.stone.name=Рунный магический
 tile.betterbattletowers.runic.glyph.stone.desc=Светящийся магический камень, который не источает свет.
 tile.betterbattletowers.pillar.runic.name=Магическая колонна
 tile.betterbattletowers.pillar.runic.desc=Магический камень, высеченный в колонну.
-
 # Obsidian
 tile.betterbattletowers.carved.obsidian.name=Резной обсидиан
 tile.betterbattletowers.carved.obsidian.desc=Обсидиан с прорезанными линиями в посередине.
@@ -49,6 +48,11 @@ tile.betterbattletowers.slab.obsidian.name=Обсидиановая плита
 tile.betterbattletowers.slab.obsidian.desc=Плита из обсидиана.
 tile.betterbattletowers.stairs.obsidian.name=Обсидиановые ступени
 tile.betterbattletowers.stairs.obsidian.desc=Блок обсидиановый для подъёма наверх.
+# Overgrown
+tile.betterbattletowers.overgrown.bloom.name=Цветущие заросшие каменные кирпичи
+tile.betterbattletowers.overgrown.bloom.desc=Камень, в котором природа расцвела во всей красе.
+tile.betterbattletowers.overgrown.name=Заросшие каменные кирпичи
+tile.betterbattletowers.overgrown.desc=Индустрия проиграла природе.
 
 # Model viewer
 model.category.entity.golem.state.dormant=Состояние: дремлет
