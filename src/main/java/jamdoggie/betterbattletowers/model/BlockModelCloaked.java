@@ -41,14 +41,10 @@ public class BlockModelCloaked<T extends BlockLogic> extends BlockModelStandard<
 		renderBlocks.cache.setupCache(this.block, renderBlocks.blockAccess, x, y, z);
 		boolean somethingRendered = false;
 
-		for (Side side : sides) {
+		for (Side side : Side.sides) {
 			somethingRendered |= renderBlocks.renderSide(tessellator, this, bounds, x, y, z, r, g, b, side, meta);
 		}
-		somethingRendered |= renderBlocks.renderSide(tessellator, this, bounds, x, y, z, r, g, b, Side.TOP, meta);
-		somethingRendered |= renderBlocks.renderSide(tessellator, this, bounds, x, y, z, r, g, b, Side.BOTTOM, meta);
 		renderBlocks.enableAO = false;
-
-
 		return somethingRendered | this.renderNonCloak(tessellator, bounds, x, y, z, r, g, b);
 	}
 

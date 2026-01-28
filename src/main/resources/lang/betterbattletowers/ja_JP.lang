@@ -49,13 +49,20 @@ tile.betterbattletowers.slab.obsidian.desc=黒曜石の半ブロック
 tile.betterbattletowers.stairs.obsidian.name=黒曜石の階段
 tile.betterbattletowers.stairs.obsidian.desc=迅速な垂直方向への移動に使用できる黒曜石のブロック
 # Overgrown
-tile.betterbattletowers.overgrown.bloom.name=Blooming Overgrown Stone Brick
-tile.betterbattletowers.overgrown.bloom.desc=It is beautiful.
-tile.betterbattletowers.overgrown.name=Overgrown Stone Brick
-tile.betterbattletowers.overgrown.desc=Industry meets nature.
+tile.betterbattletowers.overgrown.bloom.brick.name=花が咲き生い茂った石レンガ
+tile.betterbattletowers.overgrown.bloom.brick.desc=美しい…
+tile.betterbattletowers.overgrown.brick.name=生い茂った石レンガ
+tile.betterbattletowers.overgrown.brick.desc=産業と植物のコラボレーション
+tile.betterbattletowers.overgrown.name=苔ブロック
+tile.betterbattletowers.overgrown.desc=ふにゃふにゃでもさもさしている
 
 # Model viewer
 model.category.entity.golem.state.dormant = 状態: 非稼働
 model.category.entity.golem.state.awake = 状態: 稼働
 model.category.entity.golem.placeholder.text = 素材:
 model.category.entity.golem.placeholder = ゴーレムの構成素材
+
+#Achievements
+achievement.kill.golem.name=げぇれむゲッダゥン！
+achievement.kill.golem.desc=バトルタワーのゴーレムを倒す、ゲッダンではない
+achievement.kill.golem=げぇれむゲッダゥン！

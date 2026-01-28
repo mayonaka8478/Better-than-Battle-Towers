@@ -49,13 +49,20 @@ tile.betterbattletowers.slab.obsidian.desc=Плита из обсидиана.
 tile.betterbattletowers.stairs.obsidian.name=Обсидиановые ступени
 tile.betterbattletowers.stairs.obsidian.desc=Блок обсидиановый для подъёма наверх.
 # Overgrown
-tile.betterbattletowers.overgrown.bloom.name=Цветущие заросшие каменные кирпичи
-tile.betterbattletowers.overgrown.bloom.desc=Камень, в котором природа расцвела во всей красе.
-tile.betterbattletowers.overgrown.name=Заросшие каменные кирпичи
-tile.betterbattletowers.overgrown.desc=Индустрия проиграла природе.
+tile.betterbattletowers.overgrown.bloom.brick.name=Цветущие заросшие каменные кирпичи
+tile.betterbattletowers.overgrown.bloom.brick.desc=Камень, в котором природа расцвела во всей красе.
+tile.betterbattletowers.overgrown.brick.name=Заросшие каменные кирпичи
+tile.betterbattletowers.overgrown.brick.desc=Индустрия проиграла природе.
+tile.betterbattletowers.overgrown.name=Мох
+tile.betterbattletowers.overgrown.desc=Он мягкий и пушистый.
 
 # Model viewer
 model.category.entity.golem.state.dormant=Состояние: дремлет
 model.category.entity.golem.state.awake=Состояние: пробуждён
 model.category.entity.golem.placeholder.text=Тип:
 model.category.entity.golem.placeholder=Тип голема
+
+#Achievements
+achievement.kill.golem.name=Камни тоже падают!
+achievement.kill.golem.desc=Победите любого голема.
+achievement.kill.golem=Камни тоже падают!

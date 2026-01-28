@@ -64,14 +64,14 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 		dispatcher.addDispatch(new BlockModelHorizontalRotation<>(BattleTowerBlocks.RUNIC_GLYPH_STONE)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_north", Side.NORTH)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_east", Side.EAST)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_south", Side.SOUTH)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_west", Side.WEST)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_north", Side.NORTH)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_east", Side.EAST)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_south", Side.SOUTH)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_west", Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_north", Side.EAST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_east", Side.SOUTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_south", Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_west", Side.NORTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_north", Side.EAST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_east", Side.SOUTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_south", Side.WEST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_west", Side.NORTH)
 		);
 
 		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.CARVED_OBSIDIAN)
@@ -80,15 +80,18 @@ public class BattleTowerModel implements ModelEntrypoint {
 		dispatcher.addDispatch(new BlockModelSlab<>(BattleTowerBlocks.SLAB_OBSIDIAN));
 		dispatcher.addDispatch(new BlockModelStairs<>(BattleTowerBlocks.STAIRS_OBSIDIAN));
 
-
-		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN_BLOOM, MOD_ID + ":block/overgrown/brick_lol")
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
+		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN_BRICKS, MOD_ID + ":block/overgrown/brick_lol")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.TOP, Side.BOTTOM)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/moss_overlay", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
 		);
 
-		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN, MOD_ID + ":block/overgrown/brick_bloom")
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/growth_cut", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		dispatcher.addDispatch(new BlockModelCloakBloom<>(BattleTowerBlocks.OVERGROWN_BLOOM_BRICK, MOD_ID + ":block/overgrown/brick_lol", MOD_ID + ":block/overgrown/bloom")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/moss_overlay", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		);
+
+		dispatcher.addDispatch(new BlockModelBlooming<>(BattleTowerBlocks.OVERGROWN, MOD_ID + ":block/overgrown/bloom")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST, Side.TOP, Side.BOTTOM)
 		);
 	}
 
@@ -109,7 +112,8 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 	@Override
 	public void initBlockColors(BlockColorDispatcher dispatcher) {
+		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN_BRICKS, new BlockColorCustom(Colorizers.grass));
+		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN_BLOOM_BRICK, new BlockColorCustom(Colorizers.grass));
 		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN, new BlockColorCustom(Colorizers.grass));
-		dispatcher.addDispatch(BattleTowerBlocks.OVERGROWN_BLOOM, new BlockColorCustom(Colorizers.grass));
 	}
 }
