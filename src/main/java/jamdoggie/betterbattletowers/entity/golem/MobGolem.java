@@ -1,6 +1,7 @@
 package jamdoggie.betterbattletowers.entity.golem;
 
 import com.mojang.nbt.tags.CompoundTag;
+import jamdoggie.betterbattletowers.BattleTowerAchievements;
 import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.entity.MobUtil;
 import jamdoggie.betterbattletowers.mixins.accessor.EntityVariantsAccessor;
@@ -333,6 +334,9 @@ public class MobGolem extends MobPathfinder {
 			return false;
 		}
 		this.target = attacker;
+		if(this.getHealth() <= 0 && attacker instanceof Player){
+			((Player)attacker).triggerAchievement(BattleTowerAchievements.DEFEAT_GOLEM);
+		}
 		return true;
 	}
 
