@@ -49,10 +49,12 @@ tile.betterbattletowers.slab.obsidian.desc=A slab of obsidian.
 tile.betterbattletowers.stairs.obsidian.name=Obsidian Stairs
 tile.betterbattletowers.stairs.obsidian.desc=Obsidian block used for rapid vertical movement.
 # Overgrown
-tile.betterbattletowers.overgrown.bloom.name=Blooming Overgrown Stone Brick
-tile.betterbattletowers.overgrown.bloom.desc=It is beautiful.
-tile.betterbattletowers.overgrown.name=Overgrown Stone Brick
-tile.betterbattletowers.overgrown.desc=Industry meets nature.
+tile.betterbattletowers.overgrown.bloom.brick.name=Blooming Overgrown Stone Brick
+tile.betterbattletowers.overgrown.bloom.brick.desc=It is beautiful.
+tile.betterbattletowers.overgrown.brick.name=Overgrown Stone Brick
+tile.betterbattletowers.overgrown.brick.desc=Industry meets nature.
+tile.betterbattletowers.overgrown.name=Moss Block
+tile.betterbattletowers.overgrown.desc=It is soft and fluffy.
 
 # Model viewer
 model.category.entity.golem.state.dormant=State: Dormant.
@@ -60,3 +62,7 @@ model.category.entity.golem.state.awake=State: Awake.
 model.category.entity.golem.placeholder.text=Type:
 model.category.entity.golem.placeholder=Golem Type
 
+#Achievements
+achievement.kill.golem.name=Gol 'em!
+achievement.kill.golem.desc=Defeat any golem.
+achievement.kill.golem=Gol 'em!

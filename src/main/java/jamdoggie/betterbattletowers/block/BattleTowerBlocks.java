@@ -1,5 +1,7 @@
 package jamdoggie.betterbattletowers.block;
 
+import jamdoggie.betterbattletowers.block.overgrown.BlockLogicBloom;
+import jamdoggie.betterbattletowers.block.overgrown.BlockLogicOvergrown;
 import jamdoggie.betterbattletowers.block.tainted.BlockLogicTainedCage;
 import jamdoggie.betterbattletowers.block.tainted.BlockLogicTaintedFence;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
@@ -113,15 +115,30 @@ public class BattleTowerBlocks {
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
 		.build("stairs_obsidian", id++, b -> new BlockLogicStairs(b, CARVED_OBSIDIAN));
 
-	public static final Block<?> OVERGROWN_BLOOM = new BlockBuilder(BattleTowerMod.MOD_ID)
+	public static final Block<?> OVERGROWN_BLOOM_BRICK = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0F)
+		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.STONE)
-		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("overgrown_bloom", id++, b -> new BlockLogic(b, Material.stone));
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES)
+		.build("overgrown_bloom_brick", id++, b -> new BlockLogicBloom(b, Material.stone));
+
+	public static final Block<?> OVERGROWN_BRICKS = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0F)
+		.setHardness(2.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES)
+		.build("overgrown_brick", id++, b -> new BlockLogicOvergrown(b, Material.stone));
 
 	public static final Block<?> OVERGROWN = new BlockBuilder(BattleTowerMod.MOD_ID)
-		.setBlockSound(BlockSounds.STONE)
-		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("overgrown", id++, b -> new BlockLogic(b, Material.stone));
+		.setHardness(2.0f)
+		.setBlockSound(BlockSounds.GRASS)
+		.setTags(
+			BlockTags.MINEABLE_BY_AXE,
+			BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.FENCES_CONNECT,
+			BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES, BlockTags.GROWS_SUGAR_CANE,
+			BlockTags.PASSIVE_MOBS_SPAWN)
+		.setFlammability(100, 30)
+		.build("overgrown", id++, b -> new BlockLogic(b, Material.wood));
 
 
 	public static void init() {
