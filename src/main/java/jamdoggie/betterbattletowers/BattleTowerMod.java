@@ -41,12 +41,11 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	public static WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag();
 	{
-		TOWER.addEntry(WorldFeatureBattleTower::new, 7);
 		TOWER.addEntry(WorldFeatureSquareTower::new, 7);
+		TOWER.addEntry(WorldFeatureBattleTower::new, 7);
 		TOWER.addEntry(WorldFeatureReverseTower::new, 4);
 		TOWER.addEntry(WorldFeatureVanquishedTower::new, 2);
 	}
-
 
 	@Override
 	public void onInitialize() {
@@ -75,6 +74,7 @@ public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, Reci
 
 	@Override
 	public void afterClientStart() {
+		BattleTowerAchievements.init();
 		BattleTowerDetail.init();
 		ItemStack lapiz = new ItemStack(Items.DYE);
 		lapiz.setMetadata(LAPIZ);
