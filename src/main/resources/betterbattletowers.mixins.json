@@ -16,6 +16,7 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "accessor.BlockModelTransparentAccessor",
     "EntityMixinBlockStandOn",
     "accessor.MobZombiePigAccessor",
     "accessor.SkinVariantAccessor",

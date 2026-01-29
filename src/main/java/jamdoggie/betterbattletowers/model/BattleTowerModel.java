@@ -26,7 +26,7 @@ public class BattleTowerModel implements ModelEntrypoint {
 		dispatcher.addDispatch(new BlockModelChest<>(BattleTowerBlocks.TOWER_CHEST, "betterbattletowers:block/tower_chest/chest_tower_")
 			.setAllTextures(BLOCK_TEXTURES, "betterbattletowers:block/tower_chest/chest_tower_top"));
 
-		dispatcher.addDispatch(new BlockModelTransparent<>(BattleTowerBlocks.PRISON_BAR, false)
+		dispatcher.addDispatch(new BlockModelCage<>(BattleTowerBlocks.PRISON_BAR, false)
 			.onRenderLayer(1)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2top", Side.TOP, Side.BOTTOM));
@@ -64,14 +64,14 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 		dispatcher.addDispatch(new BlockModelHorizontalRotation<>(BattleTowerBlocks.RUNIC_GLYPH_STONE)
 			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/runic_stone", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_north", Side.EAST)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_east", Side.SOUTH)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_south", Side.WEST)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/unlit_glyph_west", Side.NORTH)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_north", Side.EAST)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_east", Side.SOUTH)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_south", Side.WEST)
-			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph_runic_glow_west", Side.NORTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph/unlit_glyph_north", Side.EAST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph/unlit_glyph_east", Side.SOUTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph/unlit_glyph_south", Side.WEST)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/runic/glyph/unlit_glyph_west", Side.NORTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph/glyph_runic_glow_north", Side.EAST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph/glyph_runic_glow_east", Side.SOUTH)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph/glyph_runic_glow_south", Side.WEST)
+			.setTex(OVERBRIGHT_TEXTURES, MOD_ID + ":block/runic/glyph/glyph_runic_glow_west", Side.NORTH)
 		);
 
 		dispatcher.addDispatch(new BlockModelStandard<>(BattleTowerBlocks.CARVED_OBSIDIAN)

@@ -5,12 +5,15 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicStairs;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.entity.Mob;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BlockLogicStairsCrumbling extends BlockLogicStairs implements BattleTowerTriggerStandOn {
 	public Block<?> dropBlock;
@@ -61,6 +64,10 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 			return lang;
 		}
 		return lang.replace("crumbling", "bridle");
+	}
+
+	public int getPlacedBlockMetadata(@Nullable Player player, ItemStack stack, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
+		return stack.getMetadata();
 	}
 
 }

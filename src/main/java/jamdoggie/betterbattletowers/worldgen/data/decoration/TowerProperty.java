@@ -1,10 +1,8 @@
 package jamdoggie.betterbattletowers.worldgen.data.decoration;
 
-import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
 import net.minecraft.core.WeightedRandomBag;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class TowerProperty {
 	String golemType;
