@@ -5,9 +5,6 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
 
 
-
-
-
 ## About
 Port of the [Battle Towers](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1272384-1-7-3-battle-towers-chicken-gliding-kodaichi) mod for Better Than Adventure. While this mod is mostly a faithfull recreation of the original some features were omitted or adapted to better fit with BTA.
 
@@ -22,13 +19,16 @@ Here is a list of all the features that Battle Towers offers:
 - 32 different looking towers with 3 different types:
   - Battle Towers, a spawner filled tower rising into the sky
   - Reverse Towers, battle tower that disappeare into the ground
-  - Ruined Towers, vanquished battle tower with the golem slain and many spawner destoryed.
+  - Vanquished Towers, vanquished battle tower with the golem slain and many spawner destroyed.
+  - Bastion Towers, a square battle tower.
+  - Vanquished Bastion Tower, a ruined version of the BAstion Tower
 - New Blocks:
   - Tinted Iron Cage, a block to see through that block light, can be enabled to spawn as windows in towers.
-  - Tinted Iron Bars, a decorative fence made from tinted iron cage.
+  - Tinted Iron Bars, a decorative fence made from tinted iron cage, also blocks light.
   - Obsidian Slabs and Stairs
-  - Crumbling Block, Slab and Stairs, that crumbling under player feet.
+  - Crumbling Block, Slab and Stairs, that crumbling under players feet.
   - Runic Stone, Pillar, Chiseled, Glyph, decorational explosion resistant blocks, used in hardcore towers.
+  - Overgrown bricks and Blooming Overgrown Bricks, found as decorative blocks for the towers.
 - Hardcore mode, enabled in config for a more challenging tower with more deadly mob and traps.
 - Support for BTWaila.
 
