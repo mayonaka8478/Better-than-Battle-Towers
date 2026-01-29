@@ -28,19 +28,19 @@ public class BattleTowerModel implements ModelEntrypoint {
 
 		dispatcher.addDispatch(new BlockModelCage<>(BattleTowerBlocks.PRISON_BAR, false)
 			.onRenderLayer(1)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/prison_bar/prison2top", Side.TOP, Side.BOTTOM));
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/tinted_bars/side", Side.EAST, Side.NORTH, Side.WEST, Side.SOUTH)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/tinted_bars/top", Side.TOP, Side.BOTTOM));
 
 		dispatcher.addDispatch(
 			(
 				new BlockModelFenceThin<>(
 					BattleTowerBlocks.PRISON_BAR_FENCE,
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/center2"),
+					TextureRegistry.getTexture(MOD_ID + ":block/tinted_bars_fence/center"),
 					(IconCoordinate) null,
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/top2"),
-					TextureRegistry.getTexture(MOD_ID + ":block/fence_prison/column2")
+					TextureRegistry.getTexture(MOD_ID + ":block/tinted_bars_fence/top"),
+					TextureRegistry.getTexture(MOD_ID + ":block/tinted_bars_fence/column")
 				)
-			).setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/fence_prison/center")
+			).setAllTextures(BLOCK_TEXTURES, MOD_ID + ":block/tinted_bars_fence/center")
 		);
 
 		dispatcher.addDispatch(new BlockModelCrumblingStone<>(BattleTowerBlocks.CRUMBLING_STONE, MOD_ID + ":block/crumble/crumble_")
@@ -80,18 +80,18 @@ public class BattleTowerModel implements ModelEntrypoint {
 		dispatcher.addDispatch(new BlockModelSlab<>(BattleTowerBlocks.SLAB_OBSIDIAN));
 		dispatcher.addDispatch(new BlockModelStairs<>(BattleTowerBlocks.STAIRS_OBSIDIAN));
 
-		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN_BRICKS, MOD_ID + ":block/overgrown/brick_lol")
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/moss_overlay", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		dispatcher.addDispatch(new BlockModelCloaked<>(BattleTowerBlocks.OVERGROWN_BRICKS, MOD_ID + ":block/overgrown/side_brick")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top_moss", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side_moss", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
 		);
 
-		dispatcher.addDispatch(new BlockModelCloakBloom<>(BattleTowerBlocks.OVERGROWN_BLOOM_BRICK, MOD_ID + ":block/overgrown/brick_lol", MOD_ID + ":block/overgrown/bloom")
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.TOP, Side.BOTTOM)
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/moss_overlay", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
+		dispatcher.addDispatch(new BlockModelCloakBloom<>(BattleTowerBlocks.OVERGROWN_BLOOM_BRICK, MOD_ID + ":block/overgrown/side_brick", MOD_ID + ":block/overgrown/flowers")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top_moss", Side.TOP, Side.BOTTOM)
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/side_moss", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST)
 		);
 
-		dispatcher.addDispatch(new BlockModelBlooming<>(BattleTowerBlocks.OVERGROWN, MOD_ID + ":block/overgrown/bloom")
-			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/grassy", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST, Side.TOP, Side.BOTTOM)
+		dispatcher.addDispatch(new BlockModelBlooming<>(BattleTowerBlocks.OVERGROWN, MOD_ID + ":block/overgrown/flowers")
+			.setTex(BLOCK_TEXTURES, MOD_ID + ":block/overgrown/top_moss", Side.NORTH, Side.EAST, Side.SOUTH, Side.WEST, Side.TOP, Side.BOTTOM)
 		);
 	}
 
