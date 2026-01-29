@@ -29,6 +29,7 @@ public class BattleTowerBlocks {
 		.setResistance(2000.0f)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
+		.setUseInternalLight()
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
 		.build("prison_bar", id++, b -> new BlockLogicTainedCage(b, Material.metal));
 
@@ -90,6 +91,7 @@ public class BattleTowerBlocks {
 	public static final Block<BlockLogicStairsCrumbling> STAIRS_CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
 		.setHardness(1.0f)
+		.setUseInternalLight()
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
 		.build("stairs_crumbling_stone", id++, b -> new BlockLogicStairsCrumbling(b, CRUMBLING_STONE, Blocks.SLAB_STONE_POLISHED));
@@ -98,7 +100,7 @@ public class BattleTowerBlocks {
 		.setResistance(2000.0f)
 		.setHardness(10.0f)
 		.setBlockSound(BlockSounds.STONE)
-		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING, BlockTags.NOT_IN_CREATIVE_MENU)
 		.build("carved_obsidian", id++, b -> new BlockLogic(b, Material.stone));
 
 	public static final Block<BlockLogicSlab> SLAB_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
@@ -111,6 +113,7 @@ public class BattleTowerBlocks {
 	public static final Block<BlockLogicStairs> STAIRS_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(10.0f)
+		.setUseInternalLight()
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING)
 		.build("stairs_obsidian", id++, b -> new BlockLogicStairs(b, CARVED_OBSIDIAN));

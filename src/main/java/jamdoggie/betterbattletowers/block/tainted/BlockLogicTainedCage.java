@@ -11,6 +11,8 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class BlockLogicTainedCage extends BlockLogic {
 	public BlockLogicTainedCage(Block<?> block, Material material) {
 		super(block, material);
@@ -33,7 +35,7 @@ public class BlockLogicTainedCage extends BlockLogic {
 
 	@Override
 	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-		if(dropCause == EnumDropCause.SILK_TOUCH){
+		if (dropCause == EnumDropCause.PICK_BLOCK || dropCause== EnumDropCause.SILK_TOUCH){
 			return new ItemStack[]{new ItemStack(this.block)};
 		}
 		return new ItemStack[]{new ItemStack(BattleTowerBlocks.PRISON_BAR_FENCE, world.rand.nextInt(3) + 3)};
