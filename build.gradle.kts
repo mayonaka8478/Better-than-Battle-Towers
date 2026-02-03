@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.loom)
     alias(libs.plugins.lwjgl)
     java
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 val modVersion = providers.gradleProperty("mod_version")
 val modGroup = providers.gradleProperty("mod_group")
@@ -48,6 +49,8 @@ dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
     compileOnly(libs.btwaila)
+    include("com.typesafe:config:1.4.3")
+    implementation("com.typesafe:config:1.4.3")
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
@@ -131,5 +134,6 @@ tasks {
         filesMatching("**/*.mixins.json") { expand(resourceMap.filterKeys { it == "java" }) }
     }
 }
+
 // Removes LWJGL2 dependencies
 configurations.configureEach { exclude(group = "org.lwjgl.lwjgl") }

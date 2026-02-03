@@ -35,7 +35,7 @@ import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.L
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
-public class BattleTowerMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
+public class 	BattleTowerMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint, ClientModInitializer, ClientStartEntrypoint {
 	public static final String MOD_ID = "betterbattletowers";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

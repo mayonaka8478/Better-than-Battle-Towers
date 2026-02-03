@@ -36,7 +36,12 @@ public class MobRendererGolem extends MobRenderer<MobGolem> {
 		if(renderPass == 1 && golem.getEntityData().getString(3).equalsIgnoreCase("overgrown")){
 			disableFullBrigth(golem, partialTick);
 			this.bindTexture(String.format("/assets/%s/textures/entity/golem/%s/leaves.png", MOD_ID, golem.getEntityData().getString(3)));
-			int color = BlockColorDispatcher.getInstance().getDispatch(Blocks.GRASS).getWorldColor(golem.world, (int)Math.floor(golem.x), (int)Math.floor(golem.y), (int)Math.floor(golem.z));
+			int color;
+			if(golem.world != null){
+				color = BlockColorDispatcher.getInstance().getDispatch(Blocks.GRASS).getWorldColor(golem.world, (int)Math.floor(golem.x), (int)Math.floor(golem.y), (int)Math.floor(golem.z));
+			}else{
+				color = BlockColorDispatcher.getInstance().getDispatch(Blocks.GRASS).getFallbackColor(0);
+			}
 			float r = (color >> 16 & 255) / 255.0F;
 			float g = (color >> 8 & 255) / 255.0F;
 			float b = (color & 255) / 255.0F;
