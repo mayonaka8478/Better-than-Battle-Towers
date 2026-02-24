@@ -19,6 +19,7 @@ import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
+import net.minecraft.core.sound.SoundTypes;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
@@ -64,6 +65,7 @@ public class 	BattleTowerMod implements ModInitializer, GameStartEntrypoint, Rec
 		EntityHelper.createEntity(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), "betterbattletowers.golem.name");
 		EntityHelper.createEntity(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), "betterbattletowers.aggro_zombie_pigman.name");
 		EntityHelper.createTileEntity(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest"), "betterbattletowers.ironchest");
+		SoundTypes.loadSoundsJson(MOD_ID);
 	}
 
 	@Override
