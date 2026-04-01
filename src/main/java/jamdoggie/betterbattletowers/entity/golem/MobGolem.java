@@ -74,7 +74,7 @@ public class MobGolem extends MobPathfinder {
 		this.pieceDamage = (int)Math.floor(3.0f / 8.0f * this.attackStrength);
 		this.scoreValue = 10000 + Math.max(this.getHealth() - this.getMaxHealth(), 0) * 20;
 		this.lootAmount = 2 + Math.max(this.getHealth() - this.getMaxHealth(), 0) / 50;
-		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, this.getHealth() / 100));
+		this.mobDrops.add(new WeightedRandomLootObject(Items.DIAMOND.getDefaultStack(), 3, MathHelper.clamp(this.getHealth() / 100, 3, 10_000)));
 	}
 
 	@Override

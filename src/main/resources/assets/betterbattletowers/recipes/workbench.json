@@ -118,24 +118,5 @@
       "id": "betterbattletowers:block/overgrown_brick",
       "amount": 4
     }
-  },
-  {
-    "name": "betterbattletowers:workbench/overgrown_brick",
-    "type": "minecraft:crafting/shaped",
-    "pattern": ["BA", "AB"],
-    "symbols": [
-      {
-        "symbol": "B",
-        "stack": {"id": "minecraft:block/brick_stone_polished_mossy"}
-      },
-      {
-        "symbol": "A",
-        "stack": {"id": "minecraft:block/algae"}
-      }
-    ],
-    "result": {
-      "id": "betterbattletowers:block/overgrown_brick",
-      "amount": 4
-    }
   }
 ]
