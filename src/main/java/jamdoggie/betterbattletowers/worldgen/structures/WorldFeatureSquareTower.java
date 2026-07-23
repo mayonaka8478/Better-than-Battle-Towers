@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers.worldgen.structures;
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.Direction;
@@ -24,7 +25,10 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 public class WorldFeatureSquareTower extends WorldFeatureTower {
 
 	@Override
-	public boolean place(World world, Random random, int x, int y, int z) {
+	public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
+		int x = tilePosc.x();
+		int y = tilePosc.y();
+		int z = tilePosc.z();
 		int availableHeight = world.getHeightBlocks() - y;
 		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
@@ -32,7 +36,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 		}
 		this.world = world;
 		this.random = random;
-		this.setTowerProperties(this.world.getBlockBiome(new TilePos(x, y, z)));
+		this.setTowerProperties(this.world.getBlockBiome(tilePosc));
 		this.placeTower(x, y, z, availableHeight);
 		return true;
 	}
@@ -58,8 +62,8 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 	///  Places the windows
 	@Override
 	protected void placeWindows(int x, int y, int z, boolean groundFloor) {
-		int windowID = (BattleTowerConfig.isTint() || BattleTowerConfig.isHardcore())? BattleTowerBlocks.PRISON_BAR_FENCE.id() : BLOCK_AIR;
-		int placeID = groundFloor ? BLOCK_AIR : windowID;
+		Block<?> windowID = (BattleTowerConfig.isTint() || BattleTowerConfig.isHardcore())? BattleTowerBlocks.PRISON_BAR_FENCE : Blocks.AIR;
+		Block<?> placeID = groundFloor ? Blocks.AIR : windowID;
 		if (groundFloor) {
 			this.placeBottomDoors(x, y, z, placeID);
 		} else {
@@ -67,8 +71,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 		}
 	}
 
-	private void placeWindowOnFloor(int x, int y, int z, int placeID) {
-		class Cache{private static final @NotNull TilePos pos = new TilePos();		}
+	private void placeWindowOnFloor(int x, int y, int z, Block<?> block) {
 		for (int c = 0; c < 2; c++) {
 			int px = c * 13 + x + 1;
 			int rz = c * 13 + z + 1;
@@ -78,16 +81,16 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 				for (int iy = 0; iy < 4; iy++) {
 					int ey = iy + y + 2;
 					if ((this.currentFloor & 1) == 0) {
-						world.setBlock(px, ey, pz, placeID);
+						world.setBlockType(new TilePos(px, ey, pz), block);
 						if (iy < 3) {
-							world.setBlock(px, ey, z + 4, placeID);
-							world.setBlock(px, ey, z + 11, placeID);
+							world.setBlockType(new TilePos(px, ey, z + 4), block);
+							world.setBlockType(new TilePos(px, ey, z + 11), block);
 						}
 					} else {
-						world.setBlock(rx, ey, rz, placeID);
+						world.setBlockType(new TilePos(rx, ey, rz), block);
 						if (iy < 3) {
-							world.setBlock(x + 4, ey, rz, placeID);
-							world.setBlock(x + 11, ey, rz, placeID);
+							world.setBlockType(new TilePos(x + 4, ey, rz), block);
+							world.setBlockType(new TilePos(x + 11, ey, rz), block);
 						}
 					}
 				}
@@ -98,7 +101,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 		}
 	}
 
-	private void placeBottomDoors(int x, int y, int z, int placeID) {
+	private void placeBottomDoors(int x, int y, int z, Block<?> block) {
 		for (int c = 0; c < 2; c++) {
 			int px = c * 13 + x + 1;
 			int rz = c * 13 + z + 1;
@@ -106,8 +109,8 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 				int pz = iz + z + 7;
 				int rx = iz + x + 7;
 				for (int iy = 0; iy < 4; iy++) {
-					world.setBlock(px, iy + y + 1, pz, placeID);
-					world.setBlock(rx, iy + y + 1, rz, placeID);
+					world.setBlockType(new TilePos(px, iy + y + 1, pz), block);
+					world.setBlockType(new TilePos(rx, iy + y + 1, rz), block);
 				}
 			}
 		}
@@ -174,9 +177,9 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 		this.createCrenulations(x, y, z);
 
 		for (int iy = 0; iy < 2; iy++) {
-			world.setBlock(x + 5, y + 1 + iy, z + 2, BLOCK_AIR);
-			world.setBlock(x + 5, y + 1 + iy, z + 3, BLOCK_AIR);
-			world.setBlock(x + 5, y + 1 + iy, z + 4, BLOCK_AIR);
+			world.setBlockType(new TilePos(x + 5, y + 1 + iy, z + 2), Blocks.AIR);
+			world.setBlockType(new TilePos(x + 5, y + 1 + iy, z + 3), Blocks.AIR);
+			world.setBlockType(new TilePos(x + 5, y + 1 + iy, z + 4), Blocks.AIR);
 		}
 	}
 
@@ -235,11 +238,11 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 			int cx = ix + dx * i;
 			int cz = iz + dz * i;
 
-			world.setBlockWithNotify(cx, y, cz, BattleTowerBlocks.TOWER_CHEST.id());
-			world.setBlockMetadataWithNotify(cx, y, cz, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), dir), BlockLogicChest.Type.SINGLE));
+			world.setBlockDataNotify(new TilePos(cx, y, cz), BattleTowerBlocks.TOWER_CHEST.id());
+			world.setBlockDataNotify(new TilePos(cx, y, cz), getMetaWithType(getMetaWithDirection(world.getBlockData(new TilePos( x, y, z)), dir), BlockLogicChest.Type.SINGLE));
 			populateChest(this.world, this.random, cx, y, cz, tier, lootAmount);
-			world.setBlock(cx, y - 1, cz, Blocks.STONE_POLISHED.id());
-			world.setBlock(cx, y - 2, cz, Blocks.STONE_POLISHED.id());
+			world.setBlockType(new TilePos(cx, y - 1, cz), Blocks.STONE_POLISHED);
+			world.setBlockType(new TilePos(cx, y - 2, cz), Blocks.STONE_POLISHED);
 		}
 
 		// Convert to double chest
@@ -253,30 +256,30 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 	}
 
 	protected void placeStaircase(int x, int y, int z) {
-		int barID = BattleTowerConfig.isHardcore() ? BLOCK_AIR : BattleTowerBlocks.PRISON_BAR_FENCE.id();
+		Block<?> barID = BattleTowerConfig.isHardcore() ? Blocks.AIR : BattleTowerBlocks.PRISON_BAR_FENCE;
 		/// placing bars
 		for (int ix = 0; ix < 2; ix++) {
 			for (int iy = 2; iy < 5; iy++) {
-				this.world.setBlock(x - 2 + ix * 2, y + iy, z + 3, barID);
+				this.world.setBlockType(new TilePos(x - 2 + ix * 2, y + iy, z + 3), barID);
 			}
 		}
 
 		for (int iz = 0; iz < 3; iz++) {
 			for (int iy = 0; iy < 3; iy++) {
-				this.world.setBlock(x + 1, y + 1 + iy, z + iz, BLOCK_AIR);
+				this.world.setBlockType(new TilePos(x + 1, y + 1 + iy, z + iz), Blocks.AIR);
 			}
 		}
-		this.world.setBlock(x + 1, y + 4, z + 1, BLOCK_AIR);
+		this.world.setBlockType(new TilePos(x + 1, y + 4, z + 1), Blocks.AIR);
 
 		/// placing doors
-		this.world.setBlockAndMetadata(x, y + 1, z, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 1);
-		this.world.setBlockAndMetadata(x - 1, y + 2, z, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 1);
-		this.world.setBlockAndMetadata(x - 2, y + 3, z, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 1);
-		this.world.setBlockAndMetadata(x - 2, y + 4, z + 1, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 2);
-		this.world.setBlockAndMetadata(x - 2, y + 5, z + 2, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 2);
-		this.world.setBlockAndMetadata(x - 1, y + 6, z + 2, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
-		this.world.setBlockAndMetadata(x, y + 7, z + 2, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
-		this.world.setBlock(x, y + 7, z + 1, Blocks.STONE_POLISHED.id());
+		this.world.setBlockTypeData(new TilePos(x, y + 1, z), Blocks.STAIRS_BRICK_STONE_POLISHED, 1);
+		this.world.setBlockTypeData(new TilePos(x - 1, y + 2, z), Blocks.STAIRS_BRICK_STONE_POLISHED, 1);
+		this.world.setBlockTypeData(new TilePos(x - 2, y + 3, z), Blocks.STAIRS_BRICK_STONE_POLISHED, 1);
+		this.world.setBlockTypeData(new TilePos(x - 2, y + 4, z + 1), Blocks.STAIRS_BRICK_STONE_POLISHED, 2);
+		this.world.setBlockTypeData(new TilePos(x - 2, y + 5, z + 2), Blocks.STAIRS_BRICK_STONE_POLISHED, 2);
+		this.world.setBlockTypeData(new TilePos(x - 1, y + 6, z + 2), Blocks.STAIRS_BRICK_STONE_POLISHED, 0);
+		this.world.setBlockTypeData(new TilePos(x, y + 7, z + 2), Blocks.STAIRS_BRICK_STONE_POLISHED, 0);
+		this.world.setBlockType(new TilePos(x, y + 7, z + 1), Blocks.STONE_POLISHED);
 
 	}
 
@@ -285,7 +288,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 	protected void placeCapStaircase(int x, int y, int z) {
 		for (int ix = 0; ix < 3; ix++) {
 			for (int iz = 0; iz < 3; iz++) {
-				this.world.setBlock(x + ix + 2, y, z + iz + 2, Blocks.STONE_POLISHED.id());
+				this.world.setBlockType(new TilePos(x + ix + 2, y, z + iz + 2), Blocks.STONE_POLISHED);
 			}
 		}
 	}

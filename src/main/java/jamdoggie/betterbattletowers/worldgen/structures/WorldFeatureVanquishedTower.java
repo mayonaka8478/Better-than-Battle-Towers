@@ -10,6 +10,9 @@ import net.minecraft.core.block.entity.TileEntityMobSpawner;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +50,12 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	}
 
 	@Override
-	public boolean place(World world, Random random, int x, int y, int z) {
+	public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
+		int x = tilePosc.x();
+		int y = tilePosc.y();
+		int z = tilePosc.z();
 		int availableHeight = world.getHeightBlocks() - y;
-		int blockID = world.getBlockId(x + 8, y, z + 8);
+		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
 			return false;
 		}
@@ -57,7 +63,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		this.random = random;
 		this.ruinFactor = 1.0f;
 		this.maxHeight = y;
-		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
+		this.setTowerProperties(this.world.getBlockBiome(tilePosc));
 		placeTower(x, y, z, availableHeight);
 		return true;
 	}
@@ -83,7 +89,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 		}
 		this.placeCapStaircase(x, y, z);
 		for (Entry e : this.doors) {
-			world.setBlock(e.x, e.y, e.z, e.blockID);
+			world.setBlockType(new TilePos(e.x, e.y, e.z), Blocks.getBlock(e.blockID));
 		}
 	}
 
@@ -135,7 +141,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			}
 			if (maxHeight > py + 7) {
 				///  Create holes for mob to fall through to lower level
-				BlockData data = this.nonHardCoreBag.getRandom(random);
+				BlockData data = nonHardCoreBag.getRandom(random);
 				this.canReplace(px, py, pz, data.id(), data.metadata());
 			}
 		}
@@ -144,12 +150,12 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	private void stackWall(int px, int py, int pz) {
 		if (this.random.nextFloat() < (1.0f / this.ruinFactor)) {
 			int iy = py;
-			while (world.getBlockId(px, iy - 1, pz) == BLOCK_AIR) {
+			while (world.getBlockType(new TilePos(px, iy - 1, pz)).id() == Blocks.AIR.id()) {
 				iy--;
 			}
 			this.placeBlock(this.buildingBlockBag.getRandom(random), px, iy, pz);
 		} else {
-			this.world.setBlock(px, py, pz, BLOCK_AIR);
+			this.world.setBlockType(new TilePos(px, py, pz), Blocks.AIR);
 		}
 	}
 
@@ -180,7 +186,7 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 			}
 		}
 		int pz = z - 1;
-		this.world.setBlock(x, y, pz, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x, y, pz), Blocks.STONE_POLISHED);
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
@@ -199,12 +205,12 @@ public class WorldFeatureVanquishedTower extends WorldFeatureTower {
 	}
 
 	private void setRandomSpawner(int x, int y, int z, WeightedRandomBag<Integer> spawnerBag) {
-		world.setBlockWithNotify(x, y, z, spawnerBag.getRandom(this.random));
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		world.setBlockTypeNotify(new TilePos(x, y, z), Blocks.getBlock(spawnerBag.getRandom(this.random)));
+		TileEntity tileEntity = world.getTileEntity(new TilePos(x, y, z));
 		if (tileEntity instanceof TileEntityMobSpawner) {
 			((TileEntityMobSpawner) tileEntity).setMobId(this.getRandomSpawnerMob());
 		}
-		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
+		world.setBlockTypeNotify(new TilePos(x, y - 1, z), Blocks.STONE_POLISHED);
 	}
 
 

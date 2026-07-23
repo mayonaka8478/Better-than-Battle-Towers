@@ -6,6 +6,7 @@ import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.util.metadata.MetadataHelper;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
 import net.minecraft.core.WeightedRandomBag;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
@@ -15,6 +16,8 @@ import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +59,12 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 	}
 
 	@Override
-	public boolean place(World world, Random random, int x, int y, int z) {
+	public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
+		int x = tilePosc.x();
+		int y = tilePosc.y();
+		int z = tilePosc.z();
 		int availableHeight = world.getHeightBlocks() - y;
-		int blockID = world.getBlockId(x + 8, y, z + 8);
+		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
 			return false;
 		}
@@ -66,7 +72,7 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 		this.random = random;
 		this.ruinFactor = 1.0f;
 		this.maxHeight = y;
-		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
+		this.setTowerProperties(this.world.getBlockBiome(tilePosc));
 		placeTower(x, y, z, availableHeight);
 		return true;
 	}
@@ -108,7 +114,7 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 			}
 		}
 		for (WorldFeatureVanquishedSquareTower.Entry e : this.doors) {
-			world.setBlock(e.x, e.y, e.z, e.blockID);
+			world.setBlockType(new TilePos(e.x, e.y, e.z), Blocks.getBlock(e.blockID));
 		}
 	}
 
@@ -169,12 +175,12 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 	private void stackWall(int px, int py, int pz) {
 		if (this.random.nextFloat() < (1.0f / this.ruinFactor)) {
 			int iy = py;
-			while (world.getBlockId(px, iy - 1, pz) == BLOCK_AIR) {
+			while (world.getBlockType(new TilePos(px, iy - 1, pz)).id() == Blocks.AIR.id()) {
 				iy--;
 			}
 			this.placeBlock(this.buildingBlockBag.getRandom(random), px, iy, pz);
 		} else {
-			this.world.setBlock(px, py, pz, BLOCK_AIR);
+			this.world.setBlockType(new TilePos(px, py, pz), Blocks.AIR);
 		}
 	}
 
@@ -259,11 +265,11 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 	}
 
 	protected void placeStaircase(int x, int y, int z) {
-		int barID = BattleTowerConfig.isHardcore() ? BLOCK_AIR : BattleTowerBlocks.PRISON_BAR_FENCE.id();
+		Block<?> barID = BattleTowerConfig.isHardcore() ? Blocks.AIR : BattleTowerBlocks.PRISON_BAR_FENCE;
 		/// placing bars
 		for (int ix = 0; ix < 2; ix++) {
 			for (int iy = 2; iy < 5; iy++) {
-				this.world.setBlock(x - 2 + ix * 2, y + iy, z + 3, barID);
+				this.world.setBlockType(new TilePos(x - 2 + ix * 2, y + iy, z + 3), barID);
 			}
 		}
 
@@ -282,13 +288,13 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 		this.placeStairsBlock(stairs.getRandom(random), x - 2, y + 5, z + 2, Direction.SOUTH);
 		this.placeStairsBlock(stairs.getRandom(random), x - 1, y + 6, z + 2, Direction.EAST);
 		this.placeStairsBlock(stairs.getRandom(random), x, y + 7, z + 2, Direction.EAST);
-		this.world.setBlock(x, y + 7, z + 1, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x, y + 7, z + 1), Blocks.STONE_POLISHED);
 
 	}
 
 	protected void placeStairsBlock(BlockData blockData, int x, int y, int z, Direction direction) {
 		int metadata = MetadataHelper.Stairs.setMetadata(blockData.metadata(), direction, false);
-		this.world.setBlockAndMetadata(x, y, z, blockData.id(), metadata);
+		this.world.setBlockTypeData(new TilePos(x, y, z), Blocks.getBlock(blockData.id()), metadata);
 	}
 
 	@Override
@@ -301,12 +307,12 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 	}
 
 	private void setRandomSpawner(int x, int y, int z, WeightedRandomBag<Integer> spawnerBag) {
-		world.setBlockWithNotify(x, y, z, spawnerBag.getRandom(this.random));
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if (tileEntity instanceof TileEntityMobSpawner) {
-			((TileEntityMobSpawner) tileEntity).setMobId(this.getRandomSpawnerMob());
+		world.setBlockTypeNotify(new TilePos(x, y, z), Blocks.getBlock(spawnerBag.getRandom(this.random)));
+		TileEntity tileEntity = world.getTileEntity(new TilePos(x, y, z));
+		if (tileEntity instanceof TileEntityMobSpawner tileEntityMobSpawner) {
+			tileEntityMobSpawner.setMobId(this.getRandomSpawnerMob());
 		}
-		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
+		world.setBlockType(new TilePos(x, y - 1, z), Blocks.STONE_POLISHED);
 	}
 
 	/// Places the rewards chests and the plinth
@@ -328,11 +334,11 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 			int cx = ix + dx * i;
 			int cz = iz + dz * i;
 
-			world.setBlockWithNotify(cx, y, cz, BattleTowerBlocks.TOWER_CHEST.id());
-			world.setBlockMetadataWithNotify(cx, y, cz, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), dir), BlockLogicChest.Type.SINGLE));
+			world.setBlockTypeNotify(new TilePos(cx, y, cz), BattleTowerBlocks.TOWER_CHEST);
+			world.setBlockDataNotify(new TilePos(cx, y, cz), getMetaWithType(getMetaWithDirection(world.getBlockData(new TilePos(x, y, z)), dir), BlockLogicChest.Type.SINGLE));
 			populateChest(this.world, this.random, cx, y, cz, tier, lootAmount);
-			world.setBlock(cx, y - 1, cz, Blocks.STONE_POLISHED.id());
-			world.setBlock(cx, y - 2, cz, Blocks.STONE_POLISHED.id());
+			world.setBlockType(new TilePos(cx, y - 1, cz), Blocks.STONE_POLISHED);
+			world.setBlockType(new TilePos(cx, y - 2, cz), Blocks.STONE_POLISHED);
 		}
 
 		// Convert to double chest

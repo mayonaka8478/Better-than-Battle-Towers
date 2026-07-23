@@ -10,6 +10,7 @@ import jamdoggie.betterbattletowers.worldgen.data.decoration.TowerProperty;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataDefault;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
 import net.minecraft.core.WeightedRandomBag;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntityMobSpawner;
@@ -20,7 +21,7 @@ import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.BiomeTags;
 import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.chunk.Chunk;
-import net.minecraft.core.world.generate.feature.WorldFeature;
+import net.minecraft.core.world.generate.feature.WorldFeatureInterface;
 import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
@@ -36,7 +37,7 @@ import static net.minecraft.core.block.BlockLogicChest.getMetaWithDirection;
 import static net.minecraft.core.block.BlockLogicChest.getMetaWithType;
 
 /// Base class for tower
-public abstract class WorldFeatureTower extends WorldFeature {
+public abstract class WorldFeatureTower implements WorldFeatureInterface {
 	protected World world;
 	protected Random random;
 	protected Biome biome;
@@ -88,7 +89,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	protected abstract int getLootAmount();
 
 	protected final void placeBlock(BlockData blockData, int x, int y, int z) {
-		this.world.setBlockAndMetadata(x, y, z, blockData.id(), blockData.metadata());
+		this.world.setBlockTypeData(new TilePos(x, y, z), Blocks.getBlock(blockData.id()), blockData.metadata());
 	}
 
 	///  Place the tower on a plinth
@@ -100,7 +101,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 				for (int iz = 0; iz < Chunk.CHUNK_SIZE_Z; iz++) {
 					int px = ix + x;
 					int pz = iz + z;
-					Material material = world.getBlockMaterial(px, y, pz);
+					Material material = world.getBlockMaterial(new TilePos(px, y, pz));
 					if (!this.isInPerimeter(ix, iz) || (!material.isLiquid() && material.isSolid())) {
 						continue;
 					}
@@ -173,7 +174,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 	}
 
 	protected final void canReplace(int x, int y, int z, int placeID, int metadata) {
-		int blockID = this.world.getBlockId(x, y, z);
+		int blockID = this.world.getBlockType(new TilePos(x, y, z)).id();
 		if (blockID == Blocks.STONE_POLISHED.id()
 			|| blockID == Blocks.STAIRS_BRICK_STONE_POLISHED.id()
 			|| blockID == BattleTowerBlocks.SLAB_CRUMBLING_STONE.id()
@@ -182,13 +183,13 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		) {
 			return;
 		}
-		this.world.setBlockAndMetadata(x, y, z, placeID, metadata);
+		this.world.setBlockTypeData(new TilePos(x, y, z), Blocks.getBlock(placeID), metadata);
 	}
 
 	///  Places the windows
 	protected void placeWindows(int x, int y, int z, boolean groundFloor) {
-		int windowID = BattleTowerConfig.isTint() ? BattleTowerBlocks.PRISON_BAR_FENCE.id() : BLOCK_AIR;
-		int placeID = groundFloor ? BLOCK_AIR : windowID;
+		Block<?> windowID = BattleTowerConfig.isTint() ? BattleTowerBlocks.PRISON_BAR_FENCE : Blocks.AIR;
+		Block<?> placeID = groundFloor ? Blocks.AIR : windowID;
 		for (int c = 0; c < 2; c++) {
 			for (int iz = 0; iz < 2; iz++) {
 				for (int iy = -1; iy < 4; iy++) {
@@ -196,7 +197,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 					int px = c * 13 + x;
 					int py = iy + y;
 					int pz = iz + z;
-					world.setBlock(px, py, pz, placeID);
+					world.setBlockType(new TilePos(px, py, pz), placeID);
 				}
 			}
 		}
@@ -210,11 +211,14 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	/// Places the individual spawners and sets them up
 	protected final void setSpawner(int x, int y, int z) {
-		if (world.setBlockWithNotify(x, y, z, Blocks.MOBSPAWNER.id())) {
-			TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
-			tileentitymobspawner.setMobId(this.getRandomSpawnerMob());
+
+		if (world.setBlockTypeNotify(new TilePos(x, y, z), Blocks.MOBSPAWNER)) {
+			TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner) world.getTileEntity(new TilePos(x, y, z));
+			if(tileentitymobspawner != null){
+				tileentitymobspawner.setMobId(this.getRandomSpawnerMob());
+			}
 		}
-		world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
+		world.setBlockType(new TilePos(x, y - 1, z), Blocks.STONE_POLISHED);
 	}
 
 	///  Picks a mob to spawn for spawner
@@ -272,16 +276,16 @@ public abstract class WorldFeatureTower extends WorldFeature {
 			int px = c * 7 + x;
 			for (int iy = 0; iy < 2; iy++) {
 				int py = iy + y + 1;
-				this.world.setBlock(px, py, z, BLOCK_AIR);
+				this.world.setBlockType(new TilePos(px, py, z), Blocks.AIR);
 			}
 		}
 		int pz = z - 1;
-		this.world.setBlock(x, y, pz, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x, y, pz), Blocks.STONE_POLISHED);
 		for (int ix = 0, iy = 0; ix < FLOOR_HEIGHT; ix++, iy++) {
 			int px = ix + x + 1;
 			int py = iy + y + 1;
 			this.placeBlock(this.buildingBlockBag.getRandom(random), px, py - 1, pz);
-			this.world.setBlockAndMetadata(px, py, pz, Blocks.STAIRS_BRICK_STONE_POLISHED.id(), 0);
+			this.world.setBlockTypeData(new TilePos(px, py, pz), Blocks.STAIRS_BRICK_STONE_POLISHED, 0);
 		}
 	}
 
@@ -293,17 +297,17 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		BlockLogicChest.setType(world, new TilePos(x, y, z), BlockLogicChest.Type.LEFT);
 		BlockLogicChest.setType(world, new TilePos(x + 1, y, z), BlockLogicChest.Type.RIGHT);
 		/// so the chest won't fly
-		this.world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
-		this.world.setBlock(x + 1, y - 1, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x, y - 1, z), Blocks.STONE_POLISHED);
+		this.world.setBlockType(new TilePos(x + 1, y - 1, z), Blocks.STONE_POLISHED);
 		/// fix the holes underneath the plinth
-		this.world.setBlock(x, y - 2, z, Blocks.STONE_POLISHED.id());
-		this.world.setBlock(x + 1, y - 2, z, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x, y - 2, z), Blocks.STONE_POLISHED);
+		this.world.setBlockType(new TilePos(x + 1, y - 2, z), Blocks.STONE_POLISHED);
 	}
 
 	/// Sets up the chest and fills it with loot
 	protected void placeChest(int x, int y, int z, int tier, int lootAmount) {
-		world.setBlockWithNotify(x, y, z, BattleTowerBlocks.TOWER_CHEST.id());
-		world.setBlockMetadataWithNotify(x, y, z, getMetaWithType(getMetaWithDirection(world.getBlockMetadata(x, y, z), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
+		world.setBlockTypeNotify(new TilePos(x, y, z), BattleTowerBlocks.TOWER_CHEST);
+		world.setBlockDataNotify(new TilePos(x, y, z), getMetaWithType(getMetaWithDirection(world.getBlockData(new TilePos(x, y, z)), Direction.SOUTH), BlockLogicChest.Type.SINGLE));
 		populateChest(this.world, this.random, x, y, z, tier, lootAmount);
 	}
 
@@ -317,7 +321,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 						this.placeBlock(this.buildingBlockBag.getRandom(random), x + ix, y + cy, z + 2);
 					}
 				}
-				this.world.setBlock(x + ix, y, z + 2, Blocks.STONE_POLISHED.id());
+				this.world.setBlockType(new TilePos(x + ix, y, z + 2), Blocks.STONE_POLISHED);
 			}
 		}
 		if (BattleTowerConfig.isHardcore()) return;

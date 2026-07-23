@@ -48,8 +48,8 @@ dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
 //    compileOnly(libs.btwaila)
-//    include("com.typesafe:config:1.4.3")
-//    implementation("com.typesafe:config:1.4.3")
+    include("com.typesafe:config:1.4.3")
+    implementation("com.typesafe:config:1.4.3")
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)

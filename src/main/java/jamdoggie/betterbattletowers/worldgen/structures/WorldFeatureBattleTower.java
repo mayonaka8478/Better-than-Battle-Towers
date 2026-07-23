@@ -3,7 +3,11 @@ package jamdoggie.betterbattletowers.worldgen.structures;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.MathHelper;
+import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -18,15 +22,18 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 	}
 
 	@Override
-	public boolean place(World world, Random random, int x, int y, int z) {
+	public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
+		int x = tilePosc.x();
+		int y = tilePosc.y();
+		int z = tilePosc.z();
 		int availableHeight = world.getHeightBlocks() - y;
-		int blockID = world.getBlockId(x + 8, y, z + 8);
+		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
 			return false;
 		}
 		this.world = world;
 		this.random = random;
-		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
+		this.setTowerProperties(this.world.getBlockBiome(tilePosc));
 		this.placeTower(x, y, z, availableHeight);
 		return true;
 	}
@@ -62,8 +69,8 @@ public class WorldFeatureBattleTower extends WorldFeatureTower {
 		this.placeChests(x + 7, y + 2, z + 5, MAX_TIER, lootAmount);
 		this.placeGolem(x + 7.5, y + 1D, z + 7.5);
 		this.createCrenulations(x, y, z);
-		this.world.setBlock(x + 11, y + 1, z + 3, BLOCK_AIR);
-		this.world.setBlock(x + 11, y + 2, z + 3, BLOCK_AIR);
-		this.world.setBlock(x + 11, y, z + 3, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x + 11, y + 1, z + 3), Blocks.AIR);
+		this.world.setBlockType(new TilePos(x + 11, y + 2, z + 3), Blocks.AIR);
+		this.world.setBlockType(new TilePos(x + 11, y, z + 3), Blocks.STONE_POLISHED);
 	}
 }

@@ -2,6 +2,9 @@ package jamdoggie.betterbattletowers.worldgen.structures;
 
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -11,14 +14,17 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 	public static final int MIN_HEIGHT = 7 * FLOOR_HEIGHT;
 
 	@Override
-	public boolean place(World world, Random random, int x, int y, int z) {
-		int blockID = world.getBlockId(x + 8, y, z + 8);
+	public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
+		int x = tilePosc.x();
+		int y = tilePosc.y();
+		int z = tilePosc.z();
+		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (y <= MIN_HEIGHT || blockID == 0) {
 			return false;
 		}
 		this.world = world;
 		this.random = random;
-		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
+		this.setTowerProperties(this.world.getBlockBiome(tilePosc));
 		this.placeTower(x, y, z, y);
 		return true;
 	}
@@ -59,8 +65,8 @@ public class WorldFeatureReverseTower extends WorldFeatureTower{
 		this.placeFloorShell(x, y, z, true, 2);
 		this.placeChests(x + 7, y + 2, z + 5, 0, LOOT_AMOUNT);
 		this.createCrenulations(x, y, z);
-		this.world.setBlock(x + 11, y + 1, z + 3, 0);
-		this.world.setBlock(x + 11, y + 2, z + 3, 0);
-		this.world.setBlock(x + 11, y, z + 3, Blocks.STONE_POLISHED.id());
+		this.world.setBlockType(new TilePos(x + 11, y + 1, z + 3), Blocks.AIR);
+		this.world.setBlockType(new TilePos(x + 11, y + 2, z + 3), Blocks.AIR);
+		this.world.setBlockType(new TilePos(x + 11, y, z + 3), Blocks.STONE_POLISHED);
 	}
 }
