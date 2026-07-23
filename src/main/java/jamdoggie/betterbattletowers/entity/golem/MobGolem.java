@@ -22,11 +22,14 @@ import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
 import static jamdoggie.betterbattletowers.entity.golem.GolemVariants.DEFAULT;
 import static jamdoggie.betterbattletowers.entity.DamageInstance.inst;
 import static jamdoggie.betterbattletowers.util.MathUtil.posGausssianIntBounded;
@@ -64,6 +67,7 @@ public class MobGolem extends MobPathfinder {
 		this.maxHealth = 200 + posGausssianIntBounded(this.random, 300, 0, 8801);
 		this.moveSpeed = DEFAULT_SPEED;
 		this.fireImmune = true;
+		//TODO figure out what to do here
 		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
 		this.footSize = 2;
 		this.dormant = false;
@@ -152,7 +156,7 @@ public class MobGolem extends MobPathfinder {
 		if (fallDistanceForParticle <= 0) {
 			return;
 		}
-		int blockID = this.world.getBlockId(ix, iy, iz);
+		int blockID = this.world.getBlockType(new TilePos(ix, iy, iz)).id();
 		if (blockID > 0) {
 			this.world.playBlockSoundEffect(this, this.x, this.y - this.heightOffset, this.z, Blocks.blocksList[blockID], EnumBlockSoundEffectType.ENTITY_LAND);
 		}
@@ -180,7 +184,7 @@ public class MobGolem extends MobPathfinder {
 
 	private void wakeUp() {
 		dormant = false;
-		world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+		world.playSoundAtEntity(null, this, MOD_ID + ":mob.golem.awaken", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 		timer = DEFAULT_TIME;
 	}
 
@@ -221,7 +225,7 @@ public class MobGolem extends MobPathfinder {
 		}
 		assert world != null;
 		Player entityplayer = this.world.getClosestPlayerToEntity(this, SIGHT_RADIUS);
-		return entityplayer != null && this.canEntityBeSeen(entityplayer) && entityplayer.getGamemode().areMobsHostile() ? entityplayer : null;
+		return entityplayer != null && this.canEntityBeSeen(entityplayer) && entityplayer.getGamemode().hasHostileMobs() ? entityplayer : null;
 	}
 
 	@Override
@@ -250,7 +254,7 @@ public class MobGolem extends MobPathfinder {
 			this.growl = false;
 		}
 		if (timer <= -1 && !growl && this.onGround && world.getClosestPlayerToEntity(this, SIGHT_RADIUS / 2) != null) {
-			this.world.playSoundAtEntity(null, this, BattleTowerMod.MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+			this.world.playSoundAtEntity(null, this, MOD_ID + ":mob.golem.special", getSoundVolume() * 2.0F, ((random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 			this.yd += 0.9D;
 			this.growl = true;
 			this.onGround = false;
@@ -313,11 +317,12 @@ public class MobGolem extends MobPathfinder {
 		this.entityData.set(3, nbttagcompound.getString("type"));
 	}
 
+
 	@Override
-	public float getBlockPathWeight(int x, int y, int z) {
+	protected float getBlockPathWeight(@NotNull TilePosc blockPos) {
 		float bias = 0.0F;
-		Material material = this.world.getBlockMaterial(x, y, z);
-		if (material != null && material.isLiquid()) bias -= 2;
+		Material material = this.world.getBlockMaterial(blockPos);
+		if (material.isLiquid()) bias -= 2;
 		return bias;
 	}
 
@@ -335,15 +340,15 @@ public class MobGolem extends MobPathfinder {
 			return false;
 		}
 		this.target = attacker;
-		if(this.getHealth() <= 0 && attacker instanceof Player){
-			((Player)attacker).triggerAchievement(BattleTowerAchievements.DEFEAT_GOLEM);
+		if(this.getHealth() <= 0 && attacker instanceof Player player){
+			player.triggerAchievement(BattleTowerAchievements.DEFEAT_GOLEM);
 		}
 		return true;
 	}
 
 	@Override
 	public String getLivingSound() {
-		return !dormant ? BattleTowerMod.MOD_ID + ":mob.golem" : "ambient.cave.cave";
+		return !dormant ? MOD_ID + ":mob.golem" : "ambient.cave.cave";
 	}
 
 	@Override
@@ -353,12 +358,12 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	protected String getHurtSound() {
-		return BattleTowerMod.MOD_ID + ":mob.golem.hurt";
+		return MOD_ID + ":mob.golem.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return BattleTowerMod.MOD_ID + ":mob.golem.death";
+		return MOD_ID + ":mob.golem.death";
 	}
 
 	@Override

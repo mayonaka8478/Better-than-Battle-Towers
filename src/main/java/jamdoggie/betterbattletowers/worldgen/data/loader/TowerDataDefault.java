@@ -117,7 +117,7 @@ public class TowerDataDefault {
 		WeightedRandomBag<BlockData> BRICK_NETHER = asBag(pallet(BRICK_NETHERRACK.id(), 100.0f));
 		WeightedRandomBag<BlockData> POLISH_NETHER = asBag(pallet(NETHERRACK_POLISHED.id(), 50.0f), pallet(NETHERRACK_CARVED.id(), 50.0f));
 		WeightedRandomBag<BlockData> NETHER = asBag(pallet(NETHERRACK.id(), 100.0f));
-		WeightedRandomBag<BlockData> COBBLE_NETHER = asBag(pallet(NETHERRACK.id(), 49.0f), pallet(COBBLE_NETHERRACK.id(), 49.0f), pallet(ORE_NETHERCOAL_NETHERRACK.id(), 1.6f), pallet(COBBLE_NETHERRACK_IGNEOUS.id(), 0.4f));
+		WeightedRandomBag<BlockData> COBBLE_NETHER = asBag(pallet(NETHERRACK.id(), 49.0f), pallet(COBBLE_NETHERRACK.id(), 49.0f), pallet(ORE_NETHERCOAL_NETHERRACK.id(), 1.6f), pallet(MAGMA.id(), 0.4f));
 
 		WeightedRandomBag<BlockData> OBSIDIAN = asBag(pallet(Blocks.OBSIDIAN.id(), 100.0f));
 
@@ -383,13 +383,11 @@ public class TowerDataDefault {
 
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
-
 		listProperties.add(
-			properties(NETHER_NETHER)
+			properties(NETHER_OLD_WORLD)
 		);
-
 		listProperties.add(
-			properties(PARADISE_PARADISE)
+			properties(DRIFT_DRIFT)
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))

@@ -14,6 +14,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
+import net.minecraft.core.world.pos.TilePos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -336,11 +337,11 @@ public class WorldFeatureVanquishedSquareTower extends WorldFeatureTower {
 
 		// Convert to double chest
 		if (northSide) {
-			BlockLogicChest.setType(world, ix, y, iz, BlockLogicChest.Type.RIGHT);
-			BlockLogicChest.setType(world, ix + 1, y, iz, BlockLogicChest.Type.LEFT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz), BlockLogicChest.Type.RIGHT);
+			BlockLogicChest.setType(world, new TilePos(ix + 1, y, iz), BlockLogicChest.Type.LEFT);
 		} else {
-			BlockLogicChest.setType(world, ix, y, iz, BlockLogicChest.Type.LEFT);
-			BlockLogicChest.setType(world, ix, y, iz + 1, BlockLogicChest.Type.RIGHT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz), BlockLogicChest.Type.LEFT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz + 1), BlockLogicChest.Type.RIGHT);
 		}
 	}
 

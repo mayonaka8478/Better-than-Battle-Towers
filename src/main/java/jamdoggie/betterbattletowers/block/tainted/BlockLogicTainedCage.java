@@ -9,9 +9,9 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public class BlockLogicTainedCage extends BlockLogic {
 	public BlockLogicTainedCage(Block<?> block, Material material) {
@@ -24,7 +24,7 @@ public class BlockLogicTainedCage extends BlockLogic {
 	}
 
 	@Override
-	public boolean renderAsNormalBlockOnCondition(WorldSource world, int x, int y, int z) {
+	public boolean renderAsNormalBlockOnCondition(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
 		return false;
 	}
 
@@ -34,7 +34,7 @@ public class BlockLogicTainedCage extends BlockLogic {
 	}
 
 	@Override
-	public ItemStack @Nullable [] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
+	public ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		if (dropCause == EnumDropCause.PICK_BLOCK || dropCause== EnumDropCause.SILK_TOUCH){
 			return new ItemStack[]{new ItemStack(this.block)};
 		}

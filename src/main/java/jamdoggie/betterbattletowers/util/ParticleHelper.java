@@ -9,6 +9,7 @@ import turniplabs.halplibe.helper.EnvironmentHelper;
 public class ParticleHelper {
 	private ParticleHelper(){}
 
+	//TODO figure out if this even needed
 	public static void spawnParticle(World world, String particleKey, double x, double y, double z, double motionX, double motionY, double motionZ, int data, double maxDistance) {
 		if (EnvironmentHelper.isClientWorld()) return;
 		if (EnvironmentHelper.isServerEnvironment()) {
@@ -16,7 +17,7 @@ public class ParticleHelper {
 			playerList.sendPacketToAllPlayersInDimension(new PacketAddParticle(particleKey, x, y, z, motionX, motionY, motionZ, data, maxDistance), world.dimension.id);
 			return;
 		}
-		world.spawnParticle(particleKey, x, y, z, motionX, motionY, motionZ, data, maxDistance);
+		world.spawnParticle(particleKey, x, y, z, motionX, motionY, motionZ, data, maxDistance, false);
 	}
 
 	public static void spawnParticle(World world, String particleKey, double x, double y, double z, double motionX, double motionY, double motionZ, int data) {

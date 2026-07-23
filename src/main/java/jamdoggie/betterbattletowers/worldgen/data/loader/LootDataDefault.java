@@ -5,9 +5,8 @@ import jamdoggie.betterbattletowers.worldgen.data.loot.LootEntry;
 import jamdoggie.betterbattletowers.worldgen.data.loot.LootTable;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.item.IItemConvertible;
-import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.item.Items;
+import net.minecraft.core.item.*;
+import net.minecraft.core.util.collection.NamespaceID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,14 @@ public class LootDataDefault {
 	private LootDataDefault(){}
 	public static LootEntry looObj(IItemConvertible item, int metadata, double weight, int fixedField) {
 		ItemStack stack = item.getDefaultStack();
+		stack.setMetadata(metadata);
+		WeightedRandomLootObject lootObj = new WeightedRandomLootObject(stack, fixedField);
+		return LootEntry.loot(lootObj, weight);
+	}
+
+	public static LootEntry lootObjBucket(NamespaceID state, int metadata, double weight, int fixedField) {
+		ItemStack stack = Items.BUCKET_IRON.getDefaultStack();
+		ItemBucket.setState(stack, state);
 		stack.setMetadata(metadata);
 		WeightedRandomLootObject lootObj = new WeightedRandomLootObject(stack, fixedField);
 		return LootEntry.loot(lootObj, weight);
@@ -81,7 +88,7 @@ public class LootDataDefault {
 		l6.add(looObj(Items.ROPE, 0, 1.0f, 2, 5));
 		l6.add(looObj(Items.ORE_RAW_IRON, 0, 1.0f, 1, 3));
 		l6.add(looObj(Items.DUST_REDSTONE, 0, 1.0f, 3, 5));
-		l6.add(looObj(Items.SULPHUR, 0, 1.0f, 1, 2));
+		l6.add(looObj(Items.GUNPOWDER, 0, 1.0f, 1, 2));
 		lootTables.add(table(index++, l6));
 
 		List<LootEntry> l7 = new ArrayList<>();
@@ -96,9 +103,10 @@ public class LootDataDefault {
 		l8.add(looObj(Items.DYE, LootDataLoader.LAPIZ, 1.0f, 1, 2));
 		l8.add(looObj(Items.QUARTZ, 0, 1.0f, 1, 2));
 		l8.add(looObj(Items.CHAINLINK, 0, 1.0f, 2, 3));
-		l8.add(looObj(Items.BUCKET_LAVA, 0, 1.0f, 1));
+		l8.add(lootObjBucket(ItemBucket.STATE_LAVA, 0, 1.0f, 1));
 		l8.add(looObj(BattleTowerBlocks.PRISON_BAR, 0, 1.0f, 2, 3));
 		lootTables.add(table(index++, l8));
+
 
 		List<LootEntry> l9 = new ArrayList<>();
 		l9.add(looObj(Items.DYE, LootDataLoader.LAPIZ, 1.0f, 1, 2));

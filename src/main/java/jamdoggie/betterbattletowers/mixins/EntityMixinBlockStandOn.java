@@ -7,6 +7,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import jamdoggie.betterbattletowers.block.BattleTowerTriggerStandOn;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.world.pos.TilePos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,7 +30,7 @@ public abstract class EntityMixinBlockStandOn{
 	){
 		if(!original && blockWalkedOn != null && blockWalkedOn.getLogic() instanceof BattleTowerTriggerStandOn){
 			Entity asThis = (Entity) (Object) this;
-			blockWalkedOn.onEntityWalking(asThis.world, blockX, blockY, blockZ, asThis);
+			blockWalkedOn.onEntityWalkedOn(asThis.world, new TilePos(blockX, blockY, blockZ), asThis);
 		}
 		return original;
 	}
@@ -44,10 +45,9 @@ public abstract class EntityMixinBlockStandOn{
 		@Local(name = "blockY", ordinal = 1) int blockY,
 		@Local(name = "blockZ", ordinal = 2) int blockZ
 	){
-		if(!original && blockWalkedOn != null && blockWalkedOn.getLogic() instanceof BattleTowerTriggerStandOn){
+		if(!original && blockWalkedOn != null && blockWalkedOn.getLogic() instanceof BattleTowerTriggerStandOn triggeredBlock){
 			Entity asThis = (Entity) (Object) this;
-			BattleTowerTriggerStandOn triggeredBlock = (BattleTowerTriggerStandOn) blockWalkedOn.getLogic();
-			triggeredBlock.onEntityStandOn(asThis.world, blockX, blockY, blockZ, asThis);
+			triggeredBlock.onEntityStandOn(asThis.world, new TilePos(blockX, blockY, blockZ), asThis);
 			return false;
 		}
 		return original;

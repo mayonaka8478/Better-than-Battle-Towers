@@ -15,7 +15,7 @@ public class BattleTowerConfig {
 	private static int startingBlockId = 6340;
 	private static int startingItemId = 26340;
 	private static int lootamount = 8;
-	private static String version = "4.1";
+	private static String version = "5.0.0";
 	private static boolean tint = false;
 	private static boolean hardcore = false;
 	private static boolean isInit = false;

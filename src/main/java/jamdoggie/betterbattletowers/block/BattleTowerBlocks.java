@@ -10,7 +10,7 @@ import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicSlabCrumbling;
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicStairsCrumbling;
 import net.minecraft.core.block.*;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
@@ -23,7 +23,7 @@ public class BattleTowerBlocks {
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.MINEABLE_BY_PICKAXE)
-		.build("chest_tower", id++, b -> new BlockLogicChestTower(b, Material.metal));
+		.build("chest_tower", id++, b -> new BlockLogicChestTower(b, Materials.METAL));
 
 	public static final Block<?> PRISON_BAR = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
@@ -31,7 +31,7 @@ public class BattleTowerBlocks {
 		.setBlockSound(BlockSounds.METAL)
 		.setUseInternalLight()
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("prison_bar", id++, b -> new BlockLogicTainedCage(b, Material.metal));
+		.build("prison_bar", id++, b -> new BlockLogicTainedCage(b, Materials.METAL));
 
 
 	public static final Block<BlockLogicFenceThin> PRISON_BAR_FENCE = new BlockBuilder(BattleTowerMod.MOD_ID)
@@ -40,46 +40,43 @@ public class BattleTowerBlocks {
 		.setBlockSound(BlockSounds.METAL)
 		.setUseInternalLight()
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("prison_fence", id++, b -> new BlockLogicTaintedFence(b, Material.metal));
+		.build("prison_fence", id++, b -> new BlockLogicTaintedFence(b, Materials.METAL));
 
-	/// HARDCORE
+	// HARDCORE
 	public static final Block<?> RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.setImmovable()
-		.build("runic_stone", id++, b -> new BlockLogic(b, Material.metal));
+		.build("runic_stone", id++, b -> new BlockLogicNonPush(b, Materials.METAL));
 
 	public static final Block<?> CHISELED_RUNIC_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.setImmovable()
-		.build("runic_chiseled_stone", id++, b -> new BlockLogic(b, Material.metal));
+		.build("runic_chiseled_stone", id++, b -> new BlockLogicNonPush(b, Materials.METAL));
 
 	public static final Block<?> RUNIC_GLYPH_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(25.0f)
 		.setBlockSound(BlockSounds.METAL)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.setImmovable()
-		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Material.metal));
+		.build("runic_glyph_stone", id++, b -> new BlockLogicGlyph(b, Materials.METAL));
 
 	public static final Block<?> PILLAR_RUNIC = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
 		.setHardness(10.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF)
-		.build("pillar_runic", id++, b -> new BlockLogic(b, Material.metal));
+		.build("pillar_runic", id++, b -> new BlockLogic(b, Materials.METAL));
 
 	public static final Block<BlockLogicCrumbling> CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
 		.setHardness(1.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Blocks.STONE_POLISHED, Material.stone, 3.0f));
+		.build("crumbling_stone", id++, b -> new BlockLogicCrumbling(b, Blocks.STONE_POLISHED, Materials.STONE, 3.0f));
 
 	public static final Block<BlockLogicSlabCrumbling> SLAB_CRUMBLING_STONE = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0f)
@@ -101,7 +98,7 @@ public class BattleTowerBlocks {
 		.setHardness(10.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.PISTON_CRUSHING, BlockTags.NOT_IN_CREATIVE_MENU)
-		.build("carved_obsidian", id++, b -> new BlockLogic(b, Material.stone));
+		.build("carved_obsidian", id++, b -> new BlockLogic(b, Materials.STONE));
 
 	public static final Block<BlockLogicSlab> SLAB_OBSIDIAN = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(2000.0f)
@@ -123,14 +120,14 @@ public class BattleTowerBlocks {
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES)
-		.build("overgrown_bloom_brick", id++, b -> new BlockLogicBloom(b, Material.stone));
+		.build("overgrown_bloom_brick", id++, b -> new BlockLogicBloom(b, Materials.STONE));
 
 	public static final Block<?> OVERGROWN_BRICKS = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setResistance(10.0F)
 		.setHardness(2.0f)
 		.setBlockSound(BlockSounds.STONE)
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES)
-		.build("overgrown_brick", id++, b -> new BlockLogicOvergrown(b, Material.stone));
+		.build("overgrown_brick", id++, b -> new BlockLogicOvergrown(b, Materials.STONE));
 
 	public static final Block<?> OVERGROWN = new BlockBuilder(BattleTowerMod.MOD_ID)
 		.setHardness(2.0f)
@@ -141,7 +138,15 @@ public class BattleTowerBlocks {
 			BlockTags.CAN_HANG_OFF, BlockTags.GROWS_FLOWERS, BlockTags.GROWS_TREES, BlockTags.GROWS_SUGAR_CANE,
 			BlockTags.PASSIVE_MOBS_SPAWN)
 		.setFlammability(100, 30)
-		.build("overgrown", id++, b -> new BlockLogic(b, Material.wood));
+		.build("overgrown", id++, b -> new BlockLogic(b, Materials.WOOD));
+
+
+	public static final Block<BlockLogicCrumbling> CRUMBLING_CARVED_BLOCK = new BlockBuilder(BattleTowerMod.MOD_ID)
+		.setResistance(10.0f)
+		.setHardness(1.0f)
+		.setBlockSound(BlockSounds.STONE)
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.CAN_HANG_OFF, BlockTags.NOT_IN_CREATIVE_MENU)
+		.build("crumbling_carved_stone", id++, b -> new BlockLogicCrumbling(b, Blocks.STONE_POLISHED, Materials.STONE, 3.0f));
 
 
 	public static void init() {

@@ -6,6 +6,7 @@ import jamdoggie.betterbattletowers.util.ParticleHelper;
 import net.minecraft.core.Global;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.Entity;
@@ -15,13 +16,13 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-import static jamdoggie.betterbattletowers.worldgen.structures.WorldFeatureTower.BLOCK_AIR;
-
-public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTriggerStandOn {
+public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTriggerStandOn{
 	public Block<?> dropBlock;
 	private final int coolDown;
 
@@ -56,11 +57,12 @@ public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTrigge
 		return coolDown;
 	}
 
+
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		int metadata = world.getBlockMetadata(x, y, z);
+	public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+		int metadata = world.getBlockData(tilePos);
 		if (Metadata.isSet(metadata, 7)) {
-			world.setBlockMetadataWithNotify(x, y, z, Metadata.setBit(metadata, 7, 0));
+			world.setBlockDataNotify(tilePos, Metadata.setBit(metadata, 7, 0));
 		}
 	}
 
@@ -70,38 +72,40 @@ public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTrigge
 	}
 
 	@Override
-	public void onEntityStandOn(World world, int x, int y, int z, Entity entity) {
-		updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityStandOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity walker) {
+		updateBlock(world, tilePos, walker, this.block);
 	}
 
 	@Override
-	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-		updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityWalkedOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity walker) {
+		updateBlock(world, tilePos, walker, this.block);
 	}
 
-	public static void updateBlock(World world, int x, int y, int z, Entity entity, Block<?> block) {
+	public static void updateBlock(World world, TilePosc tilePos, Entity entity, Block<?> block) {
 		if (!(entity instanceof Player)) {
 			return;
 		}
-		int metadata = world.getBlockMetadata(x, y, z);
+		int metadata = world.getBlockData(tilePos);
 		if (Metadata.isSet(metadata, 7)) {
 			return;
 		}
 		int lowerBits = getStageFromMetadata(metadata);
 		if (lowerBits == 0) {
-			spawnParticle(world, x, y, z, block.id());
-			world.setBlockWithNotify(x, y, z, BLOCK_AIR);
-			world.playBlockSoundEffect(null, x, y + 0.5F, z, block, EnumBlockSoundEffectType.MINE);
+			spawnParticle(world, tilePos.x(), tilePos.y(), tilePos.z(), block.id());
+			world.notifyBlockChange(tilePos, Blocks.AIR);
+			world.setBlockType(tilePos, Blocks.AIR);
+			world.playBlockSoundEffect(null, tilePos.x(), tilePos.y() + 0.5F, tilePos.z(), block, EnumBlockSoundEffectType.MINE);
 			return;
 		}
-		world.setBlockMetadataWithNotify(x, y, z, Metadata.setBitBlock(Metadata.setBit(metadata, 7), 4, 5 ,lowerBits - 1));
-		world.playBlockSoundEffect(null, x, y + 0.5F, z, block, EnumBlockSoundEffectType.DIG);
-		world.scheduleBlockUpdate(x, y, z, block.id(), block.getLogic().tickDelay());
+		world.setBlockDataNotify(tilePos, Metadata.setBitBlock(Metadata.setBit(metadata, 7), 4, 5 ,lowerBits - 1));
+		world.playBlockSoundEffect(null, tilePos.x(), tilePos.y() + 0.5F, tilePos.z(), block, EnumBlockSoundEffectType.DIG);
+		world.scheduleBlockUpdate(tilePos, block, block.getLogic().tickDelay());
 	}
 
+
 	@Override
-	public float blockStrength(World world, int x, int y, int z, Side side, Player player) {
-		int metadata = getStageFromMetadata(world.getBlockMetadata(x, y, z));
+	public float getStrength(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, @NotNull Player player) {
+		int metadata = getStageFromMetadata(world.getBlockData(tilePos));
 		float blockHardness = this.block.blockHardness / Math.max(2 - metadata, 1);
 		if (!player.canHarvestBlock(this.block)) {
 			return 1.0F / blockHardness / 100.0F;
@@ -125,11 +129,16 @@ public class BlockLogicCrumbling extends BlockLogic implements BattleTowerTrigge
 	}
 
 	@Override
-	public String getLanguageKey(int meta) {
+	public @NotNull String getLanguageKey(int meta) {
 		String lang = super.getLanguageKey(meta);
 		if (BlockLogicCrumbling.getStageFromMetadata(meta) != 0) {
 			return lang;
 		}
 		return lang.replace("crumbling", "bridle");
+	}
+
+	@Override
+	public int getPlacedData(@Nullable Player player, @NotNull ItemStack itemStack, @NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+		return itemStack.getMetadata();
 	}
 }

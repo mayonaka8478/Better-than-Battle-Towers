@@ -1,0 +1,10 @@
+{
+  "model_paths": [
+    "/assets/minecraft/models/entity/zombie/zombie.geo.json"
+  ],
+  "renderers": {
+    "betterbattletowers:golem": {
+      "main": "geometry.zombie"
+    }
+  }
+}

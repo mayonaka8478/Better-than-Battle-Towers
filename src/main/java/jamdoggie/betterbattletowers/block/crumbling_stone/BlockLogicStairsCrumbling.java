@@ -5,13 +5,12 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicStairs;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.Entity;
-import net.minecraft.core.entity.Mob;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,18 +23,19 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 	}
 
 	@Override
-	public void onEntityStandOn(World world, int x, int y, int z, Entity entity) {
-		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityStandOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity entity) {
+		BlockLogicCrumbling.updateBlock(world,tilePos, entity, this.block);
 	}
 
 	@Override
-	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityWalkedOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity entity) {
+		BlockLogicCrumbling.updateBlock(world, tilePos, entity, this.block);
 	}
 
+
 	@Override
-	public float blockStrength(World world, int x, int y, int z, Side side, Player player) {
-		return this.modelBlock.blockStrength(world, x, y, z, side, player);
+	public float getStrength(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, @NotNull Player player) {
+		return this.modelBlock.getStrength(world, tilePos, side, player);
 	}
 
 	public Block<?> getDropBlock (){
@@ -43,7 +43,7 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 	}
 
 	@Override
-	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
+	public ItemStack[] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		if(BlockLogicCrumbling.getStageFromMetadata(meta) <= 0) return null;
 		Block<?> block = this.getDropBlock();
 		ItemStack[] result = dropCause != EnumDropCause.IMPROPER_TOOL ? new ItemStack[]{new ItemStack(block)} : null;
@@ -58,7 +58,7 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 	}
 
 	@Override
-	public String getLanguageKey(int meta) {
+	public @NotNull String getLanguageKey(int meta) {
 		String lang = super.getLanguageKey(meta);
 		if (BlockLogicCrumbling.getStageFromMetadata(meta) != 0) {
 			return lang;
@@ -66,8 +66,8 @@ public class BlockLogicStairsCrumbling extends BlockLogicStairs implements Battl
 		return lang.replace("crumbling", "bridle");
 	}
 
-	public int getPlacedBlockMetadata(@Nullable Player player, ItemStack stack, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
-		return stack.getMetadata();
+	@Override
+	public int getPlacedData(@Nullable Player player, @NotNull ItemStack itemStack, @NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+		return itemStack.getMetadata();
 	}
-
 }
