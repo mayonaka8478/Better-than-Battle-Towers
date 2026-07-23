@@ -1,7 +1,6 @@
 package jamdoggie.betterbattletowers;
 
 import jamdoggie.betterbattletowers.block.BattleTowerBlocks;
-import jamdoggie.betterbattletowers.block.BattleTowerDetail;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import jamdoggie.betterbattletowers.entity.MobAgressiveZombiePig;
 import jamdoggie.betterbattletowers.entity.golem.GolemVariants;
@@ -11,34 +10,27 @@ import jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataDefault;
 import jamdoggie.betterbattletowers.worldgen.data.loader.TowerDataLoader;
 import jamdoggie.betterbattletowers.worldgen.structures.*;
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
-import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.entity.TileEntityDispatcher;
 import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.entity.EntityDispatcher;
-import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.SoundTypes;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.pos.ChunkPosc;
+import net.minecraft.core.world.pos.TilePos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.event.defs.CommonEvents;
-import turniplabs.halplibe.helper.EntityHelper;
 import turniplabs.halplibe.helper.RecipeBuilder;
-import turniplabs.halplibe.util.*;
 import turniplabs.halplibe.util.dependency.Key;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
-import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.LAPIZ;
 import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFeatureClass;
 
 
@@ -71,8 +63,6 @@ public class 	BattleTowerMod implements ModInitializer{
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "VanquishedBattleTower");
 		registerWorldFeatureClass(WorldFeatureSquareTower.class, "BastionTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedSquareTower.class, "VanquishedBastionTower");
-
-		// TODO look up what the 3rd argument use to be
 		EntityDispatcher.getInstance().addMapping(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), MobGolem::new); // "betterbattletowers.golem.name"
 		EntityDispatcher.getInstance().addMapping(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), MobAgressiveZombiePig::new); //"betterbattletowers.aggro_zombie_pigman.name"
 		TileEntityDispatcher.addMapping(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest")); //"betterbattletowers.ironchest"
@@ -87,10 +77,9 @@ public class 	BattleTowerMod implements ModInitializer{
 	}
 
 	public static void onRecipesReady() {
-		//TODO figure out why they fail
-//		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/workbench.json");
-//		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/blast_furnace.json");
-//		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/furnace.json");
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/workbench.json");
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/blast_furnace.json");
+		DataLoader.loadRecipesFromFile("/assets/" + MOD_ID + "/recipes/furnace.json");
 	}
 
 	public static void initNamespaces() {
@@ -106,7 +95,7 @@ public class 	BattleTowerMod implements ModInitializer{
 			int z = posc.z() * 16;
 			int y = world.getHeightValue(x, z) - 1;
 			Supplier<? extends WorldFeatureTower> supply = TOWER.getRandom(random);
-			supply.get().place(world, random, x, y, z);
+			supply.get().place(world, random, new TilePos(x, y, z));
 		}
 	}
 }

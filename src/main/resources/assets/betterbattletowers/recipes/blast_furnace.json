@@ -2,7 +2,7 @@
   {
     "name": "minecraft:blast_furnace/obsidian_to_slab",
     "type": "minecraft:smelting/blast",
-    "input": {
+    "a": {
       "stack": {
         "id": "minecraft:block/obsidian"
       }
