@@ -1,14 +1,19 @@
 package jamdoggie.betterbattletowers.model;
 
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.tessellator.TessellatorGeneral;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.util.phys.AABB;
+import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.joml.primitives.AABBd;
+import org.joml.primitives.AABBdc;
 
 public class BlockModelCage<T extends BlockLogic> extends BlockModelStandard<T> {
 	private final boolean renderInside;
+	public static final AABBd BOUNDS = new AABBd(0.0001, 0.0001, 0.0001, 0.9999, 0.9999, 0.9999);
 
 	public BlockModelCage(Block<T> block, boolean renderInside) {
 		super(block);
@@ -16,18 +21,14 @@ public class BlockModelCage<T extends BlockLogic> extends BlockModelStandard<T> 
 	}
 
 	@Override
-	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		AABB bounds = this.block.getBounds();
-		double offset = 0.0001;
-		double oneOffset = 1 - offset;
-		bounds.set(offset, offset, offset, oneOffset, oneOffset, oneOffset);
-		this.renderStandardBlock(tessellator, bounds, x, y, z);
+	public boolean render(@NotNull TessellatorGeneral tessellator, @NotNull WorldSource worldSource, @NotNull TilePosc tilePos) {
+		renderBlocks.renderStandardBlock(tessellator, worldSource, this, BOUNDS, tilePos);
 		return true;
 	}
 
 	@Override
-	public boolean shouldSideBeRendered(WorldSource blockAccess, AABB bounds, int x, int y, int z, int side) {
-		return this.renderInside || blockAccess.getBlockId(x, y, z) != this.block.id();
+	public boolean shouldSideBeRendered(@NotNull WorldSource source, @NotNull AABBdc bounds, @NotNull TilePosc tilePos, @NotNull Side side) {
+		Block<?> blockType = source.getBlockType(tilePos);
+		return this.renderInside || blockType.id() != this.block.id();
 	}
-
 }

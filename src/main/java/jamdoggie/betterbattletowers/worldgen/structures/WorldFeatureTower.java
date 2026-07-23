@@ -17,9 +17,11 @@ import net.minecraft.core.block.material.Material;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.Biome;
+import net.minecraft.core.world.biome.BiomeTags;
 import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.feature.WorldFeature;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
@@ -229,10 +231,10 @@ public abstract class WorldFeatureTower extends WorldFeature {
 
 	///  Pick a random spider
 	protected @NotNull String getArachnid() {
-		if (biome.hasSurfaceSnow()) {
+		if (biome.hasTag(BiomeTags.HAS_SURFACE_SNOW)) {
 			return "minecraft:spider";
 		}
-		Set<Weather> blockedWeather = new HashSet<>(Arrays.asList(biome.blockedWeathers));
+		Set<Weather> blockedWeather = new HashSet<>(biome.blockedWeathers);
 		if (blockedWeather.contains(Weathers.OVERWORLD_RAIN)
 			&& blockedWeather.contains(Weathers.OVERWORLD_SNOW)
 			&& blockedWeather.contains(Weathers.OVERWORLD_STORM)
@@ -257,7 +259,7 @@ public abstract class WorldFeatureTower extends WorldFeature {
 			}
 			return "minecraft:zombie_armored";
 		}
-		if (biome.hasSurfaceSnow() && this.random.nextBoolean()) {
+		if (biome.hasTag(BiomeTags.HAS_SURFACE_SNOW) && this.random.nextBoolean()) {
 			return "minecraft:snowman";
 		}
 		return "minecraft:zombie";
@@ -288,8 +290,8 @@ public abstract class WorldFeatureTower extends WorldFeature {
 		int tier = Math.min(this.currentFloor, currentTier);
 		this.placeChest(x, y, z, tier, lootAmount);
 		this.placeChest(x + 1, y, z, tier, lootAmount);
-		BlockLogicChest.setType(world, x, y, z, BlockLogicChest.Type.LEFT);
-		BlockLogicChest.setType(world, x + 1, y, z, BlockLogicChest.Type.RIGHT);
+		BlockLogicChest.setType(world, new TilePos(x, y, z), BlockLogicChest.Type.LEFT);
+		BlockLogicChest.setType(world, new TilePos(x + 1, y, z), BlockLogicChest.Type.RIGHT);
 		/// so the chest won't fly
 		this.world.setBlock(x, y - 1, z, Blocks.STONE_POLISHED.id());
 		this.world.setBlock(x + 1, y - 1, z, Blocks.STONE_POLISHED.id());

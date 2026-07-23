@@ -1,18 +1,24 @@
 package jamdoggie.betterbattletowers.block.crumbling_stone;
 
 import jamdoggie.betterbattletowers.block.BattleTowerTriggerStandOn;
+import jamdoggie.betterbattletowers.item.ItemBlockCrumblingSlab;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicSlab;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.entity.Mob;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BlockLogicSlabCrumbling extends BlockLogicSlab implements BattleTowerTriggerStandOn{
-	public Block<?> dropBlock;
+	public final Block<?> dropBlock;
 	public enum SLAB_STATE{
 		LOWER, FULL, UPPER;
 	}
@@ -20,26 +26,27 @@ public class BlockLogicSlabCrumbling extends BlockLogicSlab implements BattleTow
 	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, Block<?> dropBlock) {
 		super(block, modelBlock);
 		this.dropBlock = dropBlock;
+		block.setBlockItem(() -> new ItemBlockCrumblingSlab<>(block));
 	}
 
 	public BlockLogicSlabCrumbling(Block<?> block, Block<BlockLogicCrumbling> modelBlock, int modelBlockMetadata, Block<?> dropBlock) {
 		super(block, modelBlock, modelBlockMetadata);
 		this.dropBlock = dropBlock;
+		block.setBlockItem(() -> new ItemBlockCrumblingSlab(block));
 	}
 
 	public Block<?> getDropBlock (){
 		return this.dropBlock;
 	}
 
-
 	@Override
-	public void onEntityStandOn(World world, int x, int y, int z, Entity entity) {
-		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityStandOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity entity) {
+		BlockLogicCrumbling.updateBlock(world,tilePos, entity, this.block);
 	}
 
 	@Override
-	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-		BlockLogicCrumbling.updateBlock(world, x, y, z, entity, this.block);
+	public void onEntityWalkedOn(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Entity entity) {
+		BlockLogicCrumbling.updateBlock(world, tilePos, entity, this.block);
 	}
 
 	@Override
@@ -73,5 +80,22 @@ public class BlockLogicSlabCrumbling extends BlockLogicSlab implements BattleTow
 			return lang;
 		}
 		return lang.replace("crumbling", "bridle");
+	}
+
+	@Override
+	public void onPlacedByMob(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, @NotNull Mob mob, double xHit, double yHit) {
+		int meta = mob.getVerticalPlacementDirection(side, yHit) == Direction.UP ? 2 : 0;
+		world.setBlockDataNotify(tilePos, meta | world.getBlockData(tilePos) & 240);
+	}
+
+	@Override
+	public void onPlacedOnSide(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+		int meta = side == Side.TOP ? 2 : 0;
+		world.setBlockDataNotify(tilePos, meta | world.getBlockData(tilePos) & 240);
+	}
+
+	@Override
+	public int getPlacedData(@Nullable Player player, @NotNull ItemStack itemStack, @NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+		return itemStack.getMetadata();
 	}
 }

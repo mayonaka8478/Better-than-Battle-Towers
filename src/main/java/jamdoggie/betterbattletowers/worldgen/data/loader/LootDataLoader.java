@@ -23,6 +23,7 @@ import net.minecraft.core.item.*;
 import net.minecraft.core.player.inventory.container.Container;
 import net.minecraft.core.util.helper.DyeColor;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -141,7 +142,7 @@ public class LootDataLoader {
 	}
 
 	public static void populateChest(World world, Random random, int x, int y, int z, int tier, int lootAmount) {
-		Container inventory = BlockLogicChest.getInventory(world, x, y, z);
+		Container inventory = BlockLogicChest.getInventory(world, new TilePos(x, y, z));
 		if (inventory == null) return;
 		List<ItemStack> stacks = generateLootList(random, tier, lootAmount);
 		for (ItemStack stack : stacks) {

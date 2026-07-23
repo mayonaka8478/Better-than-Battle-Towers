@@ -32,6 +32,10 @@ tile.betterbattletowers.stairs.crumbling.stone.name=朽ちたつやあり石の�
 tile.betterbattletowers.stairs.crumbling.stone.desc=迅速な垂直方向への移動に間違いなく使えないボロさなのにつやがあると名乗っている石
 tile.betterbattletowers.stairs.bridle.stone.name=崩れかけつやあり石の階段
 tile.betterbattletowers.stairs.bridle.stone.desc=迅速な垂直方向への移動云々どころか根本的にもうダメそうな石の半ブロック
+tile.betterbattletowers.crumbling.carved.stone.name=
+tile.betterbattletowers.crumbling.carved.stone.desc=この石は叩いたら渡れなくなってしまうだろう
+tile.betterbattletowers.bridle.carved.stone.name=
+tile.betterbattletowers.bridle.carved.stone.desc=この石は叩くまえに渡れなくなってしまうだろう
 # Runic
 tile.betterbattletowers.runic.stone.name=古代の石材
 tile.betterbattletowers.runic.stone.desc=タワーの住民を封印するために作られたであろう石材

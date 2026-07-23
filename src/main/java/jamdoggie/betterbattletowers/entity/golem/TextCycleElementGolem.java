@@ -2,10 +2,10 @@ package jamdoggie.betterbattletowers.entity.golem;
 
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.modelviewer.elements.TextCycleElement;
-import net.minecraft.client.render.Font;
+import net.minecraft.client.render.font.FontRenderer;
 
 public class TextCycleElementGolem extends TextCycleElement<String> {
-	public TextCycleElementGolem(Screen parent, Font font, int xPosition, int yPosition, int width, int height, String initialElement) {
+	public TextCycleElementGolem(Screen parent, FontRenderer font, int xPosition, int yPosition, int width, int height, String initialElement) {
 		super(parent, font, xPosition, yPosition, width, height, initialElement);
 	}
 

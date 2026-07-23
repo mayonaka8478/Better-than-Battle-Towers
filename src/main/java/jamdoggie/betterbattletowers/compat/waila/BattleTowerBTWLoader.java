@@ -11,7 +11,8 @@ public class BattleTowerBTWLoader implements PreLaunchEntrypoint {
 		if (!EnvironmentHelper.isServerEnvironment()) {
 			FabricLoader loader = FabricLoader.getInstance();
 			if (loader.isModLoaded("btwaila")) {
-				Mixins.addConfiguration("compat/waila.mixins.json");
+				// TODO fix it once waila is updated
+//				Mixins.addConfiguration("compat/waila.mixins.json");
 			}
 		}
 	}

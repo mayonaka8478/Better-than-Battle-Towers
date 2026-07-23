@@ -32,6 +32,11 @@ tile.betterbattletowers.stairs.crumbling.stone.name=Crumbling Polished Stone Sta
 tile.betterbattletowers.stairs.crumbling.stone.desc=Polished Stone block used for very careful vertical movement.
 tile.betterbattletowers.stairs.bridle.stone.name=Bridle Polished Stone Stairs
 tile.betterbattletowers.stairs.bridle.stone.desc=Polished Stone block used for very careful and very dangerous vertical movement!
+tile.betterbattletowers.crumbling.carved.stone.name=Crumbling Carved Stone
+tile.betterbattletowers.crumbling.carved.stone.desc=These old tiles wont hold up much longer.
+tile.betterbattletowers.bridle.carved.stone.name=Bridle Carved Stone
+tile.betterbattletowers.bridle.carved.stone.desc=These old tiles are about to break!
+
 # Runic
 tile.betterbattletowers.runic.stone.name=Runic Stone
 tile.betterbattletowers.runic.stone.desc=A runic stone created to imprison the denizen of the tower.

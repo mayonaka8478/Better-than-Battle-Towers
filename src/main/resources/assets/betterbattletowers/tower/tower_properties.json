@@ -2994,11 +2994,11 @@
     ]
   },
   {
-    "biome": "minecraft:nether.nether",
+    "biome": "minecraft:nether.old_world",
     "tower_properties": []
   },
   {
-    "biome": "minecraft:paradise.paradise",
+    "biome": "minecraft:drift.drift",
     "tower_properties": [
       {
         "golem_type": "marble",
@@ -3449,7 +3449,7 @@
           },
           {
             "decoration": {
-              "id": "minecraft:block/cobble_netherrack_igneous"
+              "id": "minecraft:block/magma"
             },
             "weight": 0.4000000059604645
           }

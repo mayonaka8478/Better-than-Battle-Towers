@@ -9,6 +9,9 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -23,13 +26,13 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
 		int availableHeight = world.getHeightBlocks() - y;
-		int blockID = world.getBlockId(x + 8, y, z + 8);
+		int blockID = world.getBlockType(new TilePos(x + 8, y, z + 8)).id();
 		if (availableHeight < MIN_HEIGHT || blockID == BLOCK_AIR) {
 			return false;
 		}
 		this.world = world;
 		this.random = random;
-		this.setTowerProperties(this.world.getBlockBiome(x, y, z));
+		this.setTowerProperties(this.world.getBlockBiome(new TilePos(x, y, z)));
 		this.placeTower(x, y, z, availableHeight);
 		return true;
 	}
@@ -65,6 +68,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 	}
 
 	private void placeWindowOnFloor(int x, int y, int z, int placeID) {
+		class Cache{private static final @NotNull TilePos pos = new TilePos();		}
 		for (int c = 0; c < 2; c++) {
 			int px = c * 13 + x + 1;
 			int rz = c * 13 + z + 1;
@@ -240,11 +244,11 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 
 		// Convert to double chest
 		if (northSide) {
-			BlockLogicChest.setType(world, ix, y, iz, BlockLogicChest.Type.RIGHT);
-			BlockLogicChest.setType(world, ix + 1, y, iz, BlockLogicChest.Type.LEFT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz), BlockLogicChest.Type.RIGHT);
+			BlockLogicChest.setType(world, new TilePos(ix + 1, y, iz), BlockLogicChest.Type.LEFT);
 		} else {
-			BlockLogicChest.setType(world, ix, y, iz, BlockLogicChest.Type.LEFT);
-			BlockLogicChest.setType(world, ix, y, iz + 1, BlockLogicChest.Type.RIGHT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz), BlockLogicChest.Type.LEFT);
+			BlockLogicChest.setType(world, new TilePos(ix, y, iz + 1), BlockLogicChest.Type.RIGHT);
 		}
 	}
 

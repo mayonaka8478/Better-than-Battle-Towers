@@ -16,8 +16,9 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "accessor.BlockModelTransparentAccessor",
+    "CreativeMenuContentMixin",
     "EntityMixinBlockStandOn",
+    "accessor.CreativeMenuContentsAccessor",
     "accessor.MobZombiePigAccessor",
     "accessor.SkinVariantAccessor",
     "decorate.ChunkDecoratorHellMixinAddTowers",

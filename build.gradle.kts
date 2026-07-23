@@ -3,29 +3,28 @@ plugins {
     alias(libs.plugins.loom)
     alias(libs.plugins.lwjgl)
     java
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
-val modVersion = providers.gradleProperty("mod_version")
-val modGroup = providers.gradleProperty("mod_group")
-val modName = providers.gradleProperty("mod_name")
+val modVersion: Provider<String> = providers.gradleProperty("mod_version")
+val modGroup: Provider<String> = providers.gradleProperty("mod_group")
+val modName: Provider<String> = providers.gradleProperty("mod_name")
 
-val javaVersion = libs.versions.java.map { it.toInt() }
+val javaVersion: Provider<Int> = libs.versions.java.map { it.toInt() }
 
 base.archivesName = modName
 group = modGroup.get()
 version = modVersion.get()
 loom {
-    customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/v${libs.versions.bta.get()}/manifest.json")
+    customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/${libs.versions.bta.get()}/manifest.json")
     accessWidenerPath = file("src/main/resources/betterbattletowers.classtweaker")
 }
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
     maven("https://maven.fabricmc.net/") { name = "Fabric" }
     maven("https://maven.thesignalumproject.net/infrastructure") { name = "SignalumMavenInfrastructure" }
     maven("https://maven.thesignalumproject.net/releases") { name = "SignalumMavenReleases" }
+    maven("https://maven.thesignalumproject.net/nightly") { name = "SignalumMavenNightly" }
     ivy("https://github.com/Better-than-Adventure") {
-        patternLayout { artifact("[organisation]/releases/download/v[revision]/[module].jar") }
+        patternLayout { artifact("[organisation]/releases/download/[revision]/[module]-bta-[revision].jar") }
         metadataSources { artifact() }
     }
     ivy("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/") {
@@ -48,9 +47,9 @@ lwjgl {
 dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
-    compileOnly(libs.btwaila)
-    include("com.typesafe:config:1.4.3")
-    implementation("com.typesafe:config:1.4.3")
+//    compileOnly(libs.btwaila)
+//    include("com.typesafe:config:1.4.3")
+//    implementation("com.typesafe:config:1.4.3")
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
@@ -134,6 +133,5 @@ tasks {
         filesMatching("**/*.mixins.json") { expand(resourceMap.filterKeys { it == "java" }) }
     }
 }
-
 // Removes LWJGL2 dependencies
 configurations.configureEach { exclude(group = "org.lwjgl.lwjgl") }

@@ -32,6 +32,10 @@ tile.betterbattletowers.stairs.crumbling.stone.name=Разваливающийс
 tile.betterbattletowers.stairs.crumbling.stone.desc=Гладкий каменный блок, используемый для очень аккуратного подъёма.
 tile.betterbattletowers.stairs.crumbling.stone.bridle.name=Хрупкие гладкие каменные ступени
 tile.betterbattletowers.stairs.crumbling.stone.bridle.desc=Гладкий каменный блок для предельно осторожного и опасного подъёма!
+tile.betterbattletowers.crumbling.carved.stone.name=Разваливающийся резной камень
+tile.betterbattletowers.crumbling.carved.stone.desc=Эти старые плитки вот вот развалятся.
+tile.betterbattletowers.bridle.carved.stone.name=Хрупкий резной камень
+tile.betterbattletowers.bridle.carved.stone.desc=Эти старые плитки на грани разрушения!
 # Runic
 tile.betterbattletowers.runic.stone.name=Магический камень
 tile.betterbattletowers.runic.stone.desc=Магический камень, созданный для плена твари из башни.
