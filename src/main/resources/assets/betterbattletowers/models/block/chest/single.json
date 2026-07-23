@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "minecraft:block/chest/planks_black/top",
-    "front": "minecraft:block/chest/planks_black/front",
-    "side": "minecraft:block/chest/planks_black/side"
+    "top": "betterbattletowers:block/tower_chest/chest_tower_top",
+    "front": "betterbattletowers:block/tower_chest/chest_tower_front",
+    "side": "betterbattletowers:block/tower_chest/chest_tower_side"
   }
 }

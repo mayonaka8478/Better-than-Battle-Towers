@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "minecraft:block/chest/planks_black/top_right",
-    "down": "minecraft:block/chest/planks_black/top_right",
-    "south": "minecraft:block/chest/planks_black/right_back",
-    "north": "minecraft:block/chest/planks_black/left_front",
-    "west": "minecraft:block/chest/planks_black/side",
-    "east": "minecraft:block/chest/planks_black/side"
+    "up": "betterbattletowers:block/tower_chest/chest_tower_top_right",
+    "down": "betterbattletowers:block/tower_chest/chest_tower_top_right",
+    "south": "betterbattletowers:block/tower_chest/chest_tower_right_back",
+    "north": "betterbattletowers:block/tower_chest/chest_tower_left_front",
+    "west": "betterbattletowers:block/tower_chest/chest_tower_side",
+    "east": "betterbattletowers:block/tower_chest/chest_tower_side"
   }
 }

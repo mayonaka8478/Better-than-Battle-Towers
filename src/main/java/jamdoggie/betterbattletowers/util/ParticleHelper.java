@@ -9,7 +9,7 @@ import turniplabs.halplibe.helper.EnvironmentHelper;
 public class ParticleHelper {
 	private ParticleHelper(){}
 
-	//TODO figure out if this even needed
+	//Going to remove it at some point in the future
 	public static void spawnParticle(World world, String particleKey, double x, double y, double z, double motionX, double motionY, double motionZ, int data, double maxDistance) {
 		if (EnvironmentHelper.isClientWorld()) return;
 		if (EnvironmentHelper.isServerEnvironment()) {

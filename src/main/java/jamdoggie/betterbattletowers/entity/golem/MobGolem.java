@@ -67,8 +67,7 @@ public class MobGolem extends MobPathfinder {
 		this.maxHealth = 200 + posGausssianIntBounded(this.random, 300, 0, 8801);
 		this.moveSpeed = DEFAULT_SPEED;
 		this.fireImmune = true;
-		//TODO figure out what to do here
-		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
+		this.textureIdentifier = NamespaceID.fromPool("betterbattletowers", "golem");
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
@@ -115,14 +114,14 @@ public class MobGolem extends MobPathfinder {
 		this.entityData.set(3, index);
 	}
 
-	/// TODO indexedSkins is nullable in that case this will crash and entityVariant is also nullable.
 	@Override
 	public boolean cycleVariant() {
 		SkinVariantList variantList = Global.accessor.getSkinVariantList();
 		String basePath = String.format("/assets/%s/textures/entity/%s/%s/", this.textureIdentifier.namespace(), this.textureIdentifier.value(), this.entityData.getString(3));
 		ClientSkinVariantList.EntityVariants entityVariants = ((SkinVariantAccessor)variantList).invokeGetEntityVariants(basePath + "variants.json");
 		int skinVar = this.getSkinVariant();
-		if(((EntityVariantsAccessor)entityVariants).getIndexedSkins().length - 1 == this.getSkinVariant()) {
+		int skinTextureLength = entityVariants.getSkinTextureLength();
+		if(skinTextureLength - 1 == this.getSkinVariant()) {
 			String nextPath = GolemVariants.getNextValue(this.entityData.getString(3));
 			this.setVariant(nextPath);
 			skinVar = 0;
