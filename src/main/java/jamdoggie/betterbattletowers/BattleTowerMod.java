@@ -72,7 +72,6 @@ public class 	BattleTowerMod implements ModInitializer{
 		registerWorldFeatureClass(WorldFeatureSquareTower.class, "BastionTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedSquareTower.class, "VanquishedBastionTower");
 
-		// TODO look up what the 3rd argument use to be
 		EntityDispatcher.getInstance().addMapping(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), MobGolem::new); // "betterbattletowers.golem.name"
 		EntityDispatcher.getInstance().addMapping(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), MobAgressiveZombiePig::new); //"betterbattletowers.aggro_zombie_pigman.name"
 		TileEntityDispatcher.addMapping(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest")); //"betterbattletowers.ironchest"

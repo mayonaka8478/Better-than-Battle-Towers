@@ -67,8 +67,7 @@ public class MobGolem extends MobPathfinder {
 		this.maxHealth = 200 + posGausssianIntBounded(this.random, 300, 0, 8801);
 		this.moveSpeed = DEFAULT_SPEED;
 		this.fireImmune = true;
-		//TODO figure out what to do here
-		this.textureIdentifier = NamespaceID.getPermanent("betterbattletowers", "golem");
+		this.textureIdentifier = NamespaceID.fromPool("betterbattletowers", "golem");
 		this.footSize = 2;
 		this.dormant = false;
 		this.growl = false;
