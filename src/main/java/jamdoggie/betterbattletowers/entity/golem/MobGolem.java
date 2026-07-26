@@ -114,6 +114,7 @@ public class MobGolem extends MobPathfinder {
 		this.entityData.set(3, index);
 	}
 
+	/// TODO indexedSkins is nullable in that case this will crash and entityVariant is also nullable.
 	@Override
 	public boolean cycleVariant() {
 		SkinVariantList variantList = Global.accessor.getSkinVariantList();

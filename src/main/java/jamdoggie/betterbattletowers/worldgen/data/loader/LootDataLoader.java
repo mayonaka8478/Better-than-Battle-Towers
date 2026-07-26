@@ -3,6 +3,7 @@ package jamdoggie.betterbattletowers.worldgen.data.loader;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigException;
@@ -105,10 +106,11 @@ public class LootDataLoader {
 				.render(ConfigRenderOptions.concise());
 			List<LootTable> table = gson.fromJson(jsonString, type);
 			LootDataLoader.createTables(table);
-		} catch (ConfigException e) {
-			throw new RuntimeException("Failed to parse HOCON config: " + LootDataLoader.CONFIG_PATH.toAbsolutePath(), e);
-		} catch (JsonSyntaxException e) {
-			throw new RuntimeException("Loot configuration file is malformed: " + LootDataLoader.CONFIG_PATH.toAbsolutePath(), e);
+		}catch (JsonParseException | ConfigException e){
+			LOGGER.error("{}", e.getMessage());
+			LOGGER.info("Loading default loot config.");
+			List<LootTable> defaultTable = LootDataDefault.getDefaultTable();
+			LootDataLoader.createTables(defaultTable);
 		}
 	}
 
