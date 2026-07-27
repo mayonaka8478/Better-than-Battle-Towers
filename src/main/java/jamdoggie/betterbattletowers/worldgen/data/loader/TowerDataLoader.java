@@ -1,7 +1,7 @@
 package jamdoggie.betterbattletowers.worldgen.data.loader;
 
 import com.b100.utils.StringUtils;
-import com.google.common.reflect.TypeToken;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.*;
 import jamdoggie.betterbattletowers.worldgen.data.adapter.*;
 import jamdoggie.betterbattletowers.worldgen.data.decoration.BlockData;
