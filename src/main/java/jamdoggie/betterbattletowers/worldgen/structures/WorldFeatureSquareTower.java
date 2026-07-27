@@ -238,7 +238,7 @@ public class WorldFeatureSquareTower extends WorldFeatureTower {
 			int cx = ix + dx * i;
 			int cz = iz + dz * i;
 
-			world.setBlockDataNotify(new TilePos(cx, y, cz), BattleTowerBlocks.TOWER_CHEST.id());
+			world.setBlockType(new TilePos(cx, y, cz), BattleTowerBlocks.TOWER_CHEST);
 			world.setBlockDataNotify(new TilePos(cx, y, cz), getMetaWithType(getMetaWithDirection(world.getBlockData(new TilePos( x, y, z)), dir), BlockLogicChest.Type.SINGLE));
 			populateChest(this.world, this.random, cx, y, cz, tier, lootAmount);
 			world.setBlockType(new TilePos(cx, y - 1, cz), Blocks.STONE_POLISHED);

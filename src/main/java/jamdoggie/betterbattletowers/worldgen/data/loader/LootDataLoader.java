@@ -16,6 +16,7 @@ import jamdoggie.betterbattletowers.worldgen.data.loot.LootTable;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.WeightedRandomLootObject;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicChest;
 import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.data.registry.recipe.adapter.ItemStackJsonAdapter;
@@ -144,6 +145,10 @@ public class LootDataLoader {
 	}
 
 	public static void populateChest(World world, Random random, int x, int y, int z, int tier, int lootAmount) {
+		Block<?> block = world.getBlockType(new TilePos(x, y, z));
+		if(!(block.getLogic() instanceof BlockLogicChest)){
+			return;
+		}
 		Container inventory = BlockLogicChest.getInventory(world, new TilePos(x, y, z));
 		if (inventory == null) return;
 		List<ItemStack> stacks = generateLootList(random, tier, lootAmount);
