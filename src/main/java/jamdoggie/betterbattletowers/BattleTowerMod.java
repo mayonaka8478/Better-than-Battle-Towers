@@ -37,7 +37,6 @@ import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFea
 public class 	BattleTowerMod implements ModInitializer{
 	public static final String MOD_ID = HalpLibe.registerMod("betterbattletowers");
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
 	public static WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag();
 	{
 		TOWER.addEntry(WorldFeatureSquareTower::new, 7);
@@ -50,7 +49,7 @@ public class 	BattleTowerMod implements ModInitializer{
 	public void onInitialize() {
 		LOGGER.info("Better than Battle Towers initialized.");
 		CommonEvents.BEFORE_GAME_START.listen(Key.of(MOD_ID), BattleTowerMod::beforeGameStart);
-		CommonEvents.AFTER_GAME_START.listen(Key.of(MOD_ID), BattleTowerMod::afterGameStart);
+		CommonEvents.AFTER_ITEM_INIT.listen(Key.of(MOD_ID), BattleTowerMod::loadBlockItemDependencies);
 		CommonEvents.RECIPES_NAMESPACE_INIT.listen(Key.of(MOD_ID), BattleTowerMod::initNamespaces);
 		CommonEvents.RECIPES_READY.listen(Key.of(MOD_ID), BattleTowerMod::onRecipesReady);
 	}
@@ -58,6 +57,7 @@ public class 	BattleTowerMod implements ModInitializer{
 	public static void beforeGameStart() {
 		BattleTowerConfig.init();
 		BattleTowerBlocks.init();
+		GolemVariants.init();
 		registerWorldFeatureClass(WorldFeatureBattleTower.class, "BattleTower");
 		registerWorldFeatureClass(WorldFeatureReverseTower.class, "ReverseBattleTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "VanquishedBattleTower");
@@ -69,8 +69,8 @@ public class 	BattleTowerMod implements ModInitializer{
 		SoundTypes.loadSoundsJson(MOD_ID);
 	}
 
-	public static void afterGameStart() {
-		GolemVariants.init();
+
+	public static void loadBlockItemDependencies(){
 		LootDataLoader.init();
 		TowerDataLoader.init();
 		TowerDataDefault.init();
