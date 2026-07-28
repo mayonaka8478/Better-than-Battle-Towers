@@ -1,10 +1,10 @@
-package jamdoggie.betterbattletowers.mixins;
+package jamdoggie.betterbattletowers.mixin.mixins.crumble;
 
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import jamdoggie.betterbattletowers.block.BattleTowerTriggerStandOn;
+import jamdoggie.betterbattletowers.mixin.interfaces.BattleTowerTriggerStandOn;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.world.pos.TilePos;

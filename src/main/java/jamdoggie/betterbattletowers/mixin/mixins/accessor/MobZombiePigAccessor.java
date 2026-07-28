@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.mixins.accessor;
+package jamdoggie.betterbattletowers.mixin.mixins.accessor;
 
 import net.minecraft.core.entity.monster.MobZombiePig;
 import org.spongepowered.asm.mixin.Mixin;

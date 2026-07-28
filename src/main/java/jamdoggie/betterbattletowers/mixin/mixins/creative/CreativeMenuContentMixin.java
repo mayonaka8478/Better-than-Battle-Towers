@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.mixins;
+package jamdoggie.betterbattletowers.mixin.mixins.creative;
 
 
 import jamdoggie.betterbattletowers.block.crumbling_stone.BlockLogicCrumbling;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 import static jamdoggie.betterbattletowers.block.BattleTowerBlocks.*;
-import static jamdoggie.betterbattletowers.mixins.accessor.CreativeMenuContentsAccessor.callAddBlock;
+import static jamdoggie.betterbattletowers.mixin.mixins.accessor.CreativeMenuContentsAccessor.callAddBlock;
 
 @Mixin(value = CreativeMenuContents.class)
 public abstract class CreativeMenuContentMixin {

@@ -384,9 +384,6 @@ public class TowerDataDefault {
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 		listProperties.add(
-			properties(NETHER_OLD_WORLD)
-		);
-		listProperties.add(
 			properties(DRIFT_DRIFT)
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))

@@ -1,6 +1,6 @@
 package jamdoggie.betterbattletowers.entity;
 
-import jamdoggie.betterbattletowers.mixins.accessor.MobZombiePigAccessor;
+import jamdoggie.betterbattletowers.mixin.mixins.accessor.MobZombiePigAccessor;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobZombiePig;
 import net.minecraft.core.entity.player.Player;

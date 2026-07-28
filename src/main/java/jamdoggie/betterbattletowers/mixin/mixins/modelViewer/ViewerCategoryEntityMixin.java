@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.mixins;
+package jamdoggie.betterbattletowers.mixin.mixins.modelViewer;
 
 import jamdoggie.betterbattletowers.entity.golem.EntityEntryGolem;
 import net.fabricmc.api.EnvType;

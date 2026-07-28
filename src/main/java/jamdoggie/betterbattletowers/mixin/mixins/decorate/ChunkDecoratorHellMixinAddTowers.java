@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.mixins.decorate;
+package jamdoggie.betterbattletowers.mixin.mixins.decorate;
 
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;

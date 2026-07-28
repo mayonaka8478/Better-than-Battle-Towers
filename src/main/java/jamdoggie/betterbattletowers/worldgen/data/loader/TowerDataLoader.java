@@ -29,13 +29,13 @@ public class TowerDataLoader {
 	private static final List<TowerProperty> LIST_PROPERTY = new ArrayList<>();
 	private static final String ASSETS_JAR_PATH = String.format("/assets/%s/tower/tower_properties.json", MOD_ID);
 	private static boolean init = false;
+	private TowerDataLoader(){}
 
 	public static TowerProperty getRandomTowerProperty(Random random) {
 		return LIST_PROPERTY.get(random.nextInt(LIST_PROPERTY.size()));
 	}
 
-	public static TowerProperty getTowerProperties(Biome biome, Random random) {
-		if (!BIOME_TO_TOWER_PROPERTIES.containsKey(biome)) {
+	public static TowerProperty getTowerProperties(Biome biome, Random random) {if (!BIOME_TO_TOWER_PROPERTIES.containsKey(biome)) {
 			return getRandomTowerProperty(random);
 		}
 		List<TowerProperty> towerPropertyList = new ArrayList<>(BIOME_TO_TOWER_PROPERTIES.get(biome));

@@ -1,4 +1,4 @@
-package jamdoggie.betterbattletowers.mixins.accessor;
+package jamdoggie.betterbattletowers.mixin.mixins.accessor;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.ItemStack;
