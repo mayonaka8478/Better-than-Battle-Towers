@@ -2994,10 +2994,6 @@
     ]
   },
   {
-    "biome": "minecraft:nether.old_world",
-    "tower_properties": []
-  },
-  {
     "biome": "minecraft:drift.drift",
     "tower_properties": [
       {
