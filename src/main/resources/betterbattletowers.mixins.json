@@ -4,23 +4,22 @@
   "mixinextras": {
     "minVersion": "0.5.0"
   },
-  "package": "jamdoggie.betterbattletowers.mixins",
+  "package": "jamdoggie.betterbattletowers.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "ViewerCategoryEntityMixin",
-    "accessor.EntityVariantsAccessor"
-  ],
-  "server": [
+    "accessor.EntityVariantsAccessor",
+    "modelViewer.ViewerCategoryEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
-    "CreativeMenuContentMixin",
-    "EntityMixinBlockStandOn",
+    "CommandKillMixin",
     "accessor.CreativeMenuContentsAccessor",
     "accessor.MobZombiePigAccessor",
     "accessor.SkinVariantAccessor",
+    "creative.CreativeMenuContentMixin",
+    "crumble.EntityMixinBlockStandOn",
     "decorate.ChunkDecoratorHellMixinAddTowers",
     "decorate.ChunkDecoratorOverWorldMixinAddTowers",
     "decorate.ChunkDecoratorRetroMixinAddTowers"

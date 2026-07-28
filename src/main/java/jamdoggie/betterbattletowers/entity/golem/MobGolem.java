@@ -2,10 +2,8 @@ package jamdoggie.betterbattletowers.entity.golem;
 
 import com.mojang.nbt.tags.CompoundTag;
 import jamdoggie.betterbattletowers.BattleTowerAchievements;
-import jamdoggie.betterbattletowers.BattleTowerMod;
 import jamdoggie.betterbattletowers.entity.MobUtil;
-import jamdoggie.betterbattletowers.mixins.accessor.EntityVariantsAccessor;
-import jamdoggie.betterbattletowers.mixins.accessor.SkinVariantAccessor;
+import jamdoggie.betterbattletowers.mixin.mixins.accessor.SkinVariantAccessor;
 import net.minecraft.client.entity.ClientSkinVariantList;
 import net.minecraft.core.Global;
 import net.minecraft.core.WeightedRandomBag;
@@ -328,9 +326,6 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public boolean hurt(Entity attacker, int damage, DamageType type) {
-		if(attacker == null && type == null && damage == 100){
-			return MobUtil.killMob(this);
-		}
 		if(this.dormant || attacker instanceof MobGolem)return false;
 		float modifier = (this.getMaxHealth() - this.getHealth() * 1.0f) / this.getMaxHealth();
 		float speed = MathHelper.lerp(DEFAULT_SPEED, DEFAULT_SPEED * 2, modifier);
