@@ -2,9 +2,16 @@ package jamdoggie.betterbattletowers;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
 
+import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
+import static net.minecraft.core.sound.SoundTypes.register;
+
 public class BattleTowerServer implements DedicatedServerModInitializer {
 	@Override
 	public void onInitializeServer() {
-		// no need for stuff on server
+		register(MOD_ID + ":mob.golem");
+		register(MOD_ID + ":mob.golem.awaken");
+		register(MOD_ID + ":mob.golem.death");
+		register(MOD_ID + ":mob.golem.hurt");
+		register(MOD_ID + ":mob.golem.special");
 	}
 }
