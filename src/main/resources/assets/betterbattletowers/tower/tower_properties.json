@@ -98,6 +98,36 @@
         "tower_decoration": [
           {
             "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
               "id": "minecraft:block/brick_stone_polished_mossy"
             },
             "weight": 100.0
@@ -371,6 +401,36 @@
         "tower_decoration": [
           {
             "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
               "id": "minecraft:block/brick_stone_polished_mossy"
             },
             "weight": 50.0
@@ -603,6 +663,54 @@
         ]
       },
       {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
         "golem_type": "marble",
         "decoration_weight": 1.67,
         "tower_decoration": [
@@ -768,6 +876,36 @@
           {
             "decoration": {
               "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
             },
             "weight": 50.0
           }
@@ -1070,6 +1208,54 @@
         "tower_decoration": [
           {
             "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
               "id": "minecraft:block/brick_stone_polished_mossy"
             },
             "weight": 100.0
@@ -1283,6 +1469,24 @@
         "tower_decoration": [
           {
             "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granite",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
               "id": "minecraft:block/mud_baked"
             },
             "weight": 100.0
@@ -1340,6 +1544,24 @@
   {
     "biome": "minecraft:overworld.shrubland",
     "tower_properties": [
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
       {
         "golem_type": "limestone",
         "decoration_weight": 100.0,
@@ -1980,6 +2202,24 @@
         ]
       },
       {
+        "golem_type": "granite",
+        "decoration_weight": 20.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
         "golem_type": "slate",
         "decoration_weight": 1.0,
         "tower_decoration": [
@@ -2133,6 +2373,54 @@
           {
             "decoration": {
               "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 5.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
             },
             "weight": 50.0
           }
@@ -2667,6 +2955,24 @@
         ]
       },
       {
+        "golem_type": "overgrown",
+        "decoration_weight": 0.5,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
         "golem_type": "slate",
         "decoration_weight": 1.0,
         "tower_decoration": [
@@ -2766,6 +3072,42 @@
           {
             "decoration": {
               "id": "minecraft:block/cobble_stone_mossy"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "limestone",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "granit",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_granite"
             },
             "weight": 50.0
           }
@@ -3173,6 +3515,36 @@
         "tower_decoration": [
           {
             "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 10.0,
+        "tower_decoration": [
+          {
+            "decoration": {
               "id": "minecraft:block/brick_stone_polished_mossy"
             },
             "weight": 100.0
@@ -3482,6 +3854,72 @@
         ]
       },
       {
+        "golem_type": "brimstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brimsand"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "brimstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_brimstone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "brimstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_brimstone"
+            },
+            "weight": 40.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/brimstone"
+            },
+            "weight": 60.0
+          }
+        ]
+      },
+      {
+        "golem_type": "gloomstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/brick_gloomstone"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
+        "golem_type": "gloomstone",
+        "decoration_weight": 100.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/gloomstone_polished"
+            },
+            "weight": 100.0
+          }
+        ]
+      },
+      {
         "golem_type": "slate",
         "decoration_weight": 100.0,
         "tower_decoration": [
@@ -3685,6 +4123,36 @@
               "id": "minecraft:block/cobble_stone_mossy"
             },
             "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone_mossy"
+            },
+            "weight": 50.0
+          },
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_limestone"
+            },
+            "weight": 50.0
+          }
+        ]
+      },
+      {
+        "golem_type": "overgrown",
+        "decoration_weight": 50.0,
+        "tower_decoration": [
+          {
+            "decoration": {
+              "id": "minecraft:block/cobble_basalt_mossy"
+            },
+            "weight": 100.0
           }
         ]
       },
