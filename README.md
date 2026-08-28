@@ -1,10 +1,9 @@
 # Better than Batte Tower
+[![GitHub License](https://img.shields.io/github/license/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff&cacheSeconds=120)]([https://github.com/mayonaka8478/Better-than-Battle-Towers?tab=LGPL-3.0-1-ov-file](https://github.com/mayonaka8478/Better-than-Battle-Towers/tree/8.0.1?tab=License-1-ov-file))
 [![GitHub Release](https://img.shields.io/github/v/release/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)](https://github.com/mayonaka8478/Better-than-Battle-Towers/releases)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)](https://github.com/mayonaka8478/Better-than-Battle-Towers/commits/8.0.1/)
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mayonaka8478/Better-than-Battle-Towers/total?labelColor=808080&color=badbff)](https://tooomm.github.io/github-release-stats/?username=mayonaka8478&repository=Better-than-Battle-Towers)
-![GitHub top language](https://img.shields.io/github/languages/top/mayonaka8478/Better-than-Battle-Towers?labelColor=808080&color=badbff)
 [![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Fghloc.vercel.app%2Fapi%2Fmayonaka8478%2FBetter-than-Battle-Towers%2Fbadge&labelColor=808080&color=badbff)](https://ghloc.vercel.app/)
-
 
 # Better than Battle Tower
 
