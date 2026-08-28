@@ -39,6 +39,11 @@ repositories {
         patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
         metadataSources { artifact() }
     }
+    maven("https://api.modrinth.com/maven") { name = "Modrinth"
+        content {
+            includeGroup("maven.modrinth")
+        }
+    }
 }
 lwjgl {
     version = libs.versions.lwjgl
@@ -47,7 +52,7 @@ lwjgl {
 dependencies {
     minecraft("::${libs.versions.bta.get()}")
 
-//    compileOnly(libs.btwaila)
+    compileOnly(libs.btwaila)
     include("com.typesafe:config:1.4.3")
     implementation("com.typesafe:config:1.4.3")
 

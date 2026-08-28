@@ -38,7 +38,7 @@
     "main": ["jamdoggie.betterbattletowers.BattleTowerMod"],
 		"client": ["jamdoggie.betterbattletowers.BattleTowerClient"],
 		"server": ["jamdoggie.betterbattletowers.BattleTowerServer"],
-		"preLaunch": ["jamdoggie.betterbattletowers.compat.waila.BattleTowerBTWLoader"]
+		"btwaila": ["jamdoggie.betterbattletowers.compat.BattleTowerBTWCompat"]
 	},
   "mixins": [
 		"betterbattletowers.mixins.json"

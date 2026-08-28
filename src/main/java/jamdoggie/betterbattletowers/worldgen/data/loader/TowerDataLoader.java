@@ -87,9 +87,9 @@ public class TowerDataLoader {
 			throw new RuntimeException("Failed to parse tower properties json at: " + TowerDataLoader.ASSETS_JAR_PATH, e);
 		}
 
-		Set<TowerProperty> setProperties = new HashSet<>();
+		Set<TowerProperty> setProperties = new LinkedHashSet<>();
 		for (TowerProperties properties : towerProperties) {
-			BIOME_TO_TOWER_PROPERTIES.put(properties.getBiome(), new HashSet<>(properties.getProperties()));
+			BIOME_TO_TOWER_PROPERTIES.put(properties.getBiome(), new LinkedHashSet<>(properties.getProperties()));
 			setProperties.addAll(properties.getProperties());
 		}
 		LIST_PROPERTY.addAll(setProperties);

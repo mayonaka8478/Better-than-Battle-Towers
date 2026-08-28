@@ -71,3 +71,6 @@ model.category.entity.golem.placeholder=Golem Type
 achievement.kill.golem.name=Gol 'em!
 achievement.kill.golem.desc=Defeat any golem.
 achievement.kill.golem=Gol 'em!
+
+# Death message
+messages.death.player.killed_by.golem= %s got golemed.

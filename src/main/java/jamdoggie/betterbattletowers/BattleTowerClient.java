@@ -12,7 +12,6 @@ import turniplabs.halplibe.event.defs.ClientEvents;
 import turniplabs.halplibe.util.dependency.Key;
 
 import static jamdoggie.betterbattletowers.BattleTowerMod.MOD_ID;
-import static jamdoggie.betterbattletowers.BattleTowerMod.LOGGER;
 import static jamdoggie.betterbattletowers.worldgen.data.loader.LootDataLoader.LAPIZ;
 
 public class BattleTowerClient implements ClientModInitializer {
@@ -44,7 +43,6 @@ public class BattleTowerClient implements ClientModInitializer {
 
 
 	public static void beforeClientStart() {
-		LOGGER.info("");
 		SoundRepository.namespaceAdded(MOD_ID);
 	}
 }

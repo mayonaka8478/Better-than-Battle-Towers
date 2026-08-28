@@ -3,7 +3,6 @@ package jamdoggie.betterbattletowers.worldgen.structures;
 import jamdoggie.betterbattletowers.config.BattleTowerConfig;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.MathHelper;
-import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;

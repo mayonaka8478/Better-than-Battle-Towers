@@ -70,3 +70,6 @@ model.category.entity.golem.placeholder=Тип голема
 achievement.kill.golem.name=Камни тоже падают!
 achievement.kill.golem.desc=Победите любого голема.
 achievement.kill.golem=Камни тоже падают!
+
+# Death message
+messages.death.player.killed_by.golem= %s познакомился с Големоломкой.

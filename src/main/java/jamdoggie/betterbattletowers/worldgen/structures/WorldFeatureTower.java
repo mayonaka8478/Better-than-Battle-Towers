@@ -238,7 +238,7 @@ public abstract class WorldFeatureTower implements WorldFeatureInterface {
 		if (biome.hasTag(BiomeTags.HAS_SURFACE_SNOW)) {
 			return "minecraft:spider";
 		}
-		Set<Weather> blockedWeather = new HashSet<>(biome.blockedWeathers);
+		Set<Weather> blockedWeather = new LinkedHashSet<>(biome.blockedWeathers);
 		if (blockedWeather.contains(Weathers.OVERWORLD_RAIN)
 			&& blockedWeather.contains(Weathers.OVERWORLD_SNOW)
 			&& blockedWeather.contains(Weathers.OVERWORLD_STORM)

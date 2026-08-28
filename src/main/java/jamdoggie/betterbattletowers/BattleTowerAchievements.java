@@ -16,7 +16,7 @@ public class BattleTowerAchievements {
 	public static void init(){
 		if(init) return;
 		init = true;
-		DEFEAT_GOLEM = (new Achievement(NamespaceID.getPermanent(MOD_ID, "defeate_golem"), "kill.golem", BattleTowerBlocks.RUNIC_GLYPH_STONE, null)
+		DEFEAT_GOLEM = (new Achievement(NamespaceID.fromPool(MOD_ID, "defeate_golem"), "kill.golem", BattleTowerBlocks.RUNIC_GLYPH_STONE, null)
 			.setClientsideAchievement()
 			.setType(Achievement.TYPE_SECRET)
 			.registerAchievement());

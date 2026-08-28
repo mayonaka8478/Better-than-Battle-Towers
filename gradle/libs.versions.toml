@@ -43,7 +43,7 @@ lwjgl = "3.3.3"
 # hocon
 hocon = "1.4.3"
 # Check this on https://maven.thesignalumproject.net/#/releases/useless/btwaila/
-btwaila = "1.2.2-7.3_04"
+btwaila = "1.3.1-8.0"
 ##########################################################################
 
 [libraries]
@@ -63,7 +63,7 @@ commonsLang3 = { group = "org.apache.commons", name = "commons-lang3", version.r
 clientJar = { group = "objects", name = "client", version = "43db9b498cb67058d2e12d394e6507722e71bb45" }
 #-------------------------------------------------------------------------
 hocon = {group = "com.typesafe", name = "config", version.ref = "hocon"}
-btwaila = { group = "useless", name = "btwaila", version.ref = "btwaila" }
+btwaila = { group = "maven.modrinth", name = "btwaila", version.ref = "btwaila" }
 #-------------------------------------------------------------------------
 [plugins]
 loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }

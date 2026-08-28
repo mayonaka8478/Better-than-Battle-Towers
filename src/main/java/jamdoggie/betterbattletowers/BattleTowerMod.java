@@ -37,7 +37,7 @@ import static net.minecraft.core.net.command.util.CommandHelper.registerWorldFea
 public class 	BattleTowerMod implements ModInitializer{
 	public static final String MOD_ID = HalpLibe.registerMod("betterbattletowers");
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag();
+	public static final WeightedRandomBag<Supplier<? extends WorldFeatureTower>> TOWER = new WeightedRandomBag<>();
 	{
 		TOWER.addEntry(WorldFeatureSquareTower::new, 7);
 		TOWER.addEntry(WorldFeatureBattleTower::new, 7);
@@ -63,9 +63,9 @@ public class 	BattleTowerMod implements ModInitializer{
 		registerWorldFeatureClass(WorldFeatureVanquishedTower.class, "VanquishedBattleTower");
 		registerWorldFeatureClass(WorldFeatureSquareTower.class, "BastionTower");
 		registerWorldFeatureClass(WorldFeatureVanquishedSquareTower.class, "VanquishedBastionTower");
-		EntityDispatcher.getInstance().addMapping(MobGolem.class, NamespaceID.getPermanent(MOD_ID, "golem"), MobGolem::new); // "betterbattletowers.golem.name"
-		EntityDispatcher.getInstance().addMapping(MobAgressiveZombiePig.class, NamespaceID.getPermanent(MOD_ID, "zombie_pigman"), MobAgressiveZombiePig::new); //"betterbattletowers.aggro_zombie_pigman.name"
-		TileEntityDispatcher.addMapping(TileEntityChestTower.class, NamespaceID.getPermanent(MOD_ID, "tile_tower_chest")); //"betterbattletowers.ironchest"
+		EntityDispatcher.getInstance().addMapping(MobGolem.class, NamespaceID.fromPool(MOD_ID, "golem"), MobGolem::new);
+		EntityDispatcher.getInstance().addMapping(MobAgressiveZombiePig.class, NamespaceID.fromPool(MOD_ID, "aggro_zombie_pigman"), MobAgressiveZombiePig::new);
+		TileEntityDispatcher.addMapping(TileEntityChestTower.class, NamespaceID.fromPool(MOD_ID, "tile_tower_chest"));
 		SoundTypes.loadSoundsJson(MOD_ID);
 	}
 
@@ -90,12 +90,13 @@ public class 	BattleTowerMod implements ModInitializer{
 		Random random = chunk.getChunkRandom(0x544f574552L);
 		int randomNum = random.nextInt(BattleTowerConfig.getTowerrarity());
 		if (randomNum == 0) {
+			Random towerRandom = chunk.getChunkRandom(0x505249534F4EL);
 			ChunkPosc posc = chunk.pos;
 			int x = posc.x() * 16;
 			int z = posc.z() * 16;
 			int y = world.getHeightValue(x, z) - 1;
-			Supplier<? extends WorldFeatureTower> supply = TOWER.getRandom(random);
-			supply.get().place(world, random, new TilePos(x, y, z));
+			Supplier<? extends WorldFeatureTower> supply = TOWER.getRandom(towerRandom);
+			supply.get().place(world, towerRandom, new TilePos(x, y, z));
 		}
 	}
 }

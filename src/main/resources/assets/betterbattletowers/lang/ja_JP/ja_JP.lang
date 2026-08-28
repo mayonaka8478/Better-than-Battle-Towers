@@ -70,3 +70,6 @@ model.category.entity.golem.placeholder = ゴーレムの構成素材
 achievement.kill.golem.name=げぇれむゲッダゥン！
 achievement.kill.golem.desc=バトルタワーのゴーレムを倒す、ゲッダンではない
 achievement.kill.golem=げぇれむゲッダゥン！
+
+# Death message
+messages.death.player.killed_by.golem= %sはゴーレムに潰された

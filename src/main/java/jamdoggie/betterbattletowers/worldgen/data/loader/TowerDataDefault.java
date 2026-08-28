@@ -85,18 +85,21 @@ public class TowerDataDefault {
 		WeightedRandomBag<BlockData> COBBLE_STONE = asBag(pallet(Blocks.COBBLE_STONE.id(), 100.0f));
 		WeightedRandomBag<BlockData> MOSSY_COBBLE_STONE = asBag(pallet(Blocks.COBBLE_STONE.id(), 50.0f), pallet(COBBLE_STONE_MOSSY.id(), 50.0f));
 
-		WeightedRandomBag<BlockData> BRICK_SANDSTONE = asBag(pallet(Blocks.SANDSTONE.id(), 50.0f), pallet(Blocks.BRICK_SANDSTONE.id(), 50.0f));
+		WeightedRandomBag<BlockData> BRICK_SANDSTONE = asBag(pallet(SANDSTONE.id(), 50.0f), pallet(Blocks.BRICK_SANDSTONE.id(), 50.0f));
 		WeightedRandomBag<BlockData> SANDSTONE = asBag(pallet(Blocks.BRICK_SANDSTONE.id(), 30.0f), pallet(Blocks.SANDSTONE.id(), 40.0f), pallet(SAND.id(), 30.0f));
 
+		WeightedRandomBag<BlockData> MOSSY_COBBLE_GRANITE = asBag(pallet(COBBLE_GRANITE_MOSSY.id(), 50), pallet(COBBLE_GRANITE.id(), 50));
 		WeightedRandomBag<BlockData> POLISH_GRANITE = asBag(pallet(GRANITE_CARVED.id(), 50.0f), pallet(GRANITE_POLISHED.id(), 50.0f));
 		WeightedRandomBag<BlockData> BRICK_GRANITE = asBag(pallet(Blocks.BRICK_GRANITE.id(), 50.0f), pallet(GRANITE.id(), 50.0f));
 		WeightedRandomBag<BlockData> BACKED_MUD = asBag(pallet(MUD_BAKED.id(), 100));
 
+		WeightedRandomBag<BlockData> MOSSY_COBBLE_LIMESTONE = asBag(pallet(COBBLE_LIMESTONE_MOSSY.id(), 50), pallet(COBBLE_LIMESTONE.id(), 50));
 		WeightedRandomBag<BlockData> LIMESTONE = asBag(pallet(Blocks.LIMESTONE.id(), 100.0f));
 		WeightedRandomBag<BlockData> POLISH_LIMESTONE = asBag(pallet(LIMESTONE_POLISHED.id(), 50.0f), pallet(LIMESTONE_CARVED.id(), 50.0f));
 		WeightedRandomBag<BlockData> BRICK_LIMESTONE = asBag(pallet(Blocks.BRICK_LIMESTONE.id(), 100.0f));
 		WeightedRandomBag<BlockData> COBBLE_LIMESTONE = asBag(pallet(Blocks.BRICK_LIMESTONE.id(), 50.0f), pallet(Blocks.COBBLE_LIMESTONE.id(), 50.0f));
 
+		WeightedRandomBag<BlockData> MOSSY_COBBLE_BASALT = asBag(pallet(COBBLE_BASALT_MOSSY.id(), 100));
 		WeightedRandomBag<BlockData> POLISH_BASALT = asBag(pallet(BASALT_POLISHED.id(), 50.0f), pallet(BASALT_CARVED.id(), 50.0f));
 		WeightedRandomBag<BlockData> BRICK_BASALT = asBag(pallet(Blocks.BRICK_BASALT.id(), 100.0f));
 		WeightedRandomBag<BlockData> COBBLE_BASALT = asBag(pallet(Blocks.COBBLE_BASALT.id(), 100.0f));
@@ -122,6 +125,13 @@ public class TowerDataDefault {
 		WeightedRandomBag<BlockData> OBSIDIAN = asBag(pallet(Blocks.OBSIDIAN.id(), 100.0f));
 
 		WeightedRandomBag<BlockData> SLATE = asBag(pallet(SLATE_POLISHED.id(), 50.0f), pallet(Blocks.SLATE.id(), 50.0f));
+
+		WeightedRandomBag<BlockData> BRICK_GLOOMSTONE = asBag(pallet(Blocks.BRICK_GLOOMSTONE.id(), 100));
+		WeightedRandomBag<BlockData> POLISH_GLOOMSTONE = asBag(pallet(GLOOMSTONE_POLISHED.id(), 100));
+
+		WeightedRandomBag<BlockData> BRICK_BRIMSTONE = asBag(pallet(Blocks.BRICK_BRIMSTONE.id(), 100));
+		WeightedRandomBag<BlockData> BRIMSTONE = asBag(pallet(Blocks.BRICK_BRIMSTONE.id(), 40), pallet(Blocks.BRIMSTONE.id(), 60));
+		WeightedRandomBag<BlockData> BRIMSAND = asBag(pallet(Blocks.BRIMSAND.id(), 100));
 
 		hardCoreTowerBuildingBlocks.addEntry(RUNIC, 50.0f);
 
@@ -155,6 +165,8 @@ public class TowerDataDefault {
 				.addProperty(deco("obsidian", OBSIDIAN, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 100.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 100.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 100.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 100.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 100.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 50.0))
@@ -176,6 +188,8 @@ public class TowerDataDefault {
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 50.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 50.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 25.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
@@ -194,6 +208,9 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_GRANITE, 10.0))
 
 				.addProperty(deco("marble", BRICK_MARBLE, 1.67))
 				.addProperty(deco("marble", MARBLE, 1.67))
@@ -210,6 +227,9 @@ public class TowerDataDefault {
 				.addProperty(deco("limestone", BRICK_LIMESTONE, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 10.0))
+
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 10.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 10.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 5.0))
@@ -233,6 +253,9 @@ public class TowerDataDefault {
 				.addProperty(deco("limestone", BRICK_LIMESTONE, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_GRANITE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 2.5))
@@ -249,12 +272,14 @@ public class TowerDataDefault {
 
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
+				.addProperty(deco("granite", MOSSY_COBBLE_GRANITE, 100.0))
 				.addProperty(deco("granite", BACKED_MUD, 100.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
 		listProperties.add(
 			properties(OVERWORLD_SHRUBLAND)
+				.addProperty(deco("limestone", MOSSY_COBBLE_LIMESTONE, 100.0))
 				.addProperty(deco("limestone", COBBLE_LIMESTONE, 100.0))
 				.addProperty(deco("limestone", LIMESTONE, 100.0))
 				.addProperty(deco("limestone", POLISH_LIMESTONE, 100.0))
@@ -309,6 +334,7 @@ public class TowerDataDefault {
 				.addProperty(deco("granite", POLISH_GRANITE, 100.0))
 				.addProperty(deco("granite", BRICK_GRANITE, 100.0))
 				.addProperty(deco("granite", BACKED_MUD, 100.0))
+				.addProperty(deco("granite", MOSSY_COBBLE_GRANITE, 20.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
 
@@ -323,6 +349,9 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 5.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_GRANITE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 5.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 2.5))
@@ -360,6 +389,7 @@ public class TowerDataDefault {
 				.addProperty(deco("marble", PILLAR_MARBLE, 1.67))
 
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 0.5F))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 0.5F))
 				.addProperty(deco("slate", RUNIC, 1.0))		);
 
 		listProperties.add(
@@ -368,6 +398,8 @@ public class TowerDataDefault {
 				.addProperty(deco("stone", POLISH_STONE, 100.0))
 				.addProperty(deco("stone", BRICK_STONE, 100.0))
 				.addProperty(deco("stone", MOSSY_COBBLE_STONE, 10.0))
+				.addProperty(deco("limestone", MOSSY_COBBLE_LIMESTONE, 10.0))
+				.addProperty(deco("granit", MOSSY_COBBLE_GRANITE, 10.0))
 				.addProperty(deco("stone", COBBLE_STONE, 100.0))
 
 				.addProperty(deco("limestone", COBBLE_LIMESTONE, 100.0))
@@ -399,6 +431,8 @@ public class TowerDataDefault {
 				.addProperty(deco("limestone", BRICK_LIMESTONE, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 10.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 10.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 10.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 10.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 5.0F))
@@ -425,6 +459,13 @@ public class TowerDataDefault {
 				.addProperty(deco("netherrack", COBBLE_NETHER, 100.0))
 				.addProperty(deco("netherrack", NETHER, 100.0))
 				.addProperty(deco("netherrack", POLISH_NETHER, 100.0))
+
+				.addProperty(deco("brimstone", BRIMSAND, 100.0))
+				.addProperty(deco("brimstone", BRICK_BRIMSTONE, 100.0))
+				.addProperty(deco("brimstone", BRIMSTONE, 100.0))
+				.addProperty(deco("gloomstone", BRICK_GLOOMSTONE, 100.0))
+				.addProperty(deco("gloomstone", POLISH_GLOOMSTONE, 100.0))
+
 				.addProperty(deco("slate", SLATE, 100.0))
 				.addProperty(deco("slate", RUNIC, 1.0))
 		);
@@ -443,6 +484,8 @@ public class TowerDataDefault {
 				.addProperty(deco("basalt", COBBLE_BASALT, 100.0))
 
 				.addProperty(deco("overgrown", MOSSY_COBBLE_STONE, 50.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_LIMESTONE, 50.0))
+				.addProperty(deco("overgrown", MOSSY_COBBLE_BASALT, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BRICK_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_BLOOM_BRICK_STONE, 50.0))
 				.addProperty(deco("overgrown", MOSSY_OVERGROWN_BRICK_STONE, 25.0F))
