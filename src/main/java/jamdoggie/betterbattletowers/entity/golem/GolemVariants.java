@@ -30,6 +30,8 @@ public class GolemVariants {
 		this.cycleList.add("slate");
 		this.cycleList.add("netherrack");
 		this.cycleList.add("overgrown");
+		this.cycleList.add("gloomstone");
+		this.cycleList.add("brimstone");
 	}
 
 	protected static void addEntry(String type){
