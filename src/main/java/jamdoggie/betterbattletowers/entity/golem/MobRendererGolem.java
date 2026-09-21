@@ -1,5 +1,6 @@
 package jamdoggie.betterbattletowers.entity.golem;
 
+import net.minecraft.client.option.GameSettings;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 
 import net.minecraft.client.render.entity.MobRendererBiped;
@@ -39,7 +40,7 @@ public class MobRendererGolem extends MobRendererBiped<MobGolem> {
 	@Override
 	protected @Nullable StaticEntityModel getAndSetupModelForLayer(@NotNull MobGolem golem, float brightness, float partialTick, int layer) {
 		if (layer == 1 && !golem.isDormant()) {
-			this.bindTexture(String.format("/assets/%s/textures/entity/golem/%s/eyes/%s.png", MOD_ID, golem.getEntityData().getString(3), golem.getTextureReference()));
+			this.bindTexture(this.getGolemEyes(golem));
 			GLRenderer.setLightmapCoord2i(15, 15);
 			GLRenderer.enableState(State.BLEND);
 			GLRenderer.setBlendFunc(BlendFactor.SRC_ALPHA, BlendFactor.ONE_MINUS_SRC_ALPHA);
@@ -65,6 +66,13 @@ public class MobRendererGolem extends MobRendererBiped<MobGolem> {
 		return super.getAndSetupModelForLayer(golem, brightness, partialTick, layer);
 	}
 
+	private @NotNull String getGolemEyes(@NotNull MobGolem golem) {
+		if(GameSettings.MOB_VARIANTS.value){
+			return String.format("/assets/%s/textures/entity/golem/%s/eyes/%s.png", MOD_ID, golem.getEntityData().getString(3), golem.getTextureReference());
+		}
+		return String.format("/assets/%s/textures/entity/golem/%s/eyes/%s.png", MOD_ID, GolemVariants.DEFAULT, "0");
+	}
+
 
 	@Override
 	public void renderPreview(@NotNull TessellatorGeneral tessellator, @NotNull MobGolem golem, double x, double y, double z, float yaw, float partialTick) {
@@ -73,9 +81,10 @@ public class MobRendererGolem extends MobRendererBiped<MobGolem> {
 
 	@Override
 	protected int maxRenderLayer(@NotNull MobGolem golem) {
-		if(golem.getEntityData().getString(3).equalsIgnoreCase("overgrown")){
+		if (golem.getEntityData().getString(3).equalsIgnoreCase("overgrown") && GameSettings.MOB_VARIANTS.value) {
 			return 2;
 		}
 		return 1;
+
 	}
 }

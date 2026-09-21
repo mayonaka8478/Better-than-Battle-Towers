@@ -91,7 +91,7 @@ public class MobGolem extends MobPathfinder {
 
 	@Override
 	public @NotNull String getDefaultEntityTexture() {
-		return String.format("/assets/%s/textures/entity/%s/%s/0.png", this.textureIdentifier.namespace(), DEFAULT, this.textureIdentifier.value());
+		return String.format("/assets/%s/textures/entity/%s/%s/0.png", this.textureIdentifier.namespace(), this.textureIdentifier.value(), DEFAULT);
 	}
 
 	@Override
